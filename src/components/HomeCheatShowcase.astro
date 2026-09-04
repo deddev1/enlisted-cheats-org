@@ -2,7 +2,7 @@
 import { enlistedScreenshots } from '../data/enlisted';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
+import { contentSrc, contentSrcSet } from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -95,7 +95,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 										<img
 											src={contentSrc(card.image.src)}
 											srcset={contentSrcSet(card.image.src)}
-											sizes="(max-width: 560px) 88vw, 360px"
+											sizes="(max-width: 560px) 78vw, 280px"
 											alt={card.image.alt}
 											width="640"
 											height="360"
@@ -192,34 +192,31 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	}
 
 	.cheat-showcase__stage {
-		display: flex;
-		justify-content: center;
+		width: 100%;
 	}
 
 	.cheat-showcase__viewport {
 		position: relative;
-		width: min(100%, 22.5rem);
-		height: min(32rem, 62vh);
+		width: 100%;
 		overflow: hidden;
-		border: 1px solid var(--color-border);
-		background: rgba(0, 0, 0, 0.35);
-		box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
 		mask-image: linear-gradient(
-			180deg,
+			90deg,
 			transparent 0%,
-			#000 12%,
-			#000 88%,
+			#000 6%,
+			#000 94%,
 			transparent 100%
 		);
 	}
 
 	.cheat-showcase__track {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		align-items: stretch;
 		gap: 0.85rem;
-		padding: 0.85rem;
+		width: max-content;
+		padding-block: 0.15rem;
 		will-change: transform;
-		animation: cheat-showcase-scroll 42s linear infinite;
+		animation: cheat-showcase-scroll 55s linear infinite;
 	}
 
 	.cheat-showcase__viewport:hover .cheat-showcase__track,
@@ -228,7 +225,8 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	}
 
 	.cheat-showcase__card {
-		flex-shrink: 0;
+		flex: 0 0 min(78vw, 17.5rem);
+		width: min(78vw, 17.5rem);
 	}
 
 	.cheat-showcase__card-link {
@@ -247,7 +245,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	.cheat-showcase__card-link:hover {
 		border-color: rgba(197, 138, 69, 0.45);
 		background: var(--color-card-hover);
-		transform: translateY(-2px);
+		transform: translateY(-3px);
 	}
 
 	.cheat-showcase__media {
@@ -321,21 +319,17 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 
 	@keyframes cheat-showcase-scroll {
 		from {
-			transform: translateY(0);
+			transform: translateX(0);
 		}
 		to {
-			transform: translateY(-50%);
+			transform: translateX(-50%);
 		}
 	}
 
 	@media (min-width: 900px) {
-		.cheat-showcase__stage {
-			justify-content: flex-start;
-		}
-
-		.cheat-showcase__viewport {
-			width: min(100%, 24rem);
-			height: min(34rem, 68vh);
+		.cheat-showcase__card {
+			flex-basis: 18.5rem;
+			width: 18.5rem;
 		}
 	}
 
@@ -348,23 +342,23 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 		.cheat-showcase__inner {
 			padding-top: 3.5rem;
 		}
-
-		.cheat-showcase__viewport {
-			width: 100%;
-			height: min(28rem, 58vh);
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.cheat-showcase__track {
 			animation: none;
+			flex-wrap: wrap;
+			width: 100%;
 		}
 
 		.cheat-showcase__viewport {
-			height: auto;
-			max-height: none;
 			overflow: visible;
 			mask-image: none;
+		}
+
+		.cheat-showcase__card {
+			flex: 1 1 min(100%, 17.5rem);
+			width: auto;
 		}
 	}
 </style>
