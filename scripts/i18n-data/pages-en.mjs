@@ -9,7 +9,7 @@ export const enPages = {
 		h1: 'Enlisted Cheats',
 		intro:
 			'A focused Windows PC package for Enlisted: Enemy ESP, aimbot controls, and wallhack overlays with Gaijin anti-cheat maintenance after major patches.',
-		imageAlt: 'Enlisted cheats main menu with ESP wallhack and soft aim toggles on PC',
+		imageAlt: 'Enlisted Cheats hero banner with WWII soldiers in cinematic battlefield combat',
 		galleryTitle: 'Enlisted Cheats visuals',
 		ctaPrimary: 'Buy Enlisted Cheats',
 		ctaSecondary: 'See all features',

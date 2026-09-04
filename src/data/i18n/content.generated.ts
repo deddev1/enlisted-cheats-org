@@ -98,7 +98,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					tagline: "Enlisted Cheats for PC — ESP, aimbot, and wallhack with anti-cheat updates.",
 				},
 				images: {
-					hero: "Enlisted cheats hero banner with ESP wallhack and soft aim toggles on PC",
+					hero: "Enlisted Cheats cinematic hero with WWII soldiers charging through a battlefield",
 					espWallhack: "Enlisted ESP overlay highlighting enemy infantry and tanks units through walls",
 					aimbotCombat: "Enlisted aimbot targeting a enemy tank during a campaign mission",
 					squadFight: "Enlisted squad co-op fight with ESP and aimbot active in a squad assault",
@@ -116,7 +116,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					description: "Enlisted cheats for Windows PC — ESP, aimbot, wallhack & radar. $35/mo or $150 lifetime. Setup guides, patch updates & buyer reviews.",
 					h1: "Enlisted Cheats",
 					intro: "A focused Windows PC package for Enlisted: Enemy ESP, aimbot controls, and wallhack overlays with Gaijin anti-cheat maintenance after major patches.",
-					imageAlt: "Enlisted cheats main menu with ESP wallhack and soft aim toggles on PC",
+					imageAlt: "Enlisted Cheats hero banner with WWII soldiers in cinematic battlefield combat",
 					galleryTitle: "Enlisted Cheats visuals",
 					ctaPrimary: "Buy Enlisted Cheats",
 					ctaSecondary: "See all features",
