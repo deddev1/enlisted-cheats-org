@@ -1,5 +1,5 @@
 ---
-import { enlistedScreenshots } from '../data/enlisted';
+import { showcaseGameplay } from '../data/enlisted';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { contentSrc, contentSrcSet } from '../lib/responsive-images';
@@ -12,57 +12,48 @@ const locale = Astro.props.locale ?? defaultLocale;
 
 const showcaseCards = [
 	{
+		badge: 'Wallhack',
+		badgeTone: 'green',
+		title: 'See enemies through cover',
+		description:
+			'Green wallhack silhouettes reveal infantry behind wooden walls, sandbags, and trench lines.',
+		image: showcaseGameplay[0],
+		href: getLocalizedPath('wallhack', locale),
+	},
+	{
 		badge: 'ESP',
 		badgeTone: 'green',
-		title: 'Enemy wallhack overlay',
+		title: 'Red soldier ESP overlay',
 		description:
-			'Soldier, vehicle, and tank outlines through terrain with distance readouts and team colour coding.',
-		image: enlistedScreenshots.espOverlay,
+			'Bright enemy outlines across open ground so you can track flanks before they push your position.',
+		image: showcaseGameplay[1],
 		href: getLocalizedPath('enlisted-esp', locale),
 	},
 	{
 		badge: 'Aimbot',
 		badgeTone: 'gold',
-		title: 'Smooth combat targeting',
+		title: 'Scoped target highlight',
 		description:
-			'Configurable FOV, smoothing, and weak-spot priority for rifles, SMGs, and sniper rifles.',
-		image: enlistedScreenshots.aimbotMenu,
+			'Purple chams and mark-enemy cues through optics for fast weak-spot shots at range.',
+		image: showcaseGameplay[2],
 		href: getLocalizedPath('enlisted-aimbot', locale),
-	},
-	{
-		badge: 'Wallhack',
-		badgeTone: 'green',
-		title: 'ESP bounding boxes',
-		description:
-			'Enemy boxes with health bars in campaign missions, squad assaults, and large-scale battles.',
-		image: enlistedScreenshots.espBoxes,
-		href: getLocalizedPath('wallhack', locale),
 	},
 	{
 		badge: 'Radar',
 		badgeTone: 'gold',
-		title: '2D threat minimap',
+		title: 'Radar with skeleton ESP',
 		description:
-			'Directional cues for flanks and enemies outside your line of sight with adjustable range.',
-		image: enlistedScreenshots.radarMinimap,
+			'Top-down threat map plus skeleton boxes, snaplines, and distance tags in heavy combat.',
+		image: showcaseGameplay[3],
 		href: getLocalizedPath('radar', locale),
 	},
 	{
 		badge: 'Combat',
 		badgeTone: 'green',
-		title: 'Live battle ESP',
+		title: 'Soldier icons through terrain',
 		description:
-			'Toggleable ESP categories for tank fights, infantry pushes, and defence sectors without overlay noise.',
-		image: enlistedScreenshots.combatEsp,
-		href: getLocalizedPath('features', locale),
-	},
-	{
-		badge: 'Settings',
-		badgeTone: 'gold',
-		title: 'In-client control panel',
-		description:
-			'Hotkeys, colours, and per-module toggles for ESP, radar, and aimbot mid-match.',
-		image: enlistedScreenshots.settingsPanel,
+			'2D radar and soldier markers that stay visible through hills, smoke, and hard cover.',
+		image: showcaseGameplay[4],
 		href: getLocalizedPath('features', locale),
 	},
 ] as const;
@@ -92,21 +83,25 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 			<div class="cheat-showcase__viewport" data-cheat-scroll-viewport>
 				<div class="cheat-showcase__track" data-cheat-scroll-track>
 					{
-						scrollCards.map((card) => (
-							<article class="cheat-showcase__card">
-								<a href={card.href} class="cheat-showcase__card-link">
-									<div class="cheat-showcase__media">
-										<img
-											src={contentSrc(card.image.src)}
-											srcset={contentSrcSet(card.image.src)}
-											sizes="(max-width: 560px) 78vw, 296px"
-											alt={card.image.alt}
-											width="640"
-											height="360"
-											loading="lazy"
-											decoding="async"
-										/>
-									</div>
+						scrollCards.map((card) => {
+							const imageSrc = contentSrc(card.image.src);
+							const imageSrcSet = contentSrcSet(card.image.src);
+
+							return (
+								<article class="cheat-showcase__card">
+									<a href={card.href} class="cheat-showcase__card-link">
+										<div class="cheat-showcase__media">
+											<img
+												src={imageSrc}
+												{...(imageSrcSet ? { srcset: imageSrcSet } : {})}
+												sizes="(max-width: 560px) 78vw, 296px"
+												alt={card.image.alt}
+												width="530"
+												height="320"
+												loading="lazy"
+												decoding="async"
+											/>
+										</div>
 									<div class="cheat-showcase__body">
 										<div class="cheat-showcase__meta">
 											<span class:list={['cheat-showcase__badge', `cheat-showcase__badge--${card.badgeTone}`]}>
@@ -119,7 +114,8 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 									</div>
 								</a>
 							</article>
-						))
+							);
+						})
 					}
 				</div>
 			</div>

@@ -2,6 +2,38 @@ import { siteConfig } from './site';
 
 const img = (name: string) => `/images/${name}`;
 
+const supabaseGameplayBase =
+	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted';
+
+/** Homepage cheat showcase — live Supabase gameplay captures. */
+export const showcaseGameplay: EnlistedScreenshot[] = [
+	{
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161627.png`,
+		alt: 'Enlisted wallhack ESP highlighting an enemy soldier through wooden trench cover',
+		title: 'Trench wallhack ESP',
+	},
+	{
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161636.png`,
+		alt: 'Enlisted ESP showing red enemy silhouettes across an open battlefield',
+		title: 'Open field ESP overlay',
+	},
+	{
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161643.png`,
+		alt: 'Enlisted scope view with purple chams highlighting a distant enemy target',
+		title: 'Scoped target highlight',
+	},
+	{
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161704.png`,
+		alt: 'Enlisted radar hack with skeleton ESP, snaplines, and soldier labels in combat',
+		title: 'Radar and skeleton ESP',
+	},
+	{
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161712.png`,
+		alt: 'Enlisted 2D radar minimap with soldier icons visible through terrain',
+		title: '2D battlefield radar',
+	},
+];
+
 /** Homepage hero — self-hosted for sitemap and LCP. */
 export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
 
