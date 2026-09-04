@@ -1,0 +1,20 @@
+---
+import ExternalGuidePage from '../../../components/ExternalGuidePage.astro';
+import { externalGuidePosts } from '../../../data/guides/posts.generated';
+import { resolveExternalGuide } from '../../../data/guides/helpers';
+
+export function getStaticPaths() {
+	return externalGuidePosts.map((post) => ({
+		params: { slug: post.slug },
+		props: { guide: resolveExternalGuide(post) },
+	}));
+}
+
+interface Props {
+	guide: import('../../../data/guides/types').ResolvedExternalGuide;
+}
+
+const { guide } = Astro.props;
+---
+
+<ExternalGuidePage guide={guide} />

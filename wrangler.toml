@@ -1,0 +1,16 @@
+name = "enlisted-cheats-net"
+compatibility_date = "2026-01-01"
+main = "worker.js"
+
+# Cloudflare Workers Builds runs only `npx wrangler deploy` by default.
+# This build step creates ./dist before static assets are uploaded.
+[build]
+command = "node scripts/cloudflare-build.mjs"
+
+# Worker runs first for every request (HTTPS/www redirects, path rules, headers).
+# Static HTML/assets are served via the ASSETS binding after middleware passes through.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = true
+not_found_handling = "404-page"

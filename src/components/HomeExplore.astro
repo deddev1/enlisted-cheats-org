@@ -1,0 +1,130 @@
+---
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getHomeExploreLinks } from '../lib/internal-links';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const links = getHomeExploreLinks(locale);
+---
+
+<section class="home-explore shell" aria-labelledby="home-explore-title">
+	<h2 id="home-explore-title" class="home-explore__title">
+		<span class="home-explore__accent" aria-hidden="true"></span>
+		Explore Enlisted Cheats
+	</h2>
+	<p class="home-explore__intro">
+		Compare guides, feature pages, pricing, setup help, reviews, and the blog before you buy.
+	</p>
+
+	<div class="home-explore__grid">
+		{
+			links.map((link) => (
+				<a href={link.href} class="home-explore__card">
+					<span class="home-explore__card-label">{link.label}</span>
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							d="M5 12h14m-6-6l6 6-6 6"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
+				</a>
+			))
+		}
+	</div>
+
+	<p class="home-explore__more">
+		Still deciding? Use the links above to compare ESP, aimbot, pricing, and setup help.
+	</p>
+</section>
+
+<style>
+	.home-explore {
+		padding-block: 0;
+	}
+
+	.home-explore__title {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+	}
+
+	.home-explore__accent {
+		display: inline-block;
+		width: 0.22rem;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #20BFC0, #174143);
+		flex-shrink: 0;
+	}
+
+	.home-explore__intro {
+		margin: 0.55rem 0 1.1rem;
+		color: var(--color-muted);
+		font-size: 0.92rem;
+		line-height: 1.6;
+		max-width: 42rem;
+	}
+
+	.home-explore__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+		gap: 0.65rem;
+	}
+
+	.home-explore__card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.85rem 1rem;
+		border-radius: 0.8rem;
+		border: 1px solid rgba(32, 191, 192, 0.16);
+		background: rgba(20, 24, 30, 0.88);
+		color: var(--color-ink);
+		font-size: 0.88rem;
+		font-weight: 650;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.home-explore__card:hover {
+		border-color: rgba(32, 191, 192, 0.42);
+		background: rgba(13, 35, 36, 0.55);
+		transform: translateY(-1px);
+		color: var(--color-ink);
+	}
+
+	.home-explore__card svg {
+		flex-shrink: 0;
+		color: var(--color-orchid);
+	}
+
+	.home-explore__card-label {
+		min-width: 0;
+		line-height: 1.35;
+	}
+
+	.home-explore__more {
+		margin: 1rem 0 0;
+		color: var(--color-muted);
+		font-size: 0.9rem;
+		line-height: 1.55;
+	}
+
+	.home-explore__more a {
+		color: var(--color-orchid);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+</style>

@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { blogUi, type LocaleCode } from '../data/i18n/locales';
+import {
+	absoluteBlogUrl,
+	getAllPostsForLocale,
+	getBlogBasePath,
+	getRelatedPosts,
+} from '../data/blog/helpers';
+import type { ResolvedBlogPost } from '../data/blog/types';
+import { siteConfig } from '../data/site';
+import RelatedPages from './RelatedPages.astro';
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { getBlogProductLinks } from '../lib/internal-links';
+
+interface Props {
+	locale: LocaleCode;
+	post: ResolvedBlogPost;
+}
+
+const { locale, post } = Astro.props;
+const ui = blogUi[locale];
+const navUi = getUi(locale);
+const productLinks = getBlogProductLinks(locale, {
+	esp: navUi.nav.esp,
+	aimbot: navUi.nav.aimbot,
+	features: navUi.nav.features,
+	setup: navUi.nav.setup,
+	pricing: navUi.nav.pricing,
+	updates: navUi.nav.updates,
+	faq: navUi.nav.faq,
+});
+const t = post.translation;
+const homeHref = getLocalizedPath('home', locale);
+const blogHref = getBlogBasePath(locale);
+const related = getRelatedPosts(locale, post, 3);
+
+const articleUrl = absoluteBlogUrl(locale, t.slug);
+const articleSchema = {
+	'@type': 'Article',
+	'@id': `${articleUrl}#article`,
+	headline: t.title,
+	description: t.metaDescription,
+	datePublished: post.published,
+	dateModified: post.updated,
+	image: new URL(post.imageSrc, siteConfig.url).href,
+	inLanguage: locale,
+	author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
+	publisher: {
+		'@type': 'Organization',
+		name: siteConfig.name,
+		url: siteConfig.url,
+		logo: { '@type': 'ImageObject', url: new URL(siteConfig.logoRaster, siteConfig.url).href },
+	},
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': `${articleUrl}#webpage`,
+	},
+	isPartOf: { '@id': `${siteConfig.url}/#website` },
+	keywords: t.keywords.join(', '),
+	articleSection: post.category,
+};
+
+function localizeParagraphHtml(html: string): string {
+	return html.replace(/href="(\/[^"]+)"/g, (_, path: string) => {
+		if (path.startsWith('/blog')) return `href="${path}"`;
+		return `href="${path}"`;
+	});
+}
+
+/** Keep document titles within ~60 chars without cutting mid-word. */
+function pageTitle(headline: string): string {
+	const suffix = ' | Enlisted Cheats';
+	if (headline.length + suffix.length <= 60) return `${headline}${suffix}`;
+	if (headline.length <= 60) return headline;
+	const trimmed = headline.slice(0, 57);
+	const cut = trimmed.lastIndexOf(' ');
+	return `${(cut > 40 ? trimmed.slice(0, cut) : trimmed).replace(/[|:–—-]+$/, '').trim()}…`;
+}
+---
+
+<Layout
+	title={pageTitle(t.title)}
+	description={t.metaDescription}
+	canonicalPath={post.canonicalPath}
+	ogImage={post.imageSrc}
+	ogImageAlt={t.imageAlt}
+	type="article"
+	locale={locale}
+	breadcrumbs={[
+		{ label: ui.home, href: homeHref },
+		{ label: ui.blogH1, href: blogHref },
+		{ label: t.h1 },
+	]}
+	extraGraph={[articleSchema]}
+>
+	<Navbar locale={locale} />
+	<main class="post">
+		<article>
+			<header class="post__header">
+				<p class="post__cat">{post.category}</p>
+				<h1>{t.h1}</h1>
+				<p class="post__intro">{t.intro}</p>
+				<p class="post__meta">
+					{ui.published} {post.published} · {ui.updated} {post.updated}
+				</p>
+			</header>
+			<img
+				class="post__hero"
+				src={post.imageSrc}
+				alt={t.imageAlt}
+				width="1200"
+				height="675"
+				loading="eager"
+				decoding="async"
+			/>
+			{
+				t.sections.map((section) => (
+					<section class="post__section">
+						<h2>{section.h2}</h2>
+						{section.paragraphs.map((paragraph) => {
+							const isTip = paragraph.startsWith('Pro Tip');
+							const isTry = paragraph.startsWith('Try This Today');
+							const html = localizeParagraphHtml(paragraph);
+							if (isTip || isTry) {
+								return (
+									<aside class:list={['callout', { 'callout--tip': isTip, 'callout--try': isTry }]}>
+										<p set:html={html} />
+									</aside>
+								);
+							}
+							return <p set:html={html} />;
+						})}
+					</section>
+				))
+			}
+		</article>
+
+		{
+			related.length > 0 && (
+				<section class="post__related" aria-label={ui.relatedPosts}>
+					<h2>{ui.relatedPosts}</h2>
+					<ul>
+						{related.map((item) => (
+							<li>
+								<a href={item.canonicalPath}>{item.translation.title}</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+
+		<RelatedPages locale={locale} links={productLinks} title="Explore Enlisted Cheats" />
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.post {
+		width: min(760px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 2.5rem 0 4rem;
+	}
+	.post__cat {
+		margin: 0 0 0.5rem;
+		color: #20BFC0;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.post__header h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.9rem, 4vw, 2.8rem);
+		line-height: 1.1;
+	}
+	.post__intro {
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 1.08rem;
+	}
+	.post__meta {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.85rem;
+	}
+	.post__hero {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		margin: 1.5rem 0 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	.post__section {
+		margin-bottom: 1.75rem;
+	}
+	.post__section h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.35rem;
+	}
+	.post__section p {
+		margin: 0 0 0.9rem;
+		color: rgba(255, 255, 255, 0.78);
+		line-height: 1.7;
+	}
+	.callout {
+		margin: 0 0 1rem;
+		padding: 0.9rem 1rem;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: rgba(23, 65, 67, 0.12);
+	}
+	.callout--try {
+		border-color: rgba(32, 191, 192, 0.4);
+		background: rgba(32, 191, 192, 0.08);
+	}
+	.callout p {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.92);
+	}
+	.post__related {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	.post__related h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.15rem;
+	}
+	.post__related ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.post__related li {
+		margin-bottom: 0.55rem;
+	}
+	.post__related a {
+		color: #20BFC0;
+		text-decoration: none;
+		font-weight: 600;
+	}
+	.post__related a:hover {
+		text-decoration: underline;
+	}
+</style>

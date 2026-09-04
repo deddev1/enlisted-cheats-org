@@ -1,0 +1,121 @@
+---
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { productInfo } from '../data/site';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const trust = getUi(locale).trust;
+const monthlyPrice = productInfo.plans.find((plan) => plan.id === 'monthly')?.price ?? 35;
+const updatesHref = getLocalizedPath('updates', locale);
+---
+
+<div class="media-trust" aria-label="Package status">
+	<a href={updatesHref} class="media-trust__live">
+		<span class="media-trust__dot" aria-hidden="true"></span>
+		<span class="media-trust__live-text">
+			<strong>{trust.status}</strong> — {trust.statusNote}
+		</span>
+	</a>
+	<ul class="media-trust__grid">
+		<li>{trust.delivery}</li>
+		<li>{trust.platform}</li>
+		<li>From ${monthlyPrice}/mo · ${productInfo.plans.find((p) => p.id === 'lifetime')?.price ?? 150} lifetime</li>
+		<li>{trust.antiCheatShort}</li>
+	</ul>
+</div>
+
+<style>
+	.media-trust {
+		display: grid;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	.media-trust__live {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+		padding: 0.65rem 0.75rem;
+		border-radius: 0.75rem;
+		border: 1px solid rgba(32, 191, 192, 0.28);
+		background: rgba(32, 191, 192, 0.08);
+		color: var(--color-mint);
+		font-size: 0.78rem;
+		line-height: 1.4;
+		text-decoration: none;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.media-trust__live:hover {
+		border-color: rgba(32, 191, 192, 0.45);
+		background: rgba(32, 191, 192, 0.12);
+		color: var(--color-mint);
+	}
+
+	.media-trust__live strong {
+		font-weight: 800;
+		color: var(--color-ink);
+	}
+
+	.media-trust__dot {
+		flex: 0 0 0.45rem;
+		width: 0.45rem;
+		height: 0.45rem;
+		margin-top: 0.28rem;
+		border-radius: 999px;
+		background: var(--color-mint);
+		box-shadow: 0 0 0 0 rgba(32, 191, 192, 0.45);
+		animation: media-trust-pulse 2.2s ease-in-out infinite;
+	}
+
+	.media-trust__live-text {
+		color: var(--color-muted);
+	}
+
+	.media-trust__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.35rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.media-trust__grid li {
+		padding: 0.55rem 0.65rem;
+		border-radius: 0.65rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(13, 35, 36, 0.65);
+		color: var(--color-muted);
+		font-size: 0.72rem;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	@keyframes media-trust-pulse {
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 rgba(32, 191, 192, 0.45);
+		}
+		50% {
+			box-shadow: 0 0 0 4px rgba(32, 191, 192, 0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.media-trust__dot {
+			animation: none;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.media-trust__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

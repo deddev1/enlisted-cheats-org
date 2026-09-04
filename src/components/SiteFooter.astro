@@ -1,0 +1,151 @@
+---
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+
+const mainLinks = [
+	{ label: ui.nav.esp, href: getLocalizedPath('enlisted-esp', locale) },
+	{ label: ui.nav.aimbot, href: getLocalizedPath('enlisted-aimbot', locale) },
+	{ label: 'Wallhack', href: getLocalizedPath('wallhack', locale) },
+	{ label: 'Radar', href: getLocalizedPath('radar', locale) },
+	{ label: ui.nav.setup, href: getLocalizedPath('setup', locale) },
+	{ label: 'Guides', href: '/guides/' },
+		{ label: 'Blog posts', href: '/blog/' },
+];
+
+const legalLinks = [
+	{ label: 'Support', href: getLocalizedPath('support', locale) },
+	{ label: 'Privacy', href: getLocalizedPath('privacy', locale) },
+	{ label: 'Terms', href: getLocalizedPath('terms', locale) },
+	{ label: 'Refund', href: getLocalizedPath('refund', locale) },
+];
+
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="footer" id="support-footer">
+	<div class="shell footer__inner">
+		<div class="footer__top">
+			<p class="footer__name">{ui.product.title}</p>
+			<p class="footer__tagline">{ui.footer.tagline}</p>
+		</div>
+
+		<nav class="footer__links" aria-label="Footer">
+			{
+				mainLinks.map((link) => (
+					<a href={link.href}>{link.label}</a>
+				))
+			}
+		</nav>
+
+		<div class="footer__bottom">
+			<nav class="footer__legal" aria-label="Legal">
+				{
+					legalLinks.map((link) => (
+						<a href={link.href}>{link.label}</a>
+					))
+				}
+			</nav>
+			<p class="footer__copy">© {year} {siteConfig.name}</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-block: 1.75rem;
+		padding-bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+	}
+
+	.footer__inner {
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	.footer__top {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.footer__name {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 0.95rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.footer__tagline {
+		margin: 0;
+		color: var(--color-faint);
+		font-size: 0.84rem;
+		line-height: 1.5;
+		max-width: 32rem;
+	}
+
+	.footer__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 0.85rem;
+	}
+
+	.footer__links a {
+		color: var(--color-muted);
+		font-size: 0.84rem;
+		font-weight: 600;
+		transition: color 0.2s ease;
+	}
+
+	.footer__links a:hover {
+		color: var(--color-ink);
+	}
+
+	.footer__bottom {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.65rem 1rem;
+		padding-top: 0.85rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+	.footer__legal {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem 0.9rem;
+	}
+
+	.footer__legal a {
+		color: var(--color-faint);
+		font-size: 0.78rem;
+		font-weight: 500;
+		transition: color 0.2s ease;
+	}
+
+	.footer__legal a:hover {
+		color: var(--color-muted);
+	}
+
+	.footer__copy {
+		margin: 0;
+		color: var(--color-faint);
+		font-size: 0.78rem;
+	}
+
+	@media (max-width: 560px) {
+		.footer__bottom {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>
