@@ -265,12 +265,14 @@ const featurePills = [
 	}
 
 	.hero__features {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.5rem;
-		width: 100%;
-		max-width: 28rem;
-		margin: 1.35rem 0 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.3rem;
+		width: auto;
+		max-width: 100%;
+		margin: 1.1rem 0 0;
 		padding: 0;
 		list-style: none;
 	}
@@ -283,17 +285,18 @@ const featurePills = [
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
-		padding: 0.4rem 0.65rem;
+		width: auto;
+		padding: 0.28rem 0.55rem;
 		border-radius: 999px;
 		border: 1px solid rgba(197, 138, 69, 0.28);
 		background: rgba(0, 0, 0, 0.35);
 		color: rgba(255, 244, 220, 0.92);
-		font-size: 0.72rem;
+		font-size: 0.62rem;
 		font-weight: 700;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		text-decoration: none;
+		white-space: nowrap;
 		transition:
 			border-color 0.2s ease,
 			background 0.2s ease,
