@@ -3,7 +3,9 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { siteConfig } from '../data/site';
+import { enlistedScreenshots } from '../data/enlisted';
+import { productInfo, siteConfig } from '../data/site';
+import { contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -17,7 +19,27 @@ const current = Astro.url.pathname;
 const homeHref = getLocalizedPath('home', locale);
 const cheatsHref = getLocalizedPath('hacks', locale);
 const supportHref = getLocalizedPath('support', locale);
-const buyLabel = ui.hero.buy ?? ui.nav.buyNow;
+const shopLabel = 'Shop';
+const pricingHref = getLocalizedPath('pricing', locale);
+
+const shopCards = [
+	{
+		title: `${productInfo.plans[0].label} — $${productInfo.plans[0].price}`,
+		description:
+			'ESP, aimbot, wallhack, and radar for 30 days. Anti-cheat updates while your license is active.',
+		href: siteConfig.checkoutUrl,
+		image: enlistedScreenshots.mainMenu.src,
+		alt: enlistedScreenshots.mainMenu.alt,
+	},
+	{
+		title: `${productInfo.plans[1].label} — $${productInfo.plans[1].price}`,
+		description:
+			'One-time purchase with no renewals. Full feature stack and anti-cheat updates for as long as you play.',
+		href: siteConfig.checkoutUrl,
+		image: enlistedScreenshots.espOverlay.src,
+		alt: enlistedScreenshots.espOverlay.alt,
+	},
+] as const;
 
 const gameLinks = [
 	{ label: ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
@@ -156,20 +178,71 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
 					</svg>
-					{buyLabel}
+					{shopLabel}
+				</a>
+				<a href={pricingHref} class="nav__menu-link nav__menu-link--shop-mobile">
+					{ui.nav.pricing}
 				</a>
 			</nav>
 
 			<div class="nav__actions">
-				<a href={siteConfig.checkoutUrl} class="nav__shop" rel="noopener noreferrer">
-					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
-					</svg>
-					{buyLabel}
-					<svg class="nav__shop-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
-					</svg>
-				</a>
+				<div class="nav__shop-wrap" data-nav-shop>
+					<a
+						href={siteConfig.checkoutUrl}
+						class="nav__shop nav__shop-trigger"
+						rel="noopener noreferrer"
+						aria-haspopup="true"
+						aria-expanded="false"
+						data-nav-shop-trigger
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
+						</svg>
+						{shopLabel}
+						<svg class="nav__shop-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+						</svg>
+					</a>
+					<div class="nav__shop-mega" role="region" aria-label={shopLabel} data-nav-shop-panel>
+						<div class="nav__shop-mega-grid">
+							{
+								shopCards.map((card) => (
+									<a href={card.href} class="nav__shop-card" rel="noopener noreferrer">
+										<div class="nav__shop-card-media">
+											<img
+												src={contentSrc(card.image)}
+												srcset={contentSrcSet(card.image)}
+												sizes={galleryTileSizes}
+												alt={card.alt}
+												width="640"
+												height="400"
+												loading="lazy"
+												decoding="async"
+											/>
+											<span class="nav__shop-card-icon" aria-hidden="true">
+												<svg viewBox="0 0 24 24" focusable="false">
+													<path
+														d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2v6H5V5z"
+														fill="currentColor"></path>
+												</svg>
+											</span>
+										</div>
+										<div class="nav__shop-card-body">
+											<h3 class="nav__shop-card-title">{card.title}</h3>
+											<p class="nav__shop-card-desc">{card.description}</p>
+										</div>
+									</a>
+								))
+							}
+						</div>
+						<a href={pricingHref} class="nav__shop-mega-foot">
+							{ui.hero.viewPricing ?? ui.nav.pricing}
+							<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
 				<LanguageSwitcher pageId={pageId} currentLocale={locale} />
 				<button
 					type="button"
@@ -234,6 +307,39 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 				});
 			});
 		});
+
+		const shopWrap = nav.querySelector('[data-nav-shop]');
+		const shopTrigger = nav.querySelector('[data-nav-shop-trigger]') as HTMLAnchorElement | null;
+		const shopPanel = nav.querySelector('[data-nav-shop-panel]') as HTMLElement | null;
+
+		const setShopOpen = (open: boolean) => {
+			if (!shopWrap || !shopTrigger) return;
+			shopWrap.classList.toggle('is-open', open);
+			shopTrigger.setAttribute('aria-expanded', String(open));
+		};
+
+		if (shopWrap && shopTrigger && shopPanel) {
+			let closeTimer: ReturnType<typeof setTimeout> | undefined;
+
+			const openShop = () => {
+				clearTimeout(closeTimer);
+				setShopOpen(true);
+			};
+
+			const scheduleClose = () => {
+				clearTimeout(closeTimer);
+				closeTimer = setTimeout(() => setShopOpen(false), 120);
+			};
+
+			shopWrap.addEventListener('mouseenter', openShop);
+			shopWrap.addEventListener('mouseleave', scheduleClose);
+			shopWrap.addEventListener('focusin', openShop);
+			shopWrap.addEventListener('focusout', (event) => {
+				if (!shopWrap.contains((event as FocusEvent).relatedTarget as Node)) {
+					scheduleClose();
+				}
+			});
+		}
 	}
 </script>
 
@@ -335,6 +441,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	}
 
 	.nav__main {
+		position: relative;
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 		align-items: center;
@@ -505,19 +612,171 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 			color 0.2s ease;
 	}
 
-	.nav__shop svg {
-		width: 0.85rem;
-		height: 0.85rem;
+	.nav__shop-wrap {
+		position: relative;
+	}
+
+	.nav__shop-trigger:hover,
+	.nav__shop-wrap.is-open .nav__shop-trigger,
+	.nav__shop-wrap:focus-within .nav__shop-trigger {
+		color: #ffe6a8;
+		border-color: rgba(240, 192, 96, 0.85);
+		background: rgba(240, 192, 96, 0.08);
 	}
 
 	.nav__shop-caret {
 		opacity: 0.7;
+		transition: transform 0.2s ease;
 	}
 
-	.nav__shop:hover {
-		color: #ffe6a8;
-		border-color: rgba(240, 192, 96, 0.85);
-		background: rgba(240, 192, 96, 0.08);
+	.nav__shop-wrap.is-open .nav__shop-caret,
+	.nav__shop-wrap:focus-within .nav__shop-caret {
+		transform: rotate(180deg);
+	}
+
+	.nav__shop-mega {
+		position: absolute;
+		top: calc(100% + 0.55rem);
+		right: 0;
+		z-index: 140;
+		width: min(42rem, calc(100vw - 2 * var(--page-gutter)));
+		padding: 0.85rem;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		background: rgba(16, 14, 12, 0.97);
+		box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
+		backdrop-filter: blur(12px);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transform: translateY(-6px);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease,
+			visibility 0.2s ease;
+	}
+
+	.nav__shop-wrap.is-open .nav__shop-mega,
+	.nav__shop-wrap:focus-within .nav__shop-mega {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.nav__shop-mega-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem;
+	}
+
+	.nav__shop-card {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(0, 0, 0, 0.35);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.nav__shop-card:hover {
+		border-color: rgba(240, 192, 96, 0.45);
+		background: rgba(240, 192, 96, 0.04);
+		transform: translateY(-1px);
+	}
+
+	.nav__shop-card-media {
+		position: relative;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.nav__shop-card-media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.nav__shop-card-icon {
+		position: absolute;
+		top: 0.55rem;
+		right: 0.55rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.65rem;
+		height: 1.65rem;
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 0.15rem;
+		background: rgba(0, 0, 0, 0.55);
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	.nav__shop-card-icon svg {
+		width: 0.85rem;
+		height: 0.85rem;
+	}
+
+	.nav__shop-card-body {
+		padding: 0.85rem 0.95rem 1rem;
+	}
+
+	.nav__shop-card-title {
+		margin: 0;
+		color: #f0c060;
+		font-family: var(--font-display);
+		font-size: 0.92rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		line-height: 1.25;
+	}
+
+	.nav__shop-card-desc {
+		margin: 0.45rem 0 0;
+		color: rgba(255, 255, 255, 0.68);
+		font-size: 0.76rem;
+		line-height: 1.5;
+	}
+
+	.nav__shop-mega-foot {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin-top: 0.75rem;
+		padding-top: 0.65rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: color 0.2s ease;
+	}
+
+	.nav__shop-mega-foot svg {
+		width: 0.9rem;
+		height: 0.9rem;
+		opacity: 0.75;
+	}
+
+	.nav__shop-mega-foot:hover {
+		color: #f0c060;
+	}
+
+	.nav__menu-link--shop-mobile {
+		display: none;
+	}
+
+	.nav__shop svg {
+		width: 0.85rem;
+		height: 0.85rem;
 	}
 
 	.nav__shop--mobile {
@@ -677,11 +936,19 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 			padding-left: 1.35rem;
 		}
 
-		.nav__shop {
+		.nav__shop-mega {
+			display: none;
+		}
+
+		.nav__shop-wrap {
 			display: none;
 		}
 
 		.nav__shop--mobile {
+			display: inline-flex;
+		}
+
+		.nav__menu-link--shop-mobile {
 			display: inline-flex;
 		}
 
