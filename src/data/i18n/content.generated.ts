@@ -16,7 +16,7 @@ export type PageContent = {
 };
 export type LocaleUi = {
 	nav: { home: string; aimbot: string; esp: string; features: string; pricing: string; setup: string; updates: string; faq: string; buyNow: string };
-	hero: { accent: string; accentShort: string; subtitle: string; subtitleShort: string; buyNow: string; seeFeatures: string };
+	hero: { accent: string; accentShort: string; subtitle: string; subtitleShort: string; buyNow: string; seeFeatures: string; gameFeatures?: string; buy?: string; watchTrailer?: string; viewPricing?: string; systemRequirements?: string };
 	trust: { status: string; statusNote: string; statusShort: string; delivery: string; platform: string; antiCheat: string; antiCheatShort: string };
 	product: { title: string; addToCart: string; monthly: string; lifetime: string; available: string; gameBadge: string; platformBadge: string; statusBadge: string };
 	reviews: { title: string; subtitle: string; outOf: string; countLabel: string; verifiedLabel?: string; seeAll?: string };
@@ -52,6 +52,11 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					subtitleShort: "ESP, aimbot & radar for Enlisted on Windows PC. Instant access — updated after game patches.",
 					buyNow: "Get Access",
 					seeFeatures: "See Features",
+					gameFeatures: "Game Features",
+					buy: "Buy",
+					watchTrailer: "Watch Trailer",
+					viewPricing: "View pricing",
+					systemRequirements: "System requirements",
 				},
 				trust: {
 					status: "Online",

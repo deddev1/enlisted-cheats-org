@@ -8,9 +8,10 @@ import { siteConfig } from '../data/site';
 interface Props {
 	locale?: LocaleCode;
 	pageId?: PageId;
+	overlay?: boolean;
 }
 
-const { locale = defaultLocale, pageId = 'home' } = Astro.props;
+const { locale = defaultLocale, pageId = 'home', overlay = false } = Astro.props;
 const ui = getUi(locale);
 const navLinks = getNavForLocale(locale, ui.nav);
 const ctaLabel = ui.nav.buyNow;
@@ -34,7 +35,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 };
 ---
 
-<header class="nav" data-nav>
+<header class:list={['nav', { 'nav--overlay': overlay }]} data-nav>
 	<div class="nav__backdrop" data-nav-backdrop hidden aria-hidden="true"></div>
 	<div class="nav__bar">
 		<nav class="nav__links" id="nav-panel" data-nav-panel aria-label="Primary">
@@ -133,6 +134,24 @@ const isActive = (href: string, linkPageId?: PageId) => {
 		padding: 0.65rem var(--page-gutter) 0;
 		padding-top: calc(0.65rem + env(safe-area-inset-top, 0px));
 		pointer-events: none;
+	}
+
+	.nav--overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 90;
+		padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
+	}
+
+	.nav--overlay .nav__bar {
+		background: rgba(8, 6, 4, 0.42);
+		border-color: rgba(255, 255, 255, 0.08);
+	}
+
+	.nav--overlay.is-scrolled .nav__bar {
+		background: rgba(8, 6, 4, 0.82);
 	}
 
 	.nav__bar {

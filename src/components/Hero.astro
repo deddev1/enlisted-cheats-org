@@ -1,5 +1,6 @@
 ---
 import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { siteConfig } from '../data/site';
 import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/responsive-images';
@@ -24,21 +25,39 @@ const {
 } = Astro.props;
 
 const buyUrl = siteConfig.checkoutUrl;
+const featuresUrl = getLocalizedPath('features', locale);
+const pricingUrl = getLocalizedPath('pricing', locale);
+const setupUrl = getLocalizedPath('setup', locale);
+const espUrl = getLocalizedPath('enlisted-esp', locale);
+const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
+const wallhackUrl = getLocalizedPath('wallhack', locale);
+const radarUrl = getLocalizedPath('radar', locale);
+const trailerSrc = '/videos/enlisted-cheats-preview.mp4';
+
+const gameFeatures = ui.hero.gameFeatures ?? ui.hero.seeFeatures;
+const buyLabel = ui.hero.buy ?? ui.hero.buyNow;
+const watchTrailer = ui.hero.watchTrailer ?? 'Watch Trailer';
+const viewPricing = ui.hero.viewPricing ?? ui.nav.pricing;
+const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
+
+const featurePills = [
+	{ label: ui.nav.esp, href: espUrl },
+	{ label: ui.nav.aimbot, href: aimbotUrl },
+	{ label: 'Wallhack', href: wallhackUrl },
+	{ label: 'Radar', href: radarUrl },
+];
 ---
 
 <section class="hero" aria-label={ui.images.hero}>
 	<div class="hero__media">
-		{/*
-		  Poster paints first (LCP / fallback). No autoplay — static hero image only.
-		*/}
 		<picture class="hero__poster">
 			{
 				heroIsExternal ? (
 					<img
 						src={heroPreloadSrc}
 						alt={imageAlt}
-						width="1600"
-						height="900"
+						width="1920"
+						height="1080"
 						class="hero__poster-img"
 						fetchpriority="high"
 						decoding="async"
@@ -55,8 +74,8 @@ const buyUrl = siteConfig.checkoutUrl;
 						<img
 							src={heroPreloadSrc}
 							alt={imageAlt}
-							width="1600"
-							height="900"
+							width="1920"
+							height="1080"
 							class="hero__poster-img"
 							fetchpriority="high"
 							decoding="async"
@@ -65,59 +84,141 @@ const buyUrl = siteConfig.checkoutUrl;
 				)
 			}
 		</picture>
-		<div class="hero__splash" aria-hidden="true"></div>
 		<div class="hero__veil" aria-hidden="true"></div>
 	</div>
 
 	<div class="hero__inner">
-		<div class="hero__copy">
-			<h1 class="hero__title">
-				<span class="hero__line hero__brand">{siteConfig.name}</span>
+		<div class="hero__content">
+			<h1 class="hero__logo">
+				<span class="hero__logo-main">Enlisted</span>
+				<span class="hero__logo-sub">Cheats</span>
 			</h1>
-			<p class="hero__badge">{accent}</p>
+
+			<p class="hero__tagline">{accent}</p>
 			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
 			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
-			<div class="hero__cta">
-				<a href={buyUrl} class="btn-buy" rel="noopener noreferrer" aria-label={ui.hero.buyNow}>
-					{ui.hero.buyNow}
+
+			<ul class="hero__features" aria-label="Included modules">
+				{
+					featurePills.map((pill) => (
+						<li>
+							<a href={pill.href} class="hero__feature-pill">
+								{pill.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<div class="hero__actions">
+				<a href={featuresUrl} class="hero__btn hero__btn--ghost">
+					{gameFeatures}
+				</a>
+				<a href={buyUrl} class="hero__btn hero__btn--buy" rel="noopener noreferrer">
+					<svg class="hero__btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path
+							d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 6h14.6l-1.4 7H8.1L6.2 6zm-.8-2 2.2 11h11.2l2-11H5.4z"
+							fill="currentColor"></path>
+					</svg>
+					{buyLabel}
+				</a>
+				<button type="button" class="hero__btn hero__btn--ghost" data-trailer-open aria-haspopup="dialog">
+					{watchTrailer}
+				</button>
+			</div>
+
+			<div class="hero__meta">
+				<a href={pricingUrl} class="hero__meta-link">
+					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path
+							d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"
+							fill="currentColor"></path>
+					</svg>
+					{viewPricing}
+				</a>
+				<a href={setupUrl} class="hero__meta-link">
+					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path
+							d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"
+							fill="currentColor"></path>
+					</svg>
+					{systemRequirements}
 				</a>
 			</div>
 		</div>
 	</div>
+
+	<div class="hero__platforms" aria-label="Supported platform">
+		<span class="hero__platform">
+			<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+				<path
+					d="M3 5.5L11 4v16l-8-1.45V5.5zm10 14.5V4l8-1.5v16L13 20z"
+					fill="currentColor"></path>
+			</svg>
+			Windows PC
+		</span>
+	</div>
+
+	<dialog class="hero__trailer" data-trailer-dialog aria-label={watchTrailer}>
+		<button type="button" class="hero__trailer-close" data-trailer-close aria-label="Close trailer">
+			×
+		</button>
+		<video class="hero__trailer-video" controls playsinline preload="metadata" poster={heroPreloadSrc}>
+			<source src={trailerSrc} type="video/mp4" />
+		</video>
+	</dialog>
 </section>
 
-<style>
-	/* Outfit loads on desktop only — mobile hero uses the system stack for faster LCP. */
-	@media (min-width: 761px) {
-		@font-face {
-			font-family: 'Outfit Variable';
-			font-style: normal;
-			font-display: optional;
-			font-weight: 500 800;
-			src: url('@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2') format('woff2-variations');
-			unicode-range:
-				U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-				U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-		}
-	}
+<script>
+	const dialog = document.querySelector('[data-trailer-dialog]') as HTMLDialogElement | null;
+	const openBtn = document.querySelector('[data-trailer-open]');
+	const closeBtn = document.querySelector('[data-trailer-close]');
+	const video = dialog?.querySelector('video');
 
+	openBtn?.addEventListener('click', () => {
+		if (!dialog) return;
+		dialog.showModal();
+		(video as HTMLVideoElement | null)?.play();
+	});
+
+	closeBtn?.addEventListener('click', () => {
+		video?.pause();
+		dialog?.close();
+	});
+
+	dialog?.addEventListener('click', (event) => {
+		if (event.target === dialog) {
+			video?.pause();
+			dialog.close();
+		}
+	});
+
+	dialog?.addEventListener('close', () => {
+		video?.pause();
+		if (video) (video as HTMLVideoElement).currentTime = 0;
+	});
+</script>
+
+<style>
 	.hero {
 		position: relative;
 		overflow: hidden;
 		isolation: isolate;
-		min-height: clamp(380px, 52vw, 520px);
+		min-height: min(92vh, 920px);
+		display: grid;
+		align-items: center;
+		color: #fff;
 	}
 
 	.hero__media {
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		background: #061112;
+		background: #120a06;
 	}
 
 	.hero__poster,
-	.hero__poster-img,
-	.hero__video {
+	.hero__poster-img {
 		position: absolute;
 		inset: 0;
 		width: 100%;
@@ -125,192 +226,301 @@ const buyUrl = siteConfig.checkoutUrl;
 	}
 
 	.hero__poster {
-		z-index: 1;
 		margin: 0;
 		display: block;
 	}
 
 	.hero__poster-img {
 		object-fit: cover;
-		object-position: center;
-		background: #061112;
-		transform: scale(1.05);
-		transform-origin: center center;
-		filter: brightness(1.12) contrast(1.04) saturate(1.08);
-	}
-
-	.hero__video {
-		z-index: 1;
-		object-fit: cover;
-		object-position: center;
-		transform: translateZ(0) scale(1.3);
-		backface-visibility: hidden;
-		pointer-events: none;
-		opacity: 0;
-		background: transparent;
-		transition: opacity 0.45s ease;
-	}
-
-	.hero__video.is-ready {
-		opacity: 1;
-	}
-
-	@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
-		.hero__video.is-ready {
-			will-change: transform;
-			animation: kenburns 18s ease-in-out infinite alternate;
-		}
-	}
-
-	.hero__splash {
-		display: none;
+		object-position: center 35%;
+		transform: scale(1.04);
+		filter: saturate(1.08) contrast(1.05) brightness(0.92);
 	}
 
 	.hero__veil {
 		position: absolute;
 		inset: 0;
-		z-index: 3;
+		z-index: 1;
 		background:
-			linear-gradient(90deg, rgba(6, 17, 18, 0.82) 0%, rgba(6, 17, 18, 0.52) 28%, rgba(6, 17, 18, 0.22) 52%, transparent 100%),
-			linear-gradient(180deg, rgba(6, 17, 18, 0.28) 0%, transparent 42%, rgba(6, 17, 18, 0.45) 100%);
+			linear-gradient(180deg, rgba(8, 6, 4, 0.72) 0%, rgba(8, 6, 4, 0.18) 34%, rgba(8, 6, 4, 0.28) 62%, rgba(8, 6, 4, 0.88) 100%),
+			radial-gradient(circle at 50% 42%, transparent 0%, rgba(8, 6, 4, 0.35) 72%);
 		pointer-events: none;
 	}
 
 	.hero__inner {
 		position: relative;
-		z-index: 4;
-		display: flex;
-		align-items: center;
-		width: min(100% - (var(--page-gutter) * 2), var(--page-max));
+		z-index: 2;
+		width: min(100% - (var(--page-gutter) * 2), 980px);
 		margin: 0 auto;
-		padding: 4.25rem 0 3.5rem;
-		min-height: inherit;
+		padding: calc(5.5rem + env(safe-area-inset-top, 0px)) 0 5.5rem;
 	}
 
-	.hero__copy {
-		max-width: min(48rem, 100%);
-		min-width: 0;
-		animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-
-	.hero__eyebrow {
-		margin: 0 0 0.85rem;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--color-orchid);
-	}
-
-	.hero__title {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.85rem, 4.2vw, 3.35rem);
-		font-weight: 700;
-		line-height: 1.08;
-		letter-spacing: -0.02em;
+	.hero__content {
 		display: flex;
 		flex-direction: column;
-		gap: 0.06em;
-		color: #ffffff;
-		text-shadow:
-			0 2px 18px rgba(6, 17, 18, 0.95),
-			0 4px 36px rgba(6, 17, 18, 0.75);
+		align-items: center;
+		text-align: center;
+		animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
-	.hero__line {
-		display: block;
-		max-width: 100%;
-	}
-
-	@media (min-width: 761px) {
-		.hero__title {
-			font-family: 'Outfit Variable', var(--font-display);
-		}
-	}
-
-	.hero__brand {
-		white-space: nowrap;
-	}
-
-	.hero__accent {
-		display: block;
-		width: 100%;
-		max-width: 100%;
-		font-size: 0.92em;
-		font-weight: 600;
-		line-height: 1.15;
-		padding-bottom: 0.04em;
-	}
-
-	.hero__badge {
-		margin: 0.5rem 0 0;
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
+	.hero__logo {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.15rem;
+		font-family: var(--font-display);
+		line-height: 0.95;
 		text-transform: uppercase;
-		color: #20BFC0;
-		text-shadow: 0 1px 14px rgba(6, 17, 18, 0.9);
+		filter: drop-shadow(0 8px 28px rgba(0, 0, 0, 0.65));
+	}
+
+	.hero__logo-main {
+		font-size: clamp(2.8rem, 8vw, 5.4rem);
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		background: linear-gradient(180deg, #fff7ea 0%, #d8c4a0 45%, #9a8668 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.hero__logo-sub {
+		font-size: clamp(1rem, 2.4vw, 1.45rem);
+		font-weight: 700;
+		letter-spacing: 0.42em;
+		color: #f0c060;
+		text-indent: 0.42em;
+	}
+
+	.hero__tagline {
+		margin: 1rem 0 0;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: rgba(255, 236, 196, 0.88);
 	}
 
 	.hero__subtitle {
 		margin: 0.85rem 0 0;
-		max-width: 32rem;
-		font-size: clamp(1rem, 1.65vw, 1.12rem);
-		font-weight: 400;
-		line-height: 1.62;
-		color: #B8D0D0;
-		text-shadow: 0 1px 14px rgba(6, 17, 18, 0.88);
-		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+		max-width: 42rem;
+		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+		line-height: 1.65;
+		color: rgba(255, 255, 255, 0.78);
 	}
 
-	.hero__cta {
+	.hero__features {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 1.45rem;
-		align-items: flex-start;
-		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+		justify-content: center;
+		gap: 0.45rem;
+		margin: 1.15rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.hero__feature-pill {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.35rem 0.75rem;
+		border-radius: 999px;
+		border: 1px solid rgba(240, 192, 96, 0.28);
+		background: rgba(0, 0, 0, 0.35);
+		color: rgba(255, 244, 220, 0.92);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.hero__feature-pill:hover {
+		border-color: rgba(240, 192, 96, 0.55);
+		background: rgba(240, 192, 96, 0.12);
+		color: #fff;
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.65rem;
+		margin-top: 1.5rem;
+		width: 100%;
+		max-width: 44rem;
 	}
 
 	.hero__btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.85rem 1.25rem;
-		border-radius: 0.8rem;
-		font-size: 0.95rem;
-		font-weight: 700;
-		text-align: center;
+		gap: 0.55rem;
+		min-height: 3rem;
+		padding: 0.85rem 1.35rem;
+		border-radius: 0.35rem;
+		border: 1px solid transparent;
+		font-size: 0.82rem;
+		font-weight: 800;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		text-decoration: none;
+		cursor: pointer;
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease,
 			background 0.2s ease,
-			border-color 0.2s ease;
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.hero__btn--ghost {
-		border: 1px solid rgba(32, 191, 192, 0.35);
-		background: rgba(13, 35, 36, 0.85);
-		color: var(--color-ink);
-	}
-
-	@media (min-width: 761px) {
-		.hero__btn--ghost {
-			background: rgba(13, 35, 36, 0.55);
-			backdrop-filter: blur(8px);
-		}
+		flex: 1 1 9.5rem;
+		max-width: 12rem;
+		background: rgba(0, 0, 0, 0.48);
+		border-color: rgba(255, 255, 255, 0.18);
+		color: rgba(255, 255, 255, 0.92);
+		backdrop-filter: blur(8px);
 	}
 
 	.hero__btn--ghost:hover {
-		border-color: rgba(32, 191, 192, 0.55);
-		background: rgba(13, 35, 36, 0.7);
+		background: rgba(0, 0, 0, 0.62);
+		border-color: rgba(255, 255, 255, 0.32);
+		transform: translateY(-1px);
 	}
 
-	@keyframes rise-in {
+	.hero__btn--buy {
+		flex: 1 1 13rem;
+		max-width: 16rem;
+		padding-inline: 1.65rem;
+		background: linear-gradient(180deg, #ffb347 0%, #ff8c00 52%, #e56f00 100%);
+		border-color: rgba(255, 220, 150, 0.45);
+		color: #1a1006;
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.35) inset,
+			0 12px 28px rgba(0, 0, 0, 0.35);
+	}
+
+	.hero__btn--buy:hover {
+		filter: brightness(1.05);
+		transform: translateY(-2px);
+		color: #1a1006;
+	}
+
+	.hero__btn-icon {
+		width: 1.1rem;
+		height: 1.1rem;
+		flex-shrink: 0;
+	}
+
+	.hero__meta {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.25rem;
+		margin-top: 1rem;
+	}
+
+	.hero__meta-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 0.82rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.hero__meta-link svg {
+		width: 1rem;
+		height: 1rem;
+		opacity: 0.85;
+	}
+
+	.hero__meta-link:hover {
+		color: #fff;
+	}
+
+	.hero__platforms {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 3;
+		display: flex;
+		justify-content: center;
+		padding: 1rem var(--page-gutter) calc(1rem + env(safe-area-inset-bottom, 0px));
+		background: linear-gradient(180deg, transparent, rgba(8, 6, 4, 0.82));
+	}
+
+	.hero__platform {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.hero__platform svg {
+		width: 1.15rem;
+		height: 1.15rem;
+	}
+
+	.hero__trailer {
+		width: min(92vw, 960px);
+		padding: 0;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 0.75rem;
+		background: #0a0a0a;
+		color: #fff;
+		overflow: hidden;
+	}
+
+	.hero__trailer::backdrop {
+		background: rgba(0, 0, 0, 0.78);
+		backdrop-filter: blur(4px);
+	}
+
+	.hero__trailer-video {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background: #000;
+	}
+
+	.hero__trailer-close {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 2;
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 0;
+		border-radius: 999px;
+		background: rgba(0, 0, 0, 0.65);
+		color: #fff;
+		font-size: 1.35rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.hero__subtitle--short {
+		display: none;
+	}
+
+	@keyframes hero-rise {
 		from {
 			opacity: 0;
-			transform: translateY(18px);
+			transform: translateY(20px);
 		}
 		to {
 			opacity: 1;
@@ -318,46 +528,14 @@ const buyUrl = siteConfig.checkoutUrl;
 		}
 	}
 
-	@keyframes kenburns {
-		from {
-			transform: translateZ(0) scale(1.3) translate3d(0, 0, 0);
-		}
-		to {
-			transform: translateZ(0) scale(1.36) translate3d(-1.5%, 1%, 0);
-		}
-	}
-
-	@keyframes pulse-glow {
-		0%,
-		100% {
-			opacity: 0.82;
-		}
-		50% {
-			opacity: 0.95;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.hero__copy,
-		.hero__subtitle,
-		.hero__cta,
-		.hero__video,
-		.hero__splash {
-			animation: none;
-		}
-
-		.hero__video {
-			display: none;
-		}
-	}
-
-	.hero__subtitle--short {
-		display: none;
-	}
-
 	@media (max-width: 760px) {
 		.hero {
-			min-height: min(68svh, 520px);
+			min-height: min(88svh, 760px);
+		}
+
+		.hero__inner {
+			padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
+			padding-bottom: 4.25rem;
 		}
 
 		.hero__subtitle--full {
@@ -369,89 +547,36 @@ const buyUrl = siteConfig.checkoutUrl;
 		}
 
 		.hero__poster-img {
-			object-position: center 32%;
+			object-position: center 28%;
 		}
 
-		.hero__video {
-			object-position: center 32%;
-			animation: none;
-			transform: none;
-			will-change: auto;
-		}
-
-		.hero__splash {
-			display: none;
-		}
-
-		.hero__copy,
-		.hero__subtitle,
-		.hero__cta {
-			animation: none;
-		}
-
-		.hero__veil {
-			background:
-				linear-gradient(180deg, rgba(6, 17, 18, 0.42) 0%, rgba(6, 17, 18, 0.2) 40%, rgba(6, 17, 18, 0.72) 100%),
-				linear-gradient(90deg, rgba(6, 17, 18, 0.62), rgba(6, 17, 18, 0.22) 80%);
-		}
-
-		.hero__inner {
-			align-items: flex-end;
-			padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
-			padding-bottom: 1.35rem;
-			min-height: inherit;
-		}
-
-		.hero__copy {
-			max-width: none;
-			width: 100%;
-		}
-
-		.hero__title {
-			font-family: var(--font-display);
-			font-size: clamp(1.65rem, 7.5vw, 2.1rem);
-			font-weight: 700;
-			line-height: 1.1;
-			letter-spacing: -0.02em;
-			gap: 0.1rem;
-		}
-
-		.hero__accent {
-			font-size: 0.9em;
-			line-height: 1.2;
-			padding-bottom: 0.08em;
-		}
-
-		.hero__subtitle--short {
-			margin-top: 0.75rem;
-			max-width: none;
-			font-size: 0.92rem;
-			line-height: 1.55;
-		}
-
-		.hero__cta {
+		.hero__actions {
 			flex-direction: column;
 			align-items: stretch;
-			gap: 0.6rem;
-			margin-top: 1.1rem;
-			width: 100%;
+			max-width: 18rem;
 		}
 
 		.hero__btn {
 			width: 100%;
-			min-height: var(--touch-min);
-			padding: 0.8rem 1rem;
-			font-size: 0.92rem;
+			max-width: none;
+		}
+
+		.hero__btn--buy {
+			order: -1;
+		}
+
+		.hero__features {
+			gap: 0.35rem;
+		}
+
+		.hero__feature-pill {
+			font-size: 0.68rem;
 		}
 	}
 
-	@media (max-width: 380px) {
-		.hero__title {
-			font-size: 1.5rem;
-		}
-
-		.hero__subtitle--short {
-			font-size: 0.88rem;
+	@media (prefers-reduced-motion: reduce) {
+		.hero__content {
+			animation: none;
 		}
 	}
 </style>

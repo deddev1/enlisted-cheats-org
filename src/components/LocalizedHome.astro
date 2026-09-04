@@ -92,15 +92,17 @@ const extraGraph: Record<string, unknown>[] =
 	lcpImageSrcSet={heroIsExternal ? undefined : heroSrcSet}
 	lcpImageSizes={heroSizes}
 >
-	<Navbar locale={locale} pageId="home" />
 	<main class="site">
-		<Hero
-			locale={locale}
-			imageAlt={home.imageAlt}
-			accent={ui.hero.accent}
-			subtitle={ui.hero.subtitle}
-			subtitleShort={ui.hero.subtitleShort}
-		/>
+		<div class="hero-stage">
+			<Navbar locale={locale} pageId="home" overlay />
+			<Hero
+				locale={locale}
+				imageAlt={home.imageAlt}
+				accent={ui.hero.accent}
+				subtitle={ui.hero.subtitle}
+				subtitleShort={ui.hero.subtitleShort}
+			/>
+		</div>
 		<section class="site__section site__section--trust">
 			<TrustBar locale={locale} />
 		</section>
@@ -138,6 +140,10 @@ const extraGraph: Record<string, unknown>[] =
 <style>
 	.site {
 		overflow-x: clip;
+	}
+
+	.hero-stage {
+		position: relative;
 	}
 
 	.site__section--reviews,
