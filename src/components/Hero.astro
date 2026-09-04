@@ -7,8 +7,6 @@ import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/re
 
 interface Props {
 	accent?: string;
-	subtitle?: string;
-	subtitleShort?: string;
 	locale?: LocaleCode;
 	/** Localized descriptive alt for the hero poster (SEO + screen readers). */
 	imageAlt?: string;
@@ -19,8 +17,6 @@ const ui = getUi(locale);
 
 const {
 	accent = ui.hero.accent,
-	subtitle = ui.hero.subtitle,
-	subtitleShort = ui.hero.subtitleShort,
 	imageAlt = ui.images.hero,
 } = Astro.props;
 
@@ -95,8 +91,6 @@ const featurePills = [
 			</h1>
 
 			<p class="hero__tagline">{accent}</p>
-			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
-			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
 
 			<ul class="hero__features" aria-label="Included modules">
 				{
@@ -270,15 +264,6 @@ const featurePills = [
 		color: rgba(255, 236, 196, 0.88);
 	}
 
-	.hero__subtitle {
-		margin: 0.85rem 0 0;
-		width: 100%;
-		max-width: 34rem;
-		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-		line-height: 1.65;
-		color: rgba(255, 255, 255, 0.78);
-	}
-
 	.hero__features {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -449,10 +434,6 @@ const featurePills = [
 		height: 1.15rem;
 	}
 
-	.hero__subtitle--short {
-		display: none;
-	}
-
 	@media (min-width: 640px) {
 		.hero__features {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -479,14 +460,6 @@ const featurePills = [
 		.hero__inner {
 			padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
 			padding-bottom: 4.25rem;
-		}
-
-		.hero__subtitle--full {
-			display: none;
-		}
-
-		.hero__subtitle--short {
-			display: block;
 		}
 
 		.hero__poster-img {
