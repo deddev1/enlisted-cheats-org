@@ -89,41 +89,48 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	<div class="nav__backdrop" data-nav-backdrop hidden aria-hidden="true"></div>
 
 	<div class="nav__shell">
-		<div class="nav__utility" aria-label="Utility">
-			<a href={homeHref} class="nav__utility-logo" aria-label={siteConfig.name}>
-				<img src={siteConfig.logoRaster} alt="" width="28" height="28" decoding="async" />
-			</a>
-			<nav class="nav__utility-links" aria-label="Quick links">
-				<div class="nav__utility-dropdown" data-nav-dropdown>
-					<button type="button" class="nav__utility-link nav__utility-link--dropdown" aria-expanded="false">
-						Cheats
-						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
-						</svg>
-					</button>
-					<div class="nav__utility-panel">
-						{
-							utilityLinks.map((link) => (
-								<a
-									href={link.href}
-									class:list={['nav__utility-panel-link', { 'is-active': pathMatches(link.href, link.pageId) }]}
-								>
-									{link.label}
-								</a>
-							))
-						}
-					</div>
+		{
+			!overlay && (
+				<div class="nav__utility" aria-label="Utility">
+					<a href={homeHref} class="nav__utility-logo" aria-label={siteConfig.name}>
+						<img src={siteConfig.logoRaster} alt="" width="28" height="28" decoding="async" />
+					</a>
+					<nav class="nav__utility-links" aria-label="Quick links">
+						<div class="nav__utility-dropdown" data-nav-dropdown>
+							<button type="button" class="nav__utility-link nav__utility-link--dropdown" aria-expanded="false">
+								Cheats
+								<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+									<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+								</svg>
+							</button>
+							<div class="nav__utility-panel">
+								{
+									utilityLinks.map((link) => (
+										<a
+											href={link.href}
+											class:list={[
+												'nav__utility-panel-link',
+												{ 'is-active': pathMatches(link.href, link.pageId) },
+											]}
+										>
+											{link.label}
+										</a>
+									))
+								}
+							</div>
+						</div>
+						<a href={supportHref} class="nav__utility-link nav__utility-link--external">
+							Support
+							<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path
+									d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2v6H5V5z"
+									fill="currentColor"></path>
+							</svg>
+						</a>
+					</nav>
 				</div>
-				<a href={supportHref} class="nav__utility-link nav__utility-link--external">
-					Support
-					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path
-							d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2v6H5V5z"
-							fill="currentColor"></path>
-					</svg>
-				</a>
-			</nav>
-		</div>
+			)
+		}
 
 		<div class="nav__main">
 			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
@@ -412,6 +419,10 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		top: 0;
 		left: 0;
 		right: 0;
+	}
+
+	.nav--overlay .nav__main {
+		padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
 	}
 
 	.nav__shell {
@@ -1008,6 +1019,11 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 				opacity 0.2s ease,
 				transform 0.2s ease,
 				visibility 0.2s ease;
+		}
+
+		.nav--overlay .nav__menu {
+			top: calc(3.5rem + env(safe-area-inset-top, 0px));
+			max-height: calc(100dvh - 4.25rem - env(safe-area-inset-top, 0px));
 		}
 
 		.nav.is-open .nav__menu {
