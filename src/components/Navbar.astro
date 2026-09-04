@@ -21,6 +21,14 @@ const cheatsHref = getLocalizedPath('hacks', locale);
 const supportHref = getLocalizedPath('support', locale);
 const shopLabel = 'Shop';
 const pricingHref = getLocalizedPath('pricing', locale);
+const updatesHref = getLocalizedPath('updates', locale);
+const featuresHref = getLocalizedPath('features', locale);
+
+const utilityLinks = [
+	{ label: ui.nav.cheats ?? 'Enlisted Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
+	{ label: ui.nav.features, href: featuresHref, pageId: 'features' as PageId },
+	{ label: ui.nav.pricing, href: pricingHref, pageId: 'pricing' as PageId },
+];
 
 const shopCards = [
 	{
@@ -57,10 +65,9 @@ const communityLinks = [
 ];
 
 const mainLinks = [
-	{ label: ui.nav.home, href: homeHref, pageId: 'home' as PageId, accent: false },
-	{ label: ui.nav.cheats ?? 'Cheats', href: cheatsHref, pageId: 'hacks' as PageId, accent: true },
-	{ label: ui.nav.updates, href: getLocalizedPath('updates', locale), pageId: 'updates' as PageId, accent: false },
-	{ label: ui.nav.pricing, href: getLocalizedPath('pricing', locale), pageId: 'pricing' as PageId, accent: false },
+	{ label: ui.nav.updates, href: updatesHref, pageId: 'updates' as PageId, accent: false },
+	{ label: ui.nav.cheats ?? 'Enlisted Cheats', href: cheatsHref, pageId: 'hacks' as PageId, accent: true },
+	{ label: ui.nav.reviews ?? 'Reviews', href: '/reviews/', pageId: undefined, accent: false },
 ];
 
 function pathMatches(href: string, id?: PageId) {
@@ -87,9 +94,26 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 				<img src={siteConfig.logoRaster} alt="" width="28" height="28" decoding="async" />
 			</a>
 			<nav class="nav__utility-links" aria-label="Quick links">
-				<a href={cheatsHref} class:list={['nav__utility-link', { 'is-active': pathMatches(cheatsHref, 'hacks') }]}>
-					{ui.nav.cheats ?? 'Cheats'}
-				</a>
+				<div class="nav__utility-dropdown" data-nav-dropdown>
+					<button type="button" class="nav__utility-link nav__utility-link--dropdown" aria-expanded="false">
+						Cheats
+						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+						</svg>
+					</button>
+					<div class="nav__utility-panel">
+						{
+							utilityLinks.map((link) => (
+								<a
+									href={link.href}
+									class:list={['nav__utility-panel-link', { 'is-active': pathMatches(link.href, link.pageId) }]}
+								>
+									{link.label}
+								</a>
+							))
+						}
+					</div>
+				</div>
 				<a href={supportHref} class="nav__utility-link nav__utility-link--external">
 					Support
 					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -122,7 +146,6 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 								'nav__menu-link',
 								{
 									'is-active': pathMatches(link.href, link.pageId),
-									'is-accent': link.accent && pathMatches(link.href, link.pageId),
 									'nav__menu-link--accent': link.accent,
 								},
 							]}
@@ -132,13 +155,17 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 					))
 				}
 
-				<details class="nav__dropdown" open={gameActive ? true : undefined}>
-					<summary class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': gameActive }]}>
+				<div class="nav__dropdown" data-nav-dropdown>
+					<button
+						type="button"
+						class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': gameActive }]}
+						aria-expanded="false"
+					>
 						Game
-						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
 						</svg>
-					</summary>
+					</button>
 					<div class="nav__dropdown-panel">
 						{
 							gameLinks.map((link) => (
@@ -151,15 +178,19 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 							))
 						}
 					</div>
-				</details>
+				</div>
 
-				<details class="nav__dropdown" open={communityActive ? true : undefined}>
-					<summary class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': communityActive }]}>
+				<div class="nav__dropdown" data-nav-dropdown>
+					<button
+						type="button"
+						class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': communityActive }]}
+						aria-expanded="false"
+					>
 						Community
-						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
 						</svg>
-					</summary>
+					</button>
 					<div class="nav__dropdown-panel">
 						{
 							communityLinks.map((link) => (
@@ -172,21 +203,9 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 							))
 						}
 					</div>
-				</details>
+				</div>
 
-				<a href={siteConfig.checkoutUrl} class="nav__shop nav__shop--mobile" rel="noopener noreferrer">
-					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
-					</svg>
-					{shopLabel}
-				</a>
-				<a href={pricingHref} class="nav__menu-link nav__menu-link--shop-mobile">
-					{ui.nav.pricing}
-				</a>
-			</nav>
-
-			<div class="nav__actions">
-				<div class="nav__shop-wrap" data-nav-shop>
+				<div class="nav__shop-wrap" data-nav-shop data-nav-dropdown>
 					<a
 						href={siteConfig.checkoutUrl}
 						class="nav__shop nav__shop-trigger"
@@ -199,7 +218,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 							<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
 						</svg>
 						{shopLabel}
-						<svg class="nav__shop-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<svg class="nav__caret nav__shop-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
 						</svg>
 					</a>
@@ -235,14 +254,21 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 								))
 							}
 						</div>
-						<a href={pricingHref} class="nav__shop-mega-foot">
-							{ui.hero.viewPricing ?? ui.nav.pricing}
-							<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"></path>
-							</svg>
-						</a>
 					</div>
 				</div>
+
+				<a href={siteConfig.checkoutUrl} class="nav__shop nav__shop--mobile" rel="noopener noreferrer">
+					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
+					</svg>
+					{shopLabel}
+				</a>
+				<a href={pricingHref} class="nav__menu-link nav__menu-link--shop-mobile">
+					{ui.nav.pricing}
+				</a>
+			</nav>
+
+			<div class="nav__actions">
 				<LanguageSwitcher pageId={pageId} currentLocale={locale} />
 				<button
 					type="button"
@@ -299,47 +325,56 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		onScroll();
 		window.addEventListener('scroll', onScroll, { passive: true });
 
-		nav.querySelectorAll('.nav__dropdown').forEach((dropdown) => {
-			dropdown.addEventListener('toggle', () => {
-				if (!(dropdown as HTMLDetailsElement).open) return;
-				nav.querySelectorAll('.nav__dropdown').forEach((other) => {
-					if (other !== dropdown) (other as HTMLDetailsElement).open = false;
-				});
+		const closeAllDropdowns = (except?: Element | null) => {
+			nav.querySelectorAll('[data-nav-dropdown]').forEach((dropdown) => {
+				if (except && dropdown === except) return;
+				dropdown.classList.remove('is-open');
+				dropdown.querySelector('[aria-expanded]')?.setAttribute('aria-expanded', 'false');
 			});
-		});
-
-		const shopWrap = nav.querySelector('[data-nav-shop]');
-		const shopTrigger = nav.querySelector('[data-nav-shop-trigger]') as HTMLAnchorElement | null;
-		const shopPanel = nav.querySelector('[data-nav-shop-panel]') as HTMLElement | null;
-
-		const setShopOpen = (open: boolean) => {
-			if (!shopWrap || !shopTrigger) return;
-			shopWrap.classList.toggle('is-open', open);
-			shopTrigger.setAttribute('aria-expanded', String(open));
 		};
 
-		if (shopWrap && shopTrigger && shopPanel) {
+		const bindDropdown = (dropdown: Element) => {
+			const trigger = dropdown.querySelector('button, [data-nav-shop-trigger]') as HTMLElement | null;
+			if (!trigger) return;
+
 			let closeTimer: ReturnType<typeof setTimeout> | undefined;
 
-			const openShop = () => {
+			const setOpen = (open: boolean) => {
 				clearTimeout(closeTimer);
-				setShopOpen(true);
+				if (open) {
+					closeAllDropdowns(dropdown);
+					dropdown.classList.add('is-open');
+					trigger.setAttribute('aria-expanded', 'true');
+				} else {
+					dropdown.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				}
 			};
 
 			const scheduleClose = () => {
 				clearTimeout(closeTimer);
-				closeTimer = setTimeout(() => setShopOpen(false), 120);
+				closeTimer = setTimeout(() => setOpen(false), 140);
 			};
 
-			shopWrap.addEventListener('mouseenter', openShop);
-			shopWrap.addEventListener('mouseleave', scheduleClose);
-			shopWrap.addEventListener('focusin', openShop);
-			shopWrap.addEventListener('focusout', (event) => {
-				if (!shopWrap.contains((event as FocusEvent).relatedTarget as Node)) {
-					scheduleClose();
-				}
-			});
-		}
+			if (window.matchMedia('(min-width: 961px)').matches) {
+				dropdown.addEventListener('mouseenter', () => setOpen(true));
+				dropdown.addEventListener('mouseleave', scheduleClose);
+				dropdown.addEventListener('focusin', () => setOpen(true));
+				dropdown.addEventListener('focusout', (event) => {
+					if (!dropdown.contains((event as FocusEvent).relatedTarget as Node)) {
+						scheduleClose();
+					}
+				});
+			} else if (trigger.tagName === 'BUTTON') {
+				trigger.addEventListener('click', () => {
+					const isOpen = dropdown.classList.contains('is-open');
+					closeAllDropdowns();
+					setOpen(!isOpen);
+				});
+			}
+		};
+
+		nav.querySelectorAll('[data-nav-dropdown]').forEach(bindDropdown);
 	}
 </script>
 
@@ -440,16 +475,88 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		color: #fff;
 	}
 
+	.nav__utility-dropdown {
+		position: relative;
+	}
+
+	.nav__utility-link--dropdown {
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.nav__utility-panel {
+		position: absolute;
+		top: calc(100% + 0.35rem);
+		left: 0;
+		z-index: 130;
+		min-width: 11rem;
+		padding: 0.35rem 0;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(12, 12, 12, 0.98);
+		box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transform: translateY(-4px);
+		transition:
+			opacity 0.18s ease,
+			transform 0.18s ease,
+			visibility 0.18s ease;
+	}
+
+	.nav__utility-dropdown.is-open .nav__utility-panel,
+	.nav__utility-dropdown:focus-within .nav__utility-panel {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.nav__utility-panel-link {
+		display: block;
+		padding: 0.55rem 1rem;
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.nav__utility-panel-link:hover,
+	.nav__utility-panel-link.is-active {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.nav__caret {
+		width: 0.85rem;
+		height: 0.85rem;
+		opacity: 0.75;
+		transition: transform 0.2s ease;
+	}
+
+	.nav__utility-dropdown.is-open .nav__caret,
+	.nav__dropdown.is-open .nav__caret,
+	.nav__shop-wrap.is-open .nav__shop-caret {
+		transform: rotate(180deg);
+	}
+
 	.nav__main {
 		position: relative;
 		display: grid;
 		grid-template-columns: auto 1fr auto;
-		align-items: center;
-		gap: 1rem;
-		min-height: 3.35rem;
-		padding: 0.35rem var(--page-gutter);
-		background: rgba(8, 6, 4, 0.55);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		align-items: stretch;
+		gap: 0;
+		min-height: 3.5rem;
+		padding: 0 var(--page-gutter);
+		background: linear-gradient(180deg, rgba(18, 22, 16, 0.72) 0%, rgba(8, 10, 8, 0.62) 100%);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		backdrop-filter: blur(10px);
 		transition:
 			background 0.25s ease,
@@ -458,7 +565,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 
 	.nav.is-scrolled .nav__main,
 	.nav--overlay.is-scrolled .nav__main {
-		background: rgba(8, 6, 4, 0.88);
+		background: rgba(8, 10, 8, 0.92);
 	}
 
 	.nav__brand {
@@ -468,6 +575,11 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		color: #fff;
 		text-decoration: none;
 		min-width: 0;
+		padding-right: 1.25rem;
+		margin-right: 0.25rem;
+		border-right: 1px solid rgba(255, 255, 255, 0.12);
+		align-self: center;
+		min-height: 3.5rem;
 	}
 
 	.nav__brand-icon {
@@ -488,25 +600,28 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 
 	.nav__menu {
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		align-items: stretch;
+		justify-content: flex-end;
 		gap: 0;
 		min-width: 0;
+		flex: 1;
 	}
 
 	.nav__menu-link,
 	.nav__menu-link--dropdown {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.25rem;
-		padding: 0.65rem 0.95rem;
-		color: rgba(255, 255, 255, 0.82);
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		gap: 0.3rem;
+		padding: 0 1rem;
+		min-height: 3.5rem;
+		color: rgba(255, 255, 255, 0.88);
+		font-size: 0.84rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-transform: none;
 		text-decoration: none;
-		border-left: 1px solid rgba(255, 255, 255, 0.08);
+		border: 0;
+		background: transparent;
 		transition:
 			color 0.2s ease,
 			background 0.2s ease;
@@ -518,12 +633,12 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	}
 
 	.nav__menu-link--accent {
-		color: #c8a8ff;
+		color: #b89cff;
 	}
 
-	.nav__menu-link--accent.is-accent,
-	.nav__menu-link--accent:hover {
-		color: #dcc8ff;
+	.nav__menu-link--accent:hover,
+	.nav__menu-link--accent.is-active {
+		color: #d4c4ff;
 	}
 
 	.nav__menu-link:hover,
@@ -531,22 +646,11 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	.nav__menu-link--dropdown:hover,
 	.nav__menu-link--dropdown.is-active {
 		color: #fff;
-		background: rgba(255, 255, 255, 0.04);
 	}
 
 	.nav__menu-link--dropdown {
-		list-style: none;
 		cursor: pointer;
-	}
-
-	.nav__menu-link--dropdown::-webkit-details-marker {
-		display: none;
-	}
-
-	.nav__menu-link--dropdown svg {
-		width: 0.85rem;
-		height: 0.85rem;
-		opacity: 0.75;
+		font: inherit;
 	}
 
 	.nav__dropdown {
@@ -555,23 +659,40 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 
 	.nav__dropdown-panel {
 		position: absolute;
-		top: calc(100% + 1px);
+		top: 100%;
 		left: 0;
 		z-index: 120;
-		min-width: 11rem;
-		padding: 0.35rem 0;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		background: rgba(18, 16, 14, 0.98);
-		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+		min-width: 12.5rem;
+		padding: 0.45rem 0;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(24, 22, 20, 0.98);
+		box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transform: translateY(-4px);
+		transition:
+			opacity 0.18s ease,
+			transform 0.18s ease,
+			visibility 0.18s ease;
+	}
+
+	.nav__dropdown.is-open .nav__dropdown-panel,
+	.nav__dropdown:focus-within .nav__dropdown-panel {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateY(0);
 	}
 
 	.nav__dropdown-link {
 		display: block;
-		padding: 0.65rem 1rem;
-		color: rgba(255, 255, 255, 0.78);
-		font-size: 0.78rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
+		padding: 0.55rem 1.15rem;
+		color: rgba(255, 255, 255, 0.82);
+		font-size: 0.84rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-transform: none;
 		text-decoration: none;
 		transition:
 			color 0.2s ease,
@@ -589,6 +710,8 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		align-items: center;
 		gap: 0.55rem;
 		flex-shrink: 0;
+		align-self: center;
+		padding-left: 0.75rem;
 	}
 
 	.nav__shop {
@@ -596,15 +719,16 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 		align-items: center;
 		justify-content: center;
 		gap: 0.45rem;
-		min-height: 2.2rem;
-		padding: 0.45rem 0.95rem;
-		border: 1px solid rgba(240, 192, 96, 0.55);
-		background: rgba(0, 0, 0, 0.28);
-		color: #f0c060;
-		font-size: 0.72rem;
-		font-weight: 800;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
+		min-height: 3.5rem;
+		padding: 0 1.15rem;
+		border: 1px solid rgba(210, 165, 70, 0.65);
+		border-bottom: 1px solid rgba(210, 165, 70, 0.65);
+		background: rgba(0, 0, 0, 0.22);
+		color: #e8c878;
+		font-size: 0.84rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		text-transform: none;
 		text-decoration: none;
 		transition:
 			background 0.2s ease,
@@ -614,41 +738,45 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 
 	.nav__shop-wrap {
 		position: relative;
+		align-self: stretch;
+		margin-left: 0.35rem;
 	}
 
-	.nav__shop-trigger:hover,
+	.nav__shop-trigger {
+		height: 100%;
+	}
+
 	.nav__shop-wrap.is-open .nav__shop-trigger,
-	.nav__shop-wrap:focus-within .nav__shop-trigger {
+	.nav__shop-wrap:focus-within .nav__shop-trigger,
+	.nav__shop-trigger:hover {
 		color: #ffe6a8;
-		border-color: rgba(240, 192, 96, 0.85);
-		background: rgba(240, 192, 96, 0.08);
+		border-color: rgba(228, 190, 96, 0.95);
+		background: linear-gradient(180deg, rgba(72, 56, 28, 0.72) 0%, rgba(36, 28, 16, 0.92) 100%);
+	}
+
+	.nav__shop-wrap.is-open .nav__shop-trigger {
+		border-bottom-color: transparent;
 	}
 
 	.nav__shop-caret {
-		opacity: 0.7;
-		transition: transform 0.2s ease;
-	}
-
-	.nav__shop-wrap.is-open .nav__shop-caret,
-	.nav__shop-wrap:focus-within .nav__shop-caret {
-		transform: rotate(180deg);
+		opacity: 0.85;
 	}
 
 	.nav__shop-mega {
 		position: absolute;
-		top: calc(100% + 0.55rem);
+		top: 100%;
 		right: 0;
 		z-index: 140;
-		width: min(42rem, calc(100vw - 2 * var(--page-gutter)));
-		padding: 0.85rem;
-		border: 1px solid rgba(255, 255, 255, 0.12);
-		background: rgba(16, 14, 12, 0.97);
+		width: min(40rem, calc(100vw - 2 * var(--page-gutter)));
+		padding: 1rem;
+		border: 1px solid rgba(228, 190, 96, 0.55);
+		border-top: 0;
+		background: rgba(18, 16, 14, 0.98);
 		box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
-		backdrop-filter: blur(12px);
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;
-		transform: translateY(-6px);
+		transform: translateY(-4px);
 		transition:
 			opacity 0.2s ease,
 			transform 0.2s ease,
@@ -740,34 +868,8 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	.nav__shop-card-desc {
 		margin: 0.45rem 0 0;
 		color: rgba(255, 255, 255, 0.68);
-		font-size: 0.76rem;
+		font-size: 0.8rem;
 		line-height: 1.5;
-	}
-
-	.nav__shop-mega-foot {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.25rem;
-		margin-top: 0.75rem;
-		padding-top: 0.65rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		color: rgba(255, 255, 255, 0.72);
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-decoration: none;
-		text-transform: uppercase;
-		transition: color 0.2s ease;
-	}
-
-	.nav__shop-mega-foot svg {
-		width: 0.9rem;
-		height: 0.9rem;
-		opacity: 0.75;
-	}
-
-	.nav__shop-mega-foot:hover {
-		color: #f0c060;
 	}
 
 	.nav__menu-link--shop-mobile {
@@ -924,24 +1026,42 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 			font-size: 0.82rem;
 		}
 
-		.nav__dropdown-panel {
+		.nav__dropdown-panel,
+		.nav__utility-panel {
 			position: static;
 			border: 0;
 			box-shadow: none;
 			background: rgba(255, 255, 255, 0.03);
 			padding: 0;
-		}
-
-		.nav__dropdown-link {
-			padding-left: 1.35rem;
-		}
-
-		.nav__shop-mega {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: none;
 			display: none;
+		}
+
+		.nav__dropdown.is-open .nav__dropdown-panel,
+		.nav__utility-dropdown.is-open .nav__utility-panel {
+			display: block;
+		}
+
+		.nav__dropdown-link,
+		.nav__utility-panel-link {
+			padding-left: 1.35rem;
 		}
 
 		.nav__shop-wrap {
 			display: none;
+		}
+
+		.nav__shop-mega {
+			display: none !important;
+		}
+
+		.nav__brand {
+			border-right: 0;
+			padding-right: 0;
+			margin-right: 0;
 		}
 
 		.nav__shop--mobile {
