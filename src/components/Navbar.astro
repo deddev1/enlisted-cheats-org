@@ -1,20 +1,21 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { getUi } from '../data/i18n';
-import { getLocalizedPath, getNavForLocale, type PageId } from '../data/i18n/routing';
+import { getLocalizedPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { siteConfig } from '../data/site';
+import { productInfo, siteConfig } from '../data/site';
 
 interface Props {
 	locale?: LocaleCode;
 	pageId?: PageId;
+	/** When true, navbar overlays the homepage hero without pushing content down. */
+	overlay?: boolean;
 }
 
-const { locale = defaultLocale, pageId = 'home' } = Astro.props;
+const { locale = defaultLocale, pageId = 'home', overlay = false } = Astro.props;
 const ui = getUi(locale);
-const navLinks = getNavForLocale(locale, ui.nav);
-const ctaLabel = ui.nav.buyNow;
 const current = Astro.url.pathname;
+const homeHref = getLocalizedPath('home', locale);
 
 const isActive = (href: string, linkPageId?: PageId) => {
 	if (linkPageId === 'home') {
@@ -32,49 +33,181 @@ const isActive = (href: string, linkPageId?: PageId) => {
 	}
 	return current === href || current.startsWith(href);
 };
+
+const cheatLinks = [
+	{ label: ui.nav.cheats ?? 'Cheats', href: getLocalizedPath('hacks', locale), pageId: 'hacks' as PageId },
+	{ label: ui.nav.esp ?? 'ESP', href: getLocalizedPath('enlisted-esp', locale), pageId: 'enlisted-esp' as PageId },
+	{ label: ui.nav.aimbot ?? 'Aimbot', href: getLocalizedPath('enlisted-aimbot', locale), pageId: 'enlisted-aimbot' as PageId },
+	{ label: 'Wallhack', href: getLocalizedPath('wallhack', locale), pageId: 'wallhack' as PageId },
+	{ label: 'Radar', href: getLocalizedPath('radar', locale), pageId: 'radar' as PageId },
+];
+
+const cheatsActive = cheatLinks.some((link) => isActive(link.href, link.pageId));
+
+const mainLinks = [
+	{ label: ui.nav.updates, href: getLocalizedPath('updates', locale), pageId: 'updates' as PageId },
+	{ label: ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
+	{ label: ui.nav.pricing, href: getLocalizedPath('pricing', locale), pageId: 'pricing' as PageId },
+	{ label: ui.nav.setup, href: getLocalizedPath('setup', locale), pageId: 'setup' as PageId },
+	{ label: ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
+	{ label: ui.nav.reviews ?? 'Reviews', href: '/reviews/' },
+];
+
+const shopPlans = [
+	{
+		label: ui.product.monthly,
+		price: `$${productInfo.plans[0].price}`,
+		href: siteConfig.checkoutUrl,
+		desc: productInfo.planSummaries.monthly[1],
+		image: '/images/enlisted-cheats-main-menu.webp',
+	},
+	{
+		label: ui.product.lifetime,
+		price: `$${productInfo.plans[1].price}`,
+		href: siteConfig.checkoutUrl,
+		desc: productInfo.planSummaries.lifetime[1],
+		image: '/images/enlisted-cheats-settings-panel.webp',
+	},
+];
+
+const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 ---
 
-<header class="nav" data-nav>
-	<div class="nav__backdrop" data-nav-backdrop hidden aria-hidden="true"></div>
-	<div class="nav__bar">
-		<nav class="nav__links" id="nav-panel" data-nav-panel aria-label="Primary">
-			{
-				navLinks.map((link) => (
-					<a
-						href={link.href}
-						class:list={['nav__link', { 'is-active': isActive(link.href, link.pageId) }]}
-					>
-						<span class="nav__link-glow" aria-hidden="true"></span>
-						<span class="nav__link-text">{link.label}</span>
-					</a>
-				))
-			}
-			<a href={siteConfig.checkoutUrl} class="nav__cta nav__cta--mobile btn-buy" rel="noopener noreferrer">
-				{ctaLabel}
+<header class:list={['nav', overlay && 'nav--overlay']} data-nav>
+	<div class="nav__utility">
+		<div class="nav__shell nav__utility-inner">
+			<a href={homeHref} class="nav__utility-mark" aria-label={siteConfig.name}>
+				<img src={siteConfig.logo} alt="" width="18" height="18" class="nav__utility-logo" />
 			</a>
-		</nav>
-
-		<div class="nav__actions">
-			<a
-				href={siteConfig.checkoutUrl}
-				class="nav__cta btn-buy"
-				rel="noopener noreferrer"
-			>
-				{ctaLabel}
-			</a>
-			<LanguageSwitcher pageId={pageId} currentLocale={locale} />
-			<button
-				type="button"
-				class="nav__toggle"
-				aria-label="Open menu"
-				aria-expanded="false"
-				aria-controls="nav-panel"
-				data-nav-toggle
-			>
-				<span class="nav__toggle-icon" aria-hidden="true"></span>
-			</button>
+			<nav class="nav__utility-links" aria-label="Utility">
+				<a href={getLocalizedPath('features', locale)} class="nav__utility-link">{ui.nav.features}</a>
+				<a href={getLocalizedPath('support', locale)} class="nav__utility-link nav__utility-link--external">
+					{ui.nav.support ?? 'Support'}
+					<span aria-hidden="true">↗</span>
+				</a>
+			</nav>
+			<div class="nav__utility-right">
+				<LanguageSwitcher pageId={pageId} currentLocale={locale} />
+			</div>
 		</div>
 	</div>
+
+	<div class="nav__main">
+		<div class="nav__shell nav__main-inner">
+			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
+				<span class="nav__brand-emblem" aria-hidden="true">★</span>
+				<span class="nav__brand-text">
+					<span class="nav__brand-title">{productInfo.game.toUpperCase()}</span>
+					<span class="nav__brand-sub">CHEATS</span>
+				</span>
+			</a>
+
+			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
+				<ul class="nav__list">
+					<li class="nav__item nav__item--dropdown" data-nav-dropdown>
+						<button
+							type="button"
+							class:list={['nav__trigger nav__trigger--accent', { 'is-active': cheatsActive }]}
+							data-nav-dropdown-trigger
+							aria-expanded="false"
+							aria-controls="nav-cheats-menu"
+						>
+							{ui.nav.cheats ?? 'Cheats'}
+							<span class="nav__chevron" aria-hidden="true"></span>
+						</button>
+						<div class="nav__dropdown nav__dropdown--menu" id="nav-cheats-menu" hidden>
+							<ul class="nav__dropdown-list">
+								{
+									cheatLinks.map((link) => (
+										<li>
+											<a
+												href={link.href}
+												class:list={['nav__dropdown-link', { 'is-active': isActive(link.href, link.pageId) }]}
+											>
+												{link.label}
+											</a>
+										</li>
+									))
+								}
+							</ul>
+						</div>
+					</li>
+
+					{
+						mainLinks.map((link) => (
+							<li class="nav__item">
+								<a
+									href={link.href}
+									class:list={['nav__link', { 'is-active': isActive(link.href, link.pageId) }]}
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+
+					<li class="nav__item nav__item--mobile-buy">
+						<a href={siteConfig.checkoutUrl} class="nav__mobile-buy" rel="noopener noreferrer">
+							{buyLabel}
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="nav__actions">
+				<div class="nav__shop" data-nav-dropdown>
+					<button
+						type="button"
+						class="nav__shop-btn"
+						data-nav-dropdown-trigger
+						aria-expanded="false"
+						aria-controls="nav-shop-menu"
+					>
+						<span class="nav__shop-star" aria-hidden="true">★</span>
+						<span>{buyLabel}</span>
+						<span class="nav__chevron nav__chevron--gold" aria-hidden="true"></span>
+					</button>
+					<div class="nav__dropdown nav__dropdown--shop" id="nav-shop-menu" hidden>
+						<div class="nav__shop-grid">
+							{
+								shopPlans.map((plan) => (
+									<a href={plan.href} class="nav__shop-card" rel="noopener noreferrer">
+										<div class="nav__shop-card-media">
+											<img src={plan.image} alt="" width="320" height="180" loading="lazy" decoding="async" />
+											<span class="nav__shop-card-link" aria-hidden="true">↗</span>
+										</div>
+										<div class="nav__shop-card-body">
+											<p class="nav__shop-card-title">
+												{plan.label}
+												<span>{plan.price}</span>
+											</p>
+											<p class="nav__shop-card-desc">{plan.desc}</p>
+										</div>
+									</a>
+								))
+							}
+						</div>
+						<a href={getLocalizedPath('pricing', locale)} class="nav__shop-all">
+							{ui.nav.pricing} →
+						</a>
+					</div>
+				</div>
+
+				<button
+					type="button"
+					class="nav__toggle"
+					aria-label="Open menu"
+					aria-expanded="false"
+					aria-controls="nav-panel"
+					data-nav-toggle
+				>
+					<span class="nav__toggle-icon" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="nav__backdrop" data-nav-backdrop hidden aria-hidden="true"></div>
 </header>
 
 <script>
@@ -82,6 +215,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 	if (nav) {
 		const toggle = nav.querySelector('[data-nav-toggle]');
 		const panel = nav.querySelector('[data-nav-panel]');
+		const dropdowns = Array.from(nav.querySelectorAll('[data-nav-dropdown]'));
 
 		const setOpen = (open: boolean) => {
 			toggle?.setAttribute('aria-expanded', String(open));
@@ -90,7 +224,49 @@ const isActive = (href: string, linkPageId?: PageId) => {
 			document.body.classList.toggle('nav-open', open);
 			const backdrop = nav.querySelector('[data-nav-backdrop]') as HTMLElement | null;
 			if (backdrop) backdrop.hidden = !open;
+			if (!open) closeDropdowns();
 		};
+
+		const closeDropdowns = () => {
+			dropdowns.forEach((dropdown) => {
+				dropdown.classList.remove('is-open');
+				const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]') as HTMLElement | null;
+				const menu = dropdown.querySelector('.nav__dropdown') as HTMLElement | null;
+				trigger?.setAttribute('aria-expanded', 'false');
+				if (menu) menu.hidden = true;
+			});
+		};
+
+		const toggleDropdown = (dropdown: Element) => {
+			const isOpen = dropdown.classList.contains('is-open');
+			closeDropdowns();
+			if (isOpen) return;
+			dropdown.classList.add('is-open');
+			const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]') as HTMLElement | null;
+			const menu = dropdown.querySelector('.nav__dropdown') as HTMLElement | null;
+			trigger?.setAttribute('aria-expanded', 'true');
+			if (menu) menu.hidden = false;
+		};
+
+		dropdowns.forEach((dropdown) => {
+			const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]');
+			trigger?.addEventListener('click', (event) => {
+				event.stopPropagation();
+				toggleDropdown(dropdown);
+			});
+		});
+
+		document.addEventListener('click', (event) => {
+			if (!(event.target instanceof Element)) return;
+			if (!nav.contains(event.target)) closeDropdowns();
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				closeDropdowns();
+				if (nav.classList.contains('is-open')) setOpen(false);
+			}
+		});
 
 		toggle?.addEventListener('click', () => {
 			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
@@ -100,12 +276,6 @@ const isActive = (href: string, linkPageId?: PageId) => {
 			link.addEventListener('click', () => setOpen(false));
 		});
 
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-				setOpen(false);
-			}
-		});
-
 		nav.addEventListener('click', (event) => {
 			const target = event.target as Element;
 			if (nav.classList.contains('is-open') && target.hasAttribute('data-nav-backdrop')) {
@@ -113,154 +283,446 @@ const isActive = (href: string, linkPageId?: PageId) => {
 			}
 		});
 
-		const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+		const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 12);
 		onScroll();
 		window.addEventListener('scroll', onScroll, { passive: true });
 	}
 </script>
 
 <style is:global>
+	:root {
+		--nav-stack-height: 5.35rem;
+	}
+
 	body.nav-open {
 		overflow: hidden;
+	}
+
+	.nav:not(.nav--overlay) + main,
+	.nav:not(.nav--overlay) + .page {
+		padding-top: calc(var(--nav-stack-height) + env(safe-area-inset-top, 0px));
+	}
+
+	.nav .lang-switcher__toggle {
+		padding: 0.28rem 0.55rem;
+		border-radius: 0.2rem;
+		border-color: rgba(255, 255, 255, 0.12);
+		background: rgba(255, 255, 255, 0.04);
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.nav .lang-switcher__panel {
+		border-radius: 0.35rem;
+		border-color: rgba(255, 255, 255, 0.12);
+		background: rgba(12, 12, 12, 0.98);
 	}
 </style>
 
 <style>
 	.nav {
-		position: sticky;
+		position: fixed;
 		top: 0;
-		z-index: 80;
-		padding: 0.65rem var(--page-gutter) 0;
-		padding-top: calc(0.65rem + env(safe-area-inset-top, 0px));
+		left: 0;
+		right: 0;
+		z-index: 90;
 		pointer-events: none;
 	}
 
-	.nav__bar {
+	.nav__shell {
+		width: min(100% - (var(--page-gutter) * 2), 1280px);
+		margin: 0 auto;
+	}
+
+	.nav__utility,
+	.nav__main,
+	.nav__backdrop {
+		pointer-events: auto;
+	}
+
+	.nav__utility {
+		background: #050505;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.nav__utility-inner {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		width: min(100%, var(--page-max));
-		margin: 0 auto;
-		padding: 0.45rem 0.65rem;
-		border-radius: 0.85rem;
-		border: 1px solid rgba(255, 255, 255, 0.06);
-		background: rgba(10, 28, 29, 0.42);
-		backdrop-filter: blur(18px) saturate(1.1);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-		pointer-events: auto;
-		transition:
-			background 0.25s ease,
-			border-color 0.25s ease,
-			box-shadow 0.25s ease;
+		min-height: 2rem;
+		padding-block: 0.2rem;
 	}
 
-	.nav.is-scrolled .nav__bar {
-		background: rgba(10, 28, 29, 0.72);
-		border-color: rgba(255, 255, 255, 0.08);
-		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+	.nav__utility-mark {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 0.15rem;
+		background: rgba(255, 255, 255, 0.06);
 	}
 
-	.nav__links {
+	.nav__utility-logo {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		object-fit: contain;
+	}
+
+	.nav__utility-links {
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
-		gap: 0.2rem;
+		gap: 1.1rem;
+	}
+
+	.nav__utility-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.58);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.nav__utility-link:hover {
+		color: rgba(255, 255, 255, 0.88);
+	}
+
+	.nav__utility-right {
+		margin-left: auto;
+	}
+
+	.nav__main {
+		background: rgba(8, 8, 8, 0.58);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(10px);
+		transition:
+			background 0.25s ease,
+			border-color 0.25s ease;
+	}
+
+	.nav.is-scrolled .nav__main {
+		background: rgba(8, 8, 8, 0.88);
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.nav__main-inner {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		min-height: 3.35rem;
+	}
+
+	.nav__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		flex-shrink: 0;
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	.nav__brand-emblem {
+		display: grid;
+		place-items: center;
+		width: 2rem;
+		height: 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		border-radius: 50%;
+		font-size: 0.95rem;
+		color: rgba(255, 255, 255, 0.88);
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.nav__brand-text {
+		display: flex;
+		flex-direction: column;
+		line-height: 1;
+	}
+
+	.nav__brand-title {
+		font-size: 1.05rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+	}
+
+	.nav__brand-sub {
+		margin-top: 0.12rem;
+		font-size: 0.58rem;
+		font-weight: 700;
+		letter-spacing: 0.28em;
+		color: rgba(255, 255, 255, 0.62);
+	}
+
+	.nav__menu {
 		flex: 1;
 		min-width: 0;
 	}
 
-	.nav__link {
+	.nav__list {
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.nav__item {
+		display: flex;
+		align-items: stretch;
 		position: relative;
+	}
+
+	.nav__item + .nav__item .nav__link,
+	.nav__item + .nav__item .nav__trigger,
+	.nav__item--dropdown + .nav__item .nav__link {
+		border-left: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.nav__link,
+	.nav__trigger {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.42rem 0.72rem;
-		border-radius: 0.5rem;
-		border: 1px solid transparent;
-		color: rgba(255, 255, 255, 0.58);
-		font-size: 0.8rem;
-		font-weight: 500;
-		letter-spacing: 0.02em;
-		white-space: nowrap;
-		overflow: hidden;
-		isolation: isolate;
-		transition:
-			color 0.2s ease,
-			border-color 0.2s ease,
-			background 0.2s ease;
-	}
-
-	.nav__link-text {
-		position: relative;
-		z-index: 1;
-	}
-
-	.nav__link-glow {
-		display: none;
-	}
-
-	.nav__link:hover {
+		gap: 0.35rem;
+		min-height: 3.35rem;
+		padding: 0 1rem;
+		border: 0;
+		background: transparent;
 		color: rgba(255, 255, 255, 0.88);
-		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.06);
+		font: inherit;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		text-decoration: none;
+		white-space: nowrap;
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
 	}
 
-	.nav__link.is-active {
-		color: var(--color-ink);
+	.nav__link:hover,
+	.nav__trigger:hover,
+	.nav__item--dropdown.is-open .nav__trigger {
+		background: rgba(255, 255, 255, 0.06);
+		color: #ffffff;
+	}
+
+	.nav__link.is-active,
+	.nav__trigger.is-active {
+		color: #ffffff;
+	}
+
+	.nav__trigger--accent,
+	.nav__trigger--accent.is-active {
+		color: #c8b6ff;
+	}
+
+	.nav__chevron {
+		width: 0.45rem;
+		height: 0.45rem;
+		border-right: 1.5px solid currentColor;
+		border-bottom: 1.5px solid currentColor;
+		transform: rotate(45deg) translateY(-1px);
+		opacity: 0.75;
+	}
+
+	.nav__chevron--gold {
+		border-color: #d4af37;
+	}
+
+	.nav__dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 5;
+		min-width: 12rem;
+		padding: 0.35rem 0;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(14, 14, 14, 0.96);
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+	}
+
+	.nav__dropdown-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.nav__dropdown-link {
+		display: block;
+		padding: 0.65rem 1rem;
+		color: rgba(255, 255, 255, 0.82);
+		font-size: 0.78rem;
 		font-weight: 600;
-		background: rgba(32, 191, 192, 0.06);
-		border-color: rgba(32, 191, 192, 0.12);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
 	}
 
-	.nav__link.is-active .nav__link-glow {
-		display: none;
+	.nav__dropdown-link:hover,
+	.nav__dropdown-link.is-active {
+		background: rgba(255, 255, 255, 0.06);
+		color: #ffffff;
 	}
 
 	.nav__actions {
 		display: flex;
 		align-items: center;
-		gap: 0.4rem;
+		gap: 0.5rem;
+		margin-left: auto;
 		flex-shrink: 0;
 	}
 
-	.nav__cta {
+	.nav__shop {
+		position: relative;
+	}
+
+	.nav__shop-btn {
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		min-height: 2.15rem;
-		padding: 0.45rem 0.9rem;
-		border-radius: 0.55rem;
+		gap: 0.45rem;
+		min-height: 2.2rem;
+		padding: 0 0.85rem;
+		border: 1px solid #b8860b;
+		background: rgba(0, 0, 0, 0.35);
+		color: #f3e2a9;
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.nav__shop-btn:hover,
+	.nav__shop.is-open .nav__shop-btn {
+		background: rgba(184, 134, 11, 0.12);
+		border-color: #d4af37;
+		color: #fff6cf;
+	}
+
+	.nav__shop-star {
+		color: #d4af37;
+		font-size: 0.72rem;
+		line-height: 1;
+	}
+
+	.nav__dropdown--shop {
+		right: 0;
+		left: auto;
+		width: min(34rem, calc(100vw - 2rem));
+		padding: 0.75rem;
+	}
+
+	.nav__shop-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.65rem;
+	}
+
+	.nav__shop-card {
+		display: grid;
+		gap: 0.55rem;
+		padding: 0.55rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.03);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.nav__shop-card:hover {
+		border-color: rgba(212, 175, 55, 0.35);
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.nav__shop-card-media {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 16 / 9;
+		background: #111;
+	}
+
+	.nav__shop-card-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.nav__shop-card-link {
+		position: absolute;
+		top: 0.35rem;
+		right: 0.35rem;
+		font-size: 0.72rem;
+		color: rgba(255, 255, 255, 0.72);
+	}
+
+	.nav__shop-card-title {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem;
+		margin: 0;
 		font-size: 0.82rem;
 		font-weight: 800;
-		letter-spacing: 0.03em;
-		white-space: nowrap;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #d4af37;
+	}
+
+	.nav__shop-card-desc {
+		margin: 0.2rem 0 0;
+		font-size: 0.72rem;
+		line-height: 1.45;
+		color: rgba(255, 255, 255, 0.62);
+	}
+
+	.nav__shop-all {
+		display: block;
+		margin-top: 0.65rem;
+		padding-top: 0.55rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.72);
 		text-decoration: none;
 	}
 
-	.nav__cta:hover {
+	.nav__shop-all:hover {
 		color: #ffffff;
 	}
 
 	.nav__toggle {
 		display: none;
 		place-items: center;
-		width: 2.15rem;
-		height: 2.15rem;
-		flex-shrink: 0;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		border-radius: 0.5rem;
+		width: 2.35rem;
+		height: 2.35rem;
+		border: 1px solid rgba(255, 255, 255, 0.14);
 		background: rgba(255, 255, 255, 0.04);
-		color: var(--color-ink);
+		color: #ffffff;
 		cursor: pointer;
-		transition:
-			background 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.nav__toggle:hover {
-		background: rgba(32, 191, 192, 0.1);
-		border-color: rgba(32, 191, 192, 0.2);
 	}
 
 	.nav__toggle-icon,
@@ -269,7 +731,6 @@ const isActive = (href: string, linkPageId?: PageId) => {
 		display: block;
 		width: 16px;
 		height: 2px;
-		border-radius: 2px;
 		background: currentColor;
 		transition:
 			transform 0.25s ease,
@@ -309,61 +770,31 @@ const isActive = (href: string, linkPageId?: PageId) => {
 		transform: rotate(-45deg);
 	}
 
+	.nav__item--mobile-buy,
+	.nav__mobile-buy {
+		display: none;
+	}
+
 	.nav__backdrop {
 		display: none;
 	}
 
-	@media (max-width: 1024px) {
-		.nav__link {
-			padding: 0.38rem 0.55rem;
-			font-size: 0.76rem;
+	@media (min-width: 901px) {
+		.nav__item--dropdown:hover,
+		.nav__shop:hover {
+			/* hover open handled via JS-free CSS optional - keep click for accessibility */
 		}
 	}
 
 	@media (max-width: 900px) {
-		.nav__backdrop {
-			display: block;
-			position: fixed;
-			inset: 0;
-			z-index: 0;
-			border: 0;
-			padding: 0;
-			margin: 0;
-			background: rgba(6, 17, 18, 0.55);
-			backdrop-filter: blur(6px);
-			cursor: pointer;
-		}
-
-		.nav__backdrop[hidden] {
+		.nav__utility-links {
 			display: none;
 		}
 
-		.nav__bar {
-			position: relative;
-			z-index: 2;
-			gap: 0.65rem;
-			padding: 0.45rem 0.55rem;
-		}
-
-		.nav__links {
+		.nav__menu {
 			position: fixed;
-			inset: 0;
-			z-index: 1;
-			display: grid;
-			align-content: start;
-			gap: 0.35rem;
-			width: min(calc(100% - (var(--page-gutter) * 2)), 20rem);
-			max-height: calc(100dvh - 5.5rem - env(safe-area-inset-top, 0px));
-			height: fit-content;
-			margin: calc(4.25rem + env(safe-area-inset-top, 0px)) auto 1.5rem;
-			padding: 0.65rem;
-			border-radius: 0.85rem;
-			border: 1px solid rgba(255, 255, 255, 0.08);
-			background: rgba(10, 28, 29, 0.94);
-			backdrop-filter: blur(20px);
-			box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
-			overflow-y: auto;
-			overscroll-behavior: contain;
+			inset: calc(var(--nav-stack-height) + env(safe-area-inset-top, 0px)) var(--page-gutter) auto;
+			z-index: 2;
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
@@ -374,52 +805,106 @@ const isActive = (href: string, linkPageId?: PageId) => {
 				visibility 0.2s ease;
 		}
 
-		.nav.is-open .nav__links {
+		.nav.is-open .nav__menu {
 			opacity: 1;
 			visibility: visible;
 			pointer-events: auto;
 			transform: translateY(0);
 		}
 
-		.nav__link {
-			justify-content: flex-start;
-			padding: 0.85rem 1rem;
-			border-radius: 0.6rem;
-			font-size: 0.95rem;
+		.nav__list {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0.65rem;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			background: rgba(10, 10, 10, 0.96);
+			box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+			max-height: calc(100dvh - var(--nav-stack-height) - 2rem);
+			overflow-y: auto;
+		}
+
+		.nav__item + .nav__item .nav__link,
+		.nav__item + .nav__item .nav__trigger,
+		.nav__item--dropdown + .nav__item .nav__link {
+			border-left: 0;
+			border-top: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.nav__link,
+		.nav__trigger {
+			justify-content: space-between;
+			width: 100%;
 			min-height: var(--touch-min);
+			padding-inline: 0.85rem;
+		}
+
+		.nav__dropdown {
+			position: static;
+			width: 100%;
+			border: 0;
+			box-shadow: none;
+			background: rgba(255, 255, 255, 0.03);
+			padding: 0;
+		}
+
+		.nav__dropdown[hidden] {
+			display: none;
+		}
+
+		.nav__shop {
+			display: none;
 		}
 
 		.nav__toggle {
 			display: grid;
-			min-width: var(--touch-min);
-			min-height: var(--touch-min);
 		}
 
-		.nav__cta {
-			display: none;
+		.nav__item--mobile-buy {
+			display: block;
 		}
 
-		.nav__cta--mobile {
-			display: inline-flex;
+		.nav__mobile-buy {
+			display: flex;
+			align-items: center;
 			justify-content: center;
 			width: 100%;
-			margin-top: 0.35rem;
 			min-height: var(--touch-min);
 			padding: 0.85rem 1rem;
-			font-size: 0.95rem;
-			border-radius: 0.6rem;
+			border: 1px solid #b8860b;
+			background: rgba(184, 134, 11, 0.12);
+			color: #fff6cf;
+			font-size: 0.88rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-decoration: none;
 		}
-	}
 
-	@media (min-width: 901px) {
-		.nav__cta--mobile {
+		.nav__backdrop {
+			display: block;
+			position: fixed;
+			inset: 0;
+			z-index: 1;
+			border: 0;
+			padding: 0;
+			margin: 0;
+			background: rgba(0, 0, 0, 0.55);
+			backdrop-filter: blur(4px);
+			cursor: pointer;
+		}
+
+		.nav__backdrop[hidden] {
 			display: none;
 		}
 	}
 
-	@media (max-width: 420px) {
-		.nav {
-			padding-inline: 0.65rem;
+	@media (max-width: 640px) {
+		.nav__brand-sub {
+			display: none;
+		}
+
+		.nav__brand-title {
+			font-size: 0.92rem;
 		}
 	}
 </style>
