@@ -28,7 +28,8 @@ const buyUrl = siteConfig.checkoutUrl;
 const featuresHref = getLocalizedPath('features', locale);
 const setupHref = getLocalizedPath('setup', locale);
 const pricingHref = getLocalizedPath('pricing', locale);
-const previewHref = '#gallery';
+const galleryHref = '#gallery';
+const reviewsHref = '/reviews/';
 
 const buyLabels: Partial<Record<LocaleCode, string>> = {
 	en: 'Buy',
@@ -40,18 +41,16 @@ const buyLabels: Partial<Record<LocaleCode, string>> = {
 };
 const buyLabel = buyLabels[locale] ?? ui.hero.buyNow;
 
-const previewLabels: Partial<Record<LocaleCode, string>> = {
-	en: 'Watch Trailer',
-	es: 'Ver tráiler',
-	fr: 'Voir la bande-annonce',
-	de: 'Trailer ansehen',
+const sideActionLabels: Partial<Record<LocaleCode, { features: string; secondary: string }>> = {
+	en: { features: 'Game Features', secondary: 'View Screenshots' },
+	es: { features: 'Funciones', secondary: 'Ver capturas' },
+	fr: { features: 'Fonctionnalités', secondary: 'Voir les captures' },
+	de: { features: 'Spiel-Features', secondary: 'Screenshots ansehen' },
 };
-const previewLabel = previewLabels[locale] ?? ui.hero.seeFeatures;
-
-const featuresLabels: Partial<Record<LocaleCode, string>> = {
-	en: 'Game Features',
+const sideActions = sideActionLabels[locale] ?? {
+	features: ui.hero.seeFeatures,
+	secondary: ui.nav.reviews ?? 'View Screenshots',
 };
-const featuresLabel = featuresLabels[locale] ?? ui.hero.seeFeatures;
 
 const pricingLinkLabels: Partial<Record<LocaleCode, string>> = {
 	en: 'View pricing',
@@ -144,7 +143,7 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 
 			<div class="hero__actions" role="group" aria-label="Primary actions">
 				<a href={featuresHref} class="hero__btn hero__btn--side">
-					{featuresLabel}
+					{sideActions.features}
 				</a>
 				<a
 					href={buyUrl}
@@ -164,8 +163,19 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 					</span>
 					{buyLabel}
 				</a>
-				<a href={previewHref} class="hero__btn hero__btn--side">
-					{previewLabel}
+				<a href={galleryHref} class="hero__btn hero__btn--side">
+					<span class="hero__btn-icon" aria-hidden="true">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M4 7a2 2 0 0 1 2-2h3l1.2-1.6A1 1 0 0 1 11 3h2a1 1 0 0 1 .8.4L15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z"
+								stroke="currentColor"
+								stroke-width="1.8"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+							<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"></circle>
+						</svg>
+					</span>
+					{sideActions.secondary}
 				</a>
 			</div>
 
