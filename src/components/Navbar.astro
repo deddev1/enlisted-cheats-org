@@ -138,6 +138,8 @@ function featureCardActive(cardPageId: PageId): boolean {
 const featuresActive = featureCards.some((card) => featureCardActive(card.pageId));
 const activeFeatureCard =
 	featureCards.find((card) => featureCardActive(card.pageId)) ?? featureCards[0];
+const onFeatureDetailPage =
+	featuresActive && activeFeatureCard.pageId !== 'features';
 ---
 
 <header class:list={['nav', { 'nav--overlay': overlay }]} data-nav>
@@ -214,7 +216,11 @@ const activeFeatureCard =
 					))
 				}
 
-				<div class="nav__features-wrap" data-nav-dropdown data-nav-features>
+				<div
+					class:list={['nav__features-wrap', { 'nav__features-wrap--on-page': onFeatureDetailPage }]}
+					data-nav-dropdown
+					data-nav-features
+				>
 					<a
 						href={featuresHref}
 						class:list={['nav__menu-link', 'nav__features-trigger', { 'is-active': featuresActive }]}
@@ -288,6 +294,9 @@ const activeFeatureCard =
 					))
 				}
 
+			</nav>
+
+			<div class="nav__actions">
 				<div class="nav__shop-wrap" data-nav-shop data-nav-dropdown>
 					<a
 						href={siteConfig.checkoutUrl}
@@ -300,7 +309,7 @@ const activeFeatureCard =
 						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
 						</svg>
-						{shopLabel}
+						<span class="nav__shop-label">{shopLabel}</span>
 						<svg class="nav__caret nav__shop-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
 						</svg>
@@ -339,15 +348,6 @@ const activeFeatureCard =
 					</div>
 				</div>
 
-				<a href={siteConfig.checkoutUrl} class="nav__shop nav__shop--mobile" rel="noopener noreferrer">
-					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
-					</svg>
-					{shopLabel}
-				</a>
-			</nav>
-
-			<div class="nav__actions">
 				<LanguageSwitcher pageId={pageId} currentLocale={locale} />
 				<button
 					type="button"
@@ -387,12 +387,6 @@ const activeFeatureCard =
 			link.addEventListener('click', () => setOpen(false));
 		});
 
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-				setOpen(false);
-			}
-		});
-
 		nav.addEventListener('click', (event) => {
 			const target = event.target as Element;
 			if (nav.classList.contains('is-open') && target.hasAttribute('data-nav-backdrop')) {
@@ -412,15 +406,13 @@ const activeFeatureCard =
 			});
 		};
 
-		const bindDropdown = (dropdown: Element) => {
-			const trigger = dropdown.querySelector(
-				'button, [data-nav-shop-trigger], [data-nav-features-trigger]',
-			) as HTMLElement | null;
+		const bindShopDropdown = (dropdown: Element) => {
+			const trigger = dropdown.querySelector('[data-nav-shop-trigger]') as HTMLElement | null;
 			if (!trigger) return;
 
 			let closeTimer: ReturnType<typeof setTimeout> | undefined;
 
-			const setOpen = (open: boolean) => {
+			const setDropdownOpen = (open: boolean) => {
 				clearTimeout(closeTimer);
 				if (open) {
 					closeAllDropdowns(dropdown);
@@ -434,34 +426,72 @@ const activeFeatureCard =
 
 			const scheduleClose = () => {
 				clearTimeout(closeTimer);
-				closeTimer = setTimeout(() => setOpen(false), 140);
+				closeTimer = setTimeout(() => setDropdownOpen(false), 140);
 			};
 
 			if (window.matchMedia('(min-width: 961px)').matches) {
-				dropdown.addEventListener('mouseenter', () => setOpen(true));
+				dropdown.addEventListener('mouseenter', () => setDropdownOpen(true));
 				dropdown.addEventListener('mouseleave', scheduleClose);
-				dropdown.addEventListener('focusin', () => setOpen(true));
+				dropdown.addEventListener('focusin', () => setDropdownOpen(true));
 				dropdown.addEventListener('focusout', (event) => {
 					if (!dropdown.contains((event as FocusEvent).relatedTarget as Node)) {
 						scheduleClose();
 					}
 				});
-			} else if (trigger.tagName === 'BUTTON') {
-				trigger.addEventListener('click', () => {
+			} else {
+				trigger.addEventListener('click', (event) => {
+					event.preventDefault();
 					const isOpen = dropdown.classList.contains('is-open');
 					closeAllDropdowns();
-					setOpen(!isOpen);
-				});
-			} else if (trigger.hasAttribute('data-nav-features-trigger')) {
-				trigger.addEventListener('click', (event) => {
-					if (!window.matchMedia('(min-width: 961px)').matches) {
-						event.preventDefault();
-						const isOpen = dropdown.classList.contains('is-open');
-						closeAllDropdowns();
-						setOpen(!isOpen);
-					}
+					setDropdownOpen(!isOpen);
 				});
 			}
+		};
+
+		const bindFeaturesDropdown = (dropdown: Element) => {
+			const trigger = dropdown.querySelector('[data-nav-features-trigger]') as HTMLElement | null;
+			if (!trigger) return;
+
+			const setDropdownOpen = (open: boolean) => {
+				if (open) {
+					closeAllDropdowns(dropdown);
+					dropdown.classList.add('is-open');
+					trigger.setAttribute('aria-expanded', 'true');
+					scrollActiveFeatureCard(dropdown);
+				} else {
+					dropdown.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				}
+			};
+
+			trigger.addEventListener('click', (event) => {
+				event.preventDefault();
+				const isOpen = dropdown.classList.contains('is-open');
+				closeAllDropdowns();
+				setDropdownOpen(!isOpen);
+			});
+		};
+
+		const bindUtilityDropdown = (dropdown: Element) => {
+			const trigger = dropdown.querySelector('button') as HTMLElement | null;
+			if (!trigger) return;
+
+			const setDropdownOpen = (open: boolean) => {
+				if (open) {
+					closeAllDropdowns(dropdown);
+					dropdown.classList.add('is-open');
+					trigger.setAttribute('aria-expanded', 'true');
+				} else {
+					dropdown.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				}
+			};
+
+			trigger.addEventListener('click', () => {
+				const isOpen = dropdown.classList.contains('is-open');
+				closeAllDropdowns();
+				setDropdownOpen(!isOpen);
+			});
 		};
 
 		const scrollActiveFeatureCard = (dropdown: Element) => {
@@ -473,12 +503,25 @@ const activeFeatureCard =
 			scroller.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
 		};
 
-		nav.querySelectorAll('[data-nav-features]').forEach((dropdown) => {
-			dropdown.addEventListener('mouseenter', () => scrollActiveFeatureCard(dropdown));
-			dropdown.addEventListener('focusin', () => scrollActiveFeatureCard(dropdown));
+		document.addEventListener('click', (event) => {
+			const target = event.target as Element;
+			if (!nav.contains(target)) {
+				closeAllDropdowns();
+			}
 		});
 
-		nav.querySelectorAll('[data-nav-dropdown]').forEach(bindDropdown);
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				if (nav.classList.contains('is-open')) {
+					setOpen(false);
+				}
+				closeAllDropdowns();
+			}
+		});
+
+		nav.querySelectorAll('[data-nav-features]').forEach(bindFeaturesDropdown);
+		nav.querySelectorAll('[data-nav-shop]').forEach(bindShopDropdown);
+		nav.querySelectorAll('.nav__utility-dropdown[data-nav-dropdown]').forEach(bindUtilityDropdown);
 	}
 </script>
 
@@ -854,6 +897,22 @@ const activeFeatureCard =
 		justify-self: end;
 	}
 
+	.nav__actions .nav__shop-wrap {
+		margin-left: 0;
+		align-self: center;
+	}
+
+	.nav__actions .nav__shop {
+		min-height: 2.35rem;
+		padding: 0 0.85rem;
+		font-size: 0.78rem;
+		border-radius: 0.2rem;
+	}
+
+	.nav__actions .nav__shop-trigger {
+		height: auto;
+	}
+
 	.nav__features-wrap {
 		position: relative;
 		align-self: stretch;
@@ -864,7 +923,6 @@ const activeFeatureCard =
 	}
 
 	.nav__features-wrap.is-open .nav__features-trigger,
-	.nav__features-wrap:focus-within .nav__features-trigger,
 	.nav__features-trigger:hover {
 		color: #fff;
 		background: rgba(255, 255, 255, 0.04);
@@ -898,12 +956,16 @@ const activeFeatureCard =
 		top: calc(5.5rem + env(safe-area-inset-top, 0px));
 	}
 
-	.nav__features-wrap.is-open .nav__features-mega,
-	.nav__features-wrap:focus-within .nav__features-mega {
+	.nav__features-wrap.is-open .nav__features-mega {
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
 		transform: translateX(-50%) translateY(0);
+	}
+
+	.nav__features-wrap--on-page .nav__features-mega {
+		width: min(68rem, calc(100vw - 2 * var(--page-gutter)));
+		padding: 1.1rem 1.15rem 1.2rem;
 	}
 
 	.nav__features-head {
@@ -962,21 +1024,37 @@ const activeFeatureCard =
 		scroll-snap-align: center;
 		transition:
 			border-color 0.2s ease,
-			transform 0.2s ease,
-			background 0.2s ease,
-			box-shadow 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.nav__features-card:hover {
 		border-color: var(--color-border-gold-hover);
 		background: rgba(197, 138, 69, 0.04);
-		transform: translateY(-1px);
+	}
+
+	.nav__features-wrap--on-page .nav__features-card {
+		flex-basis: min(15.5rem, 72vw);
 	}
 
 	.nav__features-card.is-active {
 		border-color: var(--color-border-gold-soft);
 		background: rgba(197, 138, 69, 0.08);
 		box-shadow: 0 0 0 1px rgba(197, 138, 69, 0.18);
+	}
+
+	.nav__features-wrap--on-page .nav__features-card.is-active {
+		flex-basis: min(24rem, 88vw);
+		scroll-snap-align: center;
+	}
+
+	.nav__features-wrap--on-page .nav__features-card.is-active .nav__features-card-media {
+		aspect-ratio: 16 / 9;
+	}
+
+	.nav__features-wrap--on-page .nav__features-card.is-active .nav__features-card-desc {
+		display: block;
+		overflow: visible;
+		-webkit-line-clamp: unset;
 	}
 
 	.nav__features-card-media {
@@ -1119,7 +1197,6 @@ const activeFeatureCard =
 	.nav__shop-wrap {
 		position: relative;
 		align-self: stretch;
-		margin-left: 0.35rem;
 	}
 
 	.nav__shop-trigger {
@@ -1185,8 +1262,14 @@ const activeFeatureCard =
 			visibility 0.2s ease;
 	}
 
-	.nav__shop-wrap.is-open .nav__shop-mega,
-	.nav__shop-wrap:focus-within .nav__shop-mega {
+	.nav__shop-wrap.is-open .nav__shop-mega {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.nav__actions .nav__shop-wrap:focus-within .nav__shop-mega {
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
@@ -1485,11 +1568,32 @@ const activeFeatureCard =
 		}
 
 		.nav__shop-wrap {
-			display: none;
+			display: block;
+		}
+
+		.nav__actions .nav__shop {
+			min-height: var(--touch-min);
+			padding-inline: 0.75rem;
+		}
+
+		.nav__actions .nav__shop-label {
+			display: inline;
 		}
 
 		.nav__shop-mega {
-			display: none !important;
+			position: fixed;
+			top: calc(5.1rem + env(safe-area-inset-top, 0px));
+			right: var(--page-gutter);
+			left: auto;
+			width: min(40rem, calc(100vw - 2 * var(--page-gutter)));
+		}
+
+		.nav--overlay .nav__shop-mega {
+			top: calc(3.5rem + env(safe-area-inset-top, 0px));
+		}
+
+		.nav__shop--mobile {
+			display: none;
 		}
 
 		.nav__brand {
@@ -1499,11 +1603,11 @@ const activeFeatureCard =
 		}
 
 		.nav__shop--mobile {
-			display: inline-flex;
+			display: none;
 		}
 
 		.nav__menu-link--shop-mobile {
-			display: inline-flex;
+			display: none;
 		}
 
 		.nav__toggle {
