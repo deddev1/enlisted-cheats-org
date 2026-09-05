@@ -112,20 +112,23 @@ function guideCardLabel(title: string): string {
 		display: flex;
 		flex-direction: column;
 		border-radius: 0.95rem;
-		border: 1px solid var(--color-border-gold);
-		background: rgba(20, 24, 30, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		background: rgba(13, 17, 18, 0.32);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
 		overflow: hidden;
 		color: inherit;
 		transition:
 			border-color 0.2s ease,
 			transform 0.2s ease,
-			box-shadow 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.home-guides__card:hover {
-		border-color: var(--color-border-gold-hover);
+		border-color: rgba(197, 138, 69, 0.28);
 		transform: translateY(-2px);
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+		background: rgba(13, 17, 18, 0.42);
+		box-shadow: none;
 	}
 
 	.home-guides__card img {

@@ -103,21 +103,24 @@ const groups = groupItems(items);
 
 	.faq-list__item {
 		border-radius: 0.9rem;
-		border: 1px solid var(--color-border-gold);
-		background: rgba(20, 24, 30, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		background: rgba(0, 0, 0, 0.22);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
 		overflow: hidden;
 		transition:
 			border-color 0.2s ease,
-			box-shadow 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.faq-list__item:hover {
-		border-color: var(--color-border-gold-soft);
+		border-color: rgba(255, 255, 255, 0.1);
 	}
 
 	.faq-list__item[open] {
-		border-color: var(--color-border-gold-hover);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+		border-color: rgba(197, 138, 69, 0.28);
+		background: rgba(0, 0, 0, 0.28);
+		box-shadow: none;
 	}
 
 	.faq-list__summary {

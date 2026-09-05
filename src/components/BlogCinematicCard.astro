@@ -46,13 +46,16 @@ const {
 		height: 100%;
 		min-height: 22.5rem;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.14);
-		background: rgba(18, 22, 24, 0.96);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(0, 0, 0, 0.24);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
 		color: #fff;
 		text-decoration: none;
 		transition:
 			border-color 0.2s ease,
-			transform 0.2s ease;
+			transform 0.2s ease,
+			background 0.2s ease;
 	}
 
 	.blog-feature-card:hover,
@@ -87,7 +90,7 @@ const {
 		justify-content: flex-start;
 		gap: 0.6rem;
 		padding: 1rem 0.9rem 1.15rem;
-		background: rgba(16, 20, 22, 0.96);
+		background: rgba(0, 0, 0, 0.18);
 		text-align: center;
 	}
 
