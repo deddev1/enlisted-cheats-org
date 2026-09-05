@@ -190,17 +190,6 @@ const onFeatureDetailPage =
 		}
 
 		<div class="nav__main">
-			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
-				<svg class="nav__brand-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-					<path
-						d="M32 6l8 12 14 2-10 10 2 14-14-8-14 8 2-14L10 20l14-2L32 6z"
-						fill="rgba(255,255,255,0.92)"></path>
-					<path d="M12 44h40" stroke="rgba(197,138,69,0.85)" stroke-width="3" stroke-linecap="round"></path>
-					<path d="M18 38l14 10 14-10" stroke="rgba(197,138,69,0.65)" stroke-width="2.5" fill="none"></path>
-				</svg>
-				<span class="nav__brand-text">Enlisted</span>
-			</a>
-
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				{
 					mainLinksBefore.map((link) => (
@@ -708,9 +697,9 @@ const onFeatureDetailPage =
 
 	.nav__main {
 		position: relative;
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		display: flex;
 		align-items: stretch;
+		justify-content: space-between;
 		gap: 0;
 		min-height: 3.5rem;
 		padding: 0 var(--page-gutter);
@@ -746,46 +735,13 @@ const onFeatureDetailPage =
 		);
 	}
 
-	.nav__brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.55rem;
-		color: #fff;
-		text-decoration: none;
-		min-width: 0;
-		padding-right: 1.25rem;
-		margin-right: 0.25rem;
-		border-right: 1px solid rgba(255, 255, 255, 0.12);
-		align-self: center;
-		min-height: 3.5rem;
-		grid-column: 1;
-		justify-self: start;
-	}
-
-	.nav__brand-icon {
-		width: 2rem;
-		height: 2rem;
-		flex-shrink: 0;
-	}
-
-	.nav__brand-text {
-		font-family: var(--font-display);
-		font-size: 1.35rem;
-		font-weight: 800;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		line-height: 1;
-		white-space: nowrap;
-	}
-
 	.nav__menu {
 		display: flex;
 		align-items: stretch;
 		justify-content: center;
 		gap: 0;
+		flex: 1;
 		min-width: 0;
-		grid-column: 2;
-		justify-self: center;
 	}
 
 	.nav__menu-link,
@@ -893,8 +849,6 @@ const onFeatureDetailPage =
 		flex-shrink: 0;
 		align-self: center;
 		padding-left: 0.75rem;
-		grid-column: 3;
-		justify-self: end;
 	}
 
 	.nav__actions .nav__shop-wrap {
@@ -1440,10 +1394,6 @@ const onFeatureDetailPage =
 			padding-inline: 0.5rem;
 			font-size: 0.72rem;
 		}
-
-		.nav__brand-text {
-			font-size: 1.1rem;
-		}
 	}
 
 	@media (max-width: 960px) {
@@ -1468,7 +1418,6 @@ const onFeatureDetailPage =
 		.nav__main {
 			position: relative;
 			z-index: 2;
-			grid-template-columns: 1fr auto;
 		}
 
 		.nav__menu {
@@ -1596,12 +1545,6 @@ const onFeatureDetailPage =
 			display: none;
 		}
 
-		.nav__brand {
-			border-right: 0;
-			padding-right: 0;
-			margin-right: 0;
-		}
-
 		.nav__shop--mobile {
 			display: none;
 		}
@@ -1618,10 +1561,6 @@ const onFeatureDetailPage =
 	@media (max-width: 520px) {
 		.nav__utility-links {
 			gap: 0.85rem;
-		}
-
-		.nav__brand-text {
-			display: none;
 		}
 	}
 </style>
