@@ -29,15 +29,6 @@ const wallhackUrl = getLocalizedPath('wallhack', locale);
 const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
 const radarUrl = getLocalizedPath('radar', locale);
 const monthlyPlan = productInfo.plans[0];
-const lifetimePlan = productInfo.plans[1];
-
-const highlightLinks = [
-	{ label: 'Undetected', href: cheatsUrl },
-	{ label: 'ESP', href: espUrl },
-	{ label: 'Wallhack', href: wallhackUrl },
-	{ label: 'Aimbot', href: aimbotUrl },
-	{ label: 'Radar', href: radarUrl },
-] as const;
 ---
 
 <section class="home-about" id="about" aria-labelledby="home-about-title">
@@ -75,50 +66,28 @@ const highlightLinks = [
 	<div class="shell home-about__inner">
 		<div class="home-about__layout">
 			<div class="home-about__main">
-				<p class="home-about__eyebrow">
-					<span class="home-about__eyebrow-mark" aria-hidden="true"></span>
-					Cheats for Enlisted · Windows PC · Instant delivery
-				</p>
-				<h2 id="home-about-title" class="home-about__title">
-					<span class="home-about__title-accent">Enlisted Cheats</span> built to stay undetected
-				</h2>
+				<h2 id="home-about-title" class="home-about__title">Cheats for Enlisted</h2>
 				<p class="home-about__lead">
-					Looking for reliable <strong>cheats for Enlisted</strong> that hold up after patches?{' '}
-					<a href={cheatsUrl} class="home-about__inline-link">Enlisted Cheats</a> is the Windows PC
-					package players use for large-scale battles, squad assaults, and campaign missions —{' '}
+					<a href={cheatsUrl} class="home-about__inline-link">Enlisted Cheats</a> is a{' '}
+					<a href={setupUrl} class="home-about__inline-link">Windows PC</a> package built for large-scale
+					battles, squad assaults, and campaign missions. We ship{' '}
 					<a href={espUrl} class="home-about__inline-link">ESP</a>,{' '}
 					<a href={wallhackUrl} class="home-about__inline-link">wallhack</a>,{' '}
 					<a href={aimbotUrl} class="home-about__inline-link">aimbot</a>, and{' '}
 					<a href={radarUrl} class="home-about__inline-link">radar</a> in one{' '}
-					<a href={pricingUrl} class="home-about__inline-link">license</a>, with{' '}
-					<a href={updatesUrl} class="home-about__inline-link">updates</a> when anti-cheat and game
-					patches drop.
+					<a href={pricingUrl} class="home-about__inline-link">license</a> with{' '}
+					<a href={updatesUrl} class="home-about__inline-link">updates</a> after anti-cheat and game
+					patches.
 				</p>
-				<ul class="home-about__highlights" aria-label="Enlisted cheat highlights">
-					{
-						highlightLinks.map((item) => (
-							<li>
-								<a href={item.href} class="home-about__highlight">
-									{item.label}
-								</a>
-							</li>
-						))
-					}
-					<li>
-						<a href={pricingUrl} class="home-about__highlight home-about__highlight--price">
-							From ${monthlyPlan.price}/mo
-						</a>
-					</li>
-				</ul>
 				<p class="home-about__copy">
-					We rebuild the stack when Gaijin anti-cheat moves, deliver licenses fast, and publish clear{' '}
-					<a href={setupUrl} class="home-about__inline-link">setup guides</a> so you can toggle modules
-					mid-match without overlay clutter.{' '}
-					<a href={pricingUrl} class="home-about__inline-link">Monthly and lifetime plans</a> unlock the
-					full <a href={featuresUrl} class="home-about__inline-link">Enlisted cheat feature set</a> plus{' '}
-					<a href={supportUrl} class="home-about__inline-link">support</a> every time{' '}
-					<a href={updatesUrl} class="home-about__inline-link">patches land</a> — from ${monthlyPlan.price}
-					/mo or ${lifetimePlan.price} one-time.
+					Our team focuses on{' '}
+					<a href={cheatsUrl} class="home-about__inline-link">undetected</a> maintenance, fast delivery,
+					and clear <a href={setupUrl} class="home-about__inline-link">setup docs</a> so you can toggle
+					modules mid-match without overlay clutter.{' '}
+					<a href={pricingUrl} class="home-about__inline-link">Monthly and lifetime plans</a> include the
+					full <a href={featuresUrl} class="home-about__inline-link">feature stack</a> and{' '}
+					<a href={supportUrl} class="home-about__inline-link">support</a> when{' '}
+					<a href={updatesUrl} class="home-about__inline-link">patches land</a>.
 				</p>
 
 				<div class="home-about__actions">
@@ -128,19 +97,19 @@ const highlightLinks = [
 								d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 6h14.6l-1.4 7H8.1L6.2 6zm-.8-2 2.2 11h11.2l2-11H5.4z"
 								fill="currentColor"></path>
 						</svg>
-						Get Enlisted cheats — ${monthlyPlan.price}/mo
+						{ui.product.addToCart}
 					</a>
 					<a href={featuresUrl} class="home-about__btn home-about__btn--ghost">
 						{ui.nav.features}
 					</a>
-					<a href={pricingUrl} class="home-about__btn home-about__btn--ghost">
-						{ui.nav.pricing}
+					<a href={setupUrl} class="home-about__btn home-about__btn--ghost">
+						{ui.nav.setup}
 					</a>
 				</div>
 
 				<p class="home-about__platform">
 					<span class="home-about__platform-label">Built for</span>
-					<a href={setupUrl} class="home-about__platform-value home-about__inline-link">Windows PC</a>
+					<span class="home-about__platform-value">Windows PC</span>
 				</p>
 			</div>
 
@@ -156,20 +125,21 @@ const highlightLinks = [
 					/>
 				</figure>
 				<div class="home-about__card-body">
-					<p class="home-about__card-kicker">Why players buy</p>
-					<h3 class="home-about__card-title">One package. Every front.</h3>
+					<p class="home-about__card-kicker">Our package</p>
+					<h3 class="home-about__card-title">Full Enlisted cheat stack</h3>
 					<p class="home-about__card-text">
-						Buy <a href={cheatsUrl} class="home-about__inline-link">cheats for Enlisted</a> once and run{' '}
 						<a href={espUrl} class="home-about__inline-link">ESP</a>,{' '}
 						<a href={wallhackUrl} class="home-about__inline-link">wallhack</a>,{' '}
 						<a href={aimbotUrl} class="home-about__inline-link">aimbot</a>, and{' '}
-						<a href={radarUrl} class="home-about__inline-link">radar</a> together.{' '}
-						<a href={pricingUrl} class="home-about__inline-link">Monthly</a> or{' '}
-						<a href={pricingUrl} class="home-about__inline-link">lifetime</a> — we keep your build live
-						through <a href={updatesUrl} class="home-about__inline-link">anti-cheat updates</a>.
+						<a href={radarUrl} class="home-about__inline-link">radar</a> ship together in our{' '}
+						<a href={featuresUrl} class="home-about__inline-link">full cheat stack</a>. Pick{' '}
+						<a href={pricingUrl} class="home-about__inline-link">monthly access</a> or a one-time{' '}
+						<a href={pricingUrl} class="home-about__inline-link">lifetime license</a> and get maintenance
+						when <a href={updatesUrl} class="home-about__inline-link">Gaijin anti-cheat updates</a> roll
+						out.
 					</p>
-					<a href={siteConfig.checkoutUrl} class="home-about__btn home-about__btn--card" rel="noopener noreferrer">
-						Get access — from ${monthlyPlan.price}/mo
+					<a href={pricingUrl} class="home-about__btn home-about__btn--card" rel="noopener noreferrer">
+						View pricing — from ${monthlyPlan.price}/mo
 					</a>
 				</div>
 			</aside>
@@ -226,107 +196,25 @@ const highlightLinks = [
 		flex-direction: column;
 		justify-content: center;
 		gap: 0.85rem;
-		max-width: 40rem;
-	}
-
-	.home-about__eyebrow {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin: 0;
-		color: var(--color-gold-hover);
-		font-size: 0.64rem;
-		font-weight: 800;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-	}
-
-	.home-about__eyebrow-mark {
-		display: inline-block;
-		width: 0.45rem;
-		height: 0.45rem;
-		border-radius: 999px;
-		background: linear-gradient(135deg, var(--color-gold-hover), var(--color-accent));
-		box-shadow: 0 0 12px rgba(197, 138, 69, 0.55);
-		flex-shrink: 0;
+		max-width: 38rem;
 	}
 
 	.home-about__title {
 		margin: 0;
 		color: #fff;
 		font-family: var(--font-display);
-		font-size: clamp(1.75rem, 3.8vw, 2.55rem);
+		font-size: clamp(1.65rem, 3.5vw, 2.35rem);
 		font-weight: 800;
-		line-height: 1.06;
-		letter-spacing: -0.02em;
-		text-transform: none;
-		max-width: 16ch;
-	}
-
-	.home-about__title-accent {
-		display: block;
-		background: linear-gradient(90deg, #f0bc72 0%, #d39a50 45%, #c58a45 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
+		line-height: 1;
+		letter-spacing: 0.07em;
 		text-transform: uppercase;
-		letter-spacing: 0.04em;
 	}
 
 	.home-about__lead {
 		margin: 0;
 		color: rgba(255, 244, 220, 0.92);
-		font-size: clamp(0.9rem, 1.45vw, 1rem);
-		line-height: 1.62;
-	}
-
-	.home-about__lead strong {
-		color: #fff;
-		font-weight: 700;
-	}
-
-	.home-about__highlights {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin: 0.1rem 0 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.home-about__highlight {
-		display: inline-flex;
-		align-items: center;
-		min-height: 1.85rem;
-		padding: 0.28rem 0.62rem;
-		border: 1px solid rgba(197, 138, 69, 0.28);
-		border-radius: 999px;
-		background: rgba(0, 0, 0, 0.38);
-		color: rgba(255, 255, 255, 0.88);
-		font-size: 0.64rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease,
-			color 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.home-about__highlight:hover,
-	.home-about__highlight:focus-visible {
-		border-color: rgba(211, 154, 80, 0.55);
-		background: rgba(197, 138, 69, 0.16);
-		color: #fff;
-		transform: translateY(-1px);
-	}
-
-	.home-about__highlight--price {
-		border-color: rgba(255, 220, 150, 0.42);
-		background: rgba(197, 138, 69, 0.18);
-		color: #ffe8c4;
+		font-size: clamp(0.88rem, 1.4vw, 0.96rem);
+		line-height: 1.6;
 	}
 
 	.home-about__copy {
@@ -436,7 +324,6 @@ const highlightLinks = [
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		text-decoration: none;
 	}
 
 	.home-about__card {
