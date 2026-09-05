@@ -14,7 +14,7 @@ import { getLocaleContent, getPageContent } from '../data/i18n';
 import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
-import { homeFaqs, productInfo, siteConfig, customerReviewStats, customerReviews } from '../data/site';
+import { homeFaqs, productInfo, siteConfig, customerReviewStats } from '../data/site';
 import { enlistedImages, pricingShopImage } from '../data/enlisted';
 import {
 	buildAggregateOffer,
@@ -57,18 +57,6 @@ const extraGraph: Record<string, unknown>[] =
 			bestRating: '5',
 			worstRating: '1',
 		},
-		review: customerReviews.map((review) => ({
-			'@type': 'Review',
-			author: { '@type': 'Person', name: review.handle },
-			datePublished: review.date,
-			reviewRating: {
-				'@type': 'Rating',
-				ratingValue: String(review.rating),
-				bestRating: '5',
-				worstRating: '1',
-			},
-			reviewBody: review.text,
-		})),
 	},
 	buildSoftwareApplicationSchema(canonicalURL, heroImage),
 	buildFaqSchemaNode(canonicalURL, homeFaqs),

@@ -4,7 +4,7 @@ import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
 import RelatedPages from './RelatedPages.astro';
-import { contentSrc, isExternalImage, productMainSizes } from '../lib/responsive-images';
+import { contentSrc, contentSrcSet, productMainSizes } from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -22,9 +22,8 @@ const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? p
 const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
 const defaultPlan = monthlyPlan;
 
-const pricingImageSrc = isExternalImage(pricingShopImage.src)
-	? pricingShopImage.src
-	: contentSrc(pricingShopImage.src);
+const pricingImageSrc = contentSrc(pricingShopImage.src);
+const pricingImageSrcSet = contentSrcSet(pricingShopImage.src);
 
 const featurePills = [
 	{ icon: 'bolt', label: ui.trust.delivery },
@@ -44,13 +43,13 @@ const featurePills = [
 		<figure class="pricing-showcase__figure media-frame">
 			<img
 				src={pricingImageSrc}
+				{...(pricingImageSrcSet ? { srcset: pricingImageSrcSet } : {})}
 				sizes={productMainSizes}
 				alt={pricingShopImage.alt}
 				width="1280"
 				height="720"
 				class="pricing-showcase__image"
-				loading="eager"
-				fetchpriority="high"
+				loading="lazy"
 				decoding="async"
 			/>
 		</figure>

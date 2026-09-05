@@ -10,6 +10,10 @@ export default defineConfig({
 	trailingSlash: 'always',
 	compressHTML: true,
 	devToolbar: { enabled: false },
+	prefetch: {
+		prefetchAll: false,
+		defaultStrategy: 'viewport',
+	},
 	server: {
 		host: true,
 		port: 4321,

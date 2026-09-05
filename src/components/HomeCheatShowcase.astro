@@ -58,7 +58,7 @@ const showcaseCards = [
 	},
 ] as const;
 
-const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
+const scrollCards = [...showcaseCards, ...showcaseCards];
 ---
 
 <section class="cheat-showcase" aria-labelledby="cheat-showcase-title">
@@ -93,7 +93,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
 											<img
 												src={imageSrc}
 												{...(imageSrcSet ? { srcset: imageSrcSet } : {})}
-												sizes="(max-width: 560px) 82vw, 320px"
+												sizes="(max-width: 560px) 78vw, 320px"
 												alt={card.image.alt}
 												width="530"
 												height="320"
@@ -120,6 +120,32 @@ const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
 			</div>
 		</div>
 </section>
+
+<script>
+	const viewport = document.querySelector('[data-cheat-scroll-viewport]');
+	const track = document.querySelector('[data-cheat-scroll-track]');
+
+	if (viewport instanceof HTMLElement && track instanceof HTMLElement) {
+		const pause = () => {
+			track.style.animationPlayState = 'paused';
+		};
+		const resume = () => {
+			if (!viewport.matches(':hover') && !viewport.matches(':focus-within')) {
+				track.style.animationPlayState = 'running';
+			}
+		};
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry?.isIntersecting) resume();
+				else pause();
+			},
+			{ rootMargin: '120px 0px' },
+		);
+
+		observer.observe(viewport);
+	}
+</script>
 
 <style>
 	.cheat-showcase {
@@ -202,6 +228,8 @@ const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
 	.cheat-showcase__stage {
 		width: 100%;
 		overflow: hidden;
+		content-visibility: auto;
+		contain-intrinsic-size: 1px 320px;
 	}
 
 	.cheat-showcase__viewport {
@@ -336,7 +364,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
 			transform: translateX(0);
 		}
 		to {
-			transform: translateX(calc(-100% / 3));
+			transform: translateX(-50%);
 		}
 	}
 

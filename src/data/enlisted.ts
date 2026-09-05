@@ -1,7 +1,6 @@
 import { siteConfig } from './site';
 
-const supabaseGameplayBase =
-	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted';
+const localImage = (file: string) => `/images/${file}`;
 
 export type EnlistedScreenshot = {
 	src: string;
@@ -9,30 +8,30 @@ export type EnlistedScreenshot = {
 	title: string;
 };
 
-/** Live Supabase gameplay captures — used across the site (homepage hero excluded). */
+/** Optimized local gameplay captures — responsive variants in /public/images. */
 export const gameplayScreenshots = {
 	wallhack: {
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161627.png`,
+		src: localImage('enlisted-gameplay-wallhack.webp'),
 		alt: 'Enlisted wallhack ESP highlighting an enemy soldier through wooden trench cover',
 		title: 'Trench wallhack ESP',
 	},
 	esp: {
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161636.png`,
+		src: localImage('enlisted-gameplay-esp.webp'),
 		alt: 'Enlisted ESP showing red enemy silhouettes across an open battlefield',
 		title: 'Open field ESP overlay',
 	},
 	aimbot: {
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161643.png`,
+		src: localImage('enlisted-gameplay-aimbot.webp'),
 		alt: 'Enlisted scope view with purple chams highlighting a distant enemy target',
 		title: 'Scoped target highlight',
 	},
 	radarCombat: {
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161704.png`,
+		src: localImage('enlisted-gameplay-radar-combat.webp'),
 		alt: 'Enlisted radar hack with skeleton ESP, snaplines, and soldier labels in combat',
 		title: 'Radar and skeleton ESP',
 	},
 	radarMap: {
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161712.png`,
+		src: localImage('enlisted-gameplay-radar-map.webp'),
 		alt: 'Enlisted 2D radar minimap with soldier icons visible through terrain',
 		title: '2D battlefield radar',
 	},
@@ -47,8 +46,8 @@ export const showcaseGameplay: EnlistedScreenshot[] = [
 	gameplayScreenshots.radarMap,
 ];
 
-/** Homepage hero — Supabase cinematic background. */
-export const enlistedHeroImage = `${supabaseGameplayBase}/index-new-bg-5.webp`;
+/** Homepage hero — local responsive WebP (same art as Supabase index-new-bg-5). */
+export const enlistedHeroImage = localImage('enlisted-cheats-hero.webp');
 
 export const enlistedHeroAlt =
 	'Enlisted Cheats hero banner with WWII soldiers in a cinematic battlefield scene';
@@ -116,7 +115,7 @@ export const enlistedScreenshots = {
 
 /** Pricing section — shop background beside checkout. */
 export const pricingShopImage: EnlistedScreenshot = {
-	src: `${supabaseGameplayBase}/bottom-shop-bg.webp`,
+	src: localImage('enlisted-pricing-shop-bg.webp'),
 	alt: 'Enlisted shop background with WWII soldiers and battlefield atmosphere',
 	title: 'Enlisted Cheats shop preview',
 };
