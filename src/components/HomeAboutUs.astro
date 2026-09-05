@@ -163,7 +163,7 @@ const moduleLinks = [
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		padding-block: clamp(2.5rem, 6vw, 4.5rem);
+		padding-block: clamp(1rem, 2.2vw, 1.65rem);
 	}
 
 	.home-about__media {
@@ -209,34 +209,34 @@ const moduleLinks = [
 
 	.home-about__layout {
 		display: grid;
-		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.72fr);
-		gap: clamp(1.5rem, 4vw, 3rem);
-		align-items: center;
+		grid-template-columns: minmax(0, 1.42fr) minmax(0, 17rem);
+		gap: 0.85rem;
+		align-items: stretch;
 	}
 
 	.home-about__content {
 		display: flex;
 		flex-direction: column;
-		gap: 1.15rem;
+		gap: 0.75rem;
 		min-width: 0;
-		max-width: 38rem;
+		max-width: 34rem;
 	}
 
 	.home-about__title {
 		margin: 0;
 		color: #fff;
 		font-family: var(--font-display);
-		font-size: var(--heading-display);
+		font-size: var(--heading-section);
 		font-weight: 800;
 		line-height: 1.08;
-		letter-spacing: -0.01em;
+		letter-spacing: 0.01em;
 	}
 
 	.home-about__lead {
 		margin: 0;
 		color: rgba(255, 255, 255, 0.9);
-		font-size: clamp(0.92rem, 1.4vw, 1rem);
-		line-height: 1.65;
+		font-size: clamp(0.86rem, 1.2vw, 0.92rem);
+		line-height: 1.55;
 	}
 
 	.home-about__inline-link {
@@ -260,22 +260,21 @@ const moduleLinks = [
 		display: flex;
 		flex-wrap: wrap;
 		align-items: stretch;
-		gap: 0.6rem;
-		padding-top: 0.15rem;
+		gap: 0.45rem;
 	}
 
 	.home-about__btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.45rem;
-		min-height: 2.85rem;
-		padding: 0.75rem 1.15rem;
+		gap: 0.35rem;
+		min-height: 2.45rem;
+		padding: 0.55rem 0.85rem;
 		border-radius: 0.15rem;
 		border: 1px solid transparent;
-		font-size: 0.68rem;
+		font-size: 0.62rem;
 		font-weight: 800;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		text-decoration: none;
 		transition:
@@ -286,18 +285,19 @@ const moduleLinks = [
 	}
 
 	.home-about__btn svg {
-		width: 0.95rem;
-		height: 0.95rem;
+		width: 0.82rem;
+		height: 0.82rem;
 		flex-shrink: 0;
 	}
 
 	.home-about__btn--primary {
+		flex: 1 1 10.5rem;
 		background: linear-gradient(180deg, #efb56a 0%, var(--color-gold) 48%, #a86f2f 100%);
 		border-color: rgba(255, 220, 150, 0.45);
 		color: #1a1006;
 		box-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.28) inset,
-			0 10px 24px rgba(0, 0, 0, 0.28);
+			0 6px 16px rgba(0, 0, 0, 0.22);
 	}
 
 	.home-about__btn--primary:hover {
@@ -307,6 +307,7 @@ const moduleLinks = [
 	}
 
 	.home-about__btn--ghost {
+		flex: 1 1 7.5rem;
 		background: transparent;
 		border-color: rgba(255, 255, 255, 0.28);
 		color: rgba(255, 255, 255, 0.92);
@@ -320,9 +321,9 @@ const moduleLinks = [
 
 	.home-about__modules {
 		display: grid;
-		gap: 0.55rem;
-		padding-top: 0.85rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		gap: 0.4rem;
+		padding-top: 0.35rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.home-about__modules-label {
@@ -337,14 +338,14 @@ const moduleLinks = [
 	.home-about__modules-list {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem 1rem;
+		gap: 0.35rem 0.65rem;
 	}
 
 	.home-about__module {
 		display: inline-flex;
 		align-items: center;
-		color: rgba(255, 255, 255, 0.85);
-		font-size: 0.74rem;
+		color: rgba(255, 255, 255, 0.82);
+		font-size: 0.68rem;
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		text-decoration: none;
@@ -360,6 +361,8 @@ const moduleLinks = [
 		display: flex;
 		flex-direction: column;
 		min-width: 0;
+		max-width: 17rem;
+		justify-self: end;
 		overflow: hidden;
 		border-radius: 0.2rem;
 		border: 1px solid rgba(197, 138, 69, 0.55);
@@ -368,7 +371,7 @@ const moduleLinks = [
 		-webkit-backdrop-filter: blur(8px);
 		box-shadow:
 			0 0 0 1px rgba(197, 138, 69, 0.12),
-			0 16px 40px rgba(0, 0, 0, 0.35),
+			0 8px 22px rgba(0, 0, 0, 0.28),
 			inset 0 1px 0 rgba(255, 220, 150, 0.08);
 	}
 
@@ -391,15 +394,15 @@ const moduleLinks = [
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		gap: 0.75rem;
-		padding: 1rem 1.05rem 1.15rem;
+		gap: 0.55rem;
+		padding: 0.75rem 0.8rem 0.85rem;
 	}
 
 	.home-about__premium-title {
 		margin: 0;
 		color: var(--color-gold-hover);
 		font-family: var(--font-display);
-		font-size: clamp(1rem, 2vw, 1.12rem);
+		font-size: 0.82rem;
 		font-weight: 800;
 		line-height: 1.1;
 		letter-spacing: 0.06em;
@@ -410,19 +413,19 @@ const moduleLinks = [
 		margin: 0;
 		flex: 1;
 		color: rgba(255, 255, 255, 0.82);
-		font-size: 0.84rem;
-		line-height: 1.58;
+		font-size: 0.76rem;
+		line-height: 1.5;
 	}
 
 	.home-about__btn--purchase {
 		width: 100%;
-		min-height: 2.85rem;
+		min-height: 2.45rem;
 		background: linear-gradient(180deg, #efb56a 0%, var(--color-gold) 48%, #a86f2f 100%);
 		border-color: rgba(255, 220, 150, 0.45);
 		color: #1a1006;
 		box-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.28) inset,
-			0 10px 24px rgba(0, 0, 0, 0.24);
+			0 6px 16px rgba(0, 0, 0, 0.2);
 	}
 
 	.home-about__btn--purchase:hover {
@@ -434,11 +437,16 @@ const moduleLinks = [
 	@media (max-width: 900px) {
 		.home-about__layout {
 			grid-template-columns: 1fr;
-			gap: 1.75rem;
+			gap: 0.75rem;
 		}
 
 		.home-about__content {
 			max-width: none;
+		}
+
+		.home-about__premium {
+			max-width: none;
+			justify-self: stretch;
 		}
 
 		.home-about__veil {
@@ -454,10 +462,6 @@ const moduleLinks = [
 	}
 
 	@media (max-width: 560px) {
-		.home-about {
-			padding-block: clamp(2rem, 8vw, 2.75rem);
-		}
-
 		.home-about__actions {
 			flex-direction: column;
 		}
