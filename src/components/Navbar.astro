@@ -143,17 +143,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		}
 
 		<div class="nav__main">
-			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
-				<img
-					src={siteConfig.logoRaster}
-					alt={siteConfig.logoAlt}
-					class="nav__brand-mark"
-					width={siteConfig.logoRasterWidth}
-					height={siteConfig.logoRasterHeight}
-					decoding="async"
-				/>
-			</a>
-
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				{
 					mainLinksBefore.map((link) => (
@@ -661,29 +650,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 			rgba(13, 17, 18, 0.68) 0%,
 			rgba(13, 17, 18, 0.5) 100%
 		);
-	}
-
-	.nav__brand {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		color: #fff;
-		text-decoration: none;
-		min-width: 0;
-		padding-right: 1rem;
-		margin-right: 0.25rem;
-		border-right: 1px solid rgba(255, 255, 255, 0.12);
-		align-self: center;
-		min-height: 3.5rem;
-	}
-
-	.nav__brand-mark {
-		display: block;
-		width: auto;
-		height: 2rem;
-		max-width: 5.5rem;
-		object-fit: contain;
 	}
 
 	.nav__menu {
@@ -1268,17 +1234,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 			align-items: center;
 			justify-content: space-between;
 			gap: 0.75rem;
-		}
-
-		.nav__brand {
-			border-right: 0;
-			padding-right: 0;
-			margin-right: 0;
-		}
-
-		.nav__brand-mark {
-			height: 1.65rem;
-			max-width: 3.75rem;
 		}
 
 		.nav__menu {
