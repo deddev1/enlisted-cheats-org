@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { enlistedImages } from '../data/enlisted';
-import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal, contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
+import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal, contentSrc, contentSrcSet, galleryTileSizes, isExternalImage } from '../lib/responsive-images';
 import { englishPaths, pageIds, type PageId } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
 
@@ -153,6 +153,16 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 							/>
 						</picture>
 						)
+					) : isExternalImage(heroImage) ? (
+						<img
+							src={heroImage}
+							alt={heroAlt}
+							width="1600"
+							height="900"
+							class="banner__img"
+							loading="lazy"
+							decoding="async"
+						/>
 					) : (
 						<picture>
 							<source
@@ -241,7 +251,7 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 								<figure class="gallery-block__item">
 									<img
 										src={image.src}
-										srcset={image.srcset}
+										{...(image.srcset ? { srcset: image.srcset } : {})}
 										sizes={galleryTileSizes}
 										alt={image.alt}
 										width="800"

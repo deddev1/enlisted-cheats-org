@@ -10,7 +10,7 @@ export const siteConfig = {
 	logoRasterHeight: 192,
 	logoAlt: 'Enlisted Cheats logo',
 	checkoutUrl: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fenlisted',
-	defaultOgImage: '/images/enlisted-esp-overlay.webp',
+	defaultOgImage: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/Screenshot%202026-09-04%20161636.png',
 } as const;
 
 export const productInfo = {

@@ -1,41 +1,7 @@
 import { siteConfig } from './site';
 
-const img = (name: string) => `/images/${name}`;
-
 const supabaseGameplayBase =
 	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted';
-
-/** Homepage cheat showcase — live Supabase gameplay captures. */
-export const showcaseGameplay: EnlistedScreenshot[] = [
-	{
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161627.png`,
-		alt: 'Enlisted wallhack ESP highlighting an enemy soldier through wooden trench cover',
-		title: 'Trench wallhack ESP',
-	},
-	{
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161636.png`,
-		alt: 'Enlisted ESP showing red enemy silhouettes across an open battlefield',
-		title: 'Open field ESP overlay',
-	},
-	{
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161643.png`,
-		alt: 'Enlisted scope view with purple chams highlighting a distant enemy target',
-		title: 'Scoped target highlight',
-	},
-	{
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161704.png`,
-		alt: 'Enlisted radar hack with skeleton ESP, snaplines, and soldier labels in combat',
-		title: 'Radar and skeleton ESP',
-	},
-	{
-		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161712.png`,
-		alt: 'Enlisted 2D radar minimap with soldier icons visible through terrain',
-		title: '2D battlefield radar',
-	},
-];
-
-/** Homepage hero — self-hosted for sitemap and LCP. */
-export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
 
 export type EnlistedScreenshot = {
 	src: string;
@@ -43,79 +9,110 @@ export type EnlistedScreenshot = {
 	title: string;
 };
 
-/** Enlisted cheat screenshots — SEO filenames under /images/. */
-export const enlistedScreenshots = {
-	mainMenu: {
-		src: img('enlisted-cheats-main-menu.webp'),
-		alt: 'Enlisted cheats main menu with ESP, aimbot, and radar toggles on Windows PC',
-		title: 'Enlisted Cheats main menu',
+/** Live Supabase gameplay captures — used across the site (homepage hero excluded). */
+export const gameplayScreenshots = {
+	wallhack: {
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161627.png`,
+		alt: 'Enlisted wallhack ESP highlighting an enemy soldier through wooden trench cover',
+		title: 'Trench wallhack ESP',
 	},
-	espOverlay: {
-		src: img('enlisted-esp-wallhack-overlay.webp'),
-		alt: 'Enlisted ESP wallhack overlay highlighting enemy infantry and tank crews through terrain',
-		title: 'Enlisted ESP wallhack overlay',
+	esp: {
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161636.png`,
+		alt: 'Enlisted ESP showing red enemy silhouettes across an open battlefield',
+		title: 'Open field ESP overlay',
 	},
-	espBoxes: {
-		src: img('enlisted-esp-enemy-boxes.webp'),
-		alt: 'Enlisted ESP enemy bounding boxes with health bars in a campaign mission',
-		title: 'Enlisted ESP enemy boxes',
+	aimbot: {
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161643.png`,
+		alt: 'Enlisted scope view with purple chams highlighting a distant enemy target',
+		title: 'Scoped target highlight',
 	},
-	aimbotMenu: {
-		src: img('enlisted-aimbot-targeting-menu.webp'),
-		alt: 'Enlisted aimbot settings menu with FOV, smoothing, and bone priority controls',
-		title: 'Enlisted aimbot targeting menu',
+	radarCombat: {
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161704.png`,
+		alt: 'Enlisted radar hack with skeleton ESP, snaplines, and soldier labels in combat',
+		title: 'Radar and skeleton ESP',
 	},
-	radarMinimap: {
-		src: img('enlisted-radar-hack-minimap.webp'),
-		alt: 'Enlisted radar hack 2D minimap showing enemy positions outside the camera view',
-		title: 'Enlisted radar hack minimap',
-	},
-	combatEsp: {
-		src: img('enlisted-cheats-combat-esp.webp'),
-		alt: 'Enlisted cheats combat ESP active during a enemy tank fight',
-		title: 'Enlisted combat ESP',
-	},
-	steelPathEsp: {
-		src: img('enlisted-campaign-mission-esp.webp'),
-		alt: 'Enlisted campaign mission with ESP overlays on elite enemy units',
-		title: 'Enlisted campaign missions ESP',
-	},
-	sortieAimbot: {
-		src: img('enlisted-squad-aimbot-combat.webp'),
-		alt: 'Enlisted squad assault combat with aimbot lock on a Corpus tank or artillery unit',
-		title: 'Enlisted squad assault aimbot combat',
-	},
-	openWorldRadar: {
-		src: img('enlisted-battlefield-radar.webp'),
-		alt: 'Enlisted battlefield radar and ESP on Eastern Front maps bounty route',
-		title: 'Enlisted battlefield radar',
-	},
-	lootEsp: {
-		src: img('enlisted-supply-esp.webp'),
-		alt: 'Enlisted loot and pickup ESP markers for mods, resources, and health orbs',
-		title: 'Enlisted loot pickup ESP',
-	},
-	settingsPanel: {
-		src: img('enlisted-cheats-settings-panel.webp'),
-		alt: 'Enlisted cheats settings panel with hotkeys, colours, and module toggles',
-		title: 'Enlisted cheats settings panel',
+	radarMap: {
+		src: `${supabaseGameplayBase}/Screenshot%202026-09-04%20161712.png`,
+		alt: 'Enlisted 2D radar minimap with soldier icons visible through terrain',
+		title: '2D battlefield radar',
 	},
 } as const satisfies Record<string, EnlistedScreenshot>;
 
-/** Pricing gallery — main viewer + thumbnail strip (no video). */
-export const pricingGallery: EnlistedScreenshot[] = [
-	enlistedScreenshots.mainMenu,
-	enlistedScreenshots.espOverlay,
-	enlistedScreenshots.espBoxes,
-	enlistedScreenshots.aimbotMenu,
-	enlistedScreenshots.radarMinimap,
-	enlistedScreenshots.combatEsp,
-	enlistedScreenshots.steelPathEsp,
-	enlistedScreenshots.sortieAimbot,
-	enlistedScreenshots.openWorldRadar,
-	enlistedScreenshots.lootEsp,
-	enlistedScreenshots.settingsPanel,
+/** Homepage cheat showcase cards — same five gameplay captures. */
+export const showcaseGameplay: EnlistedScreenshot[] = [
+	gameplayScreenshots.wallhack,
+	gameplayScreenshots.esp,
+	gameplayScreenshots.aimbot,
+	gameplayScreenshots.radarCombat,
+	gameplayScreenshots.radarMap,
 ];
+
+/** Homepage hero — self-hosted for sitemap and LCP. */
+export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
+
+const g = gameplayScreenshots;
+
+/** Enlisted cheat screenshots — all mapped to live Supabase gameplay captures. */
+export const enlistedScreenshots = {
+	mainMenu: {
+		src: g.radarMap.src,
+		alt: 'Enlisted cheats 2D radar with soldier threat markers in live combat',
+		title: 'Enlisted Cheats battlefield radar',
+	},
+	espOverlay: {
+		src: g.esp.src,
+		alt: g.esp.alt,
+		title: g.esp.title,
+	},
+	espBoxes: {
+		src: g.wallhack.src,
+		alt: g.wallhack.alt,
+		title: g.wallhack.title,
+	},
+	aimbotMenu: {
+		src: g.aimbot.src,
+		alt: g.aimbot.alt,
+		title: g.aimbot.title,
+	},
+	radarMinimap: {
+		src: g.radarMap.src,
+		alt: g.radarMap.alt,
+		title: g.radarMap.title,
+	},
+	combatEsp: {
+		src: g.radarCombat.src,
+		alt: g.radarCombat.alt,
+		title: g.radarCombat.title,
+	},
+	steelPathEsp: {
+		src: g.esp.src,
+		alt: 'Enlisted ESP overlays on enemy units during campaign missions',
+		title: 'Enlisted campaign missions ESP',
+	},
+	sortieAimbot: {
+		src: g.aimbot.src,
+		alt: 'Enlisted aimbot scope highlight during squad assault combat',
+		title: 'Enlisted squad assault aimbot combat',
+	},
+	openWorldRadar: {
+		src: g.radarMap.src,
+		alt: 'Enlisted battlefield radar and ESP on Eastern Front maps',
+		title: 'Enlisted battlefield radar',
+	},
+	lootEsp: {
+		src: g.esp.src,
+		alt: 'Enlisted ESP markers for resources and supply points in combat',
+		title: 'Enlisted supply ESP',
+	},
+	settingsPanel: {
+		src: g.aimbot.src,
+		alt: 'Enlisted cheats scoped targeting and combat assist controls',
+		title: 'Enlisted aimbot targeting view',
+	},
+} as const satisfies Record<string, EnlistedScreenshot>;
+
+/** Pricing gallery — main viewer + thumbnail strip. */
+export const pricingGallery: EnlistedScreenshot[] = [...showcaseGameplay];
 
 /** Feature page section screenshots keyed to productFeatureDetails ids. */
 export const featureSectionImages: Record<'aimbot' | 'visual' | 'misc', EnlistedScreenshot> = {
@@ -125,16 +122,7 @@ export const featureSectionImages: Record<'aimbot' | 'visual' | 'misc', Enlisted
 };
 
 /** Extra visuals shown below the feature breakdown grid. */
-export const featureGallery: EnlistedScreenshot[] = [
-	enlistedScreenshots.mainMenu,
-	enlistedScreenshots.espBoxes,
-	enlistedScreenshots.aimbotMenu,
-	enlistedScreenshots.combatEsp,
-	enlistedScreenshots.steelPathEsp,
-	enlistedScreenshots.openWorldRadar,
-	enlistedScreenshots.lootEsp,
-	enlistedScreenshots.settingsPanel,
-];
+export const featureGallery: EnlistedScreenshot[] = [...showcaseGameplay];
 
 const s = enlistedScreenshots;
 
@@ -155,33 +143,35 @@ export const enlistedImages = {
 	zeroBuildCombat: s.combatEsp.src,
 	zeroBuildMode: s.espBoxes.src,
 	openWorldTileset: s.openWorldRadar.src,
-	product: [
-		{ src: s.espOverlay.src, alt: s.espOverlay.alt },
-		{ src: s.espBoxes.src, alt: s.espBoxes.alt },
-		{ src: s.sortieAimbot.src, alt: s.sortieAimbot.alt },
-		{ src: s.aimbotMenu.src, alt: s.aimbotMenu.alt },
-		{ src: s.radarMinimap.src, alt: s.radarMinimap.alt },
-	],
+	battleRoyaleIsland: g.radarMap.src,
+	product: showcaseGameplay.map((image) => ({ src: image.src, alt: image.alt })),
 	gallery: [
-		{ src: s.mainMenu.src, alt: s.mainMenu.alt, href: '/enlisted-cheats/' },
-		{ src: s.espOverlay.src, alt: s.espOverlay.alt, href: '/enlisted-esp/' },
-		{ src: s.espBoxes.src, alt: s.espBoxes.alt, href: '/enlisted-wallhack/' },
-		{ src: s.sortieAimbot.src, alt: s.sortieAimbot.alt, href: '/enlisted-aimbot/' },
-		{ src: s.settingsPanel.src, alt: s.settingsPanel.alt, href: '/features/' },
-		{ src: s.radarMinimap.src, alt: s.radarMinimap.alt, href: '/enlisted-radar/' },
-		{ src: s.combatEsp.src, alt: s.combatEsp.alt, href: '/enlisted-cheats/' },
+		{ src: g.wallhack.src, alt: g.wallhack.alt, href: '/enlisted-wallhack/' },
+		{ src: g.esp.src, alt: g.esp.alt, href: '/enlisted-esp/' },
+		{ src: g.aimbot.src, alt: g.aimbot.alt, href: '/enlisted-aimbot/' },
+		{ src: g.radarCombat.src, alt: g.radarCombat.alt, href: '/enlisted-cheats/' },
+		{ src: g.radarMap.src, alt: g.radarMap.alt, href: '/enlisted-radar/' },
 	],
-	sitemap: [
-		{ src: s.mainMenu.src, title: 'Enlisted Cheats | Undetected ESP & Aimbot', caption: s.mainMenu.alt },
-		{ src: s.espOverlay.src, title: 'Enlisted ESP overlay', caption: s.espOverlay.alt },
-		{ src: s.espBoxes.src, title: 'Enlisted wallhack ESP', caption: s.espBoxes.alt },
-		{ src: s.sortieAimbot.src, title: 'Enlisted aimbot targeting', caption: s.sortieAimbot.alt },
-		{ src: s.aimbotMenu.src, title: 'Enlisted aimbot menu', caption: s.aimbotMenu.alt },
-		{ src: s.radarMinimap.src, title: 'Enlisted radar hack', caption: s.radarMinimap.alt },
-		{ src: s.combatEsp.src, title: 'Enlisted campaign mission cheats', caption: s.combatEsp.alt },
-		{ src: s.steelPathEsp.src, title: 'Enlisted campaign missions ESP', caption: s.steelPathEsp.alt },
-		{ src: s.openWorldRadar.src, title: 'Enlisted battlefield radar', caption: s.openWorldRadar.alt },
-		{ src: s.lootEsp.src, title: 'Enlisted loot pickup ESP', caption: s.lootEsp.alt },
-		{ src: s.settingsPanel.src, title: 'Enlisted cheats settings panel', caption: s.settingsPanel.alt },
-	],
+	sitemap: showcaseGameplay.map((image) => ({
+		src: image.src,
+		title: image.title,
+		caption: image.alt,
+	})),
 } as const;
+
+/** Replace legacy /images paths in generated i18n content (hero excluded). */
+export const legacyGameplayImageMap: Record<string, string> = {
+	'/images/enlisted-esp-wallhack-overlay.webp': g.esp.src,
+	'/images/enlisted-esp-enemy-boxes.webp': g.wallhack.src,
+	'/images/enlisted-squad-aimbot-combat.webp': g.aimbot.src,
+	'/images/enlisted-aimbot-targeting-menu.webp': g.aimbot.src,
+	'/images/enlisted-radar-hack-minimap.webp': g.radarMap.src,
+	'/images/enlisted-cheats-combat-esp.webp': g.radarCombat.src,
+	'/images/enlisted-campaign-mission-esp.webp': g.esp.src,
+	'/images/enlisted-cheats-main-menu.webp': g.radarMap.src,
+	'/images/enlisted-cheats-settings-panel.webp': g.aimbot.src,
+	'/images/enlisted-supply-esp.webp': g.esp.src,
+	'/images/enlisted-mission.webp': g.wallhack.src,
+	'/images/enlisted-battlefield-radar.webp': g.radarMap.src,
+	'/images/enlisted-esp-overlay.webp': g.esp.src,
+};

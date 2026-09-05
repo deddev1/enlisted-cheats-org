@@ -60,7 +60,7 @@ function galleryLinkLabel(href: string, src: string): string {
 						>
 							<img
 								src={slide.src}
-								srcset={slide.srcset}
+								{...(slide.srcset ? { srcset: slide.srcset } : {})}
 								sizes={galleryTileSizes}
 								alt={slide.alt}
 								width="1280"

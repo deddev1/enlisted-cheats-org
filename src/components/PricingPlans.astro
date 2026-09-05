@@ -47,7 +47,7 @@ const featurePills = [
 		<figure class="pricing-showcase__figure media-frame">
 			<img
 				src={mainImage.displaySrc}
-				srcset={mainImage.displaySrcSet}
+				{...(mainImage.displaySrcSet ? { srcset: mainImage.displaySrcSet } : {})}
 				sizes={productMainSizes}
 				alt={mainImage.alt}
 				width="1280"
@@ -74,7 +74,7 @@ const featurePills = [
 					>
 						<img
 							src={image.displaySrc}
-							srcset={image.displaySrcSet}
+							{...(image.displaySrcSet ? { srcset: image.displaySrcSet } : {})}
 							alt={image.alt}
 							sizes={productThumbSizes}
 							width="320"

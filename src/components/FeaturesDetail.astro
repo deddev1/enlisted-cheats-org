@@ -28,7 +28,7 @@ const responsiveImage = (src: string) => ({
 					<figure class="features-detail__figure media-frame">
 						<img
 							src={image.src}
-							srcset={image.srcset}
+							{...(image.srcset ? { srcset: image.srcset } : {})}
 							sizes={productMainSizes}
 							alt={shot.alt}
 							width="960"
@@ -72,7 +72,7 @@ const responsiveImage = (src: string) => ({
 					<figure class="features-detail__gallery-item media-frame">
 						<img
 							src={responsive.src}
-							srcset={responsive.srcset}
+							{...(responsive.srcset ? { srcset: responsive.srcset } : {})}
 							sizes={galleryTileSizes}
 							alt={image.alt}
 							width="640"

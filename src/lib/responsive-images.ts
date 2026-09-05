@@ -27,6 +27,11 @@ function parseWebpBase(baseSrc: string): { dir: string; name: string } | undefin
 	return { dir, name };
 }
 
+/** True for remote URLs (Supabase gameplay captures, etc.). */
+export function isExternalImage(src: string): boolean {
+	return /^https?:\/\//i.test(src);
+}
+
 /** Build srcset for content images that have -480w / -960w variants. */
 export function contentSrcSet(baseSrc: string): string | undefined {
 	const parsed = parseWebpBase(baseSrc);

@@ -7,6 +7,12 @@ import { enlistedScreenshots } from '../data/enlisted';
 import { productInfo, siteConfig } from '../data/site';
 import { contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
 
+function shopImageAttrs(src: string) {
+	const imageSrc = contentSrc(src);
+	const srcset = contentSrcSet(src);
+	return { src: imageSrc, ...(srcset ? { srcset } : {}) };
+}
+
 interface Props {
 	locale?: LocaleCode;
 	pageId?: PageId;
@@ -236,8 +242,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 									<a href={card.href} class="nav__shop-card" rel="noopener noreferrer">
 										<div class="nav__shop-card-media">
 											<img
-												src={contentSrc(card.image)}
-												srcset={contentSrcSet(card.image)}
+												{...shopImageAttrs(card.image)}
 												sizes={galleryTileSizes}
 												alt={card.alt}
 												width="640"
