@@ -1,6 +1,5 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { enlistedImages } from '../data/enlisted';
 
 export interface ResponsiveWidth {
@@ -8,10 +7,7 @@ export interface ResponsiveWidth {
 	width: number;
 }
 
-const publicImagesDir = path.resolve(
-	path.dirname(fileURLToPath(import.meta.url)),
-	'../../public/images',
-);
+const publicImagesDir = path.resolve(process.cwd(), 'public/images');
 
 /** Build a srcset string from width-tagged image paths. */
 export function buildSrcSet(widths: ResponsiveWidth[]): string {
@@ -118,8 +114,8 @@ export const heroSizes = '100vw';
 /** Mobile LCP preload — only the 480w file (no imagesrcset upscaling). */
 export const heroPreloadSrc = heroIsExternal ? heroImageSrc : heroResponsive[0].src;
 
-/** Responsive widths for below-fold content images. */
-export const contentWidths = [480, 640, 960] as const;
+/** Responsive widths for below-fold content images and page banners. */
+export const contentWidths = [480, 640, 960, 1400] as const;
 
 export const galleryFeaturedSizes = '(max-width: 560px) 100vw, (max-width: 900px) 90vw, 640px';
 export const galleryTileSizes = '(max-width: 560px) 100vw, (max-width: 900px) 45vw, 320px';

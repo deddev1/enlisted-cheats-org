@@ -5,6 +5,8 @@ import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { siteConfig } from '../data/site';
 import {
+	contentSrc,
+	contentSrcSet,
 	heroIsExternal,
 	heroPreloadSrc,
 	heroSizes,
@@ -33,6 +35,10 @@ const moduleLinks = [
 	{ label: about.wallhack, href: wallhackUrl },
 	{ label: about.radar, href: radarUrl },
 ] as const;
+
+const aboutPremiumSrc = contentSrc(enlistedOfficialScreens.squadCombat.src);
+const aboutPremiumSrcSet = contentSrcSet(enlistedOfficialScreens.squadCombat.src);
+const aboutPremiumSizes = '(max-width: 680px) 100vw, 640px';
 ---
 
 <section class="home-about" id="about" aria-labelledby="home-about-title">
@@ -124,12 +130,15 @@ const moduleLinks = [
 			<aside class="home-about__premium">
 				<figure class="home-about__premium-media">
 					<img
-						src={enlistedOfficialScreens.squadCombat.src}
+						src={aboutPremiumSrc}
+						{...(aboutPremiumSrcSet ? { srcset: aboutPremiumSrcSet } : {})}
+						sizes={aboutPremiumSizes}
 						alt={enlistedOfficialScreens.squadCombat.alt}
 						width="640"
 						height="360"
 						loading="lazy"
 						decoding="async"
+						fetchpriority="low"
 					/>
 				</figure>
 				<div class="home-about__premium-body">

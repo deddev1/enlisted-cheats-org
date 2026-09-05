@@ -1,4 +1,6 @@
 ---
+import { contentSrc, contentSrcSet, isExternalImage } from '../lib/responsive-images';
+
 interface Props {
 	image: string;
 	alt: string;
@@ -18,6 +20,11 @@ const {
 	compact = false,
 	objectPosition = 'center 35%',
 } = Astro.props;
+
+const imgSrc = contentSrc(image);
+const imgSrcSet = contentSrcSet(image);
+const external = isExternalImage(image);
+const mobileBannerSrc = imgSrcSet?.split(',')[0]?.trim().split(' ')[0] ?? imgSrc;
 ---
 
 <section
@@ -25,16 +32,45 @@ const {
 	aria-labelledby="atmo-banner-title"
 >
 	<div class="atmo-banner__media">
-		<img
-			src={image}
-			alt={alt}
-			width="1920"
-			height="1080"
-			class="atmo-banner__img"
-			loading={compact ? 'lazy' : 'eager'}
-			decoding="async"
-			style={`object-position: ${objectPosition};`}
-		/>
+		{
+			external ? (
+				<img
+					src={image}
+					alt={alt}
+					width="1920"
+					height="1080"
+					class="atmo-banner__img"
+					loading={compact ? 'lazy' : 'eager'}
+					decoding="async"
+					style={`object-position: ${objectPosition};`}
+				/>
+			) : (
+				<picture>
+					<source media="(max-width: 760px)" srcset={mobileBannerSrc} type="image/webp" />
+					{
+						imgSrcSet && (
+							<source
+								media="(min-width: 761px)"
+								srcset={imgSrcSet}
+								sizes="100vw"
+								type="image/webp"
+							/>
+						)
+					}
+					<img
+						src={imgSrc}
+						alt={alt}
+						width="1920"
+						height="1080"
+						class="atmo-banner__img"
+						loading={compact ? 'lazy' : 'eager'}
+						decoding="async"
+						fetchpriority={compact ? 'low' : 'high'}
+						style={`object-position: ${objectPosition};`}
+					/>
+				</picture>
+			)
+		}
 		<div class="atmo-banner__scrim"></div>
 	</div>
 

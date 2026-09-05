@@ -141,20 +141,20 @@ export const featuresSectionBg: EnlistedScreenshot = {
 	title: 'Enlisted features section background',
 };
 
-/** Official Enlisted.net marketing screenshots for secondary page heroes and UI accents. */
+/** Official Enlisted marketing screenshots — local WebP (mirrored from enlisted.net scr assets). */
 export const enlistedOfficialScreens = {
 	battlefieldPanorama: {
-		src: 'https://enlisted.net/i/scr/10.jpg?v=20251222',
+		src: localImage('enlisted-official-panorama.webp'),
 		alt: 'Enlisted WWII battlefield panorama with soldiers and vehicles in combat',
 		title: 'Enlisted battlefield panorama',
 	},
 	squadCombat: {
-		src: 'https://enlisted.net/i/scr/3.jpg?v=20251222',
+		src: localImage('enlisted-official-squad-combat.webp'),
 		alt: 'Enlisted squad combat screenshot with infantry action on the front line',
 		title: 'Enlisted squad combat',
 	},
 	squadThumb: {
-		src: 'https://enlisted.net/i/scr/thumb-6.webp?v=20251222',
+		src: localImage('enlisted-official-squad-thumb.webp'),
 		alt: 'Enlisted squad gameplay thumbnail from official Enlisted screenshots',
 		title: 'Enlisted squad thumbnail',
 	},
