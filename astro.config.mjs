@@ -12,12 +12,12 @@ export default defineConfig({
 	devToolbar: { enabled: false },
 	server: {
 		host: true,
-		port: 4321,
+		port: 3000,
 		strictPort: true,
 	},
 	preview: {
 		host: true,
-		port: 4321,
+		port: 3000,
 		strictPort: true,
 	},
 	build: {
