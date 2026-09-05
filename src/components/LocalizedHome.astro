@@ -113,10 +113,8 @@ const extraGraph: Record<string, unknown>[] =
 		<section class="site__section site__section--faq">
 			<HomeFaq locale={locale} />
 		</section>
-		<section class="site__section site__section--gallery" id="gallery">
-			<div class="shell">
-				<Gallery locale={locale} />
-			</div>
+		<section class="site__section site__section--promo" id="gallery">
+			<Gallery locale={locale} />
 		</section>
 		<section class="site__section site__section--guides">
 			<HomeBlogGuides locale={locale} />
@@ -138,7 +136,7 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--guides,
 	.site__section--explore,
 	.site__section--store,
-	.site__section--gallery {
+	.site__section--promo {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 720px;
 	}
@@ -151,9 +149,9 @@ const extraGraph: Record<string, unknown>[] =
 		padding-block: var(--section-space);
 	}
 
-	.site__section--gallery {
-		padding-top: 0.5rem;
-		padding-bottom: 1.25rem;
+	.site__section--promo {
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 	.store-stack {
@@ -169,8 +167,8 @@ const extraGraph: Record<string, unknown>[] =
 	}
 
 	@media (max-width: 768px) {
-		.site__section--gallery {
-			padding-bottom: 1rem;
+		.site__section--promo {
+			padding-bottom: 0;
 		}
 	}
 </style>
