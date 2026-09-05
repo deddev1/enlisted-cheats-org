@@ -826,7 +826,25 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 		}
 
 		.nav__shop {
+			display: flex;
+		}
+
+		.nav__shop-btn {
+			padding: 0 0.7rem;
+			font-size: 0.74rem;
+		}
+
+		.nav__shop-star {
 			display: none;
+		}
+
+		.nav__dropdown--shop {
+			right: 0;
+			width: min(22rem, calc(100vw - (var(--page-gutter) * 2)));
+		}
+
+		.nav__shop-grid {
+			grid-template-columns: 1fr;
 		}
 
 		.nav__toggle {
@@ -834,24 +852,11 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 		}
 
 		.nav__item--mobile-buy {
-			display: block;
+			display: none;
 		}
 
 		.nav__mobile-buy {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			min-height: var(--touch-min);
-			padding: 0.85rem 1rem;
-			border: 1px solid #b47a3c;
-			background: rgba(184, 134, 11, 0.12);
-			color: #f1eee5;
-			font-size: 0.88rem;
-			font-weight: 800;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			text-decoration: none;
+			display: none;
 		}
 
 		.nav__backdrop {
@@ -876,6 +881,15 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 		.nav__brand-logo {
 			height: 1.55rem;
 			max-width: 7rem;
+		}
+
+		.nav__actions {
+			gap: 0.45rem;
+		}
+
+		.nav__shop-btn {
+			min-height: 2.35rem;
+			padding: 0 0.6rem;
 		}
 	}
 </style>

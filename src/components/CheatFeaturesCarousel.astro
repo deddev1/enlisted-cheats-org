@@ -169,15 +169,17 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 						const isDuplicate = !isStatic && index >= cards.length;
 
 						return (
-							<a
-								href={card.href}
+							<div
 								class:list={[
 									'feat-scroll__card',
-									isFeatured && 'feat-scroll__card--featured',
+									isFeatured && 'feat-scroll__card--featured is-expanded',
 								]}
+								data-feature-card
 								data-feature-id={card.id}
+								role="button"
+								tabindex={isDuplicate ? -1 : 0}
+								aria-expanded={isFeatured ? 'true' : 'false'}
 								aria-hidden={isDuplicate ? 'true' : undefined}
-								tabindex={isDuplicate ? -1 : undefined}
 							>
 								<div class="feat-scroll__card-media">
 									<img src={card.image} alt={card.alt} width="420" height="260" loading="lazy" decoding="async" />
@@ -190,9 +192,11 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 											<li>{option}</li>
 										))}
 									</ul>
-									<span class="feat-scroll__card-link">{viewLabel}</span>
+									<a href={card.href} class="feat-scroll__card-link" data-feature-link>
+										{viewLabel}
+									</a>
 								</div>
-							</a>
+							</div>
 						);
 					})
 				}
@@ -208,6 +212,9 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		const track = carousel.querySelector('[data-feat-track]') as HTMLElement | null;
 		const mode = carousel.getAttribute('data-feat-mode');
 		const highlight = carousel.getAttribute('data-feat-highlight');
+		const cards = Array.from(carousel.querySelectorAll('[data-feature-card]')).filter(
+			(card) => card.getAttribute('aria-hidden') !== 'true',
+		);
 
 		const pause = () => track?.style.setProperty('animation-play-state', 'paused');
 		const play = () => track?.style.setProperty('animation-play-state', 'running');
@@ -215,19 +222,50 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		viewport?.addEventListener('mouseenter', pause);
 		viewport?.addEventListener('mouseleave', play);
 
-		carousel.querySelectorAll('.feat-scroll__card').forEach((card) => {
+		const setExpanded = (target: HTMLElement, expanded: boolean) => {
+			target.classList.toggle('is-expanded', expanded);
+			target.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+		};
+
+		const collapseOthers = (except?: HTMLElement) => {
+			cards.forEach((card) => {
+				if (card === except) return;
+				if (card.classList.contains('feat-scroll__card--featured')) return;
+				setExpanded(card as HTMLElement, false);
+			});
+		};
+
+		cards.forEach((card) => {
+			const element = card as HTMLElement;
+
 			card.addEventListener('mouseenter', pause);
 			card.addEventListener('mouseleave', () => {
 				if (!carousel.matches(':hover')) play();
 			});
-			card.addEventListener('focusin', pause);
-			card.addEventListener('focusout', () => {
-				if (!carousel.contains(document.activeElement)) play();
+
+			card.addEventListener('click', (event) => {
+				if (event.target instanceof Element && event.target.closest('[data-feature-link]')) return;
+				const expanded = !element.classList.contains('is-expanded');
+				collapseOthers(expanded ? element : undefined);
+				setExpanded(element, expanded);
+				if (expanded) pause();
+			});
+
+			card.addEventListener('keydown', (event) => {
+				if (event.key !== 'Enter' && event.key !== ' ') return;
+				if (event.target instanceof Element && event.target.closest('[data-feature-link]')) return;
+				event.preventDefault();
+				const expanded = !element.classList.contains('is-expanded');
+				collapseOthers(expanded ? element : undefined);
+				setExpanded(element, expanded);
+				if (expanded) pause();
 			});
 		});
 
 		if (mode === 'static' && highlight && track && viewport) {
-			const featured = track.querySelector(`[data-feature-id="${highlight}"]:not([aria-hidden="true"])`) as HTMLElement | null;
+			const featured = track.querySelector(
+				`[data-feature-id="${highlight}"]:not([aria-hidden="true"])`,
+			) as HTMLElement | null;
 			if (featured) {
 				const center = () => {
 					const offset =
@@ -347,6 +385,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		background: rgba(10, 12, 13, 0.62);
 		color: inherit;
 		text-decoration: none;
+		cursor: pointer;
 		transition:
 			background 0.25s ease,
 			border-color 0.25s ease,
@@ -364,8 +403,11 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		border-left-width: 1px;
 	}
 
-	.feat-scroll__card:hover,
-	.feat-scroll__card:focus-visible,
+	.feat-scroll__card:hover {
+		border-color: var(--color-border-gold);
+	}
+
+	.feat-scroll__card.is-expanded,
 	.feat-scroll__card--featured {
 		background: rgba(14, 17, 18, 0.9);
 		border-color: var(--color-border-gold-mid);
@@ -393,12 +435,11 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		object-fit: contain;
 		object-position: center;
 		background: #0a0c0d;
-		transition: transform 0.35s ease;
 	}
 
-	.feat-scroll__card:hover .feat-scroll__card-media img,
-	.feat-scroll__card--featured .feat-scroll__card-media img {
-		transform: scale(1.04);
+	.feat-scroll__card.is-expanded .feat-scroll__card-media,
+	.feat-scroll__card--featured .feat-scroll__card-media {
+		height: 10.5rem;
 	}
 
 	.feat-scroll__card-body {
@@ -469,8 +510,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		vertical-align: middle;
 	}
 
-	.feat-scroll__card:hover .feat-scroll__options,
-	.feat-scroll__card:focus-visible .feat-scroll__options,
+	.feat-scroll__card.is-expanded .feat-scroll__options,
 	.feat-scroll__card--featured .feat-scroll__options {
 		max-height: 9rem;
 		opacity: 1;
@@ -485,15 +525,20 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--color-cta);
+		text-decoration: none;
 		opacity: 0;
 		transform: translateY(4px);
 		transition:
 			opacity 0.25s ease,
-			transform 0.25s ease;
+			transform 0.25s ease,
+			color 0.2s ease;
 	}
 
-	.feat-scroll__card:hover .feat-scroll__card-link,
-	.feat-scroll__card:focus-visible .feat-scroll__card-link,
+	.feat-scroll__card-link:hover {
+		color: var(--color-cta-hover);
+	}
+
+	.feat-scroll__card.is-expanded .feat-scroll__card-link,
 	.feat-scroll__card--featured .feat-scroll__card-link {
 		opacity: 1;
 		transform: translateY(0);
@@ -519,12 +564,16 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 			min-height: 16rem;
 		}
 
-		.feat-scroll__card:hover,
-		.feat-scroll__card:focus-visible,
+		.feat-scroll__card.is-expanded,
 		.feat-scroll__card--featured {
 			flex-basis: 14rem;
 			width: 14rem;
 			min-height: 20rem;
+		}
+
+		.feat-scroll__card.is-expanded .feat-scroll__card-media,
+		.feat-scroll__card--featured .feat-scroll__card-media {
+			height: 9rem;
 		}
 
 		.feat-scroll__card-media {
