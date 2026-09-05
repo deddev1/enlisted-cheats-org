@@ -128,8 +128,8 @@ const extraGraph: Record<string, unknown>[] =
 <style>
 	.site {
 		overflow-x: clip;
-		--store-panel-padding: clamp(0.95rem, 1.8vw, 1.2rem);
-		--store-panel-gap: 0.85rem;
+		--store-panel-padding: var(--panel-padding);
+		--store-panel-gap: 0.65rem;
 	}
 
 	.hero-stage {
@@ -156,7 +156,7 @@ const extraGraph: Record<string, unknown>[] =
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		padding-block: clamp(1.35rem, 2.8vw, 2.15rem);
+		padding-block: clamp(1rem, 2.2vw, 1.65rem);
 	}
 
 	.site__section--store::before {

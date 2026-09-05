@@ -160,7 +160,7 @@ const featurePills = [
 		position: relative;
 		overflow: hidden;
 		isolation: isolate;
-		min-height: min(92vh, 920px);
+		min-height: min(78vh, 780px);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -208,9 +208,9 @@ const featurePills = [
 		position: relative;
 		z-index: 2;
 		width: 100%;
-		max-width: calc(36rem + (var(--page-gutter) * 2));
+		max-width: calc(32rem + (var(--page-gutter) * 2));
 		margin: 0 auto;
-		padding: calc(5rem + env(safe-area-inset-top, 0px)) var(--page-gutter) 5.5rem;
+		padding: calc(4rem + env(safe-area-inset-top, 0px)) var(--page-gutter) 4.25rem;
 	}
 
 	.hero__content {
@@ -218,7 +218,7 @@ const featurePills = [
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
-		max-width: 36rem;
+		max-width: 32rem;
 		margin-inline: auto;
 		text-align: center;
 		animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -237,7 +237,7 @@ const featurePills = [
 	}
 
 	.hero__logo-main {
-		font-size: clamp(2.35rem, 6.5vw, 4.5rem);
+		font-size: clamp(2rem, 5.5vw, 3.75rem);
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		padding-inline-start: 0.08em;
@@ -248,7 +248,7 @@ const featurePills = [
 	}
 
 	.hero__logo-sub {
-		font-size: clamp(0.92rem, 2vw, 1.28rem);
+		font-size: clamp(0.85rem, 1.8vw, 1.12rem);
 		font-weight: 700;
 		letter-spacing: 0.35em;
 		padding-inline-start: 0.35em;
@@ -315,7 +315,7 @@ const featurePills = [
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 0.65rem;
 		width: 100%;
-		max-width: 36rem;
+		max-width: 32rem;
 		margin-top: 1.65rem;
 	}
 
@@ -439,7 +439,7 @@ const featurePills = [
 		align-items: center;
 		gap: 1.5rem;
 		width: 100%;
-		max-width: 36rem;
+		max-width: 32rem;
 		margin-top: 1.15rem;
 	}
 
@@ -505,12 +505,12 @@ const featurePills = [
 
 	@media (max-width: 760px) {
 		.hero {
-			min-height: min(88svh, 760px);
+			min-height: min(76svh, 680px);
 		}
 
 		.hero__inner {
-			padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
-			padding-bottom: 4.25rem;
+			padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+			padding-bottom: 3.5rem;
 		}
 
 		.hero__poster-img {
