@@ -1,0 +1,363 @@
+---
+import { enlistedHeroImage } from '../data/enlisted';
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { productInfo, siteConfig } from '../data/site';
+import { heroPreloadSrc, heroSrcSet, heroSizes } from '../lib/responsive-images';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+
+const featuresUrl = getLocalizedPath('features', locale);
+const setupUrl = getLocalizedPath('setup', locale);
+const pricingUrl = getLocalizedPath('pricing', locale);
+const monthlyPlan = productInfo.plans[0];
+---
+
+<section class="home-about" id="about" aria-labelledby="home-about-title">
+	<div class="home-about__media" aria-hidden="true">
+		<picture>
+			<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
+			<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
+			<img
+				src={heroPreloadSrc}
+				alt=""
+				width="1920"
+				height="1080"
+				class="home-about__bg"
+				loading="lazy"
+				decoding="async"
+			/>
+		</picture>
+		<div class="home-about__veil"></div>
+	</div>
+
+	<div class="shell home-about__inner">
+		<div class="home-about__layout">
+			<div class="home-about__main">
+				<h2 id="home-about-title" class="home-about__title">About us</h2>
+				<p class="home-about__lead">
+					Enlisted Cheats is a Windows PC package built for large-scale battles, squad assaults, and
+					campaign missions. We ship ESP, wallhack, aimbot, and radar in one license with updates after
+					anti-cheat and game patches.
+				</p>
+				<p class="home-about__copy">
+					Our team focuses on undetected maintenance, fast delivery, and clear setup docs so you can
+					toggle modules mid-match without overlay clutter. Monthly and lifetime plans include the full
+					feature stack and support when patches land.
+				</p>
+
+				<div class="home-about__actions">
+					<a href={siteConfig.checkoutUrl} class="home-about__btn home-about__btn--primary" rel="noopener noreferrer">
+						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path
+								d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 6h14.6l-1.4 7H8.1L6.2 6zm-.8-2 2.2 11h11.2l2-11H5.4z"
+								fill="currentColor"></path>
+						</svg>
+						{ui.product.addToCart}
+					</a>
+					<a href={featuresUrl} class="home-about__btn home-about__btn--ghost">
+						{ui.nav.features}
+					</a>
+					<a href={setupUrl} class="home-about__btn home-about__btn--ghost">
+						{ui.nav.setup}
+					</a>
+				</div>
+
+				<p class="home-about__platform">
+					<span class="home-about__platform-label">Built for</span>
+					<span class="home-about__platform-value">Windows PC</span>
+				</p>
+			</div>
+
+			<aside class="home-about__card">
+				<figure class="home-about__card-media">
+					<img
+						src={enlistedHeroImage}
+						alt="Enlisted Cheats battlefield preview on Windows PC"
+						width="640"
+						height="360"
+						loading="lazy"
+						decoding="async"
+					/>
+				</figure>
+				<div class="home-about__card-body">
+					<p class="home-about__card-kicker">Our package</p>
+					<h3 class="home-about__card-title">Full Enlisted cheat stack</h3>
+					<p class="home-about__card-text">
+						ESP, wallhack, aimbot, and radar ship together. Pick monthly access or a one-time lifetime
+						license and get maintenance when Gaijin anti-cheat updates roll out.
+					</p>
+					<a href={pricingUrl} class="home-about__btn home-about__btn--card" rel="noopener noreferrer">
+						View pricing — from ${monthlyPlan.price}/mo
+					</a>
+				</div>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.home-about {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+	}
+
+	.home-about__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.home-about__bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 40%;
+		filter: saturate(1.05) contrast(1.08) brightness(0.72);
+	}
+
+	.home-about__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(90deg, rgba(8, 10, 11, 0.92) 0%, rgba(8, 10, 11, 0.78) 42%, rgba(8, 10, 11, 0.55) 100%),
+			linear-gradient(180deg, rgba(8, 10, 11, 0.35) 0%, rgba(8, 10, 11, 0.82) 100%);
+	}
+
+	.home-about__inner {
+		position: relative;
+		z-index: 1;
+		padding-block: clamp(2.5rem, 5vw, 3.5rem);
+	}
+
+	.home-about__layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.85fr);
+		gap: clamp(1.25rem, 3vw, 2rem);
+		align-items: stretch;
+	}
+
+	.home-about__main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1rem;
+		max-width: 40rem;
+	}
+
+	.home-about__title {
+		margin: 0;
+		color: #fff;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3.15rem);
+		font-weight: 800;
+		line-height: 0.95;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.home-about__lead {
+		margin: 0;
+		color: rgba(255, 244, 220, 0.92);
+		font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+		line-height: 1.65;
+	}
+
+	.home-about__copy {
+		margin: 0;
+		color: rgba(181, 180, 170, 0.92);
+		font-size: 0.88rem;
+		line-height: 1.6;
+		max-width: 36rem;
+	}
+
+	.home-about__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-top: 0.35rem;
+	}
+
+	.home-about__btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		min-height: 2.85rem;
+		padding: 0.75rem 1.1rem;
+		border-radius: 0.2rem;
+		border: 1px solid transparent;
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			transform 0.2s ease,
+			filter 0.2s ease,
+			background 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.home-about__btn svg {
+		width: 1rem;
+		height: 1rem;
+		flex-shrink: 0;
+	}
+
+	.home-about__btn--primary {
+		background: linear-gradient(180deg, var(--color-gold-hover) 0%, var(--color-gold) 52%, var(--color-accent) 100%);
+		border-color: rgba(255, 220, 150, 0.45);
+		color: #1a1006;
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+	}
+
+	.home-about__btn--primary:hover {
+		filter: brightness(1.05);
+		transform: translateY(-1px);
+		color: #1a1006;
+	}
+
+	.home-about__btn--ghost {
+		background: rgba(0, 0, 0, 0.42);
+		border-color: rgba(255, 255, 255, 0.16);
+		color: rgba(255, 255, 255, 0.9);
+		backdrop-filter: blur(8px);
+	}
+
+	.home-about__btn--ghost:hover {
+		background: rgba(0, 0, 0, 0.58);
+		border-color: rgba(255, 255, 255, 0.28);
+		color: #fff;
+	}
+
+	.home-about__platform {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.45rem;
+		margin: 0.35rem 0 0;
+	}
+
+	.home-about__platform-label {
+		color: rgba(255, 255, 255, 0.55);
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.home-about__platform-value {
+		color: rgba(255, 255, 255, 0.82);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.home-about__card {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		border: 1px solid rgba(197, 138, 69, 0.42);
+		background: rgba(8, 10, 11, 0.72);
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+		backdrop-filter: blur(10px);
+	}
+
+	.home-about__card-media {
+		margin: 0;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+	}
+
+	.home-about__card-media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 35%;
+	}
+
+	.home-about__card-body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.55rem;
+		padding: 1rem 1rem 1.1rem;
+	}
+
+	.home-about__card-kicker {
+		margin: 0;
+		color: var(--color-gold);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.home-about__card-title {
+		margin: 0;
+		color: #fff;
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		font-weight: 800;
+		line-height: 1.25;
+		text-transform: uppercase;
+	}
+
+	.home-about__card-text {
+		margin: 0;
+		flex: 1;
+		color: rgba(181, 180, 170, 0.95);
+		font-size: 0.82rem;
+		line-height: 1.55;
+	}
+
+	.home-about__btn--card {
+		width: 100%;
+		margin-top: 0.35rem;
+		background: linear-gradient(180deg, var(--color-gold-hover) 0%, var(--color-gold) 100%);
+		border-color: rgba(255, 220, 150, 0.35);
+		color: #1a1006;
+	}
+
+	.home-about__btn--card:hover {
+		filter: brightness(1.05);
+		color: #1a1006;
+	}
+
+	@media (max-width: 900px) {
+		.home-about__layout {
+			grid-template-columns: 1fr;
+		}
+
+		.home-about__card {
+			max-width: 24rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.home-about__actions {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.home-about__btn {
+			width: 100%;
+		}
+
+		.home-about__card {
+			max-width: none;
+		}
+	}
+</style>
