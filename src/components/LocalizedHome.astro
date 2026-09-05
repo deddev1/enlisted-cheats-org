@@ -16,7 +16,13 @@ import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { homeFaqs, productInfo, siteConfig, customerReviewStats } from '../data/site';
-import { enlistedImages, faqSectionBg, pricingShopImage, reviewsSectionBg } from '../data/enlisted';
+import {
+	enlistedImages,
+	faqSectionBg,
+	featuresSectionBg,
+	pricingShopImage,
+	reviewsSectionBg,
+} from '../data/enlisted';
 import {
 	buildAggregateOffer,
 	buildFaqSchemaNode,
@@ -105,6 +111,7 @@ const extraGraph: Record<string, unknown>[] =
 		<section
 			class="site__section site__section--store-features"
 			aria-label={ui.nav.features}
+			style={`--features-bg: url('${featuresSectionBg.src}')`}
 		>
 			<div class="shell store-stack">
 				<PricingFeatureList locale={locale} showRelatedPages={false} />
@@ -148,7 +155,8 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--blog,
 	.site__section--explore,
 	.site__section--about,
-	.site__section--store {
+	.site__section--store,
+	.site__section--store-features {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 580px;
 	}
@@ -169,10 +177,6 @@ const extraGraph: Record<string, unknown>[] =
 		padding-top: 0;
 	}
 
-	.site__section--store-features {
-		padding-top: 0;
-	}
-
 	.site__section {
 		padding-block: var(--section-space);
 	}
@@ -185,12 +189,16 @@ const extraGraph: Record<string, unknown>[] =
 	}
 
 	.site__section--store-features {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
 		padding-top: 0;
 		padding-bottom: clamp(1rem, 2.2vw, 1.65rem);
 	}
 
 	/* Shared cinematic band — feather edges into page bg */
 	.site__section--store::before,
+	.site__section--store-features::before,
 	.site__section--reviews::before,
 	.site__section--faq::before {
 		content: '';
@@ -236,9 +244,32 @@ const extraGraph: Record<string, unknown>[] =
 		pointer-events: none;
 	}
 
-	.site__section--store > .shell {
+	.site__section--store > .shell,
+	.site__section--store-features > .shell {
 		position: relative;
 		z-index: 1;
+	}
+
+	.site__section--store-features::before {
+		background:
+			linear-gradient(
+				180deg,
+				rgba(13, 17, 18, 0.96) 0%,
+				rgba(13, 17, 18, 0.54) 38%,
+				rgba(13, 17, 18, 0.54) 62%,
+				rgba(13, 17, 18, 0.96) 100%
+			),
+			var(--features-bg) center / cover no-repeat;
+		filter: saturate(0.8) brightness(0.44);
+	}
+
+	.site__section--store-features::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.06), transparent 68%);
+		pointer-events: none;
 	}
 
 	.site__section--reviews {
