@@ -42,6 +42,26 @@ export function getBlogImageSrc(key: BlogImageKey): string {
 	return imageMap[key];
 }
 
+export function blogCardHeading(title: string): string {
+	const stripped = title
+		.replace(/^Enlisted Cheats:?\s*/i, '')
+		.replace(/^Enlisted\s+/i, '')
+		.replace(/:\s*.+$/, '')
+		.trim();
+	if (stripped.length <= 34) return stripped;
+	const cut = stripped.slice(0, 34);
+	const lastSpace = cut.lastIndexOf(' ');
+	return `${(lastSpace > 18 ? cut.slice(0, lastSpace) : cut).trim()}…`;
+}
+
+export function blogCardExcerpt(text: string, max = 168): string {
+	const plain = text.replace(/\s+/g, ' ').trim();
+	if (plain.length <= max) return plain;
+	const cut = plain.slice(0, max);
+	const lastSpace = cut.lastIndexOf(' ');
+	return `${(lastSpace > 96 ? cut.slice(0, lastSpace) : cut).trim()}…`;
+}
+
 export function getBlogBasePath(locale: LocaleCode): string {
 	return locale === defaultLocale ? '/blog/' : `/${locale}/blog/`;
 }

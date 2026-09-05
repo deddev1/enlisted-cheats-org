@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import SiteFooter from './SiteFooter.astro';
+import BlogCinematicCard from './BlogCinematicCard.astro';
 import { blogUi, type LocaleCode } from '../data/i18n/locales';
 import {
 	absoluteBlogUrl,
+	blogCardExcerpt,
+	blogCardHeading,
 	getAllPostsForLocale,
 	getBlogBasePath,
 	getFeaturedPosts,
@@ -66,27 +69,20 @@ const articleListSchema = {
 		{
 			featured.length > 0 && (
 				<section class="blog__featured" aria-label="Featured">
-					{
-						featured.map((post, index) => (
-							<a class="blog__feature-card" href={post.canonicalPath}>
-								<img
-									src={post.imageSrc}
-									alt={post.translation.imageAlt}
-									width="640"
-									height="360"
-									loading={index === 0 ? 'eager' : 'lazy'}
-									decoding="async"
-									fetchpriority={index === 0 ? 'high' : undefined}
-								/>
-								<div>
-									<span class="blog__cat">{post.category}</span>
-									<h2>{post.translation.title}</h2>
-									<p>{post.translation.intro}</p>
-									<span class="blog__more">{ui.readMore}</span>
-								</div>
-							</a>
-						))
-					}
+					<h2 class="blog__section-title blog__section-title--center">Featured guides</h2>
+					<div class="blog__grid">
+						{featured.map((post, index) => (
+							<BlogCinematicCard
+								href={post.canonicalPath}
+								imageSrc={post.imageSrc}
+								imageAlt={post.translation.imageAlt}
+								title={blogCardHeading(post.translation.title)}
+								description={blogCardExcerpt(post.translation.intro)}
+								loading={index === 0 ? 'eager' : 'lazy'}
+								fetchpriority={index === 0 ? 'high' : undefined}
+							/>
+						))}
+					</div>
 				</section>
 			)
 		}
@@ -94,33 +90,22 @@ const articleListSchema = {
 		{
 			gameGuides.length > 0 && (
 				<section class="blog__section" aria-labelledby="blog-game-guides">
-					<h2 id="blog-game-guides" class="blog__section-title">
+					<h2 id="blog-game-guides" class="blog__section-title blog__section-title--center">
 						Enlisted game guides
 					</h2>
-					<p class="blog__section-intro">
-						campaign missions, battlefield, factions, missions, and patch notes — with links to official Enlisted
-						Wiki and Gaijin resources.
+					<p class="blog__section-intro blog__section-intro--center">
+						Campaign missions, battlefield, factions, missions, and patch notes — with links to official
+						Enlisted Wiki and Gaijin resources.
 					</p>
-					<div class="blog__list">
+					<div class="blog__grid">
 						{gameGuides.map((post) => (
-							<article class="blog__card">
-								<a href={post.canonicalPath}>
-									<img
-										src={post.imageSrc}
-										alt={post.translation.imageAlt}
-										width="480"
-										height="270"
-										loading="lazy"
-										decoding="async"
-									/>
-									<span class="blog__cat">{post.category}</span>
-									<h2>{post.translation.title}</h2>
-									<p>{post.translation.intro}</p>
-									<span class="blog__meta">
-										{ui.updated} {post.updated}
-									</span>
-								</a>
-							</article>
+							<BlogCinematicCard
+								href={post.canonicalPath}
+								imageSrc={post.imageSrc}
+								imageAlt={post.translation.imageAlt}
+								title={blogCardHeading(post.translation.title)}
+								description={blogCardExcerpt(post.translation.intro)}
+							/>
 						))}
 					</div>
 				</section>
@@ -128,32 +113,21 @@ const articleListSchema = {
 		}
 
 		<section class="blog__section" aria-labelledby="blog-product-posts">
-			<h2 id="blog-product-posts" class="blog__section-title">
+			<h2 id="blog-product-posts" class="blog__section-title blog__section-title--center">
 				Product guides &amp; comparisons
 			</h2>
-			<div class="blog__list" aria-label={ui.allPosts}>
+			<div class="blog__grid" aria-label={ui.allPosts}>
 				{
 					productPosts.map((post) => (
-					<article class="blog__card">
-						<a href={post.canonicalPath}>
-							<img
-								src={post.imageSrc}
-								alt={post.translation.imageAlt}
-								width="480"
-								height="270"
-								loading="lazy"
-								decoding="async"
-							/>
-							<span class="blog__cat">{post.category}</span>
-							<h2>{post.translation.title}</h2>
-							<p>{post.translation.intro}</p>
-							<span class="blog__meta">
-								{ui.updated} {post.updated}
-							</span>
-						</a>
-					</article>
-				))
-			}
+						<BlogCinematicCard
+							href={post.canonicalPath}
+							imageSrc={post.imageSrc}
+							imageAlt={post.translation.imageAlt}
+							title={blogCardHeading(post.translation.title)}
+							description={blogCardExcerpt(post.translation.intro)}
+						/>
+					))
+				}
 			</div>
 		</section>
 	</main>
@@ -162,124 +136,79 @@ const articleListSchema = {
 
 <style>
 	.blog {
-		width: min(1120px, calc(100% - 2rem));
+		width: min(var(--page-max), calc(100% - (var(--page-gutter) * 2)));
 		margin: 0 auto;
-		padding: 2.5rem 0 4rem;
+		padding: 2rem 0 3.5rem;
 	}
+
 	.blog__hero {
-		margin-bottom: 2.5rem;
+		margin-bottom: 2rem;
+		text-align: center;
 	}
+
 	.blog__eyebrow {
 		margin: 0 0 0.5rem;
-		color: #B47A3C;
+		color: var(--color-gold);
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 	}
+
 	.blog__hero h1 {
-		margin: 0 0 0.75rem;
-		font-size: clamp(2.2rem, 5vw, 3.4rem);
-		line-height: 1.05;
+		margin: 0 0 0.65rem;
+		font-size: clamp(1.8rem, 4vw, 2.6rem);
+		line-height: 1.08;
 	}
+
 	.blog__intro {
-		max-width: 42rem;
+		max-width: 40rem;
+		margin-inline: auto;
 		color: rgba(255, 255, 255, 0.72);
-		font-size: 1.05rem;
-	}
-	.blog__featured {
-		display: grid;
-		gap: 1.25rem;
-		margin-bottom: 2.5rem;
-	}
-	.blog__section {
-		margin-bottom: 2.5rem;
-	}
-	.blog__section-title {
-		margin: 0 0 0.45rem;
-		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-		font-weight: 800;
-	}
-	.blog__section-intro {
-		margin: 0 0 1.1rem;
-		max-width: 42rem;
-		color: rgba(255, 255, 255, 0.68);
 		font-size: 0.95rem;
 		line-height: 1.6;
 	}
-	.blog__feature-card {
-		display: grid;
-		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-		gap: 1.25rem;
-		padding: 1rem;
-		border: 1px solid rgba(197, 138, 69, 0.22);
-		background: linear-gradient(135deg, rgba(40, 24, 64, 0.75), rgba(21, 26, 26, 0.9));
-		text-decoration: none;
-		color: inherit;
+
+	.blog__featured,
+	.blog__section {
+		margin-bottom: 2rem;
 	}
-	.blog__feature-card img {
-		width: 100%;
-		height: 100%;
-		max-height: 240px;
-		object-fit: cover;
-	}
-	.blog__feature-card h2 {
-		margin: 0.4rem 0 0.6rem;
-		font-size: 1.35rem;
-	}
-	.blog__list {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-		gap: 1.25rem;
-	}
-	.blog__card a {
-		display: block;
-		height: 100%;
-		padding: 0.85rem;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		background: rgba(18, 14, 28, 0.85);
-		text-decoration: none;
-		color: inherit;
-	}
-	.blog__card img {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-		margin-bottom: 0.75rem;
-	}
-	.blog__card h2 {
-		margin: 0.35rem 0 0.5rem;
-		font-size: 1.05rem;
-		line-height: 1.25;
-	}
-	.blog__card p,
-	.blog__feature-card p {
-		margin: 0;
-		color: rgba(255, 255, 255, 0.68);
-		font-size: 0.92rem;
-	}
-	.blog__cat {
-		display: inline-block;
-		color: #B47A3C;
-		font-size: 0.72rem;
-		font-weight: 700;
+
+	.blog__section-title {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.05rem, 2vw, 1.35rem);
+		font-weight: 800;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		letter-spacing: 0.06em;
 	}
-	.blog__more,
-	.blog__meta {
-		display: inline-block;
-		margin-top: 0.75rem;
-		color: rgba(255, 255, 255, 0.55);
-		font-size: 0.8rem;
-		font-weight: 600;
+
+	.blog__section-title--center {
+		text-align: center;
 	}
-	.blog__more {
-		color: #B47A3C;
+
+	.blog__section-intro {
+		margin: 0 0 1rem;
+		max-width: 40rem;
+		color: rgba(255, 255, 255, 0.68);
+		font-size: 0.88rem;
+		line-height: 1.55;
 	}
-	@media (max-width: 760px) {
-		.blog__feature-card {
+
+	.blog__section-intro--center {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.blog__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.65rem;
+		align-items: stretch;
+	}
+
+	@media (max-width: 900px) {
+		.blog__grid {
 			grid-template-columns: 1fr;
 		}
 	}

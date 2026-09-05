@@ -1,0 +1,114 @@
+---
+interface Props {
+	href: string;
+	imageSrc: string;
+	imageAlt: string;
+	title: string;
+	description: string;
+	loading?: 'lazy' | 'eager';
+	fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const {
+	href,
+	imageSrc,
+	imageAlt,
+	title,
+	description,
+	loading = 'lazy',
+	fetchpriority,
+} = Astro.props;
+---
+
+<a href={href} class="blog-cine-card">
+	<img
+		src={imageSrc}
+		alt={imageAlt}
+		width="480"
+		height="640"
+		class="blog-cine-card__img"
+		loading={loading}
+		decoding="async"
+		fetchpriority={fetchpriority}
+	/>
+	<div class="blog-cine-card__veil" aria-hidden="true"></div>
+	<div class="blog-cine-card__content">
+		<h3 class="blog-cine-card__title">{title}</h3>
+		<p class="blog-cine-card__text">{description}</p>
+	</div>
+</a>
+
+<style>
+	.blog-cine-card {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		min-height: clamp(18rem, 32vw, 22.5rem);
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(13, 17, 18, 0.92);
+		color: #fff;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.blog-cine-card:hover,
+	.blog-cine-card:focus-visible {
+		border-color: rgba(197, 138, 69, 0.38);
+		transform: translateY(-2px);
+		color: #fff;
+	}
+
+	.blog-cine-card__img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 22%;
+	}
+
+	.blog-cine-card__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(
+				180deg,
+				rgba(13, 17, 18, 0.08) 0%,
+				rgba(13, 17, 18, 0.22) 38%,
+				rgba(13, 17, 18, 0.72) 62%,
+				rgba(13, 17, 18, 0.94) 100%
+			),
+			rgba(13, 17, 18, 0.18);
+	}
+
+	.blog-cine-card__content {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		gap: 0.55rem;
+		width: 100%;
+		padding: 1.15rem 0.95rem 1.2rem;
+		text-align: center;
+	}
+
+	.blog-cine-card__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(0.82rem, 1.35vw, 0.92rem);
+		font-weight: 800;
+		line-height: 1.2;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.blog-cine-card__text {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.82);
+		font-size: clamp(0.74rem, 1.1vw, 0.8rem);
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+</style>
