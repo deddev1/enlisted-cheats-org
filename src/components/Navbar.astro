@@ -82,7 +82,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 			<nav class="nav__utility-links" aria-label="Utility">
 				<a href={getLocalizedPath('features', locale)} class="nav__utility-link">{ui.nav.features}</a>
 				<a href={getLocalizedPath('support', locale)} class="nav__utility-link nav__utility-link--external">
-					{ui.nav.support ?? 'Support'}
+					Support
 					<span aria-hidden="true">↗</span>
 				</a>
 			</nav>
@@ -343,8 +343,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav__utility {
-		background: #050505;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		background: var(--color-midnight);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.nav__utility-inner {
@@ -400,8 +400,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav__main {
-		background: rgba(8, 8, 8, 0.58);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(13, 17, 18, 0.72);
+		border-bottom: 1px solid var(--color-border);
 		backdrop-filter: blur(10px);
 		transition:
 			background 0.25s ease,
@@ -409,8 +409,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav.is-scrolled .nav__main {
-		background: rgba(8, 8, 8, 0.88);
-		border-bottom-color: rgba(255, 255, 255, 0.1);
+		background: rgba(13, 17, 18, 0.94);
+		border-bottom-color: var(--color-border);
 	}
 
 	.nav__main-inner {
@@ -425,7 +425,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		align-items: center;
 		gap: 0.55rem;
 		flex-shrink: 0;
-		color: #ffffff;
+		color: var(--color-ink);
 		text-decoration: none;
 	}
 
@@ -516,17 +516,17 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	.nav__trigger:hover,
 	.nav__item--dropdown.is-open .nav__trigger {
 		background: rgba(255, 255, 255, 0.06);
-		color: #ffffff;
+		color: var(--color-ink);
 	}
 
 	.nav__link.is-active,
 	.nav__trigger.is-active {
-		color: #ffffff;
+		color: var(--color-ink);
 	}
 
 	.nav__trigger--accent,
 	.nav__trigger--accent.is-active {
-		color: #c8b6ff;
+		color: #d39a50;
 	}
 
 	.nav__chevron {
@@ -539,7 +539,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav__chevron--gold {
-		border-color: #d4af37;
+		border-color: #c58a45;
 	}
 
 	.nav__dropdown {
@@ -549,8 +549,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		z-index: 5;
 		min-width: 12rem;
 		padding: 0.35rem 0;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		background: rgba(14, 14, 14, 0.96);
+		border: 1px solid var(--color-border);
+		background: rgba(29, 36, 35, 0.98);
 		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 	}
 
@@ -577,7 +577,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	.nav__dropdown-link:hover,
 	.nav__dropdown-link.is-active {
 		background: rgba(255, 255, 255, 0.06);
-		color: #ffffff;
+		color: var(--color-ink);
 	}
 
 	.nav__actions {
@@ -598,9 +598,9 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		gap: 0.45rem;
 		min-height: 2.2rem;
 		padding: 0 0.85rem;
-		border: 1px solid #b8860b;
-		background: rgba(0, 0, 0, 0.35);
-		color: #f3e2a9;
+		border: 1px solid var(--color-accent);
+		background: rgba(52, 59, 49, 0.55);
+		color: var(--color-ink);
 		font-size: 0.78rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
@@ -614,13 +614,13 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 
 	.nav__shop-btn:hover,
 	.nav__shop.is-open .nav__shop-btn {
-		background: rgba(184, 134, 11, 0.12);
-		border-color: #d4af37;
-		color: #fff6cf;
+		background: rgba(197, 138, 69, 0.16);
+		border-color: var(--color-cta);
+		color: var(--color-ink);
 	}
 
 	.nav__shop-star {
-		color: #d4af37;
+		color: var(--color-cta);
 		font-size: 0.72rem;
 		line-height: 1;
 	}
@@ -642,8 +642,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		display: grid;
 		gap: 0.55rem;
 		padding: 0.55rem;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface-raised);
 		color: inherit;
 		text-decoration: none;
 		transition:
@@ -652,8 +652,8 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav__shop-card:hover {
-		border-color: rgba(212, 175, 55, 0.35);
-		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(197, 138, 69, 0.45);
+		background: var(--color-card-hover);
 	}
 
 	.nav__shop-card-media {
@@ -687,7 +687,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		font-weight: 800;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-		color: #d4af37;
+		color: var(--color-cta);
 	}
 
 	.nav__shop-card-desc {
@@ -711,7 +711,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 	}
 
 	.nav__shop-all:hover {
-		color: #ffffff;
+		color: var(--color-ink);
 	}
 
 	.nav__toggle {
@@ -721,7 +721,7 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 		height: 2.35rem;
 		border: 1px solid rgba(255, 255, 255, 0.14);
 		background: rgba(255, 255, 255, 0.04);
-		color: #ffffff;
+		color: var(--color-ink);
 		cursor: pointer;
 	}
 
@@ -870,9 +870,9 @@ const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
 			width: 100%;
 			min-height: var(--touch-min);
 			padding: 0.85rem 1rem;
-			border: 1px solid #b8860b;
+			border: 1px solid #b47a3c;
 			background: rgba(184, 134, 11, 0.12);
-			color: #fff6cf;
+			color: #f1eee5;
 			font-size: 0.88rem;
 			font-weight: 800;
 			letter-spacing: 0.08em;
