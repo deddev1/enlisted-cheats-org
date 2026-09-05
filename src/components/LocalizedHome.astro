@@ -96,7 +96,17 @@ const extraGraph: Record<string, unknown>[] =
 		>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
-				<HomeAboutUs locale={locale} />
+			</div>
+		</section>
+		<section class="site__section site__section--about">
+			<HomeAboutUs locale={locale} />
+		</section>
+		<section
+			class="site__section site__section--store site__section--store-features"
+			aria-label={ui.nav.features}
+			style={`--store-bg: url('${pricingShopImage.src}')`}
+		>
+			<div class="shell store-stack">
 				<PricingFeatureList locale={locale} showRelatedPages={false} />
 			</div>
 		</section>
@@ -127,17 +137,26 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--reviews,
 	.site__section--faq,
 	.site__section--explore,
+	.site__section--about,
 	.site__section--store {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 720px;
 	}
 
-	.site__section {
-		padding-block: var(--section-space);
+	.site__section--about {
+		padding: 0;
 	}
 
 	.cheat-showcase + .site__section--store {
 		padding-top: 0;
+	}
+
+	.site__section--store-features {
+		padding-top: 0;
+	}
+
+	.site__section {
+		padding-block: var(--section-space);
 	}
 
 	.site__section--store {
@@ -191,17 +210,13 @@ const extraGraph: Record<string, unknown>[] =
 	}
 
 	.store-stack :global(.pricing-showcase),
-	.store-stack :global(.home-about),
 	.store-stack :global(.pricing-features) {
 		border-radius: var(--radius-card);
 	}
 
-	.store-stack :global(.home-about) {
-		overflow: hidden;
-	}
-
 	@media (max-width: 760px) {
-		.site__section--store {
+		.site__section--store,
+		.site__section--about {
 			contain-intrinsic-size: 1px 1200px;
 		}
 	}
