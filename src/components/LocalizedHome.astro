@@ -10,7 +10,6 @@ import HomeFaq from '../components/HomeFaq.astro';
 import HomeBlogGuides from '../components/HomeBlogGuides.astro';
 import HomeExplore from '../components/HomeExplore.astro';
 import CustomerReviews from '../components/CustomerReviews.astro';
-import TrustBar from '../components/TrustBar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getLocaleContent, getPageContent } from '../data/i18n';
 import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
@@ -101,9 +100,6 @@ const extraGraph: Record<string, unknown>[] =
 			subtitle={ui.hero.subtitle}
 			subtitleShort={ui.hero.subtitleShort}
 		/>
-		<section class="site__section site__section--trust">
-			<TrustBar locale={locale} />
-		</section>
 		<BreadcrumbBar
 			locale={locale}
 			items={[{ label: ui.product.title }]}
@@ -152,10 +148,6 @@ const extraGraph: Record<string, unknown>[] =
 
 	.site__section {
 		padding-block: var(--section-space);
-	}
-
-	.site__section--trust {
-		padding-block: 0.25rem 0.4rem;
 	}
 
 	.site__section--gallery {

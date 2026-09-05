@@ -10,6 +10,8 @@ interface Props {
 const locale = Astro.props.locale ?? defaultLocale;
 const trust = getUi(locale).trust;
 
+const antiCheatLabel = locale === 'en' ? 'Gaijin anti-cheat supported' : trust.antiCheatShort;
+
 const items = [
 	{
 		key: 'status',
@@ -31,7 +33,7 @@ const items = [
 	},
 	{
 		key: 'anticheat',
-		value: trust.antiCheatShort,
+		value: antiCheatLabel,
 		live: false,
 		href: getLocalizedPath('undetected', locale),
 	},
