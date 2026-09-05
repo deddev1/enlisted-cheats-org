@@ -7,8 +7,6 @@ import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/re
 
 interface Props {
 	accent?: string;
-	subtitle?: string;
-	subtitleShort?: string;
 	locale?: LocaleCode;
 	imageAlt?: string;
 }
@@ -18,8 +16,6 @@ const ui = getUi(locale);
 
 const {
 	accent = ui.hero.accent,
-	subtitle = ui.hero.subtitle,
-	subtitleShort = ui.hero.subtitleShort,
 	imageAlt = ui.images.hero,
 } = Astro.props;
 
@@ -127,9 +123,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 			</h1>
 
 			<p class="hero__kicker">{accent}</p>
-
-			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
-			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
 
 			<ul class="hero__features" aria-label="Included modules">
 				{
@@ -293,7 +286,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__kicker {
-		order: 2;
 		margin: 0.85rem 0 0;
 		max-width: 34rem;
 		font-size: 0.72rem;
@@ -305,7 +297,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__title {
-		order: 1;
 		margin: 0;
 		display: flex;
 		flex-direction: column;
@@ -339,18 +330,7 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		color: var(--color-cta);
 	}
 
-	.hero__subtitle {
-		order: 3;
-		margin: 0.95rem 0 0;
-		max-width: 38rem;
-		font-size: clamp(0.92rem, 1.5vw, 1.05rem);
-		line-height: 1.65;
-		color: var(--color-body);
-		text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
-	}
-
 	.hero__features {
-		order: 4;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -375,7 +355,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__actions {
-		order: 5;
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		align-items: stretch;
@@ -449,7 +428,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__links {
-		order: 6;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -480,10 +458,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		opacity: 0.75;
 		font-size: 0.75rem;
 		line-height: 1;
-	}
-
-	.hero__subtitle--short {
-		display: none;
 	}
 
 	@keyframes hero-rise {
@@ -522,16 +496,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		.hero__title-main {
 			font-size: clamp(1.65rem, 9vw, 2.35rem);
 			letter-spacing: 0.06em;
-		}
-
-		.hero__subtitle--full {
-			display: none;
-		}
-
-		.hero__subtitle--short {
-			display: block;
-			margin-top: 0.75rem;
-			font-size: 0.9rem;
 		}
 
 		.hero__features {
