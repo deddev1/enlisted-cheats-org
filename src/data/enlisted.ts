@@ -145,13 +145,24 @@ export const reviewsHeroAlt = enlistedOfficialScreens.battlefieldPanorama.alt;
 export const reviewDetailHeroImage = enlistedOfficialScreens.squadCombat.src;
 export const reviewDetailHeroAlt = enlistedOfficialScreens.squadCombat.alt;
 
-/** Prefer official Enlisted.net art on text-heavy secondary pages. */
+/** Official Enlisted.net art on secondary page heroes (gameplay shots stay on cheat feature pages). */
 export const pageHeroOverrides: Partial<Record<string, string>> = {
-	support: enlistedOfficialScreens.battlefieldPanorama.src,
+	features: enlistedOfficialScreens.battlefieldPanorama.src,
+	pricing: pricingShopImage.src,
+	setup: enlistedOfficialScreens.squadThumb.src,
+	updates: enlistedOfficialScreens.squadCombat.src,
 	faq: enlistedOfficialScreens.squadCombat.src,
+	support: enlistedOfficialScreens.battlefieldPanorama.src,
 	privacy: enlistedOfficialScreens.squadThumb.src,
 	refund: enlistedOfficialScreens.squadThumb.src,
 	terms: enlistedOfficialScreens.squadThumb.src,
+	hacks: enlistedOfficialScreens.battlefieldPanorama.src,
+	undetected: enlistedOfficialScreens.battlefieldPanorama.src,
+	'cheats-2026': enlistedOfficialScreens.battlefieldPanorama.src,
+	'best-cheats': enlistedOfficialScreens.squadCombat.src,
+	'cheat-download': pricingShopImage.src,
+	'mod-menu': enlistedOfficialScreens.squadThumb.src,
+	'eac-bypass': enlistedOfficialScreens.squadCombat.src,
 };
 
 export function resolvePageHeroImage(pageId: string, heroImage: string): string {
@@ -238,11 +249,22 @@ export const heroAltBySrc: Record<string, string> = Object.fromEntries(
 
 /** Match official Enlisted.net hero art with descriptive alt text on secondary pages. */
 export const pageHeroAltOverrides: Partial<Record<string, string>> = {
-	support: enlistedOfficialScreens.battlefieldPanorama.alt,
+	features: enlistedOfficialScreens.battlefieldPanorama.alt,
+	pricing: pricingShopImage.alt,
+	setup: enlistedOfficialScreens.squadThumb.alt,
+	updates: enlistedOfficialScreens.squadCombat.alt,
 	faq: enlistedOfficialScreens.squadCombat.alt,
+	support: enlistedOfficialScreens.battlefieldPanorama.alt,
 	privacy: enlistedOfficialScreens.squadThumb.alt,
 	refund: enlistedOfficialScreens.squadThumb.alt,
 	terms: enlistedOfficialScreens.squadThumb.alt,
+	hacks: enlistedOfficialScreens.battlefieldPanorama.alt,
+	undetected: enlistedOfficialScreens.battlefieldPanorama.alt,
+	'cheats-2026': enlistedOfficialScreens.battlefieldPanorama.alt,
+	'best-cheats': enlistedOfficialScreens.squadCombat.alt,
+	'cheat-download': pricingShopImage.alt,
+	'mod-menu': enlistedOfficialScreens.squadThumb.alt,
+	'eac-bypass': enlistedOfficialScreens.squadCombat.alt,
 };
 
 export function resolvePageHeroAlt(

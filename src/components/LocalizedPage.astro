@@ -66,6 +66,15 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 	: page.ctaSecondary
 		? siteConfig.checkoutUrl
 		: getLocalizedPath('features', locale);
+
+const productGalleryPages: PageId[] = [
+	'hacks',
+	'enlisted-esp',
+	'enlisted-aimbot',
+	'wallhack',
+	'radar',
+	'undetected',
+];
 ---
 
 <PageLayout
@@ -83,7 +92,7 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 	galleryTitle={page.galleryTitle}
 	locale={locale}
 	pageId={pageId}
-	showGallery={pageId !== 'pricing' && pageId !== 'features'}
+	showGallery={productGalleryPages.includes(pageId)}
 	extraGraph={extraGraph}
 	contentWidth={pageId === 'pricing' || pageId === 'features' ? 'full' : 'narrow'}
 	ctaPrimary={{ href: resolveCtaPrimaryHref(page.ctaPrimary), label: page.ctaPrimary }}
