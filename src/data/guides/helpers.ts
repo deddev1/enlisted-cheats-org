@@ -47,6 +47,15 @@ export function getGuidePath(slug: string): string {
 	return `${guidesBasePath}${slug}/`;
 }
 
+/** Hostname label for external guide cards (e.g. fortniteaimbot.com). */
+export function formatExternalGuideHost(url: string): string {
+	try {
+		return new URL(url).hostname.replace(/^www\./, '');
+	} catch {
+		return url;
+	}
+}
+
 export function absoluteGuideUrl(slug?: string): string {
 	return new URL(slug ? getGuidePath(slug) : guidesBasePath, siteConfig.url).href;
 }

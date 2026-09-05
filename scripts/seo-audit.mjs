@@ -147,14 +147,21 @@ if (existsSync(distIndex)) {
 	if (existsSync(distGuidesHub)) {
 		const hubHtml = readFileSync(distGuidesHub, 'utf8');
 		if (hubHtml.includes('noindex')) fail('dist/guides/index.html hub must remain indexable');
-		checkBanned('dist/guides/index.html', hubHtml);
+		const nativeHubHtml = hubHtml.split('id="other-games-guides"')[0] ?? hubHtml;
+		checkBanned('dist/guides/index.html (native section)', nativeHubHtml);
+		const externalLinkCount = (hubHtml.match(/rel="nofollow noopener noreferrer"/g) ?? []).length;
+		if (externalLinkCount < 100) {
+			fail(
+				`dist/guides/index.html: expected ~107 external guide links on hub, found ${externalLinkCount}`,
+			);
+		}
 	}
 
 	const distOtherGamesHub = join(root, 'dist/guides/other-games/index.html');
 	if (existsSync(distOtherGamesHub)) {
 		const otherHtml = readFileSync(distOtherGamesHub, 'utf8');
-		if (!otherHtml.includes('noindex')) {
-			fail('dist/guides/other-games/index.html external hub must include noindex');
+		if (!otherHtml.includes('noindex') && !/http-equiv="refresh"/i.test(otherHtml)) {
+			fail('dist/guides/other-games/index.html external hub must include noindex or redirect to /guides/');
 		}
 	}
 

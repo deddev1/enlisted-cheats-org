@@ -5,9 +5,10 @@ import SiteFooter from './SiteFooter.astro';
 import { siteConfig } from '../data/site';
 import {
 	absoluteGuideUrl,
+	formatExternalGuideHost,
+	getMixedExternalGuides,
 	getNativeEnlistedGuides,
 	guidesBasePath,
-	otherGamesGuidesPath,
 } from '../data/guides/helpers';
 import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
 import { getLocalizedPath } from '../data/i18n/routing';
@@ -15,11 +16,17 @@ import { defaultLocale } from '../data/i18n/locales';
 
 const locale = defaultLocale;
 const nativeGuides = getNativeEnlistedGuides();
+const otherGameGuides = getMixedExternalGuides();
 const homeHref = getLocalizedPath('home', locale);
 
 function nativeGuideLabel(title: string): string {
 	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
 	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
+}
+
+function otherGameGuideLabel(title: string): string {
+	const trimmed = title.replace(/\s*\|\s*Guides$/, '').trim();
+	return trimmed.length <= 52 ? trimmed : `${trimmed.slice(0, 49).trimEnd()}…`;
 }
 
 const title = 'Enlisted Game Guides | Campaign, Battlefield & Factions';
@@ -92,9 +99,49 @@ const extraGraph = [
 			<EnlistedAuthorityLinks headingLevel="h3" />
 		</section>
 
-		<p class="guides__other-link">
-			<a href={otherGamesGuidesPath} rel="nofollow">Browse other games guides</a>
-		</p>
+		{
+			otherGameGuides.length > 0 && (
+				<section
+					class="guides__section guides__section--external"
+					id="other-games-guides"
+					aria-labelledby="external-guides-title"
+				>
+					<h2 id="external-guides-title" class="guides__section-title">Other games guides</h2>
+					<p class="guides__section-intro">
+						Partner gameplay guides for other PC titles — mixed across franchises so one game does not
+						dominate the list. These outbound links are not indexed by search engines.
+					</p>
+
+					<div class="guides__grid">
+						{otherGameGuides.map((guide) => (
+							<article class="guides__card guides__card--external">
+								<a
+									class="guides__card-link"
+									href={guide.externalUrl}
+									target="_blank"
+									rel="nofollow noopener noreferrer"
+								>
+									<img
+										src={guide.imageSrc}
+										alt={guide.imageAlt}
+										width="640"
+										height="360"
+										loading="lazy"
+										decoding="async"
+									/>
+									<div class="guides__card-body">
+										<span class="guides__cat">{guide.gameName}</span>
+										<h3 class="guides__card-title">{otherGameGuideLabel(guide.title)}</h3>
+										<p class="guides__card-url">{formatExternalGuideHost(guide.externalUrl)}</p>
+										<p>{guide.intro}</p>
+									</div>
+								</a>
+							</article>
+						))}
+					</div>
+				</section>
+			)
+		}
 	</main>
 	<SiteFooter locale={locale} />
 </Layout>
@@ -135,6 +182,11 @@ const extraGraph = [
 		margin-bottom: 2.5rem;
 	}
 
+	.guides__section--external {
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
 	.guides__section-title {
 		margin: 0 0 0.5rem;
 		font-size: 1.5rem;
@@ -146,23 +198,6 @@ const extraGraph = [
 		color: rgba(255, 255, 255, 0.65);
 		font-size: 0.95rem;
 		line-height: 1.6;
-	}
-
-	.guides__other-link {
-		margin: 0;
-		padding-top: 1.5rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		font-size: 0.92rem;
-	}
-
-	.guides__other-link a {
-		color: rgba(255, 255, 255, 0.55);
-		text-decoration: underline;
-		text-underline-offset: 0.15em;
-	}
-
-	.guides__other-link a:hover {
-		color: #B47A3C;
 	}
 
 	.guides__grid {
@@ -187,6 +222,14 @@ const extraGraph = [
 	.guides__card:hover {
 		border-color: rgba(197, 138, 69, 0.38);
 		transform: translateY(-2px);
+	}
+
+	.guides__card-link {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		color: inherit;
+		text-decoration: none;
 	}
 
 	.guides__card img {
@@ -217,16 +260,19 @@ const extraGraph = [
 		font-weight: 800;
 	}
 
-	.guides__card-title a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.guides__card-title a:hover {
+	.guides__card-link:hover .guides__card-title {
 		color: #B47A3C;
 	}
 
-	.guides__card-body p:not(.guides__card-title) {
+	.guides__card-url {
+		margin: 0;
+		color: rgba(180, 122, 60, 0.92);
+		font-size: 0.78rem;
+		font-weight: 600;
+		word-break: break-all;
+	}
+
+	.guides__card-body p:not(.guides__card-title):not(.guides__card-url) {
 		margin: 0;
 		color: rgba(255, 255, 255, 0.65);
 		font-size: 0.86rem;

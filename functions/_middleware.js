@@ -41,6 +41,8 @@ const PATH_REDIRECTS = {
 	'/warframe-cheats/': '/enlisted-cheats/',
 	'/warframe-cheats': '/enlisted-cheats/',
 	'/sitemap-0.xml': '/sitemap.xml',
+	'/guides/other-games/': '/guides/#other-games-guides',
+	'/guides/other-games': '/guides/#other-games-guides',
 	'/fortnite-cheats': '/',
 	'/fortnite-cheats/': '/',
 	'/fortnite-hacks': '/enlisted-cheats/',
