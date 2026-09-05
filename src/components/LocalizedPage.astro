@@ -38,6 +38,14 @@ function localizeParagraphHtml(html: string): string {
 		.replace(/href="(\/[^"]+)"/g, (_, path: string) => `href="${localizeInternalHref(path, locale)}"`);
 }
 
+function resolveCtaPrimaryHref(label: string): string {
+	const normalized = label.trim().toLowerCase();
+	if (normalized.includes('support') || normalized.includes('contact')) {
+		return `mailto:${siteConfig.supportEmail}`;
+	}
+	return siteConfig.checkoutUrl;
+}
+
 const galleryPool = [
 	enlistedImages.product[0],
 	enlistedImages.product[1],
@@ -78,7 +86,7 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 	showGallery={pageId !== 'pricing' && pageId !== 'features'}
 	extraGraph={extraGraph}
 	contentWidth={pageId === 'pricing' || pageId === 'features' ? 'full' : 'narrow'}
-	ctaPrimary={{ href: siteConfig.checkoutUrl, label: page.ctaPrimary }}
+	ctaPrimary={{ href: resolveCtaPrimaryHref(page.ctaPrimary), label: page.ctaPrimary }}
 	ctaSecondary={
 		page.ctaSecondary
 			? { href: ctaSecondaryHref, label: page.ctaSecondary }

@@ -8,6 +8,7 @@ import { enlistedImages } from '../data/enlisted';
 import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal, contentSrc, contentSrcSet, galleryTileSizes, isExternalImage } from '../lib/responsive-images';
 import { englishPaths, pageIds, type PageId } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
 
 type GalleryInput = string | { src: string; alt: string };
 
@@ -94,6 +95,14 @@ const breadcrumbs = [
 	{ label: ui.nav.home, href: homeHref },
 	{ label: heading },
 ];
+
+function isCheckoutHref(href: string): boolean {
+	return href === siteConfig.checkoutUrl;
+}
+
+function externalLinkRel(href: string): string | undefined {
+	return href.startsWith('http') ? 'noopener noreferrer' : undefined;
+}
 
 const isHeroLcp = heroImage === enlistedImages.hero;
 const lcpImage = isHeroLcp ? heroPreloadSrc : undefined;
@@ -207,10 +216,10 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 							{ctaPrimary && (
 								<a
 									class:list={[
-										ctaPrimary.label === 'Buy Now' ? 'btn-buy' : 'btn btn--primary',
+										isCheckoutHref(ctaPrimary.href) ? 'btn-buy' : 'btn btn--primary',
 									]}
 									href={ctaPrimary.href}
-									rel={ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+									rel={externalLinkRel(ctaPrimary.href)}
 								>
 									{ctaPrimary.label}
 								</a>
@@ -218,10 +227,10 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 							{ctaSecondary && (
 								<a
 									class:list={[
-										ctaSecondary.label === 'Buy Now' ? 'btn-buy' : 'btn btn--ghost',
+										isCheckoutHref(ctaSecondary.href) ? 'btn-buy' : 'btn btn--ghost',
 									]}
 									href={ctaSecondary.href}
-									rel={ctaSecondary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+									rel={externalLinkRel(ctaSecondary.href)}
 								>
 									{ctaSecondary.label}
 								</a>
