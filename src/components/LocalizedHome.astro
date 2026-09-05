@@ -108,16 +108,7 @@ const extraGraph: Record<string, unknown>[] =
 		>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
-			</div>
-		</section>
-		<section class="site__section site__section--about" aria-labelledby="home-about-title">
-			<HomeAboutUs locale={locale} />
-		</section>
-		<section
-			class="site__section site__section--store site__section--store--features"
-			style={`--store-bg: url('${pricingShopImage.src}')`}
-		>
-			<div class="shell store-stack">
+				<HomeAboutUs locale={locale} />
 				<PricingFeatureList locale={locale} showRelatedPages={false} />
 			</div>
 		</section>
@@ -146,7 +137,6 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--reviews,
 	.site__section--faq,
 	.site__section--explore,
-	.site__section--about,
 	.site__section--store {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 720px;
@@ -158,19 +148,6 @@ const extraGraph: Record<string, unknown>[] =
 
 	.cheat-showcase + .site__section--store {
 		padding-top: 0;
-	}
-
-	.site__section--about {
-		padding-block: 0;
-	}
-
-	.site__section--store + .site__section--about,
-	.site__section--about + .site__section--store {
-		padding-top: 0;
-	}
-
-	.site__section--store--features {
-		padding-top: clamp(0.75rem, 1.6vw, 1.1rem);
 	}
 
 	.site__section--store {
@@ -214,7 +191,17 @@ const extraGraph: Record<string, unknown>[] =
 	.store-stack {
 		display: grid;
 		gap: 0.85rem;
-		align-items: start;
+		align-items: stretch;
+	}
+
+	.store-stack > :global(*) {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.store-stack :global(.home-about) {
+		border-radius: var(--radius-card);
+		overflow: hidden;
 	}
 
 	@media (max-width: 760px) {

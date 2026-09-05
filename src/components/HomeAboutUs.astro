@@ -63,7 +63,7 @@ const monthlyPlan = productInfo.plans[0];
 		<div class="home-about__veil"></div>
 	</div>
 
-	<div class="shell home-about__inner">
+	<div class="home-about__inner">
 		<div class="home-about__layout">
 			<div class="home-about__main">
 				<h2 id="home-about-title" class="home-about__title">Cheats for Enlisted</h2>
@@ -181,14 +181,17 @@ const monthlyPlan = productInfo.plans[0];
 	.home-about__inner {
 		position: relative;
 		z-index: 1;
-		padding-block: clamp(1.75rem, 3vw, 2.25rem);
+		width: 100%;
+		max-width: none;
+		margin-inline: 0;
+		padding: clamp(0.95rem, 1.8vw, 1.2rem);
 	}
 
 	.home-about__layout {
 		display: grid;
-		grid-template-columns: minmax(0, 1.28fr) minmax(0, 17.5rem);
+		grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
 		gap: clamp(1rem, 2vw, 1.5rem);
-		align-items: stretch;
+		align-items: center;
 	}
 
 	.home-about__main {
@@ -196,7 +199,7 @@ const monthlyPlan = productInfo.plans[0];
 		flex-direction: column;
 		justify-content: center;
 		gap: 0.85rem;
-		max-width: 38rem;
+		min-width: 0;
 	}
 
 	.home-about__title {
@@ -208,7 +211,6 @@ const monthlyPlan = productInfo.plans[0];
 		line-height: 1.06;
 		letter-spacing: -0.02em;
 		text-transform: none;
-		max-width: 16ch;
 	}
 
 	.home-about__lead {
@@ -223,7 +225,6 @@ const monthlyPlan = productInfo.plans[0];
 		color: rgba(181, 180, 170, 0.92);
 		font-size: 0.84rem;
 		line-height: 1.55;
-		max-width: 36rem;
 	}
 
 	.home-about__inline-link {
@@ -330,6 +331,8 @@ const monthlyPlan = productInfo.plans[0];
 	.home-about__card {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
+		min-width: 0;
 		overflow: hidden;
 		border: 1px solid var(--color-border-panel-strong);
 		background: rgba(0, 0, 0, 0.42);
@@ -406,10 +409,6 @@ const monthlyPlan = productInfo.plans[0];
 	@media (max-width: 900px) {
 		.home-about__layout {
 			grid-template-columns: 1fr;
-		}
-
-		.home-about__card {
-			max-width: 20rem;
 		}
 	}
 
