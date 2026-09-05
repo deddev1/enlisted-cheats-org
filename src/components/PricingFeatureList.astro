@@ -156,8 +156,8 @@ const featuresHref = getLocalizedPath('features', locale);
 		gap: 0.4rem;
 		padding: 0.4rem 0.8rem;
 		border-radius: 999px;
-		border: 1px solid var(--color-border-panel);
-		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid rgba(197, 138, 69, 0.35);
+		background: rgba(197, 138, 69, 0.08);
 		color: var(--color-gold-hover);
 		font-size: 0.68rem;
 		font-weight: 800;
@@ -170,6 +170,7 @@ const featuresHref = getLocalizedPath('features', locale);
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 0.85rem;
 		align-items: stretch;
+		grid-auto-rows: 1fr;
 	}
 
 	@media (max-width: 1100px) {
@@ -179,31 +180,39 @@ const featuresHref = getLocalizedPath('features', locale);
 	}
 
 	.pricing-features__card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 100%;
 		padding: 1.15rem 1.2rem 1.25rem;
-		border-radius: var(--radius-media);
-		border: 1px solid var(--color-border-panel);
-		background: rgba(0, 0, 0, 0.38);
+		border-radius: 0.85rem;
+		border: 1px solid rgba(197, 138, 69, 0.22);
+		background: rgba(13, 17, 18, 0.92);
+		box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
 		transition:
-			border-color 0.2s ease,
-			background 0.2s ease;
+			transform 0.22s ease,
+			border-color 0.22s ease,
+			box-shadow 0.22s ease,
+			background 0.22s ease;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.pricing-features__card:hover {
-			border-color: var(--color-border-panel-strong);
-			background: rgba(0, 0, 0, 0.48);
+			transform: translateY(-4px);
+			border-color: rgba(197, 138, 69, 0.42);
+			background: rgba(16, 20, 21, 0.96);
+			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
 		}
 	}
 
 	.pricing-features__card-title {
 		margin: 0 0 0.85rem;
 		padding-bottom: 0.7rem;
-		border-bottom: 1px solid var(--color-border-panel);
+		border-bottom: 1px solid rgba(197, 138, 69, 0.2);
 		font-family: var(--font-display);
 		font-size: 1.02rem;
 		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
+		letter-spacing: -0.01em;
 		color: var(--color-ink);
 	}
 
@@ -213,6 +222,8 @@ const featuresHref = getLocalizedPath('features', locale);
 		list-style: none;
 		display: grid;
 		gap: 0.5rem;
+		flex: 1;
+		align-content: start;
 	}
 
 	.pricing-features__list--two-col {
@@ -252,8 +263,8 @@ const featuresHref = getLocalizedPath('features', locale);
 		gap: 0.45rem;
 		width: 100%;
 		padding: 0.95rem 1.15rem;
-		border-radius: var(--radius-media);
-		border: 1px solid var(--color-border-panel);
+		border-radius: 0.75rem;
+		border: 1px solid rgba(197, 138, 69, 0.35);
 		background: rgba(0, 0, 0, 0.32);
 		color: var(--color-ink);
 		font-size: 0.92rem;
@@ -261,13 +272,27 @@ const featuresHref = getLocalizedPath('features', locale);
 		text-decoration: none;
 		transition:
 			border-color 0.2s ease,
-			background 0.2s ease;
+			background 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.pricing-features__full-link:hover {
-		border-color: var(--color-border-gold-soft);
+		border-color: rgba(197, 138, 69, 0.55);
 		background: rgba(0, 0, 0, 0.42);
 		color: var(--color-ink);
+		transform: translateY(-1px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.pricing-features__card,
+		.pricing-features__full-link {
+			transition: border-color 0.2s ease, background 0.2s ease;
+		}
+
+		.pricing-features__card:hover,
+		.pricing-features__full-link:hover {
+			transform: none;
+		}
 	}
 
 	@media (max-width: 900px) {
