@@ -17,7 +17,7 @@ import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { homeFaqs, productInfo, siteConfig, customerReviewStats } from '../data/site';
-import { enlistedImages, pricingShopImage } from '../data/enlisted';
+import { enlistedImages, pricingShopImage, reviewsSectionBg } from '../data/enlisted';
 import {
 	buildAggregateOffer,
 	buildFaqSchemaNode,
@@ -112,7 +112,10 @@ const extraGraph: Record<string, unknown>[] =
 				<PricingFeatureList locale={locale} showRelatedPages={false} />
 			</div>
 		</section>
-		<section class="site__section site__section--reviews">
+		<section
+			class="site__section site__section--reviews"
+			style={`--reviews-bg: url('${reviewsSectionBg.src}')`}
+		>
 			<CustomerReviews locale={locale} />
 		</section>
 		<section class="site__section site__section--faq">
@@ -207,6 +210,44 @@ const extraGraph: Record<string, unknown>[] =
 	}
 
 	.site__section--store > .shell {
+		position: relative;
+		z-index: 1;
+	}
+
+	.site__section--reviews {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(1rem, 2.2vw, 1.65rem);
+	}
+
+	.site__section--reviews::before {
+		content: '';
+		position: absolute;
+		inset: -6%;
+		z-index: 0;
+		background:
+			linear-gradient(
+				180deg,
+				rgba(13, 17, 18, 0.92) 0%,
+				rgba(13, 17, 18, 0.68) 42%,
+				rgba(13, 17, 18, 0.9) 100%
+			),
+			var(--reviews-bg) center / cover no-repeat;
+		filter: saturate(0.82) brightness(0.45);
+		pointer-events: none;
+	}
+
+	.site__section--reviews::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.06), transparent 68%);
+		pointer-events: none;
+	}
+
+	.site__section--reviews > :global(*) {
 		position: relative;
 		z-index: 1;
 	}

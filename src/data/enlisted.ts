@@ -120,6 +120,13 @@ export const pricingShopImage: EnlistedScreenshot = {
 	title: 'Enlisted Cheats shop preview',
 };
 
+/** Homepage reviews band — official Enlisted.net scr/9 background. */
+export const reviewsSectionBg: EnlistedScreenshot = {
+	src: localImage('enlisted-reviews-bg.jpg'),
+	alt: 'Enlisted WWII battlefield background behind customer reviews',
+	title: 'Enlisted reviews section background',
+};
+
 /** Official Enlisted.net marketing screenshots for secondary page heroes and UI accents. */
 export const enlistedOfficialScreens = {
 	battlefieldPanorama: {
