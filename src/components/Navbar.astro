@@ -29,6 +29,8 @@ const shopLabel = 'Shop';
 const pricingHref = getLocalizedPath('pricing', locale);
 const updatesHref = getLocalizedPath('updates', locale);
 const featuresHref = getLocalizedPath('features', locale);
+const faqHref = getLocalizedPath('faq', locale);
+const reviewsHref = '/reviews/';
 
 const utilityLinks = [
 	{ label: ui.nav.cheats ?? 'Enlisted Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
@@ -55,25 +57,14 @@ const shopCards = [
 	},
 ] as const;
 
-const gameLinks = [
-	{ label: ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
-	{ label: ui.nav.esp, href: getLocalizedPath('enlisted-esp', locale), pageId: 'enlisted-esp' as PageId },
-	{ label: ui.nav.aimbot, href: getLocalizedPath('enlisted-aimbot', locale), pageId: 'enlisted-aimbot' as PageId },
-	{ label: 'Wallhack', href: getLocalizedPath('wallhack', locale), pageId: 'wallhack' as PageId },
-	{ label: 'Radar', href: getLocalizedPath('radar', locale), pageId: 'radar' as PageId },
-];
-
-const communityLinks = [
-	{ label: 'Blog', href: '/blog/' },
-	{ label: 'Guides', href: '/guides/' },
-	{ label: ui.nav.reviews ?? 'Reviews', href: '/reviews/' },
-	{ label: ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
-];
-
 const mainLinks = [
-	{ label: ui.nav.updates, href: updatesHref, pageId: 'updates' as PageId, accent: false },
-	{ label: ui.nav.cheats ?? 'Enlisted Cheats', href: cheatsHref, pageId: 'hacks' as PageId, accent: true },
-	{ label: ui.nav.reviews ?? 'Reviews', href: '/reviews/', pageId: undefined, accent: false },
+	{ label: ui.nav.home, href: homeHref, pageId: 'home' as PageId },
+	{ label: ui.nav.cheats ?? 'Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
+	{ label: ui.nav.features, href: featuresHref, pageId: 'features' as PageId },
+	{ label: ui.nav.updates, href: updatesHref, pageId: 'updates' as PageId },
+	{ label: ui.nav.pricing, href: pricingHref, pageId: 'pricing' as PageId },
+	{ label: ui.nav.reviews ?? 'Reviews', href: reviewsHref, pageId: undefined },
+	{ label: ui.nav.faq, href: faqHref, pageId: 'faq' as PageId },
 ];
 
 function pathMatches(href: string, id?: PageId) {
@@ -86,9 +77,6 @@ function pathMatches(href: string, id?: PageId) {
 	if (href === '/guides/') return current.startsWith('/guides/');
 	return current === href || current.startsWith(href);
 }
-
-const gameActive = gameLinks.some((link) => pathMatches(link.href, link.pageId));
-const communityActive = communityLinks.some((link) => pathMatches(link.href, link.pageId));
 ---
 
 <header class:list={['nav', { 'nav--overlay': overlay }]} data-nav>
@@ -157,66 +145,13 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 							href={link.href}
 							class:list={[
 								'nav__menu-link',
-								{
-									'is-active': pathMatches(link.href, link.pageId),
-									'nav__menu-link--accent': link.accent,
-								},
+								{ 'is-active': pathMatches(link.href, link.pageId) },
 							]}
 						>
 							{link.label}
 						</a>
 					))
 				}
-
-				<div class="nav__dropdown" data-nav-dropdown>
-					<button
-						type="button"
-						class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': gameActive }]}
-						aria-expanded="false"
-					>
-						Game
-						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
-						</svg>
-					</button>
-					<div class="nav__dropdown-panel">
-						{
-							gameLinks.map((link) => (
-								<a
-									href={link.href}
-									class:list={['nav__dropdown-link', { 'is-active': pathMatches(link.href, link.pageId) }]}
-								>
-									{link.label}
-								</a>
-							))
-						}
-					</div>
-				</div>
-
-				<div class="nav__dropdown" data-nav-dropdown>
-					<button
-						type="button"
-						class:list={['nav__menu-link', 'nav__menu-link--dropdown', { 'is-active': communityActive }]}
-						aria-expanded="false"
-					>
-						Community
-						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
-						</svg>
-					</button>
-					<div class="nav__dropdown-panel">
-						{
-							communityLinks.map((link) => (
-								<a
-									href={link.href}
-									class:list={['nav__dropdown-link', { 'is-active': pathMatches(link.href, link.pageId) }]}
-								>
-									{link.label}
-								</a>
-							))
-						}
-					</div>
-				</div>
 
 				<div class="nav__shop-wrap" data-nav-shop data-nav-dropdown>
 					<a
@@ -274,9 +209,6 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 						<path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.8 6.4 19.5l2.1-6.7L3 8.8h6.8L12 2z" fill="currentColor"></path>
 					</svg>
 					{shopLabel}
-				</a>
-				<a href={pricingHref} class="nav__menu-link nav__menu-link--shop-mobile">
-					{ui.nav.pricing}
 				</a>
 			</nav>
 
@@ -617,7 +549,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	.nav__menu {
 		display: flex;
 		align-items: stretch;
-		justify-content: flex-end;
+		justify-content: flex-start;
 		gap: 0;
 		min-width: 0;
 		flex: 1;
@@ -649,12 +581,12 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	}
 
 	.nav__menu-link--accent {
-		color: #b89cff;
+		color: rgba(255, 255, 255, 0.88);
 	}
 
 	.nav__menu-link--accent:hover,
 	.nav__menu-link--accent.is-active {
-		color: #d4c4ff;
+		color: #fff;
 	}
 
 	.nav__menu-link:hover,
@@ -755,7 +687,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	.nav__shop-wrap {
 		position: relative;
 		align-self: stretch;
-		margin-left: 0.35rem;
+		margin-left: auto;
 	}
 
 	.nav__shop-trigger {
@@ -968,7 +900,7 @@ const communityActive = communityLinks.some((link) => pathMatches(link.href, lin
 	@media (max-width: 1080px) {
 		.nav__menu-link,
 		.nav__menu-link--dropdown {
-			padding-inline: 0.65rem;
+			padding-inline: 0.5rem;
 			font-size: 0.72rem;
 		}
 
