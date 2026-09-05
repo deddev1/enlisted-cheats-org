@@ -8,6 +8,7 @@ import {
 	heroSrcSet,
 } from '../lib/responsive-images';
 import BlogCinematicCard from './BlogCinematicCard.astro';
+import { enlistedHeroAlt } from '../data/enlisted';
 
 interface Props {
 	locale?: LocaleCode;
@@ -15,6 +16,8 @@ interface Props {
 
 const locale = Astro.props.locale ?? defaultLocale;
 const posts = getProductBlogPosts(locale, 3);
+/** Decorative section backdrop — marked presentation so AT skips it; alt satisfies SEO audit. */
+const blogSectionBgAlt = `Decorative background: ${enlistedHeroAlt}`;
 ---
 
 {
@@ -25,7 +28,8 @@ const posts = getProductBlogPosts(locale, 3);
 					heroIsExternal ? (
 						<img
 							src={heroPreloadSrc}
-							alt=""
+							alt={blogSectionBgAlt}
+							role="presentation"
 							width="1920"
 							height="1080"
 							class="home-blog__bg"
@@ -39,7 +43,8 @@ const posts = getProductBlogPosts(locale, 3);
 							<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
 							<img
 								src={heroPreloadSrc}
-								alt=""
+								alt={blogSectionBgAlt}
+								role="presentation"
 								width="1920"
 								height="1080"
 								class="home-blog__bg"

@@ -194,7 +194,10 @@ const navbarAstro = readFileSync(join(root, 'src/components/Navbar.astro'), 'utf
 if (/alt=""/.test(navbarAstro)) fail('Navbar.astro must not use empty alt on images');
 
 if (existsSync(distIndex)) {
-	const emptyAltCount = (readFileSync(distIndex, 'utf8').match(/alt=""/g) || []).length;
+	const indexHtml = readFileSync(distIndex, 'utf8');
+	// Decorative backgrounds may use role="presentation" (see HomeBlog.astro).
+	const indexHtmlNoDecorative = indexHtml.replace(/<img\b[^>]*\brole="presentation"[^>]*>/gi, '');
+	const emptyAltCount = (indexHtmlNoDecorative.match(/alt=""/g) || []).length;
 	if (emptyAltCount > 0) {
 		fail(`dist/index.html has ${emptyAltCount} image(s) with empty alt`);
 	}
