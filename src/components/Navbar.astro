@@ -1009,8 +1009,8 @@ const onFeatureDetailPage =
 		flex: 0 0 min(14.5rem, 78vw);
 		flex-direction: column;
 		overflow: hidden;
-		border: 1px solid var(--color-border-subtle);
-		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		background: rgba(255, 255, 255, 0.02);
 		color: inherit;
 		text-decoration: none;
 		scroll-snap-align: center;
@@ -1020,8 +1020,8 @@ const onFeatureDetailPage =
 	}
 
 	.nav__features-card:hover {
-		border-color: var(--color-border-gold-hover);
-		background: rgba(197, 138, 69, 0.04);
+		border-color: rgba(197, 138, 69, 0.16);
+		background: rgba(197, 138, 69, 0.03);
 	}
 
 	.nav__features-wrap--on-page .nav__features-card {
@@ -1029,9 +1029,9 @@ const onFeatureDetailPage =
 	}
 
 	.nav__features-card.is-active {
-		border-color: var(--color-border-gold-soft);
-		background: rgba(197, 138, 69, 0.08);
-		box-shadow: 0 0 0 1px rgba(197, 138, 69, 0.18);
+		border-color: rgba(197, 138, 69, 0.22);
+		background: rgba(197, 138, 69, 0.05);
+		box-shadow: inset 0 0 0 1px rgba(197, 138, 69, 0.08);
 	}
 
 	.nav__features-wrap--on-page .nav__features-card.is-active {
@@ -1053,20 +1053,7 @@ const onFeatureDetailPage =
 		position: relative;
 		aspect-ratio: 16 / 10;
 		overflow: hidden;
-		background: rgba(8, 8, 8, 0.72);
-	}
-
-	.nav__features-card-media::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		z-index: 1;
-		background: linear-gradient(
-			180deg,
-			rgba(18, 16, 14, 0.28) 0%,
-			rgba(18, 16, 14, 0.62) 100%
-		);
-		pointer-events: none;
+		background: rgba(255, 255, 255, 0.04);
 	}
 
 	.nav__features-card-media img {
@@ -1074,24 +1061,12 @@ const onFeatureDetailPage =
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		opacity: 0.58;
-		filter: saturate(0.72) brightness(0.82) contrast(0.92);
-		transition:
-			opacity 0.2s ease,
-			filter 0.2s ease;
-	}
-
-	.nav__features-card:hover .nav__features-card-media img,
-	.nav__features-card.is-active .nav__features-card-media img {
-		opacity: 0.72;
-		filter: saturate(0.82) brightness(0.9) contrast(0.96);
 	}
 
 	.nav__features-card-tag {
 		position: absolute;
 		top: 0.55rem;
 		left: 0.55rem;
-		z-index: 2;
 		padding: 0.18rem 0.45rem;
 		background: rgba(88, 96, 75, 0.92);
 		color: #f1eee5;
@@ -1133,7 +1108,7 @@ const onFeatureDetailPage =
 		align-items: center;
 		width: fit-content;
 		padding: 0.16rem 0.45rem;
-		border: 1px solid rgba(197, 138, 69, 0.45);
+		border: 1px solid rgba(197, 138, 69, 0.22);
 		color: var(--color-gold-hover);
 		font-size: 0.62rem;
 		font-weight: 800;
