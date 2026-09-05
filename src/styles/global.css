@@ -302,6 +302,10 @@
 		isolation: isolate;
 	}
 
+	.pricing-showcase__plan--featured {
+		overflow: visible;
+	}
+
 	.btn-buy::after,
 	.btn::after,
 	.cart-btn::after,
