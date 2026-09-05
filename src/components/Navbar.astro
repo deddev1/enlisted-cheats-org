@@ -43,25 +43,47 @@ const cheatLinks = [
 ];
 
 const gameLinks = [
-	{ label: ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
-	{ label: ui.nav.setup, href: getLocalizedPath('setup', locale), pageId: 'setup' as PageId },
-	{ label: ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
-	{ label: ui.nav.cheats ?? 'Cheats', href: getLocalizedPath('hacks', locale), pageId: 'hacks' as PageId },
+	{ label: locale === 'en' ? 'About' : ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
+	{ label: locale === 'en' ? 'Setup' : ui.nav.setup, href: getLocalizedPath('setup', locale), pageId: 'setup' as PageId },
+	{ label: locale === 'en' ? 'Combat tips' : ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
 ];
 
 const communityLinks = [
 	{ label: ui.nav.reviews ?? 'Reviews', href: '/reviews/' },
-	{ label: locale === 'en' ? 'Blog' : 'Blog', href: '/blog/' },
-	{ label: locale === 'en' ? 'Support' : 'Support', href: getLocalizedPath('support', locale) },
+	{ label: 'Blog', href: '/blog/' },
+	{ label: 'Support', href: getLocalizedPath('support', locale) },
 ];
 
 const cheatsActive = cheatLinks.some((link) => isActive(link.href, link.pageId));
 const gameActive = gameLinks.some((link) => isActive(link.href, link.pageId));
-const homeActive = isActive(homeHref, 'home');
+const updatesHref = getLocalizedPath('updates', locale);
+const updatesActive = isActive(updatesHref, 'updates');
 
 const mainLinks = [
-	{ label: ui.nav.updates, href: getLocalizedPath('updates', locale), pageId: 'updates' as PageId },
-	{ label: ui.nav.pricing, href: getLocalizedPath('pricing', locale), pageId: 'pricing' as PageId },
+	{
+		label: locale === 'en' ? 'News' : ui.nav.updates,
+		href: updatesHref,
+		pageId: 'updates' as PageId,
+		active: updatesActive,
+	},
+	{
+		label: locale === 'en' ? 'New Enlisted' : ui.nav.features,
+		href: getLocalizedPath('features', locale),
+		pageId: 'features' as PageId,
+		accent: 'purple' as const,
+		active: isActive(getLocalizedPath('features', locale), 'features'),
+	},
+	{
+		label: locale === 'en' ? 'Reviews' : (ui.nav.reviews ?? 'Reviews'),
+		href: '/reviews/',
+		active: current === '/reviews/' || current.startsWith('/reviews/'),
+	},
+	{
+		label: locale === 'en' ? 'Partnership' : ui.nav.pricing,
+		href: getLocalizedPath('pricing', locale),
+		pageId: 'pricing' as PageId,
+		active: isActive(getLocalizedPath('pricing', locale), 'pricing'),
+	},
 ];
 
 const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly')!;
@@ -69,16 +91,18 @@ const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime')!;
 
 const shopPlans = [
 	{
-		label: locale === 'en' ? `Monthly — $${monthlyPlan.price}` : `${ui.product.monthly} — $${monthlyPlan.price}`,
+		label: locale === 'en' ? 'Monthly license' : ui.product.monthly,
+		price: `$${monthlyPlan.price}`,
 		href: siteConfig.checkoutUrl,
 		desc:
 			locale === 'en'
-				? 'ESP, aimbot, wallhack, and radar for 30 days. Anti-cheat updates while your license is active.'
-				: `${productInfo.planSummaries.monthly[0]} for 30 days. ${productInfo.planSummaries.monthly[2]}.`,
+				? 'ESP, aimbot, wallhack, and radar for 30 days with anti-cheat updates while your license is active.'
+				: `${productInfo.planSummaries.monthly[0]}. ${productInfo.planSummaries.monthly[2]}.`,
 		image: '/images/enlisted-esp-overlay.webp',
 	},
 	{
-		label: locale === 'en' ? `Lifetime — $${lifetimePlan.price}` : `${ui.product.lifetime} — $${lifetimePlan.price}`,
+		label: locale === 'en' ? 'Lifetime license' : ui.product.lifetime,
+		price: `$${lifetimePlan.price}`,
 		href: siteConfig.checkoutUrl,
 		desc:
 			locale === 'en'
@@ -88,22 +112,48 @@ const shopPlans = [
 	},
 ];
 
-const buyLabel = locale === 'en' ? 'Buy' : ui.nav.buyNow;
-const shopLabel = locale === 'en' ? 'Shop' : buyLabel;
-const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
+const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
+const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheats');
 ---
 
 <header class:list={['nav', overlay && 'nav--overlay']} data-nav>
 	<div class="nav__utility">
 		<div class="nav__shell nav__utility-inner">
 			<a href={homeHref} class="nav__utility-mark" aria-label={siteConfig.name}>
-				<img src={siteConfig.logo} alt="" width="18" height="18" class="nav__utility-logo" />
+				<span class="nav__utility-g" aria-hidden="true">G</span>
 			</a>
 			<nav class="nav__utility-links" aria-label="Utility">
-				<a href={getLocalizedPath('hacks', locale)} class="nav__utility-link">{ui.nav.cheats ?? 'Cheats'}</a>
+				<div class="nav__utility-dropdown" data-nav-dropdown>
+					<button
+						type="button"
+						class:list={['nav__utility-link nav__utility-link--menu', { 'is-active': cheatsActive }]}
+						data-nav-dropdown-trigger
+						aria-expanded="false"
+						aria-controls="nav-utility-cheats-menu"
+					>
+						{cheatsUtilityLabel}
+						<span class="nav__utility-chevron" aria-hidden="true"></span>
+					</button>
+					<div class="nav__dropdown nav__dropdown--utility" id="nav-utility-cheats-menu" hidden>
+						<ul class="nav__dropdown-list">
+							{
+								cheatLinks.map((link) => (
+									<li>
+										<a
+											href={link.href}
+											class:list={['nav__dropdown-link', { 'is-active': isActive(link.href, link.pageId) }]}
+										>
+											{link.label}
+										</a>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+				</div>
 				<a href={getLocalizedPath('support', locale)} class="nav__utility-link nav__utility-link--external">
 					Support
-					<span aria-hidden="true">↗</span>
+					<span class="nav__utility-ext" aria-hidden="true"></span>
 				</a>
 			</nav>
 			<div class="nav__utility-right">
@@ -117,59 +167,28 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	<div class="nav__main">
 		<div class="nav__shell nav__main-inner">
 			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
-				<span class="nav__brand-emblem" aria-hidden="true">★</span>
-				<span class="nav__brand-text">
-					<span class="nav__brand-title">{productInfo.game.toUpperCase()}</span>
-					<span class="nav__brand-sub">CHEATS</span>
-				</span>
+				<img
+					src="/images/enlisted-brand-mark.svg"
+					alt=""
+					width="132"
+					height="36"
+					class="nav__brand-logo"
+					decoding="async"
+				/>
 			</a>
 
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				<ul class="nav__list">
-					<li class="nav__item">
-						<a
-							href={homeHref}
-							class:list={['nav__link', { 'is-active': homeActive }]}
-						>
-							{ui.nav.home}
-						</a>
-					</li>
-
-					<li class="nav__item nav__item--dropdown" data-nav-dropdown>
-						<button
-							type="button"
-							class:list={['nav__trigger nav__trigger--accent', { 'is-active': cheatsActive }]}
-							data-nav-dropdown-trigger
-							aria-expanded="false"
-							aria-controls="nav-cheats-menu"
-						>
-							{ui.nav.cheats ?? 'Cheats'}
-							<span class="nav__chevron" aria-hidden="true"></span>
-						</button>
-						<div class="nav__dropdown nav__dropdown--menu" id="nav-cheats-menu" hidden>
-							<ul class="nav__dropdown-list">
-								{
-									cheatLinks.map((link) => (
-										<li>
-											<a
-												href={link.href}
-												class:list={['nav__dropdown-link', { 'is-active': isActive(link.href, link.pageId) }]}
-											>
-												{link.label}
-											</a>
-										</li>
-									))
-								}
-							</ul>
-						</div>
-					</li>
-
 					{
 						mainLinks.map((link) => (
 							<li class="nav__item">
 								<a
 									href={link.href}
-									class:list={['nav__link', { 'is-active': isActive(link.href, link.pageId) }]}
+									class:list={[
+										'nav__link',
+										{ 'is-active': link.active },
+										link.accent === 'purple' && 'nav__link--purple',
+									]}
 								>
 									{link.label}
 								</a>
@@ -240,7 +259,7 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 
 					<li class="nav__item nav__item--mobile-buy">
 						<a href={siteConfig.checkoutUrl} class="nav__mobile-buy" rel="noopener noreferrer">
-							{buyLabel}
+							{shopLabel}
 						</a>
 					</li>
 				</ul>
@@ -276,9 +295,6 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 								))
 							}
 						</div>
-						<a href={getLocalizedPath('pricing', locale)} class="nav__shop-all">
-							{viewPricingLabel} &gt;
-						</a>
 					</div>
 				</div>
 
@@ -406,6 +422,9 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 <style is:global>
 	:root {
 		--nav-stack-height: 5.35rem;
+		--nav-enlisted-purple: #a56bff;
+		--nav-enlisted-gold: #d4a259;
+		--nav-shop-bg: rgba(42, 32, 22, 0.92);
 	}
 
 	body.nav-open {
@@ -457,56 +476,98 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	}
 
 	.nav__utility {
-		background: var(--color-midnight);
-		border-bottom: 1px solid var(--color-border);
+		background: #080808;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 	}
 
 	.nav__utility-inner {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		min-height: 2rem;
-		padding-block: 0.2rem;
+		gap: 0.85rem;
+		min-height: 1.85rem;
+		padding-block: 0.15rem;
 	}
 
 	.nav__utility-mark {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 0.15rem;
-		background: rgba(255, 255, 255, 0.06);
+		width: 1.35rem;
+		height: 1.35rem;
+		border-radius: 0.12rem;
+		background: rgba(255, 255, 255, 0.08);
+		text-decoration: none;
 	}
 
-	.nav__utility-logo {
-		display: block;
-		width: 1rem;
-		height: 1rem;
-		object-fit: contain;
+	.nav__utility-g {
+		font-size: 0.72rem;
+		font-weight: 800;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.72);
 	}
 
 	.nav__utility-links {
 		display: flex;
 		align-items: center;
-		gap: 1.1rem;
+		gap: 0.95rem;
+	}
+
+	.nav__utility-dropdown {
+		position: relative;
 	}
 
 	.nav__utility-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.25rem;
-		font-size: 0.68rem;
+		gap: 0.3rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		font-size: 0.62rem;
 		font-weight: 600;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.58);
+		color: rgba(255, 255, 255, 0.55);
 		text-decoration: none;
+		cursor: pointer;
 		transition: color 0.2s ease;
 	}
 
-	.nav__utility-link:hover {
+	.nav__utility-link:hover,
+	.nav__utility-dropdown.is-open .nav__utility-link--menu {
 		color: rgba(255, 255, 255, 0.88);
+	}
+
+	.nav__utility-chevron {
+		width: 0;
+		height: 0;
+		border-left: 0.22rem solid transparent;
+		border-right: 0.22rem solid transparent;
+		border-top: 0.28rem solid currentColor;
+		opacity: 0.75;
+		transform: translateY(1px);
+	}
+
+	.nav__utility-dropdown.is-open .nav__utility-chevron {
+		transform: rotate(180deg) translateY(-1px);
+	}
+
+	.nav__utility-ext {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-top: 1px solid currentColor;
+		border-right: 1px solid currentColor;
+		transform: rotate(45deg) translate(-1px, 1px);
+		opacity: 0.65;
+	}
+
+	.nav__dropdown--utility {
+		left: 0;
+		min-width: 10.5rem;
+		padding: 0.25rem 0;
+		border: 0;
+		background: rgba(18, 18, 18, 0.98);
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
 	}
 
 	.nav__utility-right {
@@ -518,65 +579,40 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	}
 
 	.nav__main {
-		background: rgba(13, 17, 18, 0.72);
-		border-bottom: 1px solid var(--color-border);
-		backdrop-filter: blur(10px);
+		background: rgba(18, 22, 28, 0.62);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		backdrop-filter: blur(12px);
 		transition:
 			background 0.25s ease,
 			border-color 0.25s ease;
 	}
 
 	.nav.is-scrolled .nav__main {
-		background: rgba(13, 17, 18, 0.94);
-		border-bottom-color: var(--color-border);
+		background: rgba(12, 14, 18, 0.94);
+		border-bottom-color: rgba(255, 255, 255, 0.08);
 	}
 
 	.nav__main-inner {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		min-height: 3.35rem;
+		gap: 1.25rem;
+		min-height: 3.5rem;
 	}
 
 	.nav__brand {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.55rem;
 		flex-shrink: 0;
 		color: var(--color-ink);
 		text-decoration: none;
 	}
 
-	.nav__brand-emblem {
-		display: grid;
-		place-items: center;
-		width: 2rem;
-		height: 2rem;
-		border: 1px solid rgba(255, 255, 255, 0.18);
-		border-radius: 50%;
-		font-size: 0.95rem;
-		color: rgba(255, 255, 255, 0.88);
-		background: rgba(255, 255, 255, 0.04);
-	}
-
-	.nav__brand-text {
-		display: flex;
-		flex-direction: column;
-		line-height: 1;
-	}
-
-	.nav__brand-title {
-		font-size: 1.05rem;
-		font-weight: 800;
-		letter-spacing: 0.12em;
-	}
-
-	.nav__brand-sub {
-		margin-top: 0.12rem;
-		font-size: 0.58rem;
-		font-weight: 700;
-		letter-spacing: 0.28em;
-		color: rgba(255, 255, 255, 0.62);
+	.nav__brand-logo {
+		display: block;
+		width: auto;
+		height: 1.85rem;
+		max-width: 8.5rem;
+		object-fit: contain;
 	}
 
 	.nav__menu {
@@ -587,8 +623,8 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	.nav__list {
 		display: flex;
 		align-items: stretch;
-		justify-content: center;
-		gap: 0;
+		justify-content: flex-start;
+		gap: 0.15rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -600,28 +636,22 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 		position: relative;
 	}
 
-	.nav__item + .nav__item .nav__link,
-	.nav__item + .nav__item .nav__trigger,
-	.nav__item--dropdown + .nav__item .nav__link {
-		border-left: 1px solid rgba(255, 255, 255, 0.12);
-	}
-
 	.nav__link,
 	.nav__trigger {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.35rem;
-		min-height: 3.35rem;
-		padding: 0 1rem;
+		min-height: 3.5rem;
+		padding: 0 0.85rem;
 		border: 0;
 		background: transparent;
-		color: rgba(255, 255, 255, 0.88);
+		color: rgba(255, 255, 255, 0.92);
 		font: inherit;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
+		font-size: 0.82rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-transform: none;
 		text-decoration: none;
 		white-space: nowrap;
 		cursor: pointer;
@@ -631,36 +661,41 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	}
 
 	.nav__link:hover,
-	.nav__trigger:hover {
-		background: rgba(255, 255, 255, 0.06);
-		color: var(--color-ink);
-	}
-	.nav__trigger.is-active {
-		color: var(--color-ink);
+	.nav__trigger:hover,
+	.nav__item--dropdown.is-open > .nav__trigger {
+		background: rgba(255, 255, 255, 0.05);
+		color: #fff;
 	}
 
-	.nav__trigger--accent,
-	.nav__trigger--accent.is-active {
-		color: #d39a50;
+	.nav__link.is-active,
+	.nav__trigger.is-active {
+		color: #fff;
+	}
+
+	.nav__link--purple,
+	.nav__link--purple:hover,
+	.nav__link--purple.is-active {
+		color: var(--nav-enlisted-purple);
 	}
 
 	.nav__chevron {
-		width: 0.45rem;
-		height: 0.45rem;
-		border-right: 1.5px solid currentColor;
-		border-bottom: 1.5px solid currentColor;
-		transform: rotate(45deg) translateY(-1px);
-		opacity: 0.75;
+		width: 0;
+		height: 0;
+		border-left: 0.24rem solid transparent;
+		border-right: 0.24rem solid transparent;
+		border-top: 0.3rem solid currentColor;
+		opacity: 0.8;
+		transform: translateY(1px);
+		transition: transform 0.2s ease;
 	}
 
 	.nav__chevron--gold {
-		border-color: var(--color-cta);
-		transition: transform 0.2s ease;
+		border-top-color: var(--nav-enlisted-gold);
 	}
 
 	.nav__shop.is-open .nav__chevron--gold,
 	.nav__item--dropdown.is-open .nav__chevron {
-		transform: rotate(-135deg) translateY(1px);
+		transform: rotate(180deg) translateY(-1px);
 	}
 
 	.nav__dropdown {
@@ -668,43 +703,36 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 		top: 100%;
 		left: 0;
 		z-index: 5;
-		min-width: 12rem;
+		min-width: 11.5rem;
 		padding: 0.35rem 0;
-		border: 1px solid var(--color-border);
-		background: var(--color-card);
-		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+		border: 0;
+		background: rgba(18, 18, 18, 0.98);
+		box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;
-		transform: translateY(4px);
+		transform: translateY(0);
 		transition:
-			opacity 0.18s ease,
-			transform 0.18s ease,
-			visibility 0.18s ease;
+			opacity 0.16s ease,
+			visibility 0.16s ease;
 	}
 
+	.nav__utility-dropdown.is-open .nav__dropdown,
 	.nav__item--dropdown.is-open .nav__dropdown,
 	.nav__shop.is-open .nav__dropdown {
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
-		transform: translateY(0);
-	}
-
-	.nav__dropdown-list {
-		margin: 0;
-		padding: 0;
-		list-style: none;
 	}
 
 	.nav__dropdown-link {
 		display: block;
-		padding: 0.65rem 1rem;
-		color: rgba(255, 255, 255, 0.82);
-		font-size: 0.78rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
+		padding: 0.55rem 1rem;
+		color: rgba(255, 255, 255, 0.86);
+		font-size: 0.82rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-transform: none;
 		text-decoration: none;
 		transition:
 			background 0.15s ease,
@@ -714,7 +742,13 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	.nav__dropdown-link:hover,
 	.nav__dropdown-link.is-active {
 		background: rgba(255, 255, 255, 0.06);
-		color: var(--color-ink);
+		color: #fff;
+	}
+
+	.nav__dropdown-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
 	.nav__actions {
@@ -732,39 +766,40 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 
 	.nav__shop {
 		position: relative;
+		align-self: stretch;
+		display: flex;
+		align-items: stretch;
 	}
 
 	.nav__shop-btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
-		min-height: 2.35rem;
-		padding: 0 0.95rem;
-		border: 1px solid transparent;
-		background: transparent;
-		color: var(--color-ink);
-		font-size: 0.78rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		min-height: 100%;
+		padding: 0 1.1rem;
+		border: 1px solid rgba(212, 162, 89, 0.55);
+		background: var(--nav-shop-bg);
+		color: var(--nav-enlisted-gold);
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		text-transform: none;
 		cursor: pointer;
 		transition:
 			background 0.2s ease,
 			border-color 0.2s ease,
-			color 0.2s ease,
-			box-shadow 0.2s ease;
+			color 0.2s ease;
 	}
 
 	.nav__shop-btn:hover,
 	.nav__shop.is-open .nav__shop-btn {
-		background: rgba(29, 36, 35, 0.92);
-		border-color: var(--color-cta);
-		box-shadow: inset 0 0 0 1px rgba(197, 138, 69, 0.25);
-		color: var(--color-ink);
+		background: rgba(52, 38, 24, 0.98);
+		border-color: var(--nav-enlisted-gold);
+		color: #f3d39a;
 	}
 
 	.nav__shop-star {
-		color: var(--color-cta);
+		color: var(--nav-enlisted-gold);
 		font-size: 0.72rem;
 		line-height: 1;
 	}
@@ -772,46 +807,41 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	.nav__dropdown--shop {
 		right: 0;
 		left: auto;
-		width: min(44rem, calc(100vw - 2rem));
-		padding: 1rem;
-		margin-top: -1px;
-		border-color: var(--color-border);
-		background: rgba(13, 17, 18, 0.98);
+		width: min(46rem, calc(100vw - 2rem));
+		padding: 0.75rem;
+		margin-top: 0;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(16, 16, 16, 0.98);
 		box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
 	}
 
 	.nav__shop-grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.85rem;
+		gap: 0.75rem;
 	}
 
 	.nav__shop-card {
 		display: grid;
 		gap: 0;
 		padding: 0;
-		border: 1px solid var(--color-border);
-		background: var(--color-bg-secondary);
+		border: 0;
+		background: transparent;
 		color: inherit;
 		text-decoration: none;
 		overflow: hidden;
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease,
-			transform 0.2s ease;
+		transition: opacity 0.2s ease;
 	}
 
 	.nav__shop-card:hover {
-		border-color: rgba(197, 138, 69, 0.55);
-		background: var(--color-card-hover);
-		transform: translateY(-1px);
+		opacity: 0.92;
 	}
 
 	.nav__shop-card-media {
 		position: relative;
 		overflow: hidden;
-		aspect-ratio: 16 / 8.5;
-		background: var(--color-midnight);
+		aspect-ratio: 16 / 9;
+		background: #111;
 	}
 
 	.nav__shop-card-media img {
@@ -823,54 +853,32 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 
 	.nav__shop-card-link {
 		position: absolute;
-		top: 0.45rem;
-		right: 0.45rem;
-		display: grid;
-		place-items: center;
-		width: 1.35rem;
-		height: 1.35rem;
-		border: 1px solid rgba(241, 238, 229, 0.18);
-		background: rgba(13, 17, 18, 0.55);
-		font-size: 0.62rem;
-		color: var(--color-body);
+		top: 0.5rem;
+		right: 0.5rem;
+		font-size: 0.72rem;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.72);
 	}
 
 	.nav__shop-card-body {
-		padding: 0.85rem 0.9rem 1rem;
+		padding: 0.75rem 0.15rem 0.35rem;
 	}
 
 	.nav__shop-card-title {
 		margin: 0;
-		font-size: 0.95rem;
-		font-weight: 800;
+		font-size: 0.92rem;
+		font-weight: 700;
 		line-height: 1.25;
-		letter-spacing: 0.03em;
+		letter-spacing: 0;
 		text-transform: none;
-		color: var(--color-cta);
+		color: var(--nav-enlisted-gold);
 	}
 
 	.nav__shop-card-desc {
-		margin: 0.45rem 0 0;
+		margin: 0.4rem 0 0;
 		font-size: 0.78rem;
-		line-height: 1.55;
-		color: var(--color-body);
-	}
-
-	.nav__shop-all {
-		display: block;
-		margin-top: 0.75rem;
-		padding-top: 0.65rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		line-height: 1.5;
 		color: rgba(255, 255, 255, 0.62);
-		text-decoration: none;
-	}
-
-	.nav__shop-all:hover {
-		color: var(--color-ink);
 	}
 
 	.nav__toggle {
@@ -987,9 +995,7 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 		}
 
 		.nav__item + .nav__item .nav__link,
-		.nav__item + .nav__item .nav__trigger,
-		.nav__item--dropdown + .nav__item .nav__link {
-			border-left: 0;
+		.nav__item + .nav__item .nav__trigger {
 			border-top: 1px solid rgba(255, 255, 255, 0.08);
 		}
 
@@ -1066,12 +1072,9 @@ const viewPricingLabel = locale === 'en' ? 'View pricing' : ui.nav.pricing;
 	}
 
 	@media (max-width: 640px) {
-		.nav__brand-sub {
-			display: none;
-		}
-
-		.nav__brand-title {
-			font-size: 0.92rem;
+		.nav__brand-logo {
+			height: 1.55rem;
+			max-width: 7rem;
 		}
 	}
 </style>
