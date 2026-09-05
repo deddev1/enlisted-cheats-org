@@ -127,6 +127,13 @@ export const reviewsSectionBg: EnlistedScreenshot = {
 	title: 'Enlisted reviews section background',
 };
 
+/** Homepage FAQ band — official Enlisted.net scr/4 background. */
+export const faqSectionBg: EnlistedScreenshot = {
+	src: localImage('enlisted-faq-bg.jpg'),
+	alt: 'Enlisted WWII battlefield background behind frequently asked questions',
+	title: 'Enlisted FAQ section background',
+};
+
 /** Official Enlisted.net marketing screenshots for secondary page heroes and UI accents. */
 export const enlistedOfficialScreens = {
 	battlefieldPanorama: {
