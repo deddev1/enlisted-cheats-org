@@ -3,7 +3,7 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { enlistedScreenshots } from '../data/enlisted';
+import { enlistedScreenshots, gameplayScreenshots } from '../data/enlisted';
 import { productInfo, siteConfig } from '../data/site';
 import { contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
 
@@ -57,15 +57,65 @@ const shopCards = [
 	},
 ] as const;
 
-const mainLinks = [
+const mainLinksBefore = [
 	{ label: ui.nav.home, href: homeHref, pageId: 'home' as PageId },
 	{ label: ui.nav.cheats ?? 'Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
-	{ label: ui.nav.features, href: featuresHref, pageId: 'features' as PageId },
+];
+
+const mainLinksAfter = [
 	{ label: ui.nav.updates, href: updatesHref, pageId: 'updates' as PageId },
 	{ label: ui.nav.pricing, href: pricingHref, pageId: 'pricing' as PageId },
 	{ label: ui.nav.reviews ?? 'Reviews', href: reviewsHref, pageId: undefined },
 	{ label: ui.nav.faq, href: faqHref, pageId: 'faq' as PageId },
 ];
+
+const featureCards = [
+	{
+		label: ui.nav.features,
+		tag: 'Overview',
+		description: 'Full ESP, wallhack, aimbot, and radar stack in one Enlisted Cheats license for Windows PC.',
+		href: featuresHref,
+		pageId: 'features' as PageId,
+		image: enlistedScreenshots.mainMenu.src,
+		alt: enlistedScreenshots.mainMenu.alt,
+	},
+	{
+		label: ui.nav.esp,
+		tag: 'ESP',
+		description: 'Red soldier silhouettes and distance tags on open ground so you spot pushes and flanks early.',
+		href: getLocalizedPath('enlisted-esp', locale),
+		pageId: 'enlisted-esp' as PageId,
+		image: gameplayScreenshots.esp.src,
+		alt: gameplayScreenshots.esp.alt,
+	},
+	{
+		label: 'Wallhack',
+		tag: 'Wallhack',
+		description: 'Green wallhack boxes through wooden walls and trench fortifications before enemies peek.',
+		href: getLocalizedPath('wallhack', locale),
+		pageId: 'wallhack' as PageId,
+		image: gameplayScreenshots.wallhack.src,
+		alt: gameplayScreenshots.wallhack.alt,
+	},
+	{
+		label: ui.nav.aimbot,
+		tag: 'Aimbot',
+		description: 'Scoped enemy highlights, soft aim FOV, and per-weapon profiles for rifles and SMGs.',
+		href: getLocalizedPath('enlisted-aimbot', locale),
+		pageId: 'enlisted-aimbot' as PageId,
+		image: gameplayScreenshots.aimbot.src,
+		alt: gameplayScreenshots.aimbot.alt,
+	},
+	{
+		label: 'Radar',
+		tag: 'Radar',
+		description: '2D radar, skeleton ESP, snaplines, and soldier icons readable through smoke and hard cover.',
+		href: getLocalizedPath('radar', locale),
+		pageId: 'radar' as PageId,
+		image: gameplayScreenshots.radarMap.src,
+		alt: gameplayScreenshots.radarMap.alt,
+	},
+] as const;
 
 function pathMatches(href: string, id?: PageId) {
 	if (id === 'home') return current === href || current === `/${locale}/` || current === '/';
@@ -77,6 +127,17 @@ function pathMatches(href: string, id?: PageId) {
 	if (href === '/guides/') return current.startsWith('/guides/');
 	return current === href || current.startsWith(href);
 }
+
+function featureCardActive(cardPageId: PageId): boolean {
+	if (pageId === cardPageId) return true;
+	const card = featureCards.find((entry) => entry.pageId === cardPageId);
+	if (!card) return false;
+	return pathMatches(card.href, cardPageId);
+}
+
+const featuresActive = featureCards.some((card) => featureCardActive(card.pageId));
+const activeFeatureCard =
+	featureCards.find((card) => featureCardActive(card.pageId)) ?? featureCards[0];
 ---
 
 <header class:list={['nav', { 'nav--overlay': overlay }]} data-nav>
@@ -140,7 +201,81 @@ function pathMatches(href: string, id?: PageId) {
 
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				{
-					mainLinks.map((link) => (
+					mainLinksBefore.map((link) => (
+						<a
+							href={link.href}
+							class:list={[
+								'nav__menu-link',
+								{ 'is-active': pathMatches(link.href, link.pageId) },
+							]}
+						>
+							{link.label}
+						</a>
+					))
+				}
+
+				<div class="nav__features-wrap" data-nav-dropdown data-nav-features>
+					<a
+						href={featuresHref}
+						class:list={['nav__menu-link', 'nav__features-trigger', { 'is-active': featuresActive }]}
+						aria-haspopup="true"
+						aria-expanded="false"
+						data-nav-features-trigger
+					>
+						{ui.nav.features}
+						<svg class="nav__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+						</svg>
+					</a>
+					<div class="nav__features-mega" role="region" aria-label={ui.nav.features} data-nav-features-panel>
+						<div class="nav__features-head">
+							<p class="nav__features-kicker">Enlisted cheat modules</p>
+							<p class="nav__features-lead">
+								{
+									featureCardActive(activeFeatureCard.pageId)
+										? activeFeatureCard.description
+										: 'Browse ESP, wallhack, aimbot, and radar modules included in the Enlisted Cheats package.'
+								}
+							</p>
+						</div>
+						<div class="nav__features-scroll" tabindex="0" aria-label="Feature modules">
+							{
+								featureCards.map((card) => (
+									<a
+										href={card.href}
+										class:list={['nav__features-card', { 'is-active': featureCardActive(card.pageId) }]}
+										aria-current={featureCardActive(card.pageId) ? 'page' : undefined}
+									>
+										<div class="nav__features-card-media">
+											<img
+												{...shopImageAttrs(card.image)}
+												sizes="(max-width: 960px) 80vw, 220px"
+												alt={card.alt}
+												width="640"
+												height="360"
+												loading="lazy"
+												decoding="async"
+											/>
+											<span class="nav__features-card-tag">{card.tag}</span>
+										</div>
+										<div class="nav__features-card-body">
+											<h3 class="nav__features-card-title">{card.label}</h3>
+											<p class="nav__features-card-desc">{card.description}</p>
+											{
+												featureCardActive(card.pageId) ? (
+													<span class="nav__features-card-current">Current page</span>
+												) : null
+											}
+										</div>
+									</a>
+								))
+							}
+						</div>
+					</div>
+				</div>
+
+				{
+					mainLinksAfter.map((link) => (
 						<a
 							href={link.href}
 							class:list={[
@@ -278,7 +413,9 @@ function pathMatches(href: string, id?: PageId) {
 		};
 
 		const bindDropdown = (dropdown: Element) => {
-			const trigger = dropdown.querySelector('button, [data-nav-shop-trigger]') as HTMLElement | null;
+			const trigger = dropdown.querySelector(
+				'button, [data-nav-shop-trigger], [data-nav-features-trigger]',
+			) as HTMLElement | null;
 			if (!trigger) return;
 
 			let closeTimer: ReturnType<typeof setTimeout> | undefined;
@@ -315,8 +452,31 @@ function pathMatches(href: string, id?: PageId) {
 					closeAllDropdowns();
 					setOpen(!isOpen);
 				});
+			} else if (trigger.hasAttribute('data-nav-features-trigger')) {
+				trigger.addEventListener('click', (event) => {
+					if (!window.matchMedia('(min-width: 961px)').matches) {
+						event.preventDefault();
+						const isOpen = dropdown.classList.contains('is-open');
+						closeAllDropdowns();
+						setOpen(!isOpen);
+					}
+				});
 			}
 		};
+
+		const scrollActiveFeatureCard = (dropdown: Element) => {
+			const activeCard = dropdown.querySelector('.nav__features-card.is-active') as HTMLElement | null;
+			const scroller = dropdown.querySelector('.nav__features-scroll') as HTMLElement | null;
+			if (!activeCard || !scroller) return;
+			const offset =
+				activeCard.offsetLeft - scroller.clientWidth / 2 + activeCard.clientWidth / 2;
+			scroller.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+		};
+
+		nav.querySelectorAll('[data-nav-features]').forEach((dropdown) => {
+			dropdown.addEventListener('mouseenter', () => scrollActiveFeatureCard(dropdown));
+			dropdown.addEventListener('focusin', () => scrollActiveFeatureCard(dropdown));
+		});
 
 		nav.querySelectorAll('[data-nav-dropdown]').forEach(bindDropdown);
 	}
@@ -491,6 +651,7 @@ function pathMatches(href: string, id?: PageId) {
 
 	.nav__utility-dropdown.is-open .nav__caret,
 	.nav__dropdown.is-open .nav__caret,
+	.nav__features-wrap.is-open .nav__caret,
 	.nav__shop-wrap.is-open .nav__shop-caret {
 		transform: rotate(180deg);
 	}
@@ -498,7 +659,7 @@ function pathMatches(href: string, id?: PageId) {
 	.nav__main {
 		position: relative;
 		display: grid;
-		grid-template-columns: auto 1fr auto;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 		align-items: stretch;
 		gap: 0;
 		min-height: 3.5rem;
@@ -528,6 +689,8 @@ function pathMatches(href: string, id?: PageId) {
 		border-right: 1px solid rgba(255, 255, 255, 0.12);
 		align-self: center;
 		min-height: 3.5rem;
+		grid-column: 1;
+		justify-self: start;
 	}
 
 	.nav__brand-icon {
@@ -549,10 +712,11 @@ function pathMatches(href: string, id?: PageId) {
 	.nav__menu {
 		display: flex;
 		align-items: stretch;
-		justify-content: flex-start;
+		justify-content: center;
 		gap: 0;
 		min-width: 0;
-		flex: 1;
+		grid-column: 2;
+		justify-self: center;
 	}
 
 	.nav__menu-link,
@@ -660,6 +824,200 @@ function pathMatches(href: string, id?: PageId) {
 		flex-shrink: 0;
 		align-self: center;
 		padding-left: 0.75rem;
+		grid-column: 3;
+		justify-self: end;
+	}
+
+	.nav__features-wrap {
+		position: relative;
+		align-self: stretch;
+	}
+
+	.nav__features-trigger {
+		height: 100%;
+	}
+
+	.nav__features-wrap.is-open .nav__features-trigger,
+	.nav__features-wrap:focus-within .nav__features-trigger,
+	.nav__features-trigger:hover {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.nav__features-wrap.is-open .nav__features-trigger {
+		box-shadow: inset 0 -2px 0 rgba(197, 138, 69, 0.85);
+	}
+
+	.nav__features-mega {
+		position: fixed;
+		top: calc(3.5rem + env(safe-area-inset-top, 0px));
+		left: 50%;
+		z-index: 145;
+		width: min(52rem, calc(100vw - 2 * var(--page-gutter)));
+		padding: 1rem 1rem 1.1rem;
+		border: 1px solid rgba(197, 138, 69, 0.42);
+		background: rgba(18, 16, 14, 0.98);
+		box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transform: translateX(-50%) translateY(-6px);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease,
+			visibility 0.2s ease;
+	}
+
+	.nav:not(.nav--overlay) .nav__features-mega {
+		top: calc(5.5rem + env(safe-area-inset-top, 0px));
+	}
+
+	.nav__features-wrap.is-open .nav__features-mega,
+	.nav__features-wrap:focus-within .nav__features-mega {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateX(-50%) translateY(0);
+	}
+
+	.nav__features-head {
+		display: grid;
+		gap: 0.35rem;
+		margin-bottom: 0.85rem;
+		text-align: center;
+	}
+
+	.nav__features-kicker {
+		margin: 0;
+		color: var(--color-gold);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.nav__features-lead {
+		margin: 0 auto;
+		max-width: 36rem;
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 0.84rem;
+		line-height: 1.55;
+	}
+
+	.nav__features-scroll {
+		display: flex;
+		align-items: stretch;
+		gap: 0.75rem;
+		overflow-x: auto;
+		padding-bottom: 0.15rem;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(197, 138, 69, 0.45) transparent;
+	}
+
+	.nav__features-scroll::-webkit-scrollbar {
+		height: 0.35rem;
+	}
+
+	.nav__features-scroll::-webkit-scrollbar-thumb {
+		border-radius: 999px;
+		background: rgba(197, 138, 69, 0.45);
+	}
+
+	.nav__features-card {
+		display: flex;
+		flex: 0 0 min(14.5rem, 78vw);
+		flex-direction: column;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(0, 0, 0, 0.35);
+		color: inherit;
+		text-decoration: none;
+		scroll-snap-align: center;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.nav__features-card:hover {
+		border-color: rgba(197, 138, 69, 0.45);
+		background: rgba(197, 138, 69, 0.04);
+		transform: translateY(-1px);
+	}
+
+	.nav__features-card.is-active {
+		border-color: rgba(197, 138, 69, 0.75);
+		background: rgba(197, 138, 69, 0.08);
+		box-shadow: 0 0 0 1px rgba(197, 138, 69, 0.18);
+	}
+
+	.nav__features-card-media {
+		position: relative;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.nav__features-card-media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.nav__features-card-tag {
+		position: absolute;
+		top: 0.55rem;
+		left: 0.55rem;
+		padding: 0.18rem 0.45rem;
+		background: rgba(88, 96, 75, 0.92);
+		color: #f1eee5;
+		font-size: 0.62rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.nav__features-card-body {
+		display: grid;
+		gap: 0.35rem;
+		padding: 0.8rem 0.85rem 0.9rem;
+	}
+
+	.nav__features-card-title {
+		margin: 0;
+		color: var(--color-gold);
+		font-family: var(--font-display);
+		font-size: 0.86rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		line-height: 1.25;
+	}
+
+	.nav__features-card-desc {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.68);
+		font-size: 0.76rem;
+		line-height: 1.45;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+
+	.nav__features-card-current {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		padding: 0.16rem 0.45rem;
+		border: 1px solid rgba(197, 138, 69, 0.45);
+		color: var(--color-gold-hover);
+		font-size: 0.62rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 
 	.nav__shop {
@@ -687,7 +1045,7 @@ function pathMatches(href: string, id?: PageId) {
 	.nav__shop-wrap {
 		position: relative;
 		align-self: stretch;
-		margin-left: auto;
+		margin-left: 0.35rem;
 	}
 
 	.nav__shop-trigger {
@@ -996,6 +1354,33 @@ function pathMatches(href: string, id?: PageId) {
 		.nav__dropdown.is-open .nav__dropdown-panel,
 		.nav__utility-dropdown.is-open .nav__utility-panel {
 			display: block;
+		}
+
+		.nav__features-mega {
+			position: static;
+			width: 100%;
+			padding: 0.65rem 0.35rem 0.75rem;
+			border: 0;
+			box-shadow: none;
+			background: rgba(255, 255, 255, 0.03);
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: none;
+			display: none;
+		}
+
+		.nav__features-wrap.is-open .nav__features-mega {
+			display: block;
+		}
+
+		.nav__features-head {
+			text-align: left;
+			padding-inline: 0.35rem;
+		}
+
+		.nav__features-scroll {
+			padding-inline: 0.15rem;
 		}
 
 		.nav__dropdown-link,
