@@ -16,6 +16,7 @@
 		"optimize:images": "node scripts/optimize-responsive-images.mjs",
 		"fetch:images": "node scripts/fetch-arc-raiders-images.mjs",
 		"fetch:enlisted-official": "node scripts/fetch-enlisted-official-images.mjs",
+		"setup:logo": "node scripts/setup-enlisted-logo.mjs",
     "fetch:logo": "node scripts/fetch-zadeyo-logo.mjs",
     "extract:video-poster": "node scripts/extract-video-poster.mjs",
 		"preview": "astro preview --host 0.0.0.0 --port 3000",

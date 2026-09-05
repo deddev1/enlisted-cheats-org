@@ -63,10 +63,10 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 			<div class="promo__actions">
 				<a href={buyUrl} class="promo__cta promo__cta--primary" rel="noopener noreferrer">
 					<img
-						src="/images/enlisted-brand-mark.svg"
-						alt={productInfo.name}
-						width="88"
-						height="24"
+						src={siteConfig.logo}
+						alt={siteConfig.logoAlt}
+						width="1536"
+						height="1024"
 						class="promo__cta-logo"
 					/>
 					<span>{primaryLabel}</span>
@@ -241,8 +241,8 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 
 	.promo__cta-logo {
 		width: auto;
-		height: 0.85rem;
-		filter: brightness(0.15);
+		height: 1.15rem;
+		object-fit: contain;
 	}
 
 	.promo__cta--ghost {
