@@ -228,32 +228,37 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		gap: 0.45rem;
 		min-height: var(--touch-min);
-		padding: 0.85rem 1.85rem;
-		border-radius: 0.95rem;
-		border: 1px solid rgba(241, 238, 229, 0.14);
-		background: linear-gradient(180deg, #c58a45 0%, #b47a3c 100%);
-		color: #f1eee5;
-		font-size: 1rem;
+		padding: 0.9rem 2rem;
+		border-radius: 0.65rem;
+		border: 1px solid rgba(255, 214, 160, 0.38);
+		background: linear-gradient(135deg, #efc06a 0%, #c58a45 48%, #9a6830 100%);
+		color: #1a1208;
+		font-size: 0.95rem;
 		font-weight: 800;
-		letter-spacing: 0.04em;
-		text-shadow: 0 1px 3px rgba(13, 17, 18, 0.55);
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22);
 		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.22) inset,
-			0 8px 20px rgba(13, 17, 18, 0.28);
+			0 1px 0 rgba(255, 255, 255, 0.42) inset,
+			0 0 0 1px rgba(197, 138, 69, 0.28),
+			0 10px 24px rgba(180, 122, 60, 0.32),
+			0 4px 12px rgba(0, 0, 0, 0.28);
 		transition:
-			transform 0.2s ease,
-			filter 0.2s ease,
-			background 0.2s ease,
-			box-shadow 0.2s ease,
-			color 0.2s ease;
+			transform 0.22s ease,
+			filter 0.22s ease,
+			background 0.22s ease,
+			box-shadow 0.22s ease,
+			border-color 0.22s ease,
+			color 0.22s ease;
 	}
 
 	.btn-buy,
 	.btn-buy:hover,
 	.btn-buy:focus-visible,
 	.btn-buy:visited {
-		color: #f1eee5;
+		color: #1a1208;
 	}
 
 	.btn-buy,
@@ -306,9 +311,9 @@
 		background: linear-gradient(
 			105deg,
 			transparent 0%,
-			rgba(255, 255, 255, 0.12) 42%,
-			rgba(255, 255, 255, 0.22) 50%,
-			rgba(255, 255, 255, 0.12) 58%,
+			rgba(255, 255, 255, 0.08) 42%,
+			rgba(255, 255, 255, 0.35) 50%,
+			rgba(255, 255, 255, 0.08) 58%,
 			transparent 100%
 		);
 		z-index: 0;
@@ -319,13 +324,14 @@
 		z-index: 1;
 	}
 
-	.btn-buy::after,
-	.pricing-showcase__cart::after,
-	.features-detail__pricing-link::after {
+	.features-detail__pricing-link::after,
+	.pricing-showcase__cart::after {
 		display: none;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		.btn-buy:hover::after,
+		.btn-buy:focus-visible::after,
 		.btn:hover::after,
 		.btn:focus-visible::after,
 		.cart-btn:hover::after,
@@ -348,10 +354,14 @@
 		.btn-buy:focus-visible,
 		.pricing-showcase__cart:hover,
 		.pricing-showcase__cart:focus-visible {
+			transform: translateY(-2px) scale(1.015);
+			background: linear-gradient(135deg, #f5cc78 0%, #d39a50 48%, #c58a45 100%);
+			border-color: rgba(255, 228, 180, 0.55);
 			box-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.3) inset,
-				0 0 0 1px rgba(255, 255, 255, 0.12),
-				0 10px 22px rgba(13, 17, 18, 0.32);
+				0 1px 0 rgba(255, 255, 255, 0.5) inset,
+				0 0 0 1px rgba(255, 214, 160, 0.25),
+				0 0 22px rgba(197, 138, 69, 0.38),
+				0 14px 28px rgba(180, 122, 60, 0.36);
 		}
 	}
 
@@ -387,15 +397,15 @@
 	}
 
 	.btn-buy:hover {
-		color: #f1eee5;
-		background: linear-gradient(180deg, #d39a50 0%, #c58a45 100%);
-		transform: translateY(-1px);
-		filter: brightness(1.03);
-		text-shadow: 0 1px 3px rgba(13, 17, 18, 0.45);
+		color: #1a1208;
+		transform: translateY(-2px) scale(1.015);
+		background: linear-gradient(135deg, #f5cc78 0%, #d39a50 48%, #c58a45 100%);
+		filter: none;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
 	}
 
 	.btn-buy:active {
-		transform: translateY(0);
+		transform: translateY(0) scale(0.99);
 	}
 
 	.surface-card {
