@@ -520,6 +520,12 @@ const activeFeatureCard =
 
 	.nav--overlay .nav__main {
 		padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0.28) 0%,
+			rgba(13, 17, 18, 0.12) 100%
+		);
+		border-bottom-color: rgba(255, 255, 255, 0.08);
 	}
 
 	.nav__shell {
@@ -533,7 +539,8 @@ const activeFeatureCard =
 		min-height: 2rem;
 		padding: 0.35rem var(--page-gutter);
 		padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
-		background: rgba(0, 0, 0, 0.92);
+		background: rgba(13, 17, 18, 0.42);
+		backdrop-filter: blur(12px);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 	}
 
@@ -664,17 +671,36 @@ const activeFeatureCard =
 		gap: 0;
 		min-height: 3.5rem;
 		padding: 0 var(--page-gutter);
-		background: linear-gradient(180deg, rgba(21, 26, 26, 0.82) 0%, rgba(13, 17, 18, 0.68) 100%);
-		border-bottom: 1px solid var(--color-border);
-		backdrop-filter: blur(10px);
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0.52) 0%,
+			rgba(13, 17, 18, 0.34) 100%
+		);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(14px) saturate(1.1);
+		-webkit-backdrop-filter: blur(14px) saturate(1.1);
 		transition:
 			background 0.25s ease,
-			border-color 0.25s ease;
+			border-color 0.25s ease,
+			backdrop-filter 0.25s ease;
 	}
 
 	.nav.is-scrolled .nav__main,
 	.nav--overlay.is-scrolled .nav__main {
-		background: rgba(13, 17, 18, 0.96);
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0.78) 0%,
+			rgba(13, 17, 18, 0.62) 100%
+		);
+		border-bottom-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.nav--overlay.is-scrolled .nav__main {
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0.68) 0%,
+			rgba(13, 17, 18, 0.5) 100%
+		);
 	}
 
 	.nav__brand {
