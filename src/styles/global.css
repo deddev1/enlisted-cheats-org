@@ -38,8 +38,12 @@
 	--color-surface-raised: #1d2423;
 	--color-surface-muted: #1d2423;
 	--color-surface-hover: #252d2b;
-	--color-border: #3a3d37;
-	--color-border-strong: rgba(197, 138, 69, 0.45);
+	--color-border: rgba(58, 61, 55, 0.52);
+	--color-border-subtle: rgba(58, 61, 55, 0.38);
+	--color-border-gold: rgba(197, 138, 69, 0.11);
+	--color-border-gold-soft: rgba(197, 138, 69, 0.15);
+	--color-border-gold-hover: rgba(197, 138, 69, 0.26);
+	--color-border-strong: rgba(197, 138, 69, 0.3);
 
 	--color-cyan: #b47a3c;
 	--color-teal: #343b31;
@@ -414,7 +418,7 @@
 
 	.surface-card {
 		background: linear-gradient(180deg, rgba(29, 36, 35, 0.98) 0%, rgba(21, 26, 26, 0.98) 100%);
-		border: 1px solid var(--color-border);
+		border: 1px solid var(--color-border-subtle);
 		box-shadow: var(--shadow-soft);
 	}
 

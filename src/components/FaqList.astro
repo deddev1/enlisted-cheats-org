@@ -103,7 +103,7 @@ const groups = groupItems(items);
 
 	.faq-list__item {
 		border-radius: 0.9rem;
-		border: 1px solid rgba(197, 138, 69, 0.14);
+		border: 1px solid var(--color-border-gold);
 		background: rgba(20, 24, 30, 0.88);
 		overflow: hidden;
 		transition:
@@ -112,11 +112,11 @@ const groups = groupItems(items);
 	}
 
 	.faq-list__item:hover {
-		border-color: rgba(197, 138, 69, 0.28);
+		border-color: var(--color-border-gold-soft);
 	}
 
 	.faq-list__item[open] {
-		border-color: rgba(197, 138, 69, 0.38);
+		border-color: var(--color-border-gold-hover);
 		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 	}
 
@@ -155,7 +155,7 @@ const groups = groupItems(items);
 
 	.faq-list__answer {
 		padding: 0 1.05rem 1rem;
-		border-top: 1px solid rgba(197, 138, 69, 0.1);
+		border-top: 1px solid var(--color-border-gold);
 	}
 
 	.faq-list__answer p {
