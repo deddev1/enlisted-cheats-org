@@ -1,0 +1,305 @@
+---
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { enlistedScreenshots } from '../data/enlisted';
+import { productInfo } from '../data/site';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+
+const sectionTitle = locale === 'en' ? 'Cheat Features' : ui.nav.features;
+
+const cards = [
+	{
+		title: 'ESP',
+		desc:
+			locale === 'en'
+				? 'Soldier outlines, health bars, and distance readouts through terrain in campaigns, skirmishes, and large-scale battles.'
+				: productInfo.features.esp[0],
+		image: enlistedScreenshots.espBoxes.src,
+		alt: enlistedScreenshots.espBoxes.alt,
+		href: getLocalizedPath('enlisted-esp', locale),
+	},
+	{
+		title: locale === 'en' ? 'Aimbot' : ui.nav.aimbot,
+		desc:
+			locale === 'en'
+				? 'Smooth aim with FOV, bone priority, and per-weapon profiles for rifles, SMGs, and snipers.'
+				: productInfo.features.aimbot[0],
+		image: enlistedScreenshots.aimbotMenu.src,
+		alt: enlistedScreenshots.aimbotMenu.alt,
+		href: getLocalizedPath('enlisted-aimbot', locale),
+	},
+	{
+		title: 'Wallhack',
+		desc:
+			locale === 'en'
+				? 'See enemies and heavy units through cover with toggleable boxes, snaplines, and team colour coding.'
+				: productInfo.features.esp[1],
+		image: enlistedScreenshots.espOverlay.src,
+		alt: enlistedScreenshots.espOverlay.alt,
+		href: getLocalizedPath('wallhack', locale),
+	},
+	{
+		title: 'Radar',
+		desc:
+			locale === 'en'
+				? '2D off-screen radar with directional cues for flanks, spawn pushes, and early rotations.'
+				: productInfo.features.radar[0],
+		image: enlistedScreenshots.radarMinimap.src,
+		alt: enlistedScreenshots.radarMinimap.alt,
+		href: getLocalizedPath('radar', locale),
+	},
+	{
+		title: locale === 'en' ? 'Combat ESP' : ui.nav.cheats ?? 'Cheats',
+		desc:
+			locale === 'en'
+				? 'Live combat overlays for Axis and Allied soldiers, vehicles, and bosses during frontline fights.'
+				: productInfo.features.esp[4],
+		image: enlistedScreenshots.combatEsp.src,
+		alt: enlistedScreenshots.combatEsp.alt,
+		href: getLocalizedPath('hacks', locale),
+	},
+	{
+		title: locale === 'en' ? 'Loot ESP' : 'Loot ESP',
+		desc:
+			locale === 'en'
+				? 'Resource and pickup markers for ammo, medkits, and supply crates so you rotate with full kits.'
+				: productInfo.features.esp[2],
+		image: enlistedScreenshots.lootEsp.src,
+		alt: enlistedScreenshots.lootEsp.alt,
+		href: getLocalizedPath('features', locale),
+	},
+] as const;
+---
+
+<section class="feat-scroll" aria-labelledby="feat-scroll-title">
+	<div class="feat-scroll__bg" aria-hidden="true">
+		<img
+			src="/images/enlisted-cheats-hero.webp"
+			alt=""
+			width="1600"
+			height="900"
+			class="feat-scroll__bg-img"
+			loading="lazy"
+			decoding="async"
+		/>
+		<div class="feat-scroll__bg-veil"></div>
+	</div>
+
+	<div class="feat-scroll__head shell">
+		<h2 id="feat-scroll-title" class="feat-scroll__title">{sectionTitle}</h2>
+	</div>
+
+	<div class="feat-scroll__viewport">
+		<div class="feat-scroll__track" data-feat-track>
+			{
+				[...cards, ...cards].map((card) => (
+					<a href={card.href} class="feat-scroll__card">
+						<div class="feat-scroll__card-media">
+							<img src={card.image} alt={card.alt} width="420" height="260" loading="lazy" decoding="async" />
+						</div>
+						<div class="feat-scroll__card-body">
+							<h3 class="feat-scroll__card-title">{card.title}</h3>
+							<p class="feat-scroll__card-desc">{card.desc}</p>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.feat-scroll {
+		position: relative;
+		overflow: hidden;
+		padding: 2.75rem 0 3rem;
+		isolation: isolate;
+	}
+
+	.feat-scroll__bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.feat-scroll__bg-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 40%;
+		filter: grayscale(0.55) saturate(0.45) brightness(0.42) contrast(1.05);
+		transform: scale(1.04);
+	}
+
+	.feat-scroll__bg-veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(8, 10, 11, 0.72) 0%, rgba(8, 10, 11, 0.55) 45%, rgba(8, 10, 11, 0.82) 100%),
+			radial-gradient(ellipse 90% 70% at 50% 50%, rgba(13, 17, 18, 0.15) 0%, rgba(8, 10, 11, 0.75) 100%);
+	}
+
+	.feat-scroll__head {
+		position: relative;
+		z-index: 1;
+		margin-bottom: 1.75rem;
+		text-align: center;
+	}
+
+	.feat-scroll__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 3vw, 2rem);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-ink);
+		text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
+	}
+
+	.feat-scroll__viewport {
+		position: relative;
+		z-index: 1;
+		overflow: hidden;
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0%,
+			#000 8%,
+			#000 92%,
+			transparent 100%
+		);
+	}
+
+	.feat-scroll__track {
+		display: flex;
+		width: max-content;
+		gap: 0;
+		animation: feat-scroll-marquee 48s linear infinite;
+		will-change: transform;
+	}
+
+	.feat-scroll__card {
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 clamp(16rem, 28vw, 22rem);
+		width: clamp(16rem, 28vw, 22rem);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-right-color: rgba(255, 255, 255, 0.04);
+		background: rgba(10, 12, 13, 0.55);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			background 0.25s ease,
+			border-color 0.25s ease,
+			transform 0.25s ease;
+	}
+
+	.feat-scroll__card:hover {
+		background: rgba(14, 17, 18, 0.72);
+		border-color: rgba(197, 138, 69, 0.28);
+		transform: translateY(-2px);
+	}
+
+	.feat-scroll__card-media {
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: #0a0c0d;
+	}
+
+	.feat-scroll__card-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transition: transform 0.35s ease;
+	}
+
+	.feat-scroll__card:hover .feat-scroll__card-media img {
+		transform: scale(1.04);
+	}
+
+	.feat-scroll__card-body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 1.1rem 1rem 1.25rem;
+		text-align: center;
+		background: linear-gradient(180deg, rgba(8, 10, 11, 0.35) 0%, rgba(8, 10, 11, 0.82) 100%);
+	}
+
+	.feat-scroll__card-title {
+		margin: 0;
+		font-size: 0.92rem;
+		font-weight: 800;
+		line-height: 1.2;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-ink);
+	}
+
+	.feat-scroll__card-desc {
+		margin: 0;
+		font-size: 0.78rem;
+		line-height: 1.55;
+		color: rgba(241, 238, 229, 0.72);
+	}
+
+	@keyframes feat-scroll-marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (max-width: 760px) {
+		.feat-scroll {
+			padding: 2rem 0 2.25rem;
+		}
+
+		.feat-scroll__card {
+			flex-basis: 15rem;
+			width: 15rem;
+		}
+
+		.feat-scroll__track {
+			animation-duration: 36s;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.feat-scroll__track {
+			animation: none;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			width: 100%;
+			padding-inline: var(--page-gutter);
+			scroll-snap-type: x mandatory;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.feat-scroll__viewport {
+			mask-image: none;
+			overflow-x: auto;
+		}
+
+		.feat-scroll__card {
+			scroll-snap-align: start;
+		}
+
+		.feat-scroll__card:nth-child(n + 7) {
+			display: none;
+		}
+	}
+</style>

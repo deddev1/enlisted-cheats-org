@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
+import CheatFeaturesCarousel from '../components/CheatFeaturesCarousel.astro';
 import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import Gallery from '../components/Gallery.astro';
@@ -97,6 +98,7 @@ const extraGraph: Record<string, unknown>[] =
 			imageAlt={home.imageAlt}
 			accent={ui.hero.accent}
 		/>
+		<CheatFeaturesCarousel locale={locale} />
 		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
@@ -137,6 +139,10 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--gallery {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 720px;
+	}
+
+	.site__section--store {
+		padding-top: 0.5rem;
 	}
 
 	.site__section {
