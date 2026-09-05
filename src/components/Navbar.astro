@@ -105,15 +105,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		{
 			!overlay && (
 				<div class="nav__utility" aria-label="Utility">
-					<a href={homeHref} class="nav__utility-logo" aria-label={siteConfig.name}>
-						<img
-							src={siteConfig.logoRaster}
-							alt={siteConfig.logoAlt}
-							width="28"
-							height="28"
-							decoding="async"
-						/>
-					</a>
 					<nav class="nav__utility-links" aria-label="Quick links">
 						<div class="nav__utility-dropdown" data-nav-dropdown>
 							<button type="button" class="nav__utility-link nav__utility-link--dropdown" aria-expanded="false">
@@ -524,22 +515,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		background: rgba(13, 17, 18, 0.42);
 		backdrop-filter: blur(12px);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-	}
-
-	.nav__utility-logo {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2rem;
-		height: 2rem;
-		border-radius: 0.15rem;
-		background: rgba(255, 255, 255, 0.06);
-	}
-
-	.nav__utility-logo img {
-		width: 1.35rem;
-		height: 1.35rem;
-		object-fit: contain;
 	}
 
 	.nav__utility-links {
