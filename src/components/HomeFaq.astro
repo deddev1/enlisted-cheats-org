@@ -26,7 +26,6 @@ const faqHref = getLocalizedPath('faq', locale);
 
 	<div class="home-faq__footer">
 		<a class="home-faq__link" href={faqHref}>{faq.seeAll}</a>
-		<a class="home-faq__link home-faq__link--muted" href="/blog/">{faq.readGuides}</a>
 	</div>
 </section>
 
@@ -82,11 +81,6 @@ const faqHref = getLocalizedPath('faq', locale);
 		color: var(--color-orchid);
 		font-size: 0.9rem;
 		font-weight: 700;
-	}
-
-	.home-faq__link--muted {
-		color: var(--color-muted);
-		font-weight: 650;
 	}
 
 	.home-faq__link:hover {
