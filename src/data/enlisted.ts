@@ -25,6 +25,29 @@ export const enlistedGameplayImages = {
 	combat: '/images/enlisted-gameplay/combat.png',
 } as const;
 
+/** Official Enlisted.net battlefield screenshots for review heroes and social previews. */
+export const enlistedOfficialImages = {
+	hero: {
+		src: '/images/enlisted-official/battle-hero.webp',
+		alt: 'Enlisted WW2 battlefield screenshot with infantry and vehicles in combat',
+		title: 'Enlisted battlefield hero',
+	},
+	combat: {
+		src: '/images/enlisted-official/battle-combat.webp',
+		alt: 'Enlisted large-scale battle with soldiers advancing through smoke and artillery',
+		title: 'Enlisted large-scale battle',
+	},
+	thumb: {
+		src: '/images/enlisted-official/battle-thumb.webp',
+		alt: 'Enlisted squad combat thumbnail for reviews and social previews',
+		title: 'Enlisted combat thumbnail',
+	},
+} as const satisfies Record<string, EnlistedScreenshot>;
+
+export const reviewHeroImage = enlistedOfficialImages.hero;
+export const reviewDetailHeroImage = enlistedOfficialImages.combat;
+export const reviewOgImage = enlistedOfficialImages.thumb.src;
+
 const g = enlistedGameplayImages;
 
 /** Enlisted cheat screenshots — user-provided gameplay captures. */

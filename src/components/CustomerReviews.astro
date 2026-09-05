@@ -33,6 +33,19 @@ const seeAllLabel = reviewsUi.seeAll ?? 'See all reviews';
 ---
 
 <section class="reviews shell" aria-labelledby="reviews-title">
+	<div class="reviews__banner" aria-hidden="true">
+		<img
+			src="/images/enlisted-official/battle-hero-960w.webp"
+			srcset="/images/enlisted-official/battle-hero-640w.webp 640w, /images/enlisted-official/battle-hero-960w.webp 960w, /images/enlisted-official/battle-hero-1400w.webp 1400w"
+			sizes="100vw"
+			alt=""
+			width="1920"
+			height="1080"
+			loading="lazy"
+			decoding="async"
+		/>
+		<div class="reviews__banner-scrim"></div>
+	</div>
 	<header class="reviews__header">
 		<div class="reviews__intro">
 			<h2 id="reviews-title" class="reviews__title">
@@ -92,10 +105,43 @@ const seeAllLabel = reviewsUi.seeAll ?? 'See all reviews';
 
 <style>
 	.reviews {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
 		padding-block: 0;
+		border-radius: var(--radius-card, 1.1rem);
+	}
+
+	.reviews__banner {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.reviews__banner img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 30%;
+	}
+
+	.reviews__banner-scrim {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.88) 55%, rgba(10, 12, 16, 0.96) 100%),
+			linear-gradient(90deg, rgba(10, 12, 16, 0.45) 0%, transparent 50%);
+	}
+
+	.reviews__header,
+	.reviews__grid,
+	.reviews__foot {
+		position: relative;
+		z-index: 1;
 	}
 
 	.reviews__header {
+		padding-top: 1.35rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-start;
@@ -272,6 +318,7 @@ const seeAllLabel = reviewsUi.seeAll ?? 'See all reviews';
 		flex-wrap: wrap;
 		gap: 0.55rem;
 		margin-top: 1rem;
+		padding-bottom: 1.35rem;
 	}
 
 	.reviews__chip {

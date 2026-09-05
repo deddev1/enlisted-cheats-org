@@ -2,7 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import ReviewHero from '../../components/ReviewHero.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../data/site';
+import { reviewHeroImage, reviewOgImage } from '../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../data/reviews';
 import RelatedPages from '../../components/RelatedPages.astro';
 
@@ -35,7 +37,7 @@ const extraGraph: Record<string, unknown>[] = [
 		'@id': `${siteConfig.url}/#product`,
 		name: productInfo.name,
 		description: productInfo.summary,
-		image: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
+		image: new URL(reviewOgImage, siteConfig.url).href,
 		brand: { '@type': 'Brand', name: productInfo.brand },
 		url: `${siteConfig.url}/`,
 		aggregateRating: {
@@ -76,8 +78,8 @@ const extraGraph: Record<string, unknown>[] = [
 	title={title}
 	description={description}
 	canonicalPath={reviewsBasePath}
-	ogImage={siteConfig.defaultOgImage}
-	ogImageAlt="Enlisted Cheats customer reviews for ESP soft aim and cloud DMA"
+	ogImage={reviewOgImage}
+	ogImageAlt={reviewHeroImage.alt}
 	locale="en"
 	breadcrumbs={[
 		{ label: 'Home', href: '/' },
@@ -86,6 +88,12 @@ const extraGraph: Record<string, unknown>[] = [
 	extraGraph={extraGraph}
 >
 	<Navbar />
+	<ReviewHero
+		title="Enlisted Cheats reviews"
+		subtitle="Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and day-to-day use."
+		image={reviewHeroImage}
+		priority
+	/>
 	<main class="reviews-index">
 		<div class="shell reviews-index__wrap">
 			<nav class="reviews-index__crumbs" aria-label="Breadcrumb">
@@ -93,14 +101,6 @@ const extraGraph: Record<string, unknown>[] = [
 				<span aria-hidden="true">/</span>
 				<span aria-current="page">Reviews</span>
 			</nav>
-
-			<header class="reviews-index__head">
-				<h1>Enlisted Cheats reviews</h1>
-				<p class="reviews-index__intro">
-					Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and
-					day-to-day use.
-				</p>
-			</header>
 
 			<div class="reviews-index__grid">
 				{
@@ -156,7 +156,7 @@ const extraGraph: Record<string, unknown>[] = [
 <style>
 	.reviews-index {
 		overflow-x: clip;
-		padding-block: 2rem 3rem;
+		padding-block: 1.25rem 3rem;
 	}
 
 	.reviews-index__wrap {
@@ -180,27 +180,6 @@ const extraGraph: Record<string, unknown>[] = [
 
 	.reviews-index__crumbs a:hover {
 		color: var(--color-orchid);
-	}
-
-	.reviews-index__head {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.reviews-index__head h1 {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.65rem, 3.5vw, 2.35rem);
-		font-weight: 800;
-		letter-spacing: -0.03em;
-	}
-
-	.reviews-index__intro {
-		margin: 0;
-		color: var(--color-muted);
-		font-size: 0.96rem;
-		line-height: 1.6;
-		max-width: 40rem;
 	}
 
 	.reviews-index__grid {

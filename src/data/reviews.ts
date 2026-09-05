@@ -1,5 +1,5 @@
 import { customerReviews, siteConfig } from './site';
-import { enlistedImages } from './enlisted';
+import { enlistedImages, enlistedOfficialImages } from './enlisted';
 
 export const reviewsBasePath = '/reviews/';
 
@@ -13,6 +13,9 @@ export function absoluteReviewUrl(slug?: string): string {
 
 /** Unique Enlisted screenshots for each review sitemap entry. */
 const reviewImagePaths = [
+	enlistedOfficialImages.hero.src,
+	enlistedOfficialImages.combat.src,
+	enlistedOfficialImages.thumb.src,
 	enlistedImages.espWallhack,
 	enlistedImages.aimbotCombat,
 	enlistedImages.radarHack,
@@ -26,9 +29,9 @@ const reviewImagePaths = [
 ] as const;
 
 const reviewIndexOgImage = {
-	url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
+	url: new URL(enlistedOfficialImages.thumb.src, siteConfig.url).href,
 	title: 'Enlisted Cheats customer reviews',
-	caption: 'Enlisted Cheats buyer reviews for ESP, aimbot, radar, and cloud DMA',
+	caption: enlistedOfficialImages.thumb.alt,
 };
 
 function reviewImageForIndex(index: number) {

@@ -2,7 +2,9 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
+import ReviewHero from '../../../components/ReviewHero.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
+import { reviewDetailHeroImage, reviewOgImage } from '../../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../../data/reviews';
 import RelatedPages from '../../../components/RelatedPages.astro';
 import type { CustomerReview } from '../../../data/site';
@@ -73,7 +75,7 @@ const extraGraph: Record<string, unknown>[] = [
 	title={review.seoTitle}
 	description={review.seoDescription}
 	canonicalPath={canonicalPath}
-	ogImage={siteConfig.defaultOgImage}
+	ogImage={reviewOgImage}
 	ogImageAlt={`Enlisted Cheats review by @${review.handle}`}
 	type="article"
 	locale="en"
@@ -85,6 +87,11 @@ const extraGraph: Record<string, unknown>[] = [
 	extraGraph={extraGraph}
 >
 	<Navbar />
+	<ReviewHero
+		title={`@${review.handle}`}
+		subtitle={review.short}
+		image={reviewDetailHeroImage}
+	/>
 	<main class="review-page">
 		<div class="shell review-page__wrap">
 			<nav class="review-page__crumbs" aria-label="Breadcrumb">
@@ -99,7 +106,7 @@ const extraGraph: Record<string, unknown>[] = [
 				<header class="review-detail__head">
 					<span class="review-detail__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
 					<div class="review-detail__meta">
-						<h1 class="review-detail__title">@{review.handle}</h1>
+						<p class="review-detail__handle">@{review.handle}</p>
 						<p class="review-detail__stars" aria-label={`${review.rating} out of 5 stars`}>
 							<span aria-hidden="true">{stars(review.rating)}</span>
 						</p>
@@ -156,7 +163,7 @@ const extraGraph: Record<string, unknown>[] = [
 <style>
 	.review-page {
 		overflow-x: clip;
-		padding-block: 2rem 3rem;
+		padding-block: 1.25rem 3rem;
 	}
 
 	.review-page__wrap {
@@ -221,10 +228,10 @@ const extraGraph: Record<string, unknown>[] = [
 		min-width: 0;
 	}
 
-	.review-detail__title {
+	.review-detail__handle {
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 3vw, 1.8rem);
+		font-size: clamp(1.1rem, 2.5vw, 1.35rem);
 		font-weight: 800;
 		letter-spacing: -0.02em;
 		line-height: 1.2;

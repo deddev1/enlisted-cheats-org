@@ -2,7 +2,7 @@
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { enlistedHeroImage, enlistedGameplayImages } from '../data/enlisted';
+import { enlistedHeroImage, enlistedGameplayImages, enlistedOfficialImages } from '../data/enlisted';
 import { productInfo, siteConfig } from '../data/site';
 
 interface Props {
@@ -113,8 +113,8 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 		<aside class="promo__premium" aria-labelledby="promo-premium-title">
 			<div class="promo__premium-media">
 				<img
-					src={enlistedGameplayImages.combat}
-					alt="Enlisted squad combat with ESP and aimbot overlays active"
+					src={enlistedOfficialImages.combat.src}
+					alt={enlistedOfficialImages.combat.alt}
 					width="420"
 					height="240"
 					loading="lazy"
