@@ -16,7 +16,7 @@ import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { homeFaqs, productInfo, siteConfig, customerReviewStats, customerReviews } from '../data/site';
-import { enlistedImages } from '../data/enlisted';
+import { enlistedImages, pricingShopImage } from '../data/enlisted';
 import {
 	buildAggregateOffer,
 	buildFaqSchemaNode,
@@ -101,7 +101,12 @@ const extraGraph: Record<string, unknown>[] =
 			/>
 		</div>
 		<HomeCheatShowcase locale={locale} />
-		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
+		<section
+			class="site__section site__section--store"
+			id="store"
+			aria-label={ui.product.title}
+			style={`--store-bg: url('${pricingShopImage.src}')`}
+		>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
 				<HomeAboutUs locale={locale} />
@@ -142,22 +147,61 @@ const extraGraph: Record<string, unknown>[] =
 		contain-intrinsic-size: 1px 720px;
 	}
 
-	.cheat-showcase + .site__section--store {
-		padding-top: 0.75rem;
-	}
-
 	.site__section {
 		padding-block: var(--section-space);
 	}
 
+	.cheat-showcase + .site__section--store {
+		padding-top: 0;
+	}
+
+	.site__section--store {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(1.35rem, 2.8vw, 2.15rem);
+	}
+
+	.site__section--store::before {
+		content: '';
+		position: absolute;
+		inset: -6%;
+		z-index: 0;
+		background:
+			linear-gradient(
+				180deg,
+				rgba(13, 17, 18, 0.9) 0%,
+				rgba(13, 17, 18, 0.62) 42%,
+				rgba(13, 17, 18, 0.88) 100%
+			),
+			var(--store-bg) center 18% / cover no-repeat;
+		filter: saturate(0.82) brightness(0.48);
+		pointer-events: none;
+	}
+
+	.site__section--store::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.07), transparent 68%);
+		pointer-events: none;
+	}
+
+	.site__section--store > .shell {
+		position: relative;
+		z-index: 1;
+	}
+
 	.store-stack {
 		display: grid;
-		gap: 1rem;
+		gap: 0.85rem;
 		align-items: start;
 	}
 
 	.store-stack :global(.home-about) {
 		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border-panel);
 	}
 
 	@media (max-width: 760px) {

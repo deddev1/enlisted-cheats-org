@@ -38,12 +38,16 @@
 	--color-surface-raised: #1d2423;
 	--color-surface-muted: #1d2423;
 	--color-surface-hover: #252d2b;
-	--color-border: rgba(58, 61, 55, 0.52);
-	--color-border-subtle: rgba(58, 61, 55, 0.38);
-	--color-border-gold: rgba(197, 138, 69, 0.11);
-	--color-border-gold-soft: rgba(197, 138, 69, 0.15);
-	--color-border-gold-hover: rgba(197, 138, 69, 0.26);
-	--color-border-strong: rgba(197, 138, 69, 0.3);
+	--color-border: rgba(255, 255, 255, 0.12);
+	--color-border-subtle: rgba(255, 255, 255, 0.08);
+	--color-border-panel: rgba(255, 255, 255, 0.09);
+	--color-border-panel-strong: rgba(255, 255, 255, 0.14);
+	--color-border-gold: rgba(197, 138, 69, 0.22);
+	--color-border-gold-soft: rgba(197, 138, 69, 0.16);
+	--color-border-gold-hover: rgba(197, 138, 69, 0.34);
+	--color-border-strong: rgba(197, 138, 69, 0.42);
+	--panel-bg: rgba(8, 10, 11, 0.62);
+	--panel-bg-deep: rgba(6, 8, 9, 0.78);
 
 	--color-cyan: #b47a3c;
 	--color-teal: #343b31;
@@ -70,8 +74,8 @@
 	--page-gutter: 1.5rem;
 	--shell-inset: max(var(--page-gutter), calc((100vw - var(--page-max)) / 2));
 	--section-space: 2rem;
-	--radius-media: 1rem;
-	--radius-card: 1.25rem;
+	--radius-media: 0.25rem;
+	--radius-card: 0.35rem;
 	--touch-min: 2.75rem;
 }
 
@@ -85,7 +89,7 @@
 	:root {
 		--page-gutter: 1rem;
 		--section-space: 1.35rem;
-		--radius-card: 1rem;
+		--radius-card: 0.3rem;
 	}
 }
 
@@ -417,9 +421,11 @@
 	}
 
 	.surface-card {
-		background: linear-gradient(180deg, rgba(29, 36, 35, 0.98) 0%, rgba(21, 26, 26, 0.98) 100%);
-		border: 1px solid var(--color-border-subtle);
-		box-shadow: var(--shadow-soft);
+		background: var(--panel-bg);
+		border: 1px solid var(--color-border-panel);
+		box-shadow: none;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 	}
 
 	.shell {
