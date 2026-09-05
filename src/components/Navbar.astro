@@ -113,57 +113,9 @@ const shopPlans = [
 ];
 
 const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
-const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheats');
 ---
 
 <header class:list={['nav', overlay && 'nav--overlay']} data-nav>
-	<div class="nav__utility">
-		<div class="nav__shell nav__utility-inner">
-			<a href={homeHref} class="nav__utility-mark" aria-label={siteConfig.name}>
-				<span class="nav__utility-g" aria-hidden="true">G</span>
-			</a>
-			<nav class="nav__utility-links" aria-label="Utility">
-				<div class="nav__utility-dropdown" data-nav-dropdown>
-					<button
-						type="button"
-						class:list={['nav__utility-link nav__utility-link--menu', { 'is-active': cheatsActive }]}
-						data-nav-dropdown-trigger
-						aria-expanded="false"
-						aria-controls="nav-utility-cheats-menu"
-					>
-						{cheatsUtilityLabel}
-						<span class="nav__utility-chevron" aria-hidden="true"></span>
-					</button>
-					<div class="nav__dropdown nav__dropdown--utility" id="nav-utility-cheats-menu" hidden>
-						<ul class="nav__dropdown-list">
-							{
-								cheatLinks.map((link) => (
-									<li>
-										<a
-											href={link.href}
-											class:list={['nav__dropdown-link', { 'is-active': isActive(link.href, link.pageId) }]}
-										>
-											{link.label}
-										</a>
-									</li>
-								))
-							}
-						</ul>
-					</div>
-				</div>
-				<a href={getLocalizedPath('support', locale)} class="nav__utility-link nav__utility-link--external">
-					Support
-					<span class="nav__utility-ext" aria-hidden="true"></span>
-				</a>
-			</nav>
-			<div class="nav__utility-right">
-				<div class="nav__utility-lang">
-					<LanguageSwitcher pageId={pageId} currentLocale={locale} />
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="nav__main">
 		<div class="nav__shell nav__main-inner">
 			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
@@ -179,6 +131,35 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				<ul class="nav__list">
+					<li class="nav__item nav__item--dropdown" data-nav-dropdown>
+						<button
+							type="button"
+							class:list={['nav__trigger', { 'is-active': cheatsActive }]}
+							data-nav-dropdown-trigger
+							aria-expanded="false"
+							aria-controls="nav-cheats-menu"
+						>
+							{ui.nav.cheats ?? 'Cheats'}
+							<span class="nav__chevron" aria-hidden="true"></span>
+						</button>
+						<div class="nav__dropdown nav__dropdown--menu" id="nav-cheats-menu" hidden>
+							<ul class="nav__dropdown-list">
+								{
+									cheatLinks.map((link) => (
+										<li>
+											<a
+												href={link.href}
+												class:list={['nav__dropdown-link', { 'is-active': isActive(link.href, link.pageId) }]}
+											>
+												{link.label}
+											</a>
+										</li>
+									))
+								}
+							</ul>
+						</div>
+					</li>
+
 					{
 						mainLinks.map((link) => (
 							<li class="nav__item">
@@ -421,7 +402,7 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 
 <style is:global>
 	:root {
-		--nav-stack-height: 5.35rem;
+		--nav-stack-height: 3.5rem;
 		--nav-enlisted-purple: #a56bff;
 		--nav-enlisted-gold: #d4a259;
 		--nav-shop-bg: rgba(42, 32, 22, 0.92);
@@ -469,113 +450,9 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 		margin: 0 auto;
 	}
 
-	.nav__utility,
 	.nav__main,
 	.nav__backdrop {
 		pointer-events: auto;
-	}
-
-	.nav__utility {
-		background: #080808;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-	}
-
-	.nav__utility-inner {
-		display: flex;
-		align-items: center;
-		gap: 0.85rem;
-		min-height: 1.85rem;
-		padding-block: 0.15rem;
-	}
-
-	.nav__utility-mark {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 1.35rem;
-		height: 1.35rem;
-		border-radius: 0.12rem;
-		background: rgba(255, 255, 255, 0.08);
-		text-decoration: none;
-	}
-
-	.nav__utility-g {
-		font-size: 0.72rem;
-		font-weight: 800;
-		line-height: 1;
-		color: rgba(255, 255, 255, 0.72);
-	}
-
-	.nav__utility-links {
-		display: flex;
-		align-items: center;
-		gap: 0.95rem;
-	}
-
-	.nav__utility-dropdown {
-		position: relative;
-	}
-
-	.nav__utility-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.3rem;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		font-size: 0.62rem;
-		font-weight: 600;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.55);
-		text-decoration: none;
-		cursor: pointer;
-		transition: color 0.2s ease;
-	}
-
-	.nav__utility-link:hover,
-	.nav__utility-dropdown.is-open .nav__utility-link--menu {
-		color: rgba(255, 255, 255, 0.88);
-	}
-
-	.nav__utility-chevron {
-		width: 0;
-		height: 0;
-		border-left: 0.22rem solid transparent;
-		border-right: 0.22rem solid transparent;
-		border-top: 0.28rem solid currentColor;
-		opacity: 0.75;
-		transform: translateY(1px);
-	}
-
-	.nav__utility-dropdown.is-open .nav__utility-chevron {
-		transform: rotate(180deg) translateY(-1px);
-	}
-
-	.nav__utility-ext {
-		width: 0.55rem;
-		height: 0.55rem;
-		border-top: 1px solid currentColor;
-		border-right: 1px solid currentColor;
-		transform: rotate(45deg) translate(-1px, 1px);
-		opacity: 0.65;
-	}
-
-	.nav__dropdown--utility {
-		left: 0;
-		min-width: 10.5rem;
-		padding: 0.25rem 0;
-		border: 0;
-		background: rgba(18, 18, 18, 0.98);
-		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
-	}
-
-	.nav__utility-right {
-		margin-left: auto;
-	}
-
-	.nav__utility-lang {
-		display: none;
 	}
 
 	.nav__main {
@@ -717,7 +594,6 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 			visibility 0.16s ease;
 	}
 
-	.nav__utility-dropdown.is-open .nav__dropdown,
 	.nav__item--dropdown.is-open .nav__dropdown,
 	.nav__shop.is-open .nav__dropdown {
 		opacity: 1;
@@ -954,14 +830,6 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 	}
 
 	@media (max-width: 900px) {
-		.nav__utility-links {
-			display: none;
-		}
-
-		.nav__utility-lang {
-			display: flex;
-		}
-
 		.nav__menu {
 			position: fixed;
 			inset: calc(var(--nav-stack-height) + env(safe-area-inset-top, 0px)) var(--page-gutter) auto;
@@ -1021,10 +889,6 @@ const cheatsUtilityLabel = locale === 'en' ? 'Cheats' : (ui.nav.cheats ?? 'Cheat
 		}
 
 		.nav__shop {
-			display: none;
-		}
-
-		.nav__lang {
 			display: none;
 		}
 
