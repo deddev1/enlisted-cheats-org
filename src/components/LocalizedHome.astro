@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import HomeFeaturesSpotlight from '../components/HomeFeaturesSpotlight.astro';
+import HomeCheatShowcase from '../components/HomeCheatShowcase.astro';
 import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import HomeAboutUs from '../components/HomeAboutUs.astro';
@@ -99,7 +99,7 @@ const extraGraph: Record<string, unknown>[] =
 				accent={ui.hero.accent}
 			/>
 		</div>
-		<HomeFeaturesSpotlight locale={locale} />
+		<HomeCheatShowcase locale={locale} />
 		<section
 			class="site__section site__section--store"
 			id="store"
@@ -146,7 +146,7 @@ const extraGraph: Record<string, unknown>[] =
 		padding-block: var(--section-space);
 	}
 
-	:global(.feat-spotlight) + .site__section--store {
+	.cheat-showcase + .site__section--store {
 		padding-top: 0;
 	}
 
