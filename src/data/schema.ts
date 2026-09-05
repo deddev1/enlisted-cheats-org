@@ -92,8 +92,6 @@ export const pageFaqClusters: Partial<
 import { productInfo, siteConfig } from './site';
 import type { PageId } from './i18n/routing';
 
-const priceValidUntil = '2027-12-31';
-
 /** Plain text for FAQ rich results — schema.org Answer.text must not contain HTML. */
 function stripHtml(html: string): string {
 	return html
@@ -116,7 +114,6 @@ export function buildAggregateOffer(canonicalURL: string) {
 			name: `${productInfo.name} ${plan.label}`,
 			price: plan.price.toFixed(2),
 			priceCurrency: productInfo.currency,
-			priceValidUntil,
 			availability: 'https://schema.org/InStock',
 			url: siteConfig.checkoutUrl,
 			seller: { '@id': `${siteConfig.url}/#organization` },
