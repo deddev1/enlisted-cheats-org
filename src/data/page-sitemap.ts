@@ -34,7 +34,7 @@ const sitemapImagesByPageId: Partial<Record<PageId, SitemapImage[]>> = {
 	],
 	hacks: [
 		img(enlistedImages.battleRoyaleCombat, 'Enlisted Cheats', 'Enlisted cheats campaign squad fight preview'),
-		img(enlistedImages.espWallhack, 'Enlisted Cheats ESP', 'Enlisted wallhack ESP on Grineer, Corpus, and enemy vehicles'),
+		img(enlistedImages.espWallhack, 'Enlisted Cheats ESP', 'Enlisted wallhack ESP on enemy infantry, tanks, and artillery'),
 	],
 	'enlisted-esp': [
 		img(enlistedImages.espWallhack, 'Enlisted ESP', 'Enlisted ESP wallhack overlay'),

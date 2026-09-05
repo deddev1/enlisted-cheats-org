@@ -64,6 +64,7 @@
 
 	--page-max: 1180px;
 	--page-gutter: 1.5rem;
+	--shell-inset: max(var(--page-gutter), calc((100vw - var(--page-max)) / 2));
 	--section-space: 2rem;
 	--radius-media: 1rem;
 	--radius-card: 1.25rem;

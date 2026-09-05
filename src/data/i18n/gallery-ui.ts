@@ -16,11 +16,11 @@ const enGallery: GalleryUi = {
 	subtitle:
 		'Real Enlisted cheat screenshots — ESP boxes, wallhack overlays, aimbot menus, and radar — from the undetected PC package players use in campaign missions, squad assaults, and large-scale battles.',
 	lead:
-		'Enlisted Cheats is built for Enlisted on Windows PC: read Grineer, Corpus, and enemy vehicles through cover, track flank spawns on a 2D radar, tune soft aim before missions, and buy one license that covers ESP, wallhack, and aimbot together.',
+		'Enlisted Cheats is built for Enlisted on Windows PC: read enemy infantry, tanks, and artillery through cover, track flank spawns on a 2D radar, tune soft aim before missions, and buy one license that covers ESP, wallhack, and aimbot together.',
 	highlights: [
 		{
 			title: 'Enemy & objective ESP',
-			copy: 'Box, skeleton, and health-bar readouts on Grineer, Corpus, and enemy vehicles through tileset geometry so you pick fights with real intel.',
+			copy: 'Box, skeleton, and health-bar readouts on soldiers, vehicles, and artillery through trenches and fortifications so you pick fights with real intel.',
 		},
 		{
 			title: 'Wallhack & distance ESP',

@@ -5,7 +5,6 @@ import SiteFooter from './SiteFooter.astro';
 import { siteConfig } from '../data/site';
 import {
 	absoluteGuideUrl,
-	getMixedExternalGuides,
 	getNativeEnlistedGuides,
 	guidesBasePath,
 } from '../data/guides/helpers';
@@ -13,29 +12,18 @@ import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
 
-import type { ResolvedExternalGuide } from '../data/guides/types';
-
 const locale = defaultLocale;
 const nativeGuides = getNativeEnlistedGuides();
-const otherGameGuides = getMixedExternalGuides();
 const homeHref = getLocalizedPath('home', locale);
-
-function externalGuideLabel(guide: ResolvedExternalGuide): string {
-	const topic = guide.title.match(/Guide:\s*(.+)$/i)?.[1]?.split('&')[0].trim() ?? 'Guide';
-	const shortTopic = topic.length > 18 ? `${topic.slice(0, 15).trimEnd()}…` : topic;
-	const date = new Date(`${guide.published}T00:00:00Z`);
-	const stamp = `${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
-	return `${guide.gameName}: ${shortTopic} · ${stamp}`;
-}
 
 function nativeGuideLabel(title: string): string {
 	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
 	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
 }
 
-const title = 'Game Guides Hub | Enlisted & Multi-Game Gameplay Guides';
+const title = 'Enlisted Game Guides | Campaign, Battlefield & Factions';
 const description =
-	'Enlisted progression guides plus dedicated gameplay guides for Fortnite, Tarkov, Valorant, Palworld, and dozens more titles.';
+	'Native Enlisted guides on campaign missions, large-scale battles, factions, mission types, and patch notes — written for players using Enlisted Cheats on Windows PC.';
 
 const canonicalURL = absoluteGuideUrl();
 
@@ -61,13 +49,13 @@ const extraGraph = [
 	extraGraph={extraGraph}
 >
 	<Navbar locale={locale} />
-	<main class="guides">
+	<main class="guides shell">
 		<header class="guides__hero">
 			<p class="guides__eyebrow">Guides hub</p>
-			<h1>Game guides</h1>
+			<h1>Enlisted guides</h1>
 			<p class="guides__intro">
-				Start with our native Enlisted progression guides, then browse dedicated gameplay guides for other
-				titles below.
+				Progression guides for campaign missions, large-scale battles, factions, and patch notes — aligned
+				with the Enlisted Cheats feature set on Windows PC.
 			</p>
 		</header>
 
@@ -102,45 +90,12 @@ const extraGraph = [
 
 			<EnlistedAuthorityLinks headingLevel="h3" />
 		</section>
-
-		<section class="guides__section guides__section--external" aria-labelledby="external-guides-title">
-			<h2 id="external-guides-title" class="guides__section-title">Other Games Guides</h2>
-			<p class="guides__section-intro">
-				Gameplay guides for other titles — each article focuses on one game&apos;s core loop, progression,
-				and decision-making.
-			</p>
-
-			<div class="guides__grid">
-				{
-					otherGameGuides.map((guide, index) => (
-						<article class="guides__card">
-							<img
-								src={guide.imageSrc}
-								alt={guide.imageAlt}
-								width="640"
-								height="360"
-								loading={index < 4 ? 'lazy' : 'lazy'}
-								decoding="async"
-							/>
-							<div class="guides__card-body">
-								<span class="guides__cat">{guide.gameName}</span>
-								<h3 class="guides__card-title">
-									<a href={guide.canonicalPath}>{externalGuideLabel(guide)}</a>
-								</h3>
-							</div>
-						</article>
-					))
-				}
-			</div>
-		</section>
 	</main>
 	<SiteFooter locale={locale} />
 </Layout>
 
 <style>
 	.guides {
-		width: min(960px, calc(100% - 2rem));
-		margin: 0 auto;
 		padding: 2.5rem 0 4rem;
 	}
 
@@ -172,12 +127,7 @@ const extraGraph = [
 	}
 
 	.guides__section {
-		margin-bottom: 3rem;
-	}
-
-	.guides__section--external {
-		padding-top: 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		margin-bottom: 0;
 	}
 
 	.guides__section-title {
