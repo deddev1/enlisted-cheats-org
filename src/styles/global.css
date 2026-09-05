@@ -38,12 +38,15 @@
 	--color-surface-raised: #1d2423;
 	--color-surface-muted: #252d2b;
 	--color-border: #3a3d37;
-	--color-border-faded: color-mix(in srgb, var(--color-border) 42%, transparent);
-	--color-border-gold-subtle: color-mix(in srgb, var(--color-cta) 10%, transparent);
-	--color-border-gold: color-mix(in srgb, var(--color-cta) 14%, transparent);
-	--color-border-gold-mid: color-mix(in srgb, var(--color-cta) 20%, transparent);
-	--color-border-gold-hover: color-mix(in srgb, var(--color-cta) 30%, transparent);
-	--color-border-strong: color-mix(in srgb, var(--color-cta) 30%, transparent);
+	--color-border-faded: rgba(255, 255, 255, 0.07);
+	--color-border-muted: rgba(255, 255, 255, 0.11);
+	--color-border-gold-subtle: rgba(212, 168, 67, 0.16);
+	--color-border-gold: rgba(212, 168, 67, 0.26);
+	--color-border-gold-mid: rgba(212, 168, 67, 0.36);
+	--color-border-gold-hover: rgba(212, 168, 67, 0.5);
+	--color-border-strong: rgba(212, 168, 67, 0.5);
+	--color-panel: rgba(8, 10, 11, 0.68);
+	--color-panel-solid: rgba(12, 14, 15, 0.84);
 
 	--color-cyan: #b47a3c;
 	--color-teal: #343b31;
@@ -414,9 +417,11 @@
 	}
 
 	.surface-card {
-		background: linear-gradient(180deg, rgba(29, 36, 35, 0.98) 0%, rgba(21, 26, 26, 0.98) 100%);
+		background: var(--color-panel);
 		border: 1px solid var(--color-border-faded);
-		box-shadow: var(--shadow-soft);
+		box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 	}
 
 	.shell {
