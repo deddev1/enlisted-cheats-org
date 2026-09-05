@@ -233,16 +233,18 @@
 		min-height: var(--touch-min);
 		padding: 0.85rem 1.85rem;
 		border-radius: 0.95rem;
-		border: 1px solid rgba(241, 238, 229, 0.16);
-		background: linear-gradient(180deg, #d39a50 0%, #c58a45 52%, #b47a3c 100%);
-		color: #0d1112;
+		border: 1px solid rgba(255, 228, 170, 0.55);
+		background: linear-gradient(135deg, #e8b066 0%, #c58a45 46%, #a86f2f 100%);
+		color: #140c04;
 		font-size: 1rem;
 		font-weight: 800;
-		letter-spacing: 0.04em;
+		letter-spacing: 0.05em;
 		text-shadow: none;
 		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.22) inset,
-			0 8px 20px rgba(0, 0, 0, 0.28);
+			0 1px 0 rgba(255, 255, 255, 0.32) inset,
+			0 0 0 1px rgba(197, 138, 69, 0.18),
+			0 0 24px rgba(197, 138, 69, 0.28),
+			0 10px 24px rgba(0, 0, 0, 0.3);
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease,
@@ -251,11 +253,20 @@
 			color 0.2s ease;
 	}
 
+	.btn-buy::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 48%);
+		pointer-events: none;
+		z-index: 0;
+	}
+
 	.btn-buy,
 	.btn-buy:hover,
 	.btn-buy:focus-visible,
 	.btn-buy:visited {
-		color: #0d1112;
+		color: #140c04;
 	}
 
 	.btn-buy,
@@ -308,26 +319,27 @@
 		background: linear-gradient(
 			105deg,
 			transparent 0%,
-			rgba(255, 255, 255, 0.12) 42%,
-			rgba(255, 255, 255, 0.22) 50%,
-			rgba(255, 255, 255, 0.12) 58%,
+			rgba(255, 255, 255, 0.14) 42%,
+			rgba(255, 255, 255, 0.32) 50%,
+			rgba(255, 255, 255, 0.14) 58%,
 			transparent 100%
 		);
-		z-index: 0;
+		z-index: 1;
 	}
 
 	.btn-buy > * {
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 	}
 
-	.btn-buy::after,
 	.pricing-showcase__cart::after,
 	.features-detail__pricing-link::after {
 		display: none;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		.btn-buy:hover::after,
+		.btn-buy:focus-visible::after,
 		.btn:hover::after,
 		.btn:focus-visible::after,
 		.cart-btn:hover::after,
@@ -351,9 +363,10 @@
 		.pricing-showcase__cart:hover,
 		.pricing-showcase__cart:focus-visible {
 			box-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.24) inset,
-				0 0 0 1px rgba(197, 138, 69, 0.18),
-				0 10px 22px rgba(0, 0, 0, 0.32);
+				0 1px 0 rgba(255, 255, 255, 0.38) inset,
+				0 0 0 1px rgba(255, 228, 170, 0.35),
+				0 0 28px rgba(197, 138, 69, 0.42),
+				0 14px 28px rgba(0, 0, 0, 0.34);
 		}
 	}
 
@@ -389,10 +402,10 @@
 	}
 
 	.btn-buy:hover {
-		color: #0d1112;
-		background: linear-gradient(180deg, #e0a860 0%, #d39a50 52%, #c58a45 100%);
-		transform: translateY(-1px);
-		filter: brightness(1.03);
+		color: #140c04;
+		background: linear-gradient(135deg, #f0bc72 0%, #d39a50 46%, #b47a3c 100%);
+		transform: translateY(-2px);
+		filter: brightness(1.04);
 	}
 
 	.btn-buy:active {

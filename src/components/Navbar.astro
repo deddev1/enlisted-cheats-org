@@ -1047,25 +1047,73 @@ const activeFeatureCard =
 	}
 
 	.nav__shop {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.45rem;
 		min-height: 3.5rem;
-		padding: 0 1.15rem;
-		border: 1px solid rgba(197, 138, 69, 0.65);
-		border-bottom: 1px solid rgba(197, 138, 69, 0.65);
-		background: rgba(0, 0, 0, 0.22);
-		color: var(--color-gold);
+		padding: 0 1.2rem;
+		border: 1px solid rgba(255, 228, 170, 0.55);
+		border-bottom: 1px solid rgba(255, 228, 170, 0.55);
+		background: linear-gradient(135deg, #e8b066 0%, #c58a45 46%, #a86f2f 100%);
+		color: #140c04;
 		font-size: 0.84rem;
-		font-weight: 700;
-		letter-spacing: 0.02em;
+		font-weight: 800;
+		letter-spacing: 0.04em;
 		text-transform: none;
 		text-decoration: none;
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.32) inset,
+			0 0 0 1px rgba(197, 138, 69, 0.16),
+			0 0 20px rgba(197, 138, 69, 0.3),
+			0 8px 20px rgba(0, 0, 0, 0.24);
 		transition:
+			transform 0.2s ease,
+			filter 0.2s ease,
 			background 0.2s ease,
 			border-color 0.2s ease,
+			box-shadow 0.2s ease,
 			color 0.2s ease;
+	}
+
+	.nav__shop::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 48%);
+		pointer-events: none;
+	}
+
+	.nav__shop::after {
+		content: '';
+		position: absolute;
+		top: -10%;
+		left: 0;
+		width: 42%;
+		height: 120%;
+		background: linear-gradient(
+			105deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.12) 42%,
+			rgba(255, 255, 255, 0.28) 50%,
+			rgba(255, 255, 255, 0.12) 58%,
+			transparent 100%
+		);
+		transform: translateX(-170%) skewX(-18deg);
+		pointer-events: none;
+	}
+
+	.nav__shop svg {
+		position: relative;
+		z-index: 1;
+	}
+
+	.nav__shop > :not(svg) {
+		position: relative;
+		z-index: 1;
 	}
 
 	.nav__shop-wrap {
@@ -1081,9 +1129,31 @@ const activeFeatureCard =
 	.nav__shop-wrap.is-open .nav__shop-trigger,
 	.nav__shop-wrap:focus-within .nav__shop-trigger,
 	.nav__shop-trigger:hover {
-		color: var(--color-gold-hover);
-		border-color: rgba(211, 154, 80, 0.95);
-		background: linear-gradient(180deg, rgba(88, 96, 75, 0.55) 0%, rgba(29, 36, 35, 0.92) 100%);
+		color: #140c04;
+		border-color: rgba(255, 236, 190, 0.75);
+		background: linear-gradient(135deg, #f0bc72 0%, #d39a50 46%, #b47a3c 100%);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.38) inset,
+			0 0 0 1px rgba(255, 228, 170, 0.35),
+			0 0 26px rgba(197, 138, 69, 0.42),
+			0 10px 24px rgba(0, 0, 0, 0.28);
+		transform: translateY(-1px);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav__shop-trigger:hover::after,
+		.nav__shop-wrap.is-open .nav__shop-trigger::after {
+			animation: nav-shop-shine 2.2s ease-in-out infinite;
+		}
+	}
+
+	@keyframes nav-shop-shine {
+		0% {
+			transform: translateX(-170%) skewX(-18deg);
+		}
+		100% {
+			transform: translateX(320%) skewX(-18deg);
+		}
 	}
 
 	.nav__shop-wrap.is-open .nav__shop-trigger {
