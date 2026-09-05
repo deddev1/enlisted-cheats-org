@@ -27,7 +27,7 @@ const buyUrl = siteConfig.checkoutUrl;
 const featuresHref = getLocalizedPath('features', locale);
 const setupHref = getLocalizedPath('setup', locale);
 const pricingHref = getLocalizedPath('pricing', locale);
-const galleryHref = '#gallery';
+const reviewsHref = '/reviews/';
 
 const buyLabels: Partial<Record<LocaleCode, string>> = {
 	en: 'Buy',
@@ -39,21 +39,21 @@ const buyLabels: Partial<Record<LocaleCode, string>> = {
 };
 const buyLabel = buyLabels[locale] ?? ui.hero.buyNow;
 
-const sideActionLabels: Partial<Record<LocaleCode, { features: string; secondary: string }>> = {
-	en: { features: 'Game Features', secondary: 'View Screenshots' },
-	es: { features: 'Funciones', secondary: 'Ver capturas' },
-	fr: { features: 'Fonctionnalités', secondary: 'Voir les captures' },
-	de: { features: 'Spiel-Features', secondary: 'Screenshots ansehen' },
+const sideActionLabels: Partial<Record<LocaleCode, { features: string; pricing: string }>> = {
+	en: { features: 'Game Features', pricing: 'View pricing' },
+	es: { features: 'Funciones', pricing: 'Ver precios' },
+	fr: { features: 'Fonctionnalités', pricing: 'Voir les tarifs' },
+	de: { features: 'Spiel-Features', pricing: 'Preise ansehen' },
 };
 const sideActions = sideActionLabels[locale] ?? {
 	features: ui.hero.seeFeatures,
-	secondary: ui.nav.reviews ?? 'View Screenshots',
+	pricing: ui.nav.pricing,
 };
 
-const pricingLinkLabels: Partial<Record<LocaleCode, string>> = {
-	en: 'View pricing',
+const reviewsLinkLabels: Partial<Record<LocaleCode, string>> = {
+	en: 'Reviews',
 };
-const pricingLinkLabel = pricingLinkLabels[locale] ?? ui.nav.pricing;
+const reviewsLinkLabel = reviewsLinkLabels[locale] ?? (ui.nav.reviews ?? 'Reviews');
 
 const setupLinkLabels: Partial<Record<LocaleCode, string>> = {
 	en: 'System requirements',
@@ -121,12 +121,12 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 				<span class="hero__emblem-star">★</span>
 			</div>
 
-			<p class="hero__kicker">{accent}</p>
-
 			<h1 class="hero__title">
 				<span class="hero__title-main">{productInfo.game.toUpperCase()}</span>
 				<span class="hero__title-sub">CHEATS</span>
 			</h1>
+
+			<p class="hero__kicker">{accent}</p>
 
 			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
 			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
@@ -161,55 +161,21 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 					</span>
 					{buyLabel}
 				</a>
-				<a href={galleryHref} class="hero__btn hero__btn--side">
-					<span class="hero__btn-icon" aria-hidden="true">
-						<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-							<path
-								d="M4 7a2 2 0 0 1 2-2h3l1.2-1.6A1 1 0 0 1 11 3h2a1 1 0 0 1 .8.4L15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z"
-								stroke="currentColor"
-								stroke-width="1.8"
-								stroke-linecap="round"
-								stroke-linejoin="round"></path>
-							<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"></circle>
-						</svg>
-					</span>
-					{sideActions.secondary}
+				<a href={pricingHref} class="hero__btn hero__btn--side">
+					{sideActions.pricing}
 				</a>
 			</div>
 
 			<div class="hero__links">
-				<a href={pricingHref} class="hero__link">
-					<span class="hero__link-icon" aria-hidden="true">◆</span>
-					{pricingLinkLabel}
+				<a href={reviewsHref} class="hero__link">
+					<span class="hero__link-icon" aria-hidden="true">★</span>
+					{reviewsLinkLabel}
 				</a>
 				<a href={setupHref} class="hero__link">
 					<span class="hero__link-icon" aria-hidden="true">⚙</span>
 					{setupLinkLabel}
 				</a>
 			</div>
-
-			<ul class="hero__platforms" aria-label="Supported platforms">
-				{
-					productInfo.platforms.map((platform) => (
-						<li class="hero__platform">
-							<span class="hero__platform-icon" aria-hidden="true">
-								{platform.includes('Windows') ? (
-									<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-										<path d="M3 5.5 10.5 4.5V11H3V5.5Zm0 13L10.5 19.5V13H3v5.5ZM11.5 4 21 2.5V11h-9.5V4Zm0 17.5L21 21.5V13h-9.5v8.5Z" />
-									</svg>
-								) : (
-									<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-										<path
-											d="M8 5h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3Zm1 3v2h6V8H9Zm0 4v2h4v-2H9Z"
-										/>
-									</svg>
-								)}
-							</span>
-							{platform}
-						</li>
-					))
-				}
-			</ul>
 		</div>
 	</div>
 </section>
@@ -283,11 +249,12 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: min(100% - (var(--page-gutter) * 2), 920px);
+		width: 100%;
+		max-width: none;
 		margin: 0 auto;
 		padding:
 			calc(4.75rem + env(safe-area-inset-top, 0px))
-			0
+			var(--page-gutter)
 			calc(2.5rem + env(safe-area-inset-bottom, 0px));
 		min-height: inherit;
 		text-align: center;
@@ -297,8 +264,8 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0;
-		width: 100%;
+		width: min(100%, 42rem);
+		margin-inline: auto;
 		animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
@@ -307,7 +274,7 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		place-items: center;
 		width: 4.5rem;
 		height: 4.5rem;
-		margin-bottom: 0.85rem;
+		margin-bottom: 1rem;
 		border-radius: 50%;
 		border: 2px solid rgba(255, 255, 255, 0.18);
 		background:
@@ -326,28 +293,33 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__kicker {
-		margin: 0 0 0.55rem;
+		order: 2;
+		margin: 0.85rem 0 0;
+		max-width: 34rem;
 		font-size: 0.72rem;
 		font-weight: 700;
-		letter-spacing: 0.18em;
+		line-height: 1.45;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: rgba(255, 255, 255, 0.72);
 	}
 
 	.hero__title {
+		order: 1;
 		margin: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.15rem;
+		gap: 0.35rem;
+		width: 100%;
 	}
 
 	.hero__title-main {
 		font-family: var(--font-display);
 		font-size: clamp(2rem, 6vw, 3.75rem);
 		font-weight: 800;
-		line-height: 0.95;
-		letter-spacing: 0.08em;
+		line-height: 1;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		color: var(--color-ink);
 		text-shadow:
@@ -356,16 +328,21 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__title-sub {
+		display: block;
+		width: fit-content;
 		font-size: clamp(0.95rem, 2vw, 1.35rem);
 		font-weight: 800;
-		letter-spacing: 0.34em;
+		line-height: 1;
+		letter-spacing: 0.32em;
+		text-indent: 0.32em;
 		text-transform: uppercase;
 		color: var(--color-cta);
 	}
 
 	.hero__subtitle {
-		margin: 1rem auto 0;
-		max-width: 42rem;
+		order: 3;
+		margin: 0.95rem 0 0;
+		max-width: 38rem;
 		font-size: clamp(0.92rem, 1.5vw, 1.05rem);
 		line-height: 1.65;
 		color: var(--color-body);
@@ -373,13 +350,15 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__features {
+		order: 4;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 0.45rem;
-		margin: 1rem 0 0;
+		margin: 1.1rem 0 0;
 		padding: 0;
 		list-style: none;
+		width: 100%;
 	}
 
 	.hero__feature {
@@ -396,12 +375,13 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__actions {
+		order: 5;
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-		align-items: center;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: stretch;
 		gap: 0.65rem;
-		width: min(100%, 680px);
-		margin-top: 1.65rem;
+		width: min(100%, 36rem);
+		margin-top: 1.5rem;
 	}
 
 	.hero__btn {
@@ -410,13 +390,14 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		justify-content: center;
 		gap: 0.45rem;
 		min-height: 2.85rem;
-		padding: 0.75rem 1.1rem;
+		padding: 0.75rem 0.85rem;
 		border-radius: 0.35rem;
-		font-size: 0.78rem;
+		font-size: 0.74rem;
 		font-weight: 800;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		text-decoration: none;
+		text-align: center;
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease,
@@ -440,17 +421,16 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__btn--buy {
-		min-height: 3.35rem;
-		padding: 0.9rem 1.65rem;
+		min-height: 3.1rem;
+		padding-inline: 1rem;
 		border: 1px solid rgba(197, 138, 69, 0.55);
 		background: linear-gradient(180deg, var(--color-cta) 0%, var(--color-accent) 100%);
 		color: var(--color-ink);
-		font-size: 0.92rem;
+		font-size: 0.88rem;
 		box-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.22) inset,
 			0 10px 28px rgba(13, 17, 18, 0.35),
 			0 4px 14px rgba(0, 0, 0, 0.35);
-		white-space: nowrap;
 	}
 
 	.hero__btn--buy:hover {
@@ -469,17 +449,22 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	}
 
 	.hero__links {
+		order: 6;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 1.25rem;
+		align-items: center;
+		gap: 1.5rem;
+		width: min(100%, 36rem);
 		margin-top: 1rem;
 	}
 
 	.hero__link {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		gap: 0.4rem;
+		min-width: 9rem;
 		font-size: 0.82rem;
 		font-weight: 600;
 		color: rgba(255, 255, 255, 0.72);
@@ -494,32 +479,7 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 	.hero__link-icon {
 		opacity: 0.75;
 		font-size: 0.75rem;
-	}
-
-	.hero__platforms {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1.25rem;
-		margin: 1.35rem 0 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.hero__platform {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.55);
-	}
-
-	.hero__platform-icon {
-		display: inline-flex;
-		opacity: 0.85;
+		line-height: 1;
 	}
 
 	.hero__subtitle--short {
@@ -543,12 +503,13 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		}
 
 		.hero__inner {
-			align-items: flex-end;
-			padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
-			padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+			align-items: center;
+			padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
+			padding-bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
 		}
 
 		.hero__stack {
+			width: min(100%, 24rem);
 			animation: none;
 		}
 
@@ -593,6 +554,15 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		.hero__btn--side {
 			width: 100%;
 			min-height: var(--touch-min);
+		}
+
+		.hero__links {
+			width: 100%;
+			gap: 0.85rem 1.25rem;
+		}
+
+		.hero__link {
+			min-width: 0;
 		}
 
 		.hero__poster-img,
