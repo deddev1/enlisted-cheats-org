@@ -298,7 +298,8 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		height: 100%;
 		object-fit: cover;
 		object-position: center 40%;
-		filter: grayscale(0.55) saturate(0.45) brightness(0.42) contrast(1.05);
+		filter: grayscale(0.72) saturate(0.28) brightness(0.3) contrast(1.02);
+		opacity: 0.72;
 		transform: scale(1.04);
 	}
 
@@ -306,8 +307,8 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(180deg, rgba(8, 10, 11, 0.72) 0%, rgba(8, 10, 11, 0.55) 45%, rgba(8, 10, 11, 0.82) 100%),
-			radial-gradient(ellipse 90% 70% at 50% 50%, rgba(13, 17, 18, 0.15) 0%, rgba(8, 10, 11, 0.75) 100%);
+			linear-gradient(180deg, rgba(8, 10, 11, 0.84) 0%, rgba(8, 10, 11, 0.72) 45%, rgba(8, 10, 11, 0.9) 100%),
+			radial-gradient(ellipse 90% 70% at 50% 50%, rgba(13, 17, 18, 0.35) 0%, rgba(8, 10, 11, 0.88) 100%);
 	}
 
 	.feat-scroll__shell {
@@ -435,6 +436,17 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		object-fit: contain;
 		object-position: center;
 		background: #0a0c0d;
+		opacity: 0.68;
+		filter: saturate(0.72) brightness(0.88);
+		transition:
+			opacity 0.25s ease,
+			filter 0.25s ease;
+	}
+
+	.feat-scroll__card.is-expanded .feat-scroll__card-media img,
+	.feat-scroll__card--featured .feat-scroll__card-media img {
+		opacity: 1;
+		filter: none;
 	}
 
 	.feat-scroll__card.is-expanded .feat-scroll__card-media,
