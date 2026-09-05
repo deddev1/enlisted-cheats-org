@@ -1,7 +1,20 @@
 import { siteConfig } from './site';
 
+export type EnlistedScreenshot = {
+	src: string;
+	alt: string;
+	title: string;
+};
+
 /** Homepage hero — self-hosted for sitemap and LCP. */
 export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
+
+/** Pricing sidebar — simple Enlisted shop background beside checkout. */
+export const enlistedPricingImage = {
+	src: '/images/enlisted-pricing-bg.webp',
+	alt: 'Enlisted WW2 battlefield atmosphere art beside pricing plans',
+	title: 'Enlisted pricing background',
+} as const satisfies EnlistedScreenshot;
 
 /** Real Enlisted gameplay screenshots for marketing carousel. */
 export const enlistedGameplayImages = {
@@ -11,12 +24,6 @@ export const enlistedGameplayImages = {
 	radar: '/images/enlisted-gameplay/radar.png',
 	combat: '/images/enlisted-gameplay/combat.png',
 } as const;
-
-export type EnlistedScreenshot = {
-	src: string;
-	alt: string;
-	title: string;
-};
 
 const g = enlistedGameplayImages;
 
@@ -79,20 +86,8 @@ export const enlistedScreenshots = {
 	},
 } as const satisfies Record<string, EnlistedScreenshot>;
 
-/** Pricing gallery — main viewer + thumbnail strip (no video). */
-export const pricingGallery: EnlistedScreenshot[] = [
-	enlistedScreenshots.mainMenu,
-	enlistedScreenshots.espOverlay,
-	enlistedScreenshots.espBoxes,
-	enlistedScreenshots.aimbotMenu,
-	enlistedScreenshots.radarMinimap,
-	enlistedScreenshots.combatEsp,
-	enlistedScreenshots.steelPathEsp,
-	enlistedScreenshots.sortieAimbot,
-	enlistedScreenshots.openWorldRadar,
-	enlistedScreenshots.lootEsp,
-	enlistedScreenshots.settingsPanel,
-];
+/** Pricing sidebar image — single static background beside checkout. */
+export const pricingGallery: EnlistedScreenshot[] = [enlistedPricingImage];
 
 /** Feature page section screenshots keyed to productFeatureDetails ids. */
 export const featureSectionImages: Record<'aimbot' | 'visual' | 'misc', EnlistedScreenshot> = {

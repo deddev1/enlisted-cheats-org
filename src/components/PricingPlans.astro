@@ -1,10 +1,9 @@
 ---
-import { pricingGallery } from '../data/enlisted';
+import { enlistedPricingImage } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
 import RelatedPages from './RelatedPages.astro';
-import { contentSrc, contentSrcSet, productMainSizes, productThumbSizes } from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -21,13 +20,6 @@ const ui = getUi(locale);
 const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? productInfo.plans[0];
 const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
 const defaultPlan = monthlyPlan;
-
-const galleryImages = pricingGallery.map((image) => ({
-	...image,
-	displaySrc: contentSrc(image.src),
-	displaySrcSet: contentSrcSet(image.src),
-}));
-const mainImage = galleryImages[0];
 
 const lifetimeBadge = locale === 'en' ? 'Best value' : ui.product.lifetime;
 
@@ -48,46 +40,16 @@ const featurePills = [
 	<div class="pricing-showcase__media">
 		<figure class="pricing-showcase__figure media-frame">
 			<img
-				src={mainImage.displaySrc}
-				srcset={mainImage.displaySrcSet}
-				sizes={productMainSizes}
-				alt={mainImage.alt}
-				width="1280"
-				height="720"
+				src={enlistedPricingImage.src}
+				alt={enlistedPricingImage.alt}
+				width="670"
+				height="815"
 				class="pricing-showcase__image"
-				data-main-image
 				loading="eager"
 				fetchpriority="high"
 				decoding="async"
 			/>
 		</figure>
-		<div class="pricing-showcase__thumbs" role="group" aria-label="Enlisted cheats screenshots">
-			{
-				galleryImages.map((image, index) => (
-					<button
-						type="button"
-						class:list={['pricing-showcase__thumb', { 'is-active': index === 0 }]}
-						aria-label={image.alt}
-						aria-pressed={index === 0 ? 'true' : 'false'}
-						data-thumb
-						data-src={image.displaySrc}
-						data-srcset={image.displaySrcSet ?? ''}
-						data-alt={image.alt}
-					>
-						<img
-							src={image.displaySrc}
-							srcset={image.displaySrcSet}
-							alt={image.alt}
-							sizes={productThumbSizes}
-							width="320"
-							height="200"
-							loading={index < 4 ? 'eager' : 'lazy'}
-							decoding="async"
-						/>
-					</button>
-				))
-			}
-		</div>
 	</div>
 
 	<div
@@ -225,35 +187,12 @@ const featurePills = [
 <script>
 	import { initPlanSelectors } from '../lib/plan-selector';
 	initPlanSelectors();
-
-	document.querySelectorAll('[data-product]').forEach((root) => {
-		const imageThumbs = root.querySelectorAll('[data-thumb]');
-		const mainImage = root.querySelector('[data-main-image]');
-
-		imageThumbs.forEach((thumb) => {
-			thumb.addEventListener('click', () => {
-				if (!(mainImage instanceof HTMLImageElement)) return;
-				const src = thumb.getAttribute('data-src');
-				const srcset = thumb.getAttribute('data-srcset');
-				const alt = thumb.getAttribute('data-alt');
-				if (src) mainImage.src = src;
-				if (srcset) mainImage.srcset = srcset;
-				else mainImage.removeAttribute('srcset');
-				if (alt) mainImage.alt = alt;
-				imageThumbs.forEach((item) => {
-					const active = item === thumb;
-					item.classList.toggle('is-active', active);
-					item.setAttribute('aria-pressed', active ? 'true' : 'false');
-				});
-			});
-		});
-	});
 </script>
 
 <style>
 	.pricing-showcase {
 		display: grid;
-		grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+		grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
 		gap: clamp(1rem, 2vw, 1.5rem);
 		align-items: center;
 		width: 100%;
@@ -269,21 +208,21 @@ const featurePills = [
 
 	.pricing-showcase__media {
 		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
 		min-width: 0;
+		justify-content: center;
 	}
 
 	.pricing-showcase__figure {
 		margin: 0;
-		aspect-ratio: 16 / 10;
+		width: min(100%, 20rem);
+		aspect-ratio: 670 / 815;
 		border: 1px solid rgba(197, 138, 69, 0.2);
 		border-radius: 0.85rem;
 		overflow: hidden;
+		background: rgba(8, 10, 12, 0.65);
 	}
 
-	.pricing-showcase__figure.media-frame img,
-	.pricing-showcase__thumb img {
+	.pricing-showcase__figure.media-frame img {
 		transform: none;
 	}
 
@@ -293,40 +232,8 @@ const featurePills = [
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center top;
+		object-position: center;
 		transform: none;
-	}
-
-	.pricing-showcase__thumbs {
-		display: flex;
-		gap: 0.55rem;
-		overflow-x: auto;
-		padding-bottom: 0.15rem;
-		scroll-snap-type: x proximity;
-		scrollbar-width: thin;
-	}
-
-	.pricing-showcase__thumb {
-		position: relative;
-		flex: 0 0 5.75rem;
-		padding: 0;
-		aspect-ratio: 16 / 10;
-		border: 2px solid rgba(197, 138, 69, 0.2);
-		border-radius: 0.65rem;
-		background: rgba(29, 36, 35, 0.8);
-		cursor: pointer;
-		overflow: hidden;
-		scroll-snap-align: start;
-		transition:
-			border-color 0.2s ease,
-			box-shadow 0.2s ease;
-	}
-
-	.pricing-showcase__thumb img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center top;
 	}
 
 	.pricing-showcase__checkout {
@@ -582,6 +489,15 @@ const featurePills = [
 			align-items: stretch;
 		}
 
+		.pricing-showcase__media {
+			order: -1;
+		}
+
+		.pricing-showcase__figure {
+			width: min(100%, 16rem);
+			margin-inline: auto;
+		}
+
 		.pricing-showcase__plans {
 			grid-template-columns: 1fr;
 		}
@@ -593,19 +509,10 @@ const featurePills = [
 		}
 	}
 
-	.pricing-showcase__thumb.is-active,
-	.pricing-showcase__thumb:hover {
-		border-color: rgba(197, 138, 69, 0.45);
-	}
-
 	@media (max-width: 480px) {
 		.pricing-showcase__header {
 			flex-direction: column;
 			align-items: flex-start;
-		}
-
-		.pricing-showcase__thumb {
-			flex-basis: 5.25rem;
 		}
 	}
 </style>
