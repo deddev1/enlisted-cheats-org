@@ -1,6 +1,19 @@
 # Path redirects only — keep in sync with PATH_REDIRECTS in functions/_middleware.js.
 # Domain redirects (www, legacy hosts, http→https) are handled in middleware.
 
+/pricing /pricing/ 301
+/features /features/ 301
+/faq /faq/ 301
+/blog /blog/ 301
+/guides /guides/ 301
+/setup /setup/ 301
+/updates /updates/ 301
+/support /support/ 301
+/reviews /reviews/ 301
+/privacy-policy /privacy-policy/ 301
+/refund-policy /refund-policy/ 301
+/terms /terms/ 301
+
 /sitemap-0.xml /sitemap.xml 301
 
 /fortnite-cheats / 301

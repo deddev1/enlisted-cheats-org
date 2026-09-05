@@ -2,6 +2,17 @@ import { defineMiddleware } from 'astro:middleware';
 import { applySecurityHeaders } from './lib/security-headers.js';
 import { getLocaleRedirectTarget } from './lib/locale-redirect.js';
 
+function isLocalHostname(hostname: string): boolean {
+	return (
+		hostname === 'localhost' ||
+		hostname === '127.0.0.1' ||
+		hostname === '0.0.0.0' ||
+		hostname.startsWith('172.') ||
+		hostname.startsWith('192.168.') ||
+		hostname.endsWith('.local')
+	);
+}
+
 /**
  * Applies security headers and locale auto-detection redirects during dev/preview.
  */
@@ -9,13 +20,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	const { request, url, isPrerendered } = context;
 
 	if (request.method === 'GET' || request.method === 'HEAD') {
-		const isLocalHost =
-			url.hostname === 'localhost' ||
-			url.hostname === '127.0.0.1' ||
-			url.hostname === '0.0.0.0';
+		const isLocalHost = isLocalHostname(url.hostname);
 
-		/** Skip during static prerender — no Accept-Language, so every locale would redirect to en. */
-		if (!isPrerendered && (!import.meta.env.DEV || !isLocalHost)) {
+		/** Skip locale auto-redirect on local dev/preview so every route is easy to test. */
+		if (!isPrerendered && !import.meta.env.DEV && !isLocalHost) {
 			const redirectTarget = getLocaleRedirectTarget(url.pathname, url.search, {
 				acceptLanguage: request.headers.get('accept-language'),
 				cookie: request.headers.get('cookie'),

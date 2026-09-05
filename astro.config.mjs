@@ -2,12 +2,16 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 // Static Cloudflare Pages site — no deployment adapter.
 // Do not add @astrojs/cloudflare; sitemaps and HTML must emit to dist/ root.
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://enlistedcheats.org',
-	trailingSlash: 'always',
+	// Dev: accept /pricing and /pricing/ so local browsing matches how users type URLs.
+	// Production build: enforce trailing slashes (directory format + Cloudflare _redirects).
+	trailingSlash: isDev ? 'ignore' : 'always',
 	compressHTML: true,
 	devToolbar: { enabled: false },
 	prefetch: {
