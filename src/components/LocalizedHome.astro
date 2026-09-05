@@ -90,6 +90,9 @@ const extraGraph: Record<string, unknown>[] =
 			/>
 		</div>
 		<HomeCheatShowcase locale={locale} />
+		<section class="site__section site__section--about">
+			<HomeAboutUs locale={locale} />
+		</section>
 		<section
 			class="site__section site__section--store"
 			id="store"
@@ -99,9 +102,6 @@ const extraGraph: Record<string, unknown>[] =
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
 			</div>
-		</section>
-		<section class="site__section site__section--about">
-			<HomeAboutUs locale={locale} />
 		</section>
 		<section
 			class="site__section site__section--store-features"
@@ -166,7 +166,11 @@ const extraGraph: Record<string, unknown>[] =
 		padding: 0;
 	}
 
-	.cheat-showcase + .site__section--store {
+	.cheat-showcase + .site__section--about {
+		padding-top: 0;
+	}
+
+	.site__section--about + .site__section--store {
 		padding-top: 0;
 	}
 
