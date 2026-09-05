@@ -2,11 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import HomeCheatShowcase from '../components/HomeCheatShowcase.astro';
+import HomeFeaturesSpotlight from '../components/HomeFeaturesSpotlight.astro';
 import PricingPlans from '../components/PricingPlans.astro';
-import PricingFeatureList from '../components/PricingFeatureList.astro';
 import HomeAboutUs from '../components/HomeAboutUs.astro';
-import HomeFaq from '../components/HomeFaq.astro';
 import HomeExplore from '../components/HomeExplore.astro';
 import CustomerReviews from '../components/CustomerReviews.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -99,7 +97,7 @@ const extraGraph: Record<string, unknown>[] =
 				accent={ui.hero.accent}
 			/>
 		</div>
-		<HomeCheatShowcase locale={locale} />
+		<HomeFeaturesSpotlight locale={locale} />
 		<section
 			class="site__section site__section--store"
 			id="store"
@@ -109,14 +107,10 @@ const extraGraph: Record<string, unknown>[] =
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
 				<HomeAboutUs locale={locale} />
-				<PricingFeatureList locale={locale} showRelatedPages={false} />
 			</div>
 		</section>
 		<section class="site__section site__section--reviews">
 			<CustomerReviews locale={locale} />
-		</section>
-		<section class="site__section site__section--faq">
-			<HomeFaq locale={locale} />
 		</section>
 		<section class="site__section site__section--explore">
 			<HomeExplore locale={locale} />
@@ -146,7 +140,7 @@ const extraGraph: Record<string, unknown>[] =
 		padding-block: var(--section-space);
 	}
 
-	.cheat-showcase + .site__section--store {
+	.feat-spotlight + .site__section--store {
 		padding-top: 0;
 	}
 
