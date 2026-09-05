@@ -8,6 +8,7 @@ import {
 	getAllPostsForLocale,
 	getBlogBasePath,
 	getRelatedPosts,
+	isGameGuidePost,
 } from '../data/blog/helpers';
 import type { ResolvedBlogPost } from '../data/blog/types';
 import { siteConfig } from '../data/site';
@@ -36,6 +37,9 @@ const productLinks = getBlogProductLinks(locale, {
 const t = post.translation;
 const homeHref = getLocalizedPath('home', locale);
 const blogHref = getBlogBasePath(locale);
+const isGameGuide = isGameGuidePost(post);
+const hubHref = isGameGuide ? '/guides/' : blogHref;
+const hubLabel = isGameGuide ? 'Guides' : ui.blogH1;
 const related = getRelatedPosts(locale, post, 3);
 
 const articleUrl = absoluteBlogUrl(locale, t.slug);
@@ -91,9 +95,10 @@ function pageTitle(headline: string): string {
 	type="article"
 	locale={locale}
 	englishOnlyAlternates={true}
+	noindex={isGameGuide}
 	breadcrumbs={[
 		{ label: ui.home, href: homeHref },
-		{ label: ui.blogH1, href: blogHref },
+		{ label: hubLabel, href: hubHref },
 		{ label: t.h1 },
 	]}
 	extraGraph={[articleSchema]}

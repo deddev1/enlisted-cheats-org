@@ -302,7 +302,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"<table><thead><tr><th>Feature</th><th>Enlisted Cheats</th><th>CheatVault</th></tr></thead><tbody><tr><td>Enemy ESP boxes</td><td>Yes, toggleable categories</td><td>Yes, fewer colour options</td></tr><tr><td>Loot / chest markers</td><td>Yes + distance readouts</td><td>Yes, no distance on loot</td></tr><tr><td>2D radar</td><td>Yes, configurable range</td><td>Yes, fixed size</td></tr><tr><td>Soft aim / Aimbot profiles</td><td>Per-weapon slots</td><td>Global + one profile</td></tr><tr><td>Controller support</td><td>Supported</td><td>Listed, awkward menu UX</td></tr><tr><td>Cloud DMA option</td><td>Included path in package</td><td>Premium tier add-on</td></tr><tr><td>In-client mod menu</td><td>Yes</td><td>Yes, heavier overlay</td></tr></tbody></table>",
 					"Enlisted Cheats wins on toggles and profile flexibility. I run ESP boxes + medkit markers in early game, then drop loot categories after first rifle. CheatVault's overlay felt busier — fine if you want everything on, noisy if you play campaign missions and need clean screen space.",
-					"Soft aim mattered more than I expected in co-op missions. Enlisted Cheats let me run a low-FOV bolt-action profile and a separate shotgun profile for close-quarters fights. CheatVault's single-profile setup worked, but I was constantly retuning mid-session.",
+					"Soft aim mattered more than I expected in co-op missions. Enlisted Cheats let me run a low-FOV Soma Prime profile and a separate shotgun profile for close-quarters fights. CheatVault's single-profile setup worked, but I was constantly retuning mid-session.",
 				],
 			},
 			{
@@ -363,7 +363,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"Week one weekend I enabled soft aim with a conservative FOV. Worked on rifle and shotgun in co-op missions. Sniping felt off — VoidCheats uses one bone-priority stack unless you manually swap configs between matches. Doable, not great for my play style.",
 					"I play controller two nights a week. VoidCheats lists controller support; menu navigation with a pad was clunky. Enlisted Cheats later felt similar on pad menus honestly — neither is perfect — but VoidCheats had no suggested controller baseline in docs. I wasted time guessing.",
-					"Bolt-action tracking at 40–50m was the benchmark test. VoidCheats smooth aim was slightly snappier out of box. Snappier sounds good until you watch replay clips and notice the robotic corrections. I tuned smoothness up; kills stabilized but so did obviousness in custom match testing with friends.",
+					"Soma Prime tracking at 40–50m was the benchmark test. VoidCheats smooth aim was slightly snappier out of box. Snappier sounds good until you watch replay clips and notice the robotic corrections. I tuned smoothness up; kills stabilized but so did obviousness in Simulacrum testing with friends.",
 				],
 			},
 			{
@@ -447,7 +447,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Gameplay feel — co-op missions and campaign missions squads",
 				paragraphs: [
 					"GhostWare ESP boxes were crisp — arguably cleaner outline rendering on low settings PCs. Enlisted Cheats boxes offer more colour and distance data; busier but more informative in squad comms (\"220m west\" calls).",
-					"Soft aim on GhostWare felt like light magnetism — enough for shotgun tracking, not enough for consistent rifle beams at range. Enlisted Cheats soft aim took tuning time but held mid-range rifle fights better once profiles were set.",
+					"Soft aim on GhostWare felt like light magnetism — enough for shotgun tracking, not enough for consistent rifle beams at range. Enlisted Cheats soft aim took tuning time but held Soma Prime fights better once profiles were set.",
 					"Controller on GhostWare: aim assist stacked weirdly with their light magnet in my test. Enlisted Cheats suggested baseline FOV values in support docs; less guesswork.",
 				],
 			},
@@ -580,39 +580,39 @@ export const blogPosts: BlogPostDefinition[] = [
 		translations: {
 		en: {
 		slug: "enlisted-factions-infantry-tanks-artillery-guide",
-		title: "Enlisted Factions Explained: USA, Germany, USSR & Japan",
-		metaDescription: "Enlisted factions explained — Axis and Allies infantry, tanks, artillery, and vehicles: behavior, weaknesses, and where to learn more from official sources.",
+		title: "Enlisted Factions Explained: Grineer, Corpus, Infested",
+		metaDescription: "Enlisted enemy factions explained — infantry, tanks, artillery, and vehicles behavior, weaknesses, and where to learn more from the official Wiki.",
 		h1: "Enlisted Factions: infantry, tanks, artillery, and vehicles",
-		intro: "Every Enlisted match pits historical factions against each other. Understanding how each nation fights helps you pick loadouts, squad roles, and positioning — whether you are new or returning after a break.",
-		keywords: ["Enlisted factions","Axis","Allies","USA","Germany","USSR","Japan","vehicles"],
-		imageAlt: "Enlisted factions guide for USA, Germany, USSR, Japan infantry and vehicles",
+		intro: "Every Enlisted mission features one or more enemy factions. Understanding how they fight helps you pick mods, elements, and positioning — whether you are new or returning after a break.",
+		keywords: ["Enlisted factions","Grineer","Corpus","Infested","vehicle"],
+		imageAlt: "Enlisted factions guide for Grineer Corpus Infested and vehicle enemies",
 		sections: [
 			{
-				h2: "Axis vs Allies — how factions differ",
+				h2: "Grineer — armor, density, and tanks and artillery",
 				paragraphs: [
-					"Enlisted splits playable and enemy forces into Axis and Allies. Germany and Japan bring strong armor and disciplined infantry; the USA, USSR, and Britain emphasize versatile squads, artillery support, and combined-arms pushes.",
-					"Campaign missions and large-scale battles rotate maps and faction pairings — read the mission briefing so you know whether you face dense infantry, tank columns, or artillery-heavy defenses.",
+					"Grineer missions feature armored units and heavy enemies that punish slow clears. Corrosive and armor-strip setups are common. Read faction detail on the <a href=\"https://enlisted.fandom.com/wiki/Grineer\" target=\"_blank\" rel=\"noopener noreferrer\">Grineer Wiki page</a>.",
+					"campaign missions infantry defenses are a classic choke-point test — see our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a>.",
 				],
 			},
 			{
-				h2: "Infantry — rifles, SMGs, and squad roles",
+				h2: "Corpus — shields, proxies, and robotics",
 				paragraphs: [
-					"Infantry is the backbone of every mode. Bolt-action rifles dominate long lanes; SMGs and shotguns win trench and building fights. Squad leaders, medics, and engineers change how pushes play out.",
-					"Official class and weapon details live on the <a href=\"https://enlisted.net/en/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted website</a> and community wiki — use them before committing to a main squad role.",
+					"Corpus enemies rely on shields and robotic proxies. Magnetic, toxin, and shield-break tools matter more here. The <a href=\"https://enlisted.fandom.com/wiki/Corpus\" target=\"_blank\" rel=\"noopener noreferrer\">Corpus Wiki page</a> lists unit types you will see in void and ice tilesets.",
+					"<a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> occasionally rebalances proxy spawns — watch <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> when a Corpus-heavy update ships.",
 				],
 			},
 			{
-				h2: "Tanks, artillery, and vehicles",
+				h2: "Infested and vehicle — special mechanics",
 				paragraphs: [
-					"Tanks and armored cars break stalemates but draw AT rifles, mines, and aircraft. Artillery strikes punish static squads on open maps. Plan routes with cover and keep repair kits when driving.",
-					"<a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">Official update notes</a> from <a href=\"https://www.gaijin.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> often rebalance vehicle costs and spawn rules — check after major patches.",
+					"Infested missions emphasize swarm pressure and constant spawns. enemy vehicles appear in later content and adapt to damage types — the <a href=\"https://enlisted.fandom.com/wiki/vehicle\" target=\"_blank\" rel=\"noopener noreferrer\">vehicle Wiki page</a> is essential before Eidolon or Circuit-style content.",
+					"Knowing faction spawns also helps you filter ESP categories — covered on our <a href=\"/enlisted-wallhack/\">wallhack page</a>.",
 				],
 			},
 			{
 				h2: "Use official references first",
 				paragraphs: [
-					"For faction rosters, weapons, and vehicles, trust <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted</a> and the <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> over random summaries. For balance changes, follow <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a>.",
-					"Knowing what each faction brings also helps you filter ESP categories — covered on our <a href=\"/wallhack/\">wallhack page</a>. Try This Today: Pick your most-played nation and review one vehicle and one infantry squad before your next session.",
+					"For lore and faction history, <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted</a> and <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> beat random summaries. For balance changes, trust <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> and developer streams from <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a>.",
+					"Try This Today: Pick your most-played faction and read their Wiki resistances page. Adjust one mod slot before your next session.",
 				],
 			}
 		],

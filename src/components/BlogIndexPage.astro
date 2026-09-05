@@ -8,10 +8,9 @@ import {
 	absoluteBlogUrl,
 	blogCardExcerpt,
 	blogCardHeading,
-	getAllPostsForLocale,
 	getBlogBasePath,
+	getCheatsBlogPosts,
 	getFeaturedPosts,
-	getPostsByCategory,
 } from '../data/blog/helpers';
 import { siteConfig } from '../data/site';
 import { getLocalizedPath } from '../data/i18n/routing';
@@ -22,13 +21,12 @@ interface Props {
 
 const { locale } = Astro.props;
 const ui = blogUi[locale];
-const posts = getAllPostsForLocale(locale);
+const cheatsPosts = getCheatsBlogPosts(locale);
 const featured = getFeaturedPosts(locale, 3);
-const gameGuides = getPostsByCategory(locale, 'Enlisted Game Guides');
-const productPosts = posts.filter((post) => post.category !== 'Enlisted Game Guides');
 const canonicalPath = getBlogBasePath(locale);
 const canonicalURL = absoluteBlogUrl(locale);
 const homeHref = getLocalizedPath('home', locale);
+const guidesHref = '/guides/';
 
 const articleListSchema = {
 	'@type': 'CollectionPage',
@@ -40,7 +38,7 @@ const articleListSchema = {
 	isPartOf: { '@id': `${siteConfig.url}/#website` },
 	mainEntity: {
 		'@type': 'ItemList',
-		itemListElement: posts.map((post, i) => ({
+		itemListElement: cheatsPosts.map((post, i) => ({
 			'@type': 'ListItem',
 			position: i + 1,
 			url: absoluteBlogUrl(locale, post.translation.slug),
@@ -62,16 +60,19 @@ const articleListSchema = {
 	<Navbar locale={locale} />
 	<main class="blog">
 		<header class="blog__hero">
-			<p class="blog__eyebrow">Enlisted guides &amp; product intel</p>
+			<p class="blog__eyebrow">Enlisted Cheats intel</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
-			<p class="blog__note">Product guides and reviews are published in English.</p>
+			<p class="blog__note">
+				Product guides and comparisons are published in English. For in-game mission and faction guides, see the
+				<a href={guidesHref}>Enlisted guides hub</a>.
+			</p>
 		</header>
 
 		{
 			featured.length > 0 && (
 				<section class="blog__featured" aria-label="Featured">
-					<h2 class="blog__section-title blog__section-title--center">Featured guides</h2>
+					<h2 class="blog__section-title blog__section-title--center">Featured cheat guides</h2>
 					<div class="blog__grid">
 						{featured.map((post, index) => (
 							<BlogCinematicCard
@@ -89,38 +90,13 @@ const articleListSchema = {
 			)
 		}
 
-		{
-			gameGuides.length > 0 && (
-				<section class="blog__section" aria-labelledby="blog-game-guides">
-					<h2 id="blog-game-guides" class="blog__section-title blog__section-title--center">
-						Enlisted game guides
-					</h2>
-					<p class="blog__section-intro blog__section-intro--center">
-						Campaign missions, battlefield, factions, missions, and patch notes — with links to official
-						Enlisted Wiki and Gaijin resources.
-					</p>
-					<div class="blog__grid">
-						{gameGuides.map((post) => (
-							<BlogCinematicCard
-								href={post.canonicalPath}
-								imageSrc={post.imageSrc}
-								imageAlt={post.translation.imageAlt}
-								title={blogCardHeading(post.translation.title)}
-								description={blogCardExcerpt(post.translation.intro)}
-							/>
-						))}
-					</div>
-				</section>
-			)
-		}
-
-		<section class="blog__section" aria-labelledby="blog-product-posts">
-			<h2 id="blog-product-posts" class="blog__section-title blog__section-title--center">
-				Product guides &amp; comparisons
+		<section class="blog__section" aria-labelledby="blog-cheats-posts">
+			<h2 id="blog-cheats-posts" class="blog__section-title blog__section-title--center">
+				All cheat guides
 			</h2>
 			<div class="blog__grid" aria-label={ui.allPosts}>
 				{
-					productPosts.map((post) => (
+					cheatsPosts.map((post) => (
 						<BlogCinematicCard
 							href={post.canonicalPath}
 							imageSrc={post.imageSrc}
@@ -179,6 +155,12 @@ const articleListSchema = {
 		line-height: 1.5;
 	}
 
+	.blog__note a {
+		color: var(--color-gold-hover);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
 	.blog__featured,
 	.blog__section {
 		margin-bottom: 2rem;
@@ -194,19 +176,6 @@ const articleListSchema = {
 	}
 
 	.blog__section-title--center {
-		text-align: center;
-	}
-
-	.blog__section-intro {
-		margin: 0 0 1rem;
-		max-width: 40rem;
-		color: rgba(255, 255, 255, 0.68);
-		font-size: 0.88rem;
-		line-height: 1.55;
-	}
-
-	.blog__section-intro--center {
-		margin-inline: auto;
 		text-align: center;
 	}
 

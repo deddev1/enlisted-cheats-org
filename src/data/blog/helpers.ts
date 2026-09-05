@@ -38,6 +38,17 @@ export const blogPosts: BlogPostDefinition[] = rawBlogPosts.map((post) => ({
 	translations: expandTranslations(post.translations as Partial<Record<LocaleCode, BlogTranslation>> & { en: BlogTranslation }),
 }));
 
+/** Game progression posts — shown on /guides/, not the cheats blog hub. */
+export const GAME_GUIDES_CATEGORY = 'Enlisted Game Guides';
+
+export function isGameGuidePost(post: Pick<BlogPostDefinition, 'category'>): boolean {
+	return post.category === GAME_GUIDES_CATEGORY;
+}
+
+export function isCheatsBlogPost(post: Pick<BlogPostDefinition, 'category'>): boolean {
+	return !isGameGuidePost(post);
+}
+
 export function getBlogImageSrc(key: BlogImageKey): string {
 	return imageMap[key];
 }
@@ -94,18 +105,18 @@ export function getAllPostsForLocale(locale: LocaleCode): ResolvedBlogPost[] {
 }
 
 export function getFeaturedPosts(locale: LocaleCode, limit = 3): ResolvedBlogPost[] {
-	const all = getAllPostsForLocale(locale);
-	const featured = all.filter((p) => p.featured);
-	return (featured.length >= limit ? featured : all).slice(0, limit);
+	const cheatsPosts = getAllPostsForLocale(locale).filter(isCheatsBlogPost);
+	const featured = cheatsPosts.filter((p) => p.featured);
+	return (featured.length >= limit ? featured : cheatsPosts).slice(0, limit);
+}
+
+export function getCheatsBlogPosts(locale: LocaleCode): ResolvedBlogPost[] {
+	return getAllPostsForLocale(locale).filter(isCheatsBlogPost);
 }
 
 export function getProductBlogPosts(locale: LocaleCode, limit = 3): ResolvedBlogPost[] {
-	const featured = getAllPostsForLocale(locale).filter(
-		(post) => post.featured && post.category !== 'Enlisted Game Guides',
-	);
-	const pool = featured.length >= limit ? featured : getAllPostsForLocale(locale).filter(
-		(post) => post.category !== 'Enlisted Game Guides',
-	);
+	const featured = getCheatsBlogPosts(locale).filter((post) => post.featured);
+	const pool = featured.length >= limit ? featured : getCheatsBlogPosts(locale);
 	return pool.slice(0, limit);
 }
 
@@ -118,9 +129,11 @@ export function getRelatedPosts(
 	post: ResolvedBlogPost,
 	limit = 3,
 ): ResolvedBlogPost[] {
-	const all = getAllPostsForLocale(locale).filter((p) => p.id !== post.id);
-	const sameCategory = all.filter((p) => p.category === post.category);
-	const pool = sameCategory.length >= limit ? sameCategory : all;
+	const poolCategory = isGameGuidePost(post) ? GAME_GUIDES_CATEGORY : post.category;
+	const all = getAllPostsForLocale(locale).filter(
+		(p) => p.id !== post.id && p.category === poolCategory,
+	);
+	const pool = all.length >= limit ? all : getAllPostsForLocale(locale).filter((p) => p.id !== post.id);
 	return pool.slice(0, limit);
 }
 
@@ -205,6 +218,7 @@ export function getBlogSitemapEntries() {
 	];
 
 	for (const post of blogPosts) {
+		if (isGameGuidePost(post)) continue;
 		const t = post.translations[locale];
 		const imageSrc = getBlogImageSrc(post.imageKey);
 		entries.push({

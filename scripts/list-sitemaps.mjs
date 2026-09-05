@@ -76,7 +76,7 @@ async function main() {
 
 		let role = 'locale pages';
 		if (file === 'sitemap-index.xml') role = '**master index** — submit this in GSC';
-		else if (file === 'sitemap.xml') role = '**English pages** (marketing + blog + reviews + guides)';
+		else if (file === 'sitemap.xml') role = '**English pages** (marketing + cheats blog + reviews + guides)';
 		else if (file === 'sitemap-images.xml') role = 'image entries (included in index)';
 		else if (file === 'sitemap-i18n.xml') role = 'all locales combined (525 URLs)';
 		else if (file.startsWith('sitemap-') && file !== 'sitemap-images.xml' && file !== 'sitemap-i18n.xml') {

@@ -131,7 +131,7 @@ export function getPageRelatedLinks(
 			{ label: 'Support', href: getLocalizedPath('support', locale) },
 		],
 		faq: [
-			{ label: 'Enlisted guides', href: '/blog/' },
+			{ label: 'Enlisted guides', href: '/guides/' },
 			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
 			{ label: 'Anti-cheat guide', href: '/blog/undetected-enlisted-cheats-eac/' },
 			{ label: 'Support', href: getLocalizedPath('support', locale) },

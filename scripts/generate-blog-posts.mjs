@@ -1187,6 +1187,56 @@ ${blogSources.map(buildPost).join(',\n')}
 
 writeFileSync(OUT, file);
 
+const VALID_STATIC_PATHS = new Set([
+	'/',
+	'/enlisted-cheats/',
+	'/enlisted-esp/',
+	'/enlisted-aimbot/',
+	'/enlisted-wallhack/',
+	'/enlisted-radar/',
+	'/features/',
+	'/pricing/',
+	'/setup/',
+	'/updates/',
+	'/faq/',
+	'/support/',
+	'/privacy-policy/',
+	'/refund-policy/',
+	'/terms/',
+	'/blog/',
+	'/reviews/',
+	'/guides/',
+]);
+
+for (const src of blogSources) {
+	VALID_STATIC_PATHS.add(`/blog/${src.slug}/`);
+}
+
+const linkErrors = [];
+for (const src of blogSources) {
+	for (const section of src.sections) {
+		for (const paragraph of section.paragraphs) {
+			for (const match of paragraph.matchAll(/href="(\/[^"#?]+)/g)) {
+				let href = match[1];
+				if (!href.endsWith('/')) href += '/';
+				if (href.startsWith('/blog/') && !VALID_STATIC_PATHS.has(href)) {
+					linkErrors.push(`${src.id}: broken blog link ${href}`);
+					continue;
+				}
+				if (!href.startsWith('/blog/') && !VALID_STATIC_PATHS.has(href)) {
+					linkErrors.push(`${src.id}: broken internal link ${href}`);
+				}
+			}
+		}
+	}
+}
+
+if (linkErrors.length) {
+	console.error('Blog link validation failed:');
+	for (const err of linkErrors) console.error(`  - ${err}`);
+	process.exit(1);
+}
+
 for (const src of blogSources) {
 	const tLen = src.title.length;
 	const dLen = src.metaDescription.length;
