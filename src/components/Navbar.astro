@@ -27,10 +27,10 @@ const cheatsHref = getLocalizedPath('hacks', locale);
 const supportHref = getLocalizedPath('support', locale);
 const shopLabel = 'Shop';
 const pricingHref = getLocalizedPath('pricing', locale);
-const updatesHref = getLocalizedPath('updates', locale);
 const featuresHref = getLocalizedPath('features', locale);
 const faqHref = getLocalizedPath('faq', locale);
 const reviewsHref = '/reviews/';
+const blogHref = '/blog/';
 
 const utilityLinks = [
 	{ label: ui.nav.cheats ?? 'Enlisted Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
@@ -57,17 +57,14 @@ const shopCards = [
 	},
 ] as const;
 
-const mainLinksBefore = [
+const centerNavLinks = [
 	{ label: ui.nav.home, href: homeHref, pageId: 'home' as PageId },
 	{ label: ui.nav.cheats ?? 'Cheats', href: cheatsHref, pageId: 'hacks' as PageId },
-];
-
-const mainLinksAfter = [
-	{ label: ui.nav.updates, href: updatesHref, pageId: 'updates' as PageId },
 	{ label: ui.nav.pricing, href: pricingHref, pageId: 'pricing' as PageId },
-	{ label: ui.nav.reviews ?? 'Reviews', href: reviewsHref, pageId: undefined },
 	{ label: ui.nav.faq, href: faqHref, pageId: 'faq' as PageId },
-];
+	{ label: ui.nav.reviews ?? 'Reviews', href: reviewsHref },
+	{ label: 'Blog', href: blogHref },
+] as const;
 
 function pathMatches(href: string, id?: PageId) {
 	if (id === 'home') return current === href || current === `/${locale}/` || current === '/';
@@ -156,7 +153,7 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 
 			<nav class="nav__menu" id="nav-panel" data-nav-panel aria-label="Primary">
 				{
-					mainLinksBefore.map((link) => (
+					centerNavLinks.slice(0, 2).map((link) => (
 						<a
 							href={link.href}
 							class:list={[
@@ -202,7 +199,7 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 				</div>
 
 				{
-					mainLinksAfter.map((link) => (
+					centerNavLinks.slice(2).map((link) => (
 						<a
 							href={link.href}
 							class:list={[
@@ -214,7 +211,6 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 						</a>
 					))
 				}
-
 			</nav>
 
 			<div class="nav__actions">
@@ -624,9 +620,9 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 
 	.nav__main {
 		position: relative;
-		display: flex;
-		align-items: stretch;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
 		gap: 0.75rem;
 		min-height: 3.5rem;
 		padding: 0;
@@ -668,11 +664,12 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
+		justify-self: start;
 		color: #fff;
 		text-decoration: none;
 		min-width: 0;
 		padding-right: 1rem;
-		margin-right: 0.25rem;
+		margin-right: 0;
 		border-right: 1px solid rgba(255, 255, 255, 0.12);
 		align-self: center;
 		min-height: 3.5rem;
@@ -690,7 +687,9 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		display: flex;
 		align-items: stretch;
 		justify-content: center;
-		flex: 1 1 auto;
+		justify-self: center;
+		width: max-content;
+		max-width: 100%;
 		flex-wrap: nowrap;
 		gap: 0;
 		min-width: 0;
@@ -800,9 +799,10 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		align-items: center;
 		gap: 0.55rem;
 		flex-shrink: 0;
+		justify-self: end;
 		align-self: center;
-		padding-left: 0.75rem;
-		margin-left: auto;
+		padding-left: 0;
+		margin-left: 0;
 	}
 
 	.nav__actions .nav__shop-wrap {
@@ -1234,10 +1234,18 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		display: none;
 	}
 
+	@media (max-width: 1180px) {
+		.nav__menu-link,
+		.nav__menu-link--dropdown {
+			padding-inline: 0.65rem;
+			font-size: 0.78rem;
+		}
+	}
+
 	@media (max-width: 1080px) {
 		.nav__menu-link,
 		.nav__menu-link--dropdown {
-			padding-inline: 0.5rem;
+			padding-inline: 0.45rem;
 			font-size: 0.72rem;
 		}
 	}
@@ -1268,6 +1276,11 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 			align-items: center;
 			justify-content: space-between;
 			gap: 0.75rem;
+		}
+
+		.nav__menu {
+			justify-self: auto;
+			width: auto;
 		}
 
 		.nav__brand {
