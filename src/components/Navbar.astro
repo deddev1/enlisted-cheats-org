@@ -502,6 +502,9 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 	}
 
 	.nav__shell {
+		width: min(100% - (var(--page-gutter) * 2), var(--page-max));
+		max-width: var(--page-max);
+		margin-inline: auto;
 		pointer-events: auto;
 	}
 
@@ -510,8 +513,7 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		align-items: center;
 		gap: 1rem;
 		min-height: 2rem;
-		padding: 0.35rem var(--page-gutter);
-		padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
+		padding: calc(0.35rem + env(safe-area-inset-top, 0px)) 0 0.35rem;
 		background: rgba(13, 17, 18, 0.42);
 		backdrop-filter: blur(12px);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -627,7 +629,7 @@ const featuresActive = featureLinks.some((link) => featureLinkActive(link.pageId
 		justify-content: space-between;
 		gap: 0.75rem;
 		min-height: 3.5rem;
-		padding: 0 var(--page-gutter);
+		padding: 0;
 		overflow: visible;
 		background: linear-gradient(
 			180deg,
