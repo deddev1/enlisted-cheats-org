@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { networkInterfaces } from 'node:os';
 
-const PORT = 4321;
+const PORT = 3000;
 
 function getLanIp() {
 	for (const entries of Object.values(networkInterfaces())) {
