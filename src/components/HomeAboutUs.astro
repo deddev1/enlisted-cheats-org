@@ -42,12 +42,14 @@ const monthlyPlan = productInfo.plans[0];
 			<div class="home-about__main">
 				<h2 id="home-about-title" class="home-about__title">About us</h2>
 				<p class="home-about__lead">
-					Enlisted Cheats is a Windows PC package for large-scale battles and squad assaults. ESP,
-					wallhack, aimbot, and radar ship in one license with updates after anti-cheat patches.
+					Enlisted Cheats is a Windows PC package built for large-scale battles, squad assaults, and
+					campaign missions. We ship ESP, wallhack, aimbot, and radar in one license with updates after
+					anti-cheat and game patches.
 				</p>
 				<p class="home-about__copy">
-					We focus on undetected maintenance, fast delivery, and clear setup docs. Monthly and lifetime
-					plans include the full stack and support when patches land.
+					Our team focuses on undetected maintenance, fast delivery, and clear setup docs so you can
+					toggle modules mid-match without overlay clutter. Monthly and lifetime plans include the full
+					feature stack and support when patches land.
 				</p>
 
 				<div class="home-about__actions">
@@ -88,8 +90,8 @@ const monthlyPlan = productInfo.plans[0];
 					<p class="home-about__card-kicker">Our package</p>
 					<h3 class="home-about__card-title">Full Enlisted cheat stack</h3>
 					<p class="home-about__card-text">
-						ESP, wallhack, aimbot, and radar together. Monthly or lifetime access with maintenance when
-						anti-cheat updates roll out.
+						ESP, wallhack, aimbot, and radar ship together. Pick monthly access or a one-time lifetime
+						license and get maintenance when Gaijin anti-cheat updates roll out.
 					</p>
 					<a href={pricingUrl} class="home-about__btn home-about__btn--card" rel="noopener noreferrer">
 						View pricing — from ${monthlyPlan.price}/mo
@@ -134,68 +136,67 @@ const monthlyPlan = productInfo.plans[0];
 	.home-about__inner {
 		position: relative;
 		z-index: 1;
-		padding-block: 1.35rem 1.5rem;
+		padding-block: clamp(1.75rem, 3vw, 2.25rem);
 	}
 
 	.home-about__layout {
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 14.5rem);
-		gap: 1rem;
-		align-items: center;
-		max-width: 56rem;
+		grid-template-columns: minmax(0, 1.28fr) minmax(0, 17.5rem);
+		gap: clamp(1rem, 2vw, 1.5rem);
+		align-items: stretch;
 	}
 
 	.home-about__main {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: 0.65rem;
-		max-width: 34rem;
+		gap: 0.85rem;
+		max-width: 38rem;
 	}
 
 	.home-about__title {
 		margin: 0;
 		color: #fff;
 		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+		font-size: clamp(1.65rem, 3.5vw, 2.35rem);
 		font-weight: 800;
 		line-height: 1;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.07em;
 		text-transform: uppercase;
 	}
 
 	.home-about__lead {
 		margin: 0;
 		color: rgba(255, 244, 220, 0.92);
-		font-size: 0.84rem;
-		line-height: 1.55;
+		font-size: clamp(0.88rem, 1.4vw, 0.96rem);
+		line-height: 1.6;
 	}
 
 	.home-about__copy {
 		margin: 0;
 		color: rgba(181, 180, 170, 0.92);
-		font-size: 0.8rem;
-		line-height: 1.5;
-		max-width: 32rem;
+		font-size: 0.84rem;
+		line-height: 1.55;
+		max-width: 36rem;
 	}
 
 	.home-about__actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin-top: 0.15rem;
+		gap: 0.55rem;
+		margin-top: 0.25rem;
 	}
 
 	.home-about__btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.35rem;
-		min-height: 2.35rem;
-		padding: 0.55rem 0.85rem;
+		gap: 0.4rem;
+		min-height: 2.55rem;
+		padding: 0.65rem 0.95rem;
 		border-radius: 0.2rem;
 		border: 1px solid transparent;
-		font-size: 0.64rem;
+		font-size: 0.68rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -208,8 +209,8 @@ const monthlyPlan = productInfo.plans[0];
 	}
 
 	.home-about__btn svg {
-		width: 0.9rem;
-		height: 0.9rem;
+		width: 0.95rem;
+		height: 0.95rem;
 		flex-shrink: 0;
 	}
 
@@ -243,13 +244,13 @@ const monthlyPlan = productInfo.plans[0];
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.35rem;
-		margin: 0.1rem 0 0;
+		gap: 0.4rem;
+		margin: 0.2rem 0 0;
 	}
 
 	.home-about__platform-label {
 		color: rgba(255, 255, 255, 0.55);
-		font-size: 0.6rem;
+		font-size: 0.64rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
@@ -257,7 +258,7 @@ const monthlyPlan = productInfo.plans[0];
 
 	.home-about__platform-value {
 		color: rgba(255, 255, 255, 0.82);
-		font-size: 0.68rem;
+		font-size: 0.74rem;
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -269,13 +270,13 @@ const monthlyPlan = productInfo.plans[0];
 		overflow: hidden;
 		border: 1px solid rgba(197, 138, 69, 0.42);
 		background: rgba(8, 10, 11, 0.72);
-		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+		box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
 		backdrop-filter: blur(10px);
 	}
 
 	.home-about__card-media {
 		margin: 0;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 16 / 10;
 		overflow: hidden;
 	}
 
@@ -291,14 +292,14 @@ const monthlyPlan = productInfo.plans[0];
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		gap: 0.4rem;
-		padding: 0.75rem 0.8rem 0.85rem;
+		gap: 0.5rem;
+		padding: 0.9rem 0.95rem 1rem;
 	}
 
 	.home-about__card-kicker {
 		margin: 0;
 		color: var(--color-gold);
-		font-size: 0.6rem;
+		font-size: 0.64rem;
 		font-weight: 800;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -308,7 +309,7 @@ const monthlyPlan = productInfo.plans[0];
 		margin: 0;
 		color: #fff;
 		font-family: var(--font-display);
-		font-size: 0.82rem;
+		font-size: 0.92rem;
 		font-weight: 800;
 		line-height: 1.25;
 		text-transform: uppercase;
@@ -318,16 +319,16 @@ const monthlyPlan = productInfo.plans[0];
 		margin: 0;
 		flex: 1;
 		color: rgba(181, 180, 170, 0.95);
-		font-size: 0.74rem;
-		line-height: 1.45;
+		font-size: 0.78rem;
+		line-height: 1.5;
 	}
 
 	.home-about__btn--card {
 		width: 100%;
-		margin-top: 0.15rem;
-		min-height: 2.2rem;
-		padding-inline: 0.75rem;
-		font-size: 0.62rem;
+		margin-top: 0.25rem;
+		min-height: 2.45rem;
+		padding-inline: 0.85rem;
+		font-size: 0.66rem;
 		background: linear-gradient(180deg, var(--color-gold-hover) 0%, var(--color-gold) 100%);
 		border-color: rgba(255, 220, 150, 0.35);
 		color: #1a1006;
@@ -341,11 +342,10 @@ const monthlyPlan = productInfo.plans[0];
 	@media (max-width: 900px) {
 		.home-about__layout {
 			grid-template-columns: 1fr;
-			max-width: 28rem;
 		}
 
 		.home-about__card {
-			max-width: 16rem;
+			max-width: 20rem;
 		}
 	}
 
