@@ -29,7 +29,7 @@ const galleryImages = pricingGallery.map((image) => ({
 }));
 const mainImage = galleryImages[0];
 
-const featurePills = [
+const lifetimeBadge = locale === 'en' ? 'Best value' : ui.product.lifetime;
 	{ icon: 'bolt', label: ui.trust.delivery },
 	{ icon: 'sliders', label: ui.trust.platform },
 	{ icon: 'shield', label: ui.trust.antiCheatShort },
@@ -140,13 +140,13 @@ const featurePills = [
 							<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 								<path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5.1L12 14.8 7.5 16.8l.9-5.1L4.8 8.2l5-.7L12 3z"></path>
 							</svg>
-							Most popular
+							{ui.product.lifetime}
 						</span>
 						<span class="pricing-showcase__plan-main">
 							<span class="pricing-showcase__plan-name">{ui.product.lifetime}</span>
 							<span class="pricing-showcase__plan-price">${lifetimePlan.price}</span>
 						</span>
-						<span class="pricing-showcase__plan-sub">One-time payment</span>
+						<span class="pricing-showcase__plan-sub">{productInfo.planSummaries.lifetime[1]}</span>
 					</button>
 				)
 			}
