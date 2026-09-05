@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /images/
+
+# Primary sitemap (lists all 23 sub-sitemaps: English + 21 locales + images):
+#   https://enlistedcheats.org/sitemap-index.xml
+# English-only shortcut:
+#   https://enlistedcheats.org/sitemap.xml
+Sitemap: https://enlistedcheats.org/sitemap-index.xml
+Sitemap: https://enlistedcheats.org/sitemap.xml

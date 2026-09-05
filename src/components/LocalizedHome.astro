@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import BreadcrumbBar from '../components/BreadcrumbBar.astro';
+import PricingPlans from '../components/PricingPlans.astro';
+import PricingFeatureList from '../components/PricingFeatureList.astro';
+import Gallery from '../components/Gallery.astro';
+import HomeFaq from '../components/HomeFaq.astro';
+import HomeBlogGuides from '../components/HomeBlogGuides.astro';
+import HomeExplore from '../components/HomeExplore.astro';
+import CustomerReviews from '../components/CustomerReviews.astro';
+import TrustBar from '../components/TrustBar.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getLocaleContent, getPageContent } from '../data/i18n';
+import { getCanonicalPath, getLocalizedPath } from '../data/i18n/routing';
+import type { LocaleCode } from '../data/i18n/locales';
+import { defaultLocale } from '../data/i18n/locales';
+import { homeFaqs, productInfo, siteConfig, customerReviewStats, customerReviews } from '../data/site';
+import { enlistedImages } from '../data/enlisted';
+import {
+	buildAggregateOffer,
+	buildFaqSchemaNode,
+	buildSoftwareApplicationSchema,
+} from '../data/schema';
+import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/responsive-images';
+
+interface Props {
+	locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+const { ui } = getLocaleContent(locale);
+const home = getPageContent(locale, 'home');
+
+const title = home.title;
+const description = home.description;
+/** SEO consolidates to English; locale routes remain for UX. */
+const canonicalPath = getCanonicalPath('home', locale);
+const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
+const heroImage = new URL(enlistedImages.hero, siteConfig.url).href;
+
+const extraGraph: Record<string, unknown>[] =
+	locale === defaultLocale
+		? [
+	{
+		'@type': 'Product',
+		'@id': `${canonicalURL}#product`,
+		name: productInfo.name,
+		description: productInfo.summary,
+		image: heroImage,
+		brand: { '@type': 'Brand', name: productInfo.brand },
+		url: canonicalURL,
+		offers: buildAggregateOffer(canonicalURL),
+		aggregateRating: {
+			'@type': 'AggregateRating',
+			ratingValue: customerReviewStats.averageRating.toFixed(1),
+			reviewCount: customerReviewStats.totalCount,
+			bestRating: '5',
+			worstRating: '1',
+		},
+		review: customerReviews.map((review) => ({
+			'@type': 'Review',
+			author: { '@type': 'Person', name: review.handle },
+			datePublished: review.date,
+			reviewRating: {
+				'@type': 'Rating',
+				ratingValue: String(review.rating),
+				bestRating: '5',
+				worstRating: '1',
+			},
+			reviewBody: review.text,
+		})),
+	},
+	buildSoftwareApplicationSchema(canonicalURL, heroImage),
+	buildFaqSchemaNode(canonicalURL, homeFaqs),
+]
+		: [];
+---
+
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={canonicalPath}
+	ogImage={siteConfig.defaultOgImage}
+	ogImageAlt={home.imageAlt}
+	locale={locale}
+	pageId="home"
+	breadcrumbs={[{ label: ui.nav.home }]}
+	extraGraph={extraGraph}
+	lcpImage={heroPreloadSrc}
+	lcpImageSrcSet={heroIsExternal ? undefined : heroSrcSet}
+	lcpImageSizes={heroSizes}
+>
+	<Navbar locale={locale} pageId="home" />
+	<main class="site">
+		<Hero
+			locale={locale}
+			imageAlt={home.imageAlt}
+			accent={ui.hero.accent}
+			subtitle={ui.hero.subtitle}
+			subtitleShort={ui.hero.subtitleShort}
+		/>
+		<section class="site__section site__section--trust">
+			<TrustBar locale={locale} />
+		</section>
+		<BreadcrumbBar
+			locale={locale}
+			items={[{ label: ui.product.title }]}
+		/>
+		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
+			<div class="shell store-stack">
+				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
+				<PricingFeatureList locale={locale} showRelatedPages={false} />
+			</div>
+		</section>
+		<section class="site__section site__section--reviews">
+			<CustomerReviews locale={locale} />
+		</section>
+		<section class="site__section site__section--faq">
+			<HomeFaq locale={locale} />
+		</section>
+		<section class="site__section site__section--gallery">
+			<div class="shell">
+				<Gallery locale={locale} />
+			</div>
+		</section>
+		<section class="site__section site__section--guides">
+			<HomeBlogGuides locale={locale} />
+		</section>
+		<section class="site__section site__section--explore">
+			<HomeExplore locale={locale} />
+		</section>
+		<SiteFooter locale={locale} />
+	</main>
+</Layout>
+
+<style>
+	.site {
+		overflow-x: clip;
+	}
+
+	.site__section--reviews,
+	.site__section--faq,
+	.site__section--guides,
+	.site__section--explore,
+	.site__section--store,
+	.site__section--gallery {
+		content-visibility: auto;
+		contain-intrinsic-size: 1px 720px;
+	}
+
+	.site__section {
+		padding-block: var(--section-space);
+	}
+
+	.site__section--trust {
+		padding-block: 0.25rem 0.4rem;
+	}
+
+	.site__section--gallery {
+		padding-top: 0.5rem;
+		padding-bottom: 1.25rem;
+	}
+
+	.store-stack {
+		display: grid;
+		gap: 1rem;
+		align-items: start;
+	}
+
+	@media (max-width: 760px) {
+		.site__section--store {
+			contain-intrinsic-size: 1px 900px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.site__section--gallery {
+			padding-bottom: 1rem;
+		}
+	}
+</style>

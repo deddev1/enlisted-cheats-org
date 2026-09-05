@@ -1,0 +1,110 @@
+# Path redirects only — keep in sync with PATH_REDIRECTS in functions/_middleware.js.
+# Domain redirects (www, legacy hosts, http→https) are handled in middleware.
+
+/sitemap-0.xml /sitemap.xml 301
+
+/fortnite-cheats / 301
+/fortnite-cheats/ / 301
+/fortnite-hacks /enlisted-cheats/ 301
+/fortnite-hacks/ /enlisted-cheats/ 301
+/fortnite-aimbot /enlisted-aimbot/ 301
+/fortnite-aimbot/ /enlisted-aimbot/ 301
+/fortnite-esp /enlisted-esp/ 301
+/fortnite-esp/ /enlisted-esp/ 301
+/fortnite-wallhack /enlisted-wallhack/ 301
+/fortnite-wallhack/ /enlisted-wallhack/ 301
+/undetected-fortnite-cheats /enlisted-cheats/ 301
+/undetected-fortnite-cheats/ /enlisted-cheats/ 301
+/eac-bypass-fortnite /enlisted-cheats/ 301
+/eac-bypass-fortnite/ /enlisted-cheats/ 301
+/eac-bypass /enlisted-cheats/ 301
+/eac-bypass/ /enlisted-cheats/ 301
+/warzone-aimbot /enlisted-aimbot/ 301
+/warzone-aimbot/ /enlisted-aimbot/ 301
+/warzone-esp /enlisted-esp/ 301
+/warzone-esp/ /enlisted-esp/ 301
+/ricochet-bypass /enlisted-cheats/ 301
+/ricochet-bypass/ /enlisted-cheats/ 301
+
+/arc-raiders-hacks /enlisted-cheats/ 301
+/arc-raiders-hacks/ /enlisted-cheats/ 301
+/arc-raiders-esp /enlisted-esp/ 301
+/arc-raiders-esp/ /enlisted-esp/ 301
+/arc-raiders-aimbot /enlisted-aimbot/ 301
+/arc-raiders-aimbot/ /enlisted-aimbot/ 301
+/arc-raiders-wallhack /enlisted-wallhack/ 301
+/arc-raiders-wallhack/ /enlisted-wallhack/ 301
+/arc-raiders-radar /enlisted-radar/ 301
+/arc-raiders-radar/ /enlisted-radar/ 301
+
+/overwatch-hacks /enlisted-cheats/ 301
+/overwatch-hacks/ /enlisted-cheats/ 301
+/overwatch-esp /enlisted-esp/ 301
+/overwatch-esp/ /enlisted-esp/ 301
+/overwatch-aimbot /enlisted-aimbot/ 301
+/overwatch-aimbot/ /enlisted-aimbot/ 301
+/overwatch-wallhack /enlisted-wallhack/ 301
+/overwatch-wallhack/ /enlisted-wallhack/ 301
+/overwatch-radar /enlisted-radar/ 301
+/overwatch-radar/ /enlisted-radar/ 301
+
+/war-thunder-hacks /enlisted-cheats/ 301
+/war-thunder-hacks/ /enlisted-cheats/ 301
+/war-thunder-esp /enlisted-esp/ 301
+/war-thunder-esp/ /enlisted-esp/ 301
+/war-thunder-aimbot /enlisted-aimbot/ 301
+/war-thunder-aimbot/ /enlisted-aimbot/ 301
+/war-thunder-wallhack /enlisted-wallhack/ 301
+/war-thunder-wallhack/ /enlisted-wallhack/ 301
+/war-thunder-radar /enlisted-radar/ 301
+/war-thunder-radar/ /enlisted-radar/ 301
+
+/rust-hacks /enlisted-cheats/ 301
+/rust-hacks/ /enlisted-cheats/ 301
+/rust-aimbot /enlisted-aimbot/ 301
+/rust-aimbot/ /enlisted-aimbot/ 301
+/rust-esp /enlisted-esp/ 301
+/rust-esp/ /enlisted-esp/ 301
+
+/enlisted-cheats /enlisted-cheats/ 301
+/enlisted-esp /enlisted-esp/ 301
+/enlisted-aimbot /enlisted-aimbot/ 301
+/enlisted-wallhack /enlisted-wallhack/ 301
+/enlisted-radar /enlisted-radar/ 301
+/enlisted-radar-hack /enlisted-radar/ 301
+/enlisted-radar-hack/ /enlisted-radar/ 301
+
+/undetected-enlisted-cheats /enlisted-cheats/ 301
+/undetected-enlisted-cheats/ /enlisted-cheats/ 301
+/eac-bypass-enlisted /enlisted-cheats/ 301
+/eac-bypass-enlisted/ /enlisted-cheats/ 301
+/enlisted-cheats-2026 /enlisted-cheats/ 301
+/enlisted-cheats-2026/ /enlisted-cheats/ 301
+/best-enlisted-cheats /enlisted-cheats/ 301
+/best-enlisted-cheats/ /enlisted-cheats/ 301
+/enlisted-cheat-download /pricing/ 301
+/enlisted-cheat-download/ /pricing/ 301
+/enlisted-mod-menu /features/ 301
+/enlisted-mod-menu/ /features/ 301
+/enlisted-soft-aim /enlisted-aimbot/ 301
+/enlisted-soft-aim/ /enlisted-aimbot/ 301
+/enlisted-aimbot-hack /enlisted-aimbot/ 301
+/enlisted-aimbot-hack/ /enlisted-aimbot/ 301
+/enlisted-esp-hack /enlisted-esp/ 301
+/enlisted-esp-hack/ /enlisted-esp/ 301
+/enlisted-unlock-all /features/ 301
+/enlisted-unlock-all/ /features/ 301
+
+/blog/elitefn-vs-enlisted-cheats-two-week-test /blog/voidcheats-vs-enlisted-cheats-two-week-test/ 301
+/blog/elitefn-vs-enlisted-cheats-two-week-test/ /blog/voidcheats-vs-enlisted-cheats-two-week-test/ 301
+
+/warframe-cheats /enlisted-cheats/ 301
+/warframe-cheats/ /enlisted-cheats/ 301
+/warframe-esp /enlisted-esp/ 301
+/warframe-esp/ /enlisted-esp/ 301
+/warframe-aimbot /enlisted-aimbot/ 301
+/warframe-aimbot/ /enlisted-aimbot/ 301
+/warframe-wallhack /enlisted-wallhack/ 301
+/warframe-wallhack/ /enlisted-wallhack/ 301
+/warframe-radar /enlisted-radar/ 301
+/warframe-radar/ /enlisted-radar/ 301

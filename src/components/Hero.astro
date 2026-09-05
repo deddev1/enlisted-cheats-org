@@ -1,0 +1,457 @@
+---
+import { getUi } from '../data/i18n';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
+import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/responsive-images';
+
+interface Props {
+	accent?: string;
+	subtitle?: string;
+	subtitleShort?: string;
+	locale?: LocaleCode;
+	/** Localized descriptive alt for the hero poster (SEO + screen readers). */
+	imageAlt?: string;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+
+const {
+	accent = ui.hero.accent,
+	subtitle = ui.hero.subtitle,
+	subtitleShort = ui.hero.subtitleShort,
+	imageAlt = ui.images.hero,
+} = Astro.props;
+
+const buyUrl = siteConfig.checkoutUrl;
+---
+
+<section class="hero" aria-label={ui.images.hero}>
+	<div class="hero__media">
+		{/*
+		  Poster paints first (LCP / fallback). No autoplay — static hero image only.
+		*/}
+		<picture class="hero__poster">
+			{
+				heroIsExternal ? (
+					<img
+						src={heroPreloadSrc}
+						alt={imageAlt}
+						width="1600"
+						height="900"
+						class="hero__poster-img"
+						fetchpriority="high"
+						decoding="async"
+					/>
+				) : (
+					<>
+						<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
+						<source
+							media="(min-width: 761px)"
+							srcset={heroSrcSet}
+							sizes={heroSizes}
+							type="image/webp"
+						/>
+						<img
+							src={heroPreloadSrc}
+							alt={imageAlt}
+							width="1600"
+							height="900"
+							class="hero__poster-img"
+							fetchpriority="high"
+							decoding="async"
+						/>
+					</>
+				)
+			}
+		</picture>
+		<div class="hero__splash" aria-hidden="true"></div>
+		<div class="hero__veil" aria-hidden="true"></div>
+	</div>
+
+	<div class="hero__inner">
+		<div class="hero__copy">
+			<h1 class="hero__title">
+				<span class="hero__line hero__brand">{siteConfig.name}</span>
+			</h1>
+			<p class="hero__badge">{accent}</p>
+			<p class="hero__subtitle hero__subtitle--full">{subtitle}</p>
+			<p class="hero__subtitle hero__subtitle--short">{subtitleShort}</p>
+			<div class="hero__cta">
+				<a href={buyUrl} class="btn-buy" rel="noopener noreferrer" aria-label={ui.hero.buyNow}>
+					{ui.hero.buyNow}
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	/* Outfit loads on desktop only — mobile hero uses the system stack for faster LCP. */
+	@media (min-width: 761px) {
+		@font-face {
+			font-family: 'Outfit Variable';
+			font-style: normal;
+			font-display: optional;
+			font-weight: 500 800;
+			src: url('@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2') format('woff2-variations');
+			unicode-range:
+				U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+				U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	}
+
+	.hero {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		min-height: clamp(380px, 52vw, 520px);
+	}
+
+	.hero__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: #061112;
+	}
+
+	.hero__poster,
+	.hero__poster-img,
+	.hero__video {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.hero__poster {
+		z-index: 1;
+		margin: 0;
+		display: block;
+	}
+
+	.hero__poster-img {
+		object-fit: cover;
+		object-position: center;
+		background: #061112;
+		transform: scale(1.05);
+		transform-origin: center center;
+		filter: brightness(1.12) contrast(1.04) saturate(1.08);
+	}
+
+	.hero__video {
+		z-index: 1;
+		object-fit: cover;
+		object-position: center;
+		transform: translateZ(0) scale(1.3);
+		backface-visibility: hidden;
+		pointer-events: none;
+		opacity: 0;
+		background: transparent;
+		transition: opacity 0.45s ease;
+	}
+
+	.hero__video.is-ready {
+		opacity: 1;
+	}
+
+	@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+		.hero__video.is-ready {
+			will-change: transform;
+			animation: kenburns 18s ease-in-out infinite alternate;
+		}
+	}
+
+	.hero__splash {
+		display: none;
+	}
+
+	.hero__veil {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		background:
+			linear-gradient(90deg, rgba(6, 17, 18, 0.82) 0%, rgba(6, 17, 18, 0.52) 28%, rgba(6, 17, 18, 0.22) 52%, transparent 100%),
+			linear-gradient(180deg, rgba(6, 17, 18, 0.28) 0%, transparent 42%, rgba(6, 17, 18, 0.45) 100%);
+		pointer-events: none;
+	}
+
+	.hero__inner {
+		position: relative;
+		z-index: 4;
+		display: flex;
+		align-items: center;
+		width: min(100% - (var(--page-gutter) * 2), var(--page-max));
+		margin: 0 auto;
+		padding: 4.25rem 0 3.5rem;
+		min-height: inherit;
+	}
+
+	.hero__copy {
+		max-width: min(48rem, 100%);
+		min-width: 0;
+		animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.hero__eyebrow {
+		margin: 0 0 0.85rem;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-orchid);
+	}
+
+	.hero__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.85rem, 4.2vw, 3.35rem);
+		font-weight: 700;
+		line-height: 1.08;
+		letter-spacing: -0.02em;
+		display: flex;
+		flex-direction: column;
+		gap: 0.06em;
+		color: #ffffff;
+		text-shadow:
+			0 2px 18px rgba(6, 17, 18, 0.95),
+			0 4px 36px rgba(6, 17, 18, 0.75);
+	}
+
+	.hero__line {
+		display: block;
+		max-width: 100%;
+	}
+
+	@media (min-width: 761px) {
+		.hero__title {
+			font-family: 'Outfit Variable', var(--font-display);
+		}
+	}
+
+	.hero__brand {
+		white-space: nowrap;
+	}
+
+	.hero__accent {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		font-size: 0.92em;
+		font-weight: 600;
+		line-height: 1.15;
+		padding-bottom: 0.04em;
+	}
+
+	.hero__badge {
+		margin: 0.5rem 0 0;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #20BFC0;
+		text-shadow: 0 1px 14px rgba(6, 17, 18, 0.9);
+	}
+
+	.hero__subtitle {
+		margin: 0.85rem 0 0;
+		max-width: 32rem;
+		font-size: clamp(1rem, 1.65vw, 1.12rem);
+		font-weight: 400;
+		line-height: 1.62;
+		color: #B8D0D0;
+		text-shadow: 0 1px 14px rgba(6, 17, 18, 0.88);
+		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+	}
+
+	.hero__cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.45rem;
+		align-items: flex-start;
+		animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+	}
+
+	.hero__btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.85rem 1.25rem;
+		border-radius: 0.8rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		text-align: center;
+		transition:
+			transform 0.2s ease,
+			filter 0.2s ease,
+			background 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.hero__btn--ghost {
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: rgba(13, 35, 36, 0.85);
+		color: var(--color-ink);
+	}
+
+	@media (min-width: 761px) {
+		.hero__btn--ghost {
+			background: rgba(13, 35, 36, 0.55);
+			backdrop-filter: blur(8px);
+		}
+	}
+
+	.hero__btn--ghost:hover {
+		border-color: rgba(32, 191, 192, 0.55);
+		background: rgba(13, 35, 36, 0.7);
+	}
+
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes kenburns {
+		from {
+			transform: translateZ(0) scale(1.3) translate3d(0, 0, 0);
+		}
+		to {
+			transform: translateZ(0) scale(1.36) translate3d(-1.5%, 1%, 0);
+		}
+	}
+
+	@keyframes pulse-glow {
+		0%,
+		100% {
+			opacity: 0.82;
+		}
+		50% {
+			opacity: 0.95;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero__copy,
+		.hero__subtitle,
+		.hero__cta,
+		.hero__video,
+		.hero__splash {
+			animation: none;
+		}
+
+		.hero__video {
+			display: none;
+		}
+	}
+
+	.hero__subtitle--short {
+		display: none;
+	}
+
+	@media (max-width: 760px) {
+		.hero {
+			min-height: min(68svh, 520px);
+		}
+
+		.hero__subtitle--full {
+			display: none;
+		}
+
+		.hero__subtitle--short {
+			display: block;
+		}
+
+		.hero__poster-img {
+			object-position: center 32%;
+		}
+
+		.hero__video {
+			object-position: center 32%;
+			animation: none;
+			transform: none;
+			will-change: auto;
+		}
+
+		.hero__splash {
+			display: none;
+		}
+
+		.hero__copy,
+		.hero__subtitle,
+		.hero__cta {
+			animation: none;
+		}
+
+		.hero__veil {
+			background:
+				linear-gradient(180deg, rgba(6, 17, 18, 0.42) 0%, rgba(6, 17, 18, 0.2) 40%, rgba(6, 17, 18, 0.72) 100%),
+				linear-gradient(90deg, rgba(6, 17, 18, 0.62), rgba(6, 17, 18, 0.22) 80%);
+		}
+
+		.hero__inner {
+			align-items: flex-end;
+			padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
+			padding-bottom: 1.35rem;
+			min-height: inherit;
+		}
+
+		.hero__copy {
+			max-width: none;
+			width: 100%;
+		}
+
+		.hero__title {
+			font-family: var(--font-display);
+			font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+			font-weight: 700;
+			line-height: 1.1;
+			letter-spacing: -0.02em;
+			gap: 0.1rem;
+		}
+
+		.hero__accent {
+			font-size: 0.9em;
+			line-height: 1.2;
+			padding-bottom: 0.08em;
+		}
+
+		.hero__subtitle--short {
+			margin-top: 0.75rem;
+			max-width: none;
+			font-size: 0.92rem;
+			line-height: 1.55;
+		}
+
+		.hero__cta {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.6rem;
+			margin-top: 1.1rem;
+			width: 100%;
+		}
+
+		.hero__btn {
+			width: 100%;
+			min-height: var(--touch-min);
+			padding: 0.8rem 1rem;
+			font-size: 0.92rem;
+		}
+	}
+
+	@media (max-width: 380px) {
+		.hero__title {
+			font-size: 1.5rem;
+		}
+
+		.hero__subtitle--short {
+			font-size: 0.88rem;
+		}
+	}
+</style>

@@ -1,0 +1,177 @@
+---
+export interface FaqItem {
+	question: string;
+	answer: string;
+	category?: string;
+}
+
+interface Props {
+	items: ReadonlyArray<FaqItem>;
+	groupByCategory?: boolean;
+}
+
+const { items, groupByCategory = false } = Astro.props;
+
+const categoryOrder = ['Getting started', 'Features & gameplay', 'Updates & support', 'Product details'];
+
+function groupItems(list: ReadonlyArray<FaqItem>) {
+	if (!groupByCategory) {
+		return [{ category: undefined, items: [...list] }];
+	}
+
+	const buckets = new Map<string, FaqItem[]>();
+	for (const item of list) {
+		const key = item.category ?? 'General';
+		const bucket = buckets.get(key) ?? [];
+		bucket.push(item);
+		buckets.set(key, bucket);
+	}
+
+	const ordered = categoryOrder
+		.filter((category) => buckets.has(category))
+		.map((category) => ({ category, items: buckets.get(category)! }));
+
+	for (const [category, bucket] of buckets) {
+		if (!categoryOrder.includes(category)) {
+			ordered.push({ category, items: bucket });
+		}
+	}
+
+	return ordered;
+}
+
+const groups = groupItems(items);
+---
+
+<div class="faq-list">
+	{
+		groups.map((group) => (
+			<div class="faq-list__group">
+				{group.category ? <h3 class="faq-list__category">{group.category}</h3> : null}
+				<div class="faq-list__items">
+					{group.items.map((item) => (
+						<details class="faq-list__item">
+							<summary class="faq-list__summary">
+								<span class="faq-list__question">{item.question}</span>
+								<span class="faq-list__chevron" aria-hidden="true">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+										<path
+											d="m6 9 6 6 6-6"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</span>
+							</summary>
+							<div class="faq-list__answer">
+								<p set:html={item.answer} />
+							</div>
+						</details>
+					))}
+				</div>
+			</div>
+		))
+	}
+</div>
+
+<style>
+	.faq-list {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.faq-list__group {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.faq-list__category {
+		margin: 0;
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-orchid);
+	}
+
+	.faq-list__items {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.faq-list__item {
+		border-radius: 0.9rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(20, 24, 30, 0.88);
+		overflow: hidden;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.faq-list__item:hover {
+		border-color: rgba(32, 191, 192, 0.28);
+	}
+
+	.faq-list__item[open] {
+		border-color: rgba(32, 191, 192, 0.38);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+	}
+
+	.faq-list__summary {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.95rem 1.05rem;
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.faq-list__summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-list__question {
+		font-weight: 700;
+		color: var(--color-ink);
+		line-height: 1.45;
+		font-size: 0.95rem;
+	}
+
+	.faq-list__chevron {
+		display: inline-flex;
+		flex: 0 0 auto;
+		margin-top: 0.1rem;
+		color: var(--color-orchid);
+		transition: transform 0.2s ease;
+	}
+
+	.faq-list__item[open] .faq-list__chevron {
+		transform: rotate(180deg);
+	}
+
+	.faq-list__answer {
+		padding: 0 1.05rem 1rem;
+		border-top: 1px solid rgba(32, 191, 192, 0.1);
+	}
+
+	.faq-list__answer p {
+		margin: 0.85rem 0 0;
+		color: var(--color-muted);
+		line-height: 1.65;
+		font-size: 0.92rem;
+	}
+
+	.faq-list__answer :global(a) {
+		color: var(--color-orchid);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.faq-list__answer :global(a:hover) {
+		color: var(--color-ink);
+	}
+</style>

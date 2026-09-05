@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { absoluteGuideUrl, guidesBasePath } from '../data/guides/helpers';
+import type { ResolvedExternalGuide } from '../data/guides/types';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale } from '../data/i18n/locales';
+
+interface Props {
+	guide: ResolvedExternalGuide;
+}
+
+const { guide } = Astro.props;
+const locale = defaultLocale;
+const homeHref = getLocalizedPath('home', locale);
+const guidesHref = guidesBasePath;
+
+function pageTitle(headline: string): string {
+	const suffix = ' | Guides';
+	if (headline.length + suffix.length <= 60) return `${headline}${suffix}`;
+	if (headline.length <= 60) return headline;
+	const trimmed = headline.slice(0, 57);
+	const cut = trimmed.lastIndexOf(' ');
+	return `${(cut > 40 ? trimmed.slice(0, cut) : trimmed).replace(/[|:–—-]+$/, '').trim()}…`;
+}
+---
+
+<Layout
+	title={pageTitle(guide.title)}
+	description={guide.metaDescription}
+	canonicalPath={guide.canonicalPath}
+	ogImage={guide.imageSrc}
+	ogImageAlt={guide.imageAlt}
+	type="article"
+	locale={locale}
+	noindex={true}
+	breadcrumbs={[
+		{ label: 'Home', href: homeHref },
+		{ label: 'Guides', href: guidesHref },
+		{ label: guide.h1 },
+	]}
+	extraGraph={[]}
+>
+	<Navbar locale={locale} />
+	<main class="guide-post">
+		<article>
+			<header class="guide-post__header">
+				<p class="guide-post__cat">{guide.gameName}</p>
+				<h1>{guide.h1}</h1>
+				<p class="guide-post__intro">{guide.intro}</p>
+				<p class="guide-post__meta">
+					Published {guide.published} · Updated {guide.updated}
+				</p>
+			</header>
+			<img
+				class="guide-post__hero"
+				src={guide.imageSrc}
+				alt={guide.imageAlt}
+				width="1200"
+				height="675"
+				loading="eager"
+				decoding="async"
+			/>
+			{
+				guide.sections.map((section) => (
+					<section class="guide-post__section">
+						<h2>{section.h2}</h2>
+						{section.paragraphs.map((paragraph) => (
+							<p set:html={paragraph} />
+						))}
+					</section>
+				))
+			}
+		</article>
+
+		<p class="guide-post__back">
+			<a href={guidesHref}>← Back to all guides</a>
+		</p>
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.guide-post {
+		width: min(760px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 2.5rem 0 4rem;
+	}
+
+	.guide-post__cat {
+		margin: 0 0 0.5rem;
+		color: #20bfc0;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.guide-post__header h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.9rem, 4vw, 2.8rem);
+		line-height: 1.1;
+	}
+
+	.guide-post__intro {
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 1.08rem;
+	}
+
+	.guide-post__meta {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.85rem;
+	}
+
+	.guide-post__hero {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		margin: 1.5rem 0 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.guide-post__section {
+		margin-bottom: 1.75rem;
+	}
+
+	.guide-post__section h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.35rem;
+	}
+
+	.guide-post__section p {
+		margin: 0 0 0.9rem;
+		color: rgba(255, 255, 255, 0.78);
+		line-height: 1.7;
+	}
+
+	.guide-post__section p :global(a) {
+		color: #20bfc0;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.guide-post__section p :global(a:hover) {
+		text-decoration: underline;
+	}
+
+	.guide-post__back {
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.guide-post__back a {
+		color: #20bfc0;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.guide-post__back a:hover {
+		text-decoration: underline;
+	}
+</style>

@@ -1,0 +1,415 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../data/site';
+import { getReviewPath, reviewsBasePath } from '../../data/reviews';
+import RelatedPages from '../../components/RelatedPages.astro';
+
+const title = 'Enlisted Cheats Reviews | ESP Soft Aim Feedback';
+const description =
+	'Real Enlisted Cheats reviews from buyers: ESP boxes, soft aim, radar, controllers, and cloud DMA.';
+
+function stars(rating: number): string {
+	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+}
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+	day: 'numeric',
+	month: 'short',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
+
+function formatDate(isoDate: string): string {
+	return dateFormatter.format(new Date(`${isoDate}T00:00:00Z`));
+}
+
+const sortedReviews = [...customerReviews].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const canonicalURL = new URL(reviewsBasePath, siteConfig.url).href;
+
+const extraGraph: Record<string, unknown>[] = [
+	{
+		'@type': 'Product',
+		'@id': `${siteConfig.url}/#product`,
+		name: productInfo.name,
+		description: productInfo.summary,
+		image: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
+		brand: { '@type': 'Brand', name: productInfo.brand },
+		url: `${siteConfig.url}/`,
+		aggregateRating: {
+			'@type': 'AggregateRating',
+			ratingValue: customerReviewStats.averageRating.toFixed(1),
+			reviewCount: customerReviewStats.totalCount,
+			bestRating: '5',
+			worstRating: '1',
+		},
+		review: customerReviews.map((review) => ({
+			'@type': 'Review',
+			'@id': `${new URL(getReviewPath(review.slug), siteConfig.url).href}#review`,
+			url: new URL(getReviewPath(review.slug), siteConfig.url).href,
+			author: { '@type': 'Person', name: review.handle },
+			datePublished: review.date,
+			reviewRating: {
+				'@type': 'Rating',
+				ratingValue: String(review.rating),
+				bestRating: '5',
+				worstRating: '1',
+			},
+			reviewBody: review.text,
+		})),
+	},
+	{
+		'@type': 'ItemList',
+		'@id': `${canonicalURL}#list`,
+		itemListElement: sortedReviews.map((review, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			url: new URL(getReviewPath(review.slug), siteConfig.url).href,
+		})),
+	},
+];
+---
+
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={reviewsBasePath}
+	ogImage={siteConfig.defaultOgImage}
+	ogImageAlt="Enlisted Cheats customer reviews for ESP soft aim and cloud DMA"
+	locale="en"
+	breadcrumbs={[
+		{ label: 'Home', href: '/' },
+		{ label: 'Reviews' },
+	]}
+	extraGraph={extraGraph}
+>
+	<Navbar />
+	<main class="reviews-index">
+		<div class="shell reviews-index__wrap">
+			<nav class="reviews-index__crumbs" aria-label="Breadcrumb">
+				<a href="/">Home</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">Reviews</span>
+			</nav>
+
+			<header class="reviews-index__head">
+				<h1>Enlisted Cheats reviews</h1>
+				<p class="reviews-index__intro">
+					Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and
+					day-to-day use.
+				</p>
+			</header>
+
+			<div class="reviews-index__grid">
+				{
+					sortedReviews.map((review) => (
+						<article class="reviews-index__card">
+							<div class="reviews-index__card-top">
+								<div class="reviews-index__who">
+									<span class="reviews-index__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
+									<div>
+										<p class="reviews-index__handle">@{review.handle}</p>
+										<p class="reviews-index__date"><time datetime={review.date}>{formatDate(review.date)}</time></p>
+									</div>
+								</div>
+								<p class="reviews-index__stars" aria-label={`${review.rating} out of 5 stars`}>
+									{stars(review.rating)}
+								</p>
+							</div>
+							<p class="reviews-index__text">{review.short}</p>
+							<a class="reviews-index__more" href={getReviewPath(review.slug)}>
+								{review.text !== review.short ? 'Read more' : 'View review'}
+								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path d="M5 12h14m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</a>
+						</article>
+					))
+				}
+			</div>
+
+			<section class="reviews-index__cta" aria-label="Buy Enlisted Cheats">
+				<h2>Ready to try Enlisted Cheats?</h2>
+				<p>
+					ESP wallhack, soft aim, radar, and cloud DMA in one undetected package for Windows PC and
+					controllers — with anti-cheat maintenance after patches.
+				</p>
+				<div class="reviews-index__cta-row">
+					<a href={siteConfig.checkoutUrl} class="reviews-index__buy" rel="noopener noreferrer">
+						Buy Now — ${productInfo.plans[0].price}
+					</a>
+					<a href="/pricing/" class="reviews-index__link-btn">Compare pricing</a>
+					<a href="/features/" class="reviews-index__link-btn">See features</a>
+					<a href="/enlisted-esp/" class="reviews-index__link-btn">ESP guide</a>
+					<a href="/enlisted-aimbot/" class="reviews-index__link-btn">Aimbot guide</a>
+				</div>
+			</section>
+
+			<RelatedPages />
+		</div>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.reviews-index {
+		overflow-x: clip;
+		padding-block: 2rem 3rem;
+	}
+
+	.reviews-index__wrap {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.reviews-index__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.45rem;
+		font-size: 0.8rem;
+		color: var(--color-faint);
+	}
+
+	.reviews-index__crumbs a {
+		color: var(--color-muted);
+		font-weight: 600;
+	}
+
+	.reviews-index__crumbs a:hover {
+		color: var(--color-orchid);
+	}
+
+	.reviews-index__head {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.reviews-index__head h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+	}
+
+	.reviews-index__intro {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.96rem;
+		line-height: 1.6;
+		max-width: 40rem;
+	}
+
+	.reviews-index__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.reviews-index__card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1.05rem 1.1rem;
+		border-radius: 0.95rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(26, 22, 38, 0.72);
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.reviews-index__card:hover {
+		border-color: rgba(32, 191, 192, 0.38);
+		transform: translateY(-2px);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+	}
+
+	.reviews-index__card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.reviews-index__who {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		min-width: 0;
+	}
+
+	.reviews-index__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 2.15rem;
+		height: 2.15rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.3);
+		background: rgba(13, 35, 36, 0.7);
+		color: var(--color-orchid);
+		font-size: 0.9rem;
+		font-weight: 800;
+	}
+
+	.reviews-index__handle {
+		margin: 0;
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		overflow-wrap: anywhere;
+	}
+
+	.reviews-index__date {
+		margin: 0.1rem 0 0;
+		font-size: 0.72rem;
+		color: var(--color-faint);
+	}
+
+	.reviews-index__stars {
+		margin: 0;
+		font-size: 0.82rem;
+		letter-spacing: 0.04em;
+		color: #fbbf24;
+		white-space: nowrap;
+	}
+
+	.reviews-index__tag {
+		margin: 0;
+		display: inline-flex;
+		align-self: start;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.22);
+		background: rgba(6, 17, 18, 0.45);
+		color: var(--color-orchid);
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+
+	a.reviews-index__tag:hover {
+		border-color: rgba(32, 191, 192, 0.45);
+		color: var(--color-ink);
+	}
+
+	.reviews-index__text {
+		margin: 0;
+		color: #d4cae6;
+		font-size: 0.92rem;
+		line-height: 1.6;
+		flex-grow: 1;
+	}
+
+	.reviews-index__more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: var(--color-orchid);
+		transition: color 0.2s ease;
+	}
+
+	.reviews-index__more:hover {
+		color: var(--color-ink);
+	}
+
+	.reviews-index__cta {
+		display: grid;
+		gap: 0.65rem;
+		padding: clamp(1.25rem, 3vw, 1.75rem);
+		border-radius: var(--radius-card, 1.1rem);
+		border: 1px solid rgba(32, 191, 192, 0.18);
+		background: rgba(26, 22, 38, 0.72);
+	}
+
+	.reviews-index__cta h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+		font-weight: 800;
+	}
+
+	.reviews-index__cta p {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.6;
+		max-width: 44rem;
+	}
+
+	.reviews-index__cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-top: 0.35rem;
+	}
+
+	.reviews-index__buy {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.8rem 1.35rem;
+		border-radius: 0.85rem;
+		background: var(--gradient-brand);
+		color: white;
+		font-size: 0.95rem;
+		font-weight: 700;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+		transition:
+			transform 0.2s ease,
+			filter 0.2s ease;
+	}
+
+	.reviews-index__buy:hover {
+		transform: translateY(-1px);
+		filter: brightness(1.05);
+		color: white;
+	}
+
+	.reviews-index__link-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.8rem 1.1rem;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(32, 191, 192, 0.28);
+		background: rgba(13, 35, 36, 0.55);
+		color: var(--color-ink);
+		font-size: 0.9rem;
+		font-weight: 700;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.reviews-index__link-btn:hover {
+		border-color: rgba(32, 191, 192, 0.5);
+		background: rgba(13, 35, 36, 0.85);
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 680px) {
+		.reviews-index__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.reviews-index__cta-row {
+			flex-direction: column;
+		}
+
+		.reviews-index__buy,
+		.reviews-index__link-btn {
+			width: 100%;
+			min-height: var(--touch-min, 2.75rem);
+		}
+	}
+</style>

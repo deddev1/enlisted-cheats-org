@@ -1,0 +1,305 @@
+---
+import { getUi } from '../data/i18n';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { customerReviews } from '../data/site';
+import { getReviewPath, reviewsBasePath } from '../data/reviews';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+const reviewsUi = ui.reviews;
+const trustUi = ui.trust;
+const featuredReviews = customerReviews.slice(0, 4);
+
+const reviewDateFormatter = new Intl.DateTimeFormat(locale, {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
+
+function formatReviewDate(isoDate: string): string {
+	return reviewDateFormatter.format(new Date(`${isoDate}T00:00:00Z`));
+}
+
+function stars(rating: number): string {
+	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+}
+
+const seeAllLabel = reviewsUi.seeAll ?? 'See all reviews';
+---
+
+<section class="reviews shell" aria-labelledby="reviews-title">
+	<header class="reviews__header">
+		<div class="reviews__intro">
+			<h2 id="reviews-title" class="reviews__title">
+				<span class="reviews__accent" aria-hidden="true"></span>
+				{reviewsUi.title}
+			</h2>
+			<p class="reviews__subtitle">{reviewsUi.subtitle}</p>
+		</div>
+		<a class="reviews__see-all" href={reviewsBasePath}>
+			{seeAllLabel}
+			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path
+					d="M5 12h14m-6-6l6 6-6 6"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"></path>
+			</svg>
+		</a>
+	</header>
+
+	<div class="reviews__grid">
+		{
+			featuredReviews.map((review) => (
+				<article class="reviews__card">
+					<div class="reviews__card-top">
+						<div class="reviews__who">
+							<span class="reviews__avatar" aria-hidden="true">
+								{review.handle.charAt(0).toUpperCase()}
+							</span>
+							<div class="reviews__meta">
+								<p class="reviews__handle">@{review.handle}</p>
+							</div>
+						</div>
+						<p class="reviews__date">
+							<time datetime={review.date}>{formatReviewDate(review.date)}</time>
+						</p>
+					</div>
+					<p class="reviews__stars" aria-label={`${review.rating} out of 5 stars`}>
+						<span aria-hidden="true">{stars(review.rating)}</span>
+					</p>
+					<p class="reviews__text">{review.short}</p>
+					<p class="reviews__read">
+						<a href={getReviewPath(review.slug)}>Read @{review.handle} review</a>
+					</p>
+				</article>
+			))
+		}
+	</div>
+
+	<div class="reviews__foot" aria-label="Purchase highlights">
+		<span class="reviews__chip">{trustUi.delivery}</span>
+		<span class="reviews__chip">{trustUi.platform}</span>
+		<span class="reviews__chip">{trustUi.antiCheatShort}</span>
+	</div>
+</section>
+
+<style>
+	.reviews {
+		padding-block: 0;
+	}
+
+	.reviews__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem 1.5rem;
+		margin-bottom: 1.35rem;
+	}
+
+	.reviews__intro {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.reviews__title {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+	}
+
+	.reviews__accent {
+		display: inline-block;
+		width: 0.22rem;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #20BFC0, #174143);
+		flex-shrink: 0;
+	}
+
+	.reviews__subtitle {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.9rem;
+		line-height: 1.55;
+	}
+
+	.reviews__see-all {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.65rem 1rem;
+		border-radius: 0.75rem;
+		border: 1px solid rgba(32, 191, 192, 0.28);
+		background: rgba(13, 35, 36, 0.85);
+		color: var(--color-ink);
+		font-size: 0.86rem;
+		font-weight: 700;
+		white-space: nowrap;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.reviews__see-all:hover {
+		border-color: rgba(32, 191, 192, 0.5);
+		background: rgba(13, 35, 36, 0.85);
+		color: var(--color-ink);
+	}
+
+	.reviews__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.reviews__card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+		padding: 1.05rem 1.1rem;
+		border-radius: 0.95rem;
+		border: 1px solid rgba(45, 212, 191, 0.35);
+		background: rgba(20, 24, 30, 0.88);
+		color: inherit;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.reviews__card:hover {
+		border-color: rgba(45, 212, 191, 0.55);
+		transform: translateY(-2px);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+	}
+
+	.reviews__card-top {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.reviews__who {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		min-width: 0;
+	}
+
+	.reviews__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 2.15rem;
+		height: 2.15rem;
+		border-radius: 999px;
+		border: 1px solid rgba(45, 212, 191, 0.35);
+		background: rgba(15, 23, 42, 0.85);
+		color: #5eead4;
+		font-size: 0.9rem;
+		font-weight: 800;
+	}
+
+	.reviews__meta {
+		min-width: 0;
+	}
+
+	.reviews__handle {
+		margin: 0;
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		overflow-wrap: anywhere;
+	}
+
+	.reviews__verified {
+		display: none;
+	}
+
+	.reviews__date {
+		margin: 0;
+		font-size: 0.72rem;
+		color: var(--color-faint);
+		white-space: nowrap;
+	}
+
+	.reviews__stars {
+		margin: 0;
+		font-size: 0.82rem;
+		letter-spacing: 0.04em;
+		color: #fbbf24;
+	}
+
+	.reviews__text {
+		margin: 0;
+		color: #b8c0cc;
+		font-size: 0.88rem;
+		line-height: 1.6;
+	}
+
+	.reviews__read {
+		margin: 0.15rem 0 0;
+	}
+
+	.reviews__read a {
+		color: var(--color-orchid);
+		font-size: 0.84rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.reviews__read a:hover {
+		color: var(--color-ink);
+		text-decoration: underline;
+	}
+
+	.reviews__foot {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		margin-top: 1rem;
+	}
+
+	.reviews__chip {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.45rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.16);
+		background: rgba(20, 24, 30, 0.72);
+		color: var(--color-muted);
+		font-size: 0.78rem;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	@media (max-width: 680px) {
+		.reviews__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.reviews__see-all {
+			width: 100%;
+			justify-content: center;
+			min-height: var(--touch-min);
+		}
+
+		.reviews__header {
+			flex-direction: column;
+		}
+	}
+</style>

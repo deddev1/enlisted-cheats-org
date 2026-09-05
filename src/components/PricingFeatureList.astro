@@ -1,0 +1,282 @@
+---
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { productFeatureCategories } from '../data/site';
+import RelatedPages from './RelatedPages.astro';
+
+interface Props {
+	locale?: LocaleCode;
+	showFullLink?: boolean;
+	showRelatedPages?: boolean;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const showFullLink = Astro.props.showFullLink ?? true;
+const showRelatedPages = Astro.props.showRelatedPages ?? true;
+const ui = getUi(locale);
+const featuresHref = getLocalizedPath('features', locale);
+---
+
+<section class="pricing-features" aria-labelledby="pricing-features-title">
+	<header class="pricing-features__head">
+		<h2 id="pricing-features-title" class="pricing-features__title">Features</h2>
+		<p class="pricing-features__subtitle">
+			Everything included for campaigns, skirmishes, and large-scale battles on Windows PC.
+		</p>
+		<div class="pricing-features__badges">
+			<span class="pricing-features__badge">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path
+						d="m9.5 12 1.8 1.8 3.7-3.8M12 3.5 5 6.5v5.2c0 4.2 2.9 7.8 7 8.8 4.1-1 7-4.6 7-8.8V6.5L12 3.5Z"
+						stroke="currentColor"
+						stroke-width="1.6"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+				Windows 10/11
+			</span>
+			<span class="pricing-features__badge">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path
+						d="m9.5 12 1.8 1.8 3.7-3.8M12 3.5 5 6.5v5.2c0 4.2 2.9 7.8 7 8.8 4.1-1 7-4.6 7-8.8V6.5L12 3.5Z"
+						stroke="currentColor"
+						stroke-width="1.6"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+				Intel/AMD
+			</span>
+		</div>
+	</header>
+
+	<div class="pricing-features__grid">
+		{
+			productFeatureCategories.map((category) => (
+				<article class="pricing-features__card">
+					<h3 class="pricing-features__card-title">{category.title}</h3>
+					<ul
+						class:list={[
+							'pricing-features__list',
+							category.columns === 2 && 'pricing-features__list--two-col',
+						]}
+					>
+						{category.items.map((item) => (
+							<li>
+								<span class="pricing-features__bullet" aria-hidden="true"></span>
+								<span class="pricing-features__item-text">{item}</span>
+							</li>
+						))}
+					</ul>
+				</article>
+			))
+		}
+	</div>
+
+	{
+		showFullLink && (
+			<a href={featuresHref} class="pricing-features__full-link">
+				See all features
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+				</svg>
+			</a>
+		)
+	}
+
+	{
+		showRelatedPages && <RelatedPages locale={locale} />
+	}
+</section>
+
+<style>
+	.pricing-features {
+		display: grid;
+		gap: 1.15rem;
+		width: 100%;
+		margin: 0;
+		padding: clamp(0.9rem, 1.8vw, 1.25rem);
+		border-radius: var(--radius-card);
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(10, 28, 29, 0.92);
+	}
+
+	.pricing-features__head {
+		display: grid;
+		justify-items: center;
+		gap: 0.65rem;
+		text-align: center;
+	}
+
+	.pricing-features__title {
+		position: relative;
+		margin: 0;
+		padding-top: 0.85rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-ink);
+	}
+
+	.pricing-features__title::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 2.5rem;
+		height: 3px;
+		border-radius: 999px;
+		background: linear-gradient(90deg, #20BFC0, #174143);
+	}
+
+	.pricing-features__subtitle {
+		margin: 0;
+		max-width: 34rem;
+		color: rgba(229, 238, 238, 0.78);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.pricing-features__badges {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 0.15rem;
+	}
+
+	.pricing-features__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.4rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: rgba(23, 65, 67, 0.12);
+		color: var(--color-orchid);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.pricing-features__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+		align-items: stretch;
+	}
+
+	@media (max-width: 1100px) {
+		.pricing-features__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.pricing-features__card {
+		padding: 1.15rem 1.2rem 1.25rem;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(32, 191, 192, 0.22);
+		background: rgba(28, 24, 38, 0.98);
+		transition:
+			transform 0.22s ease,
+			border-color 0.22s ease,
+			box-shadow 0.22s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.pricing-features__card:hover {
+			transform: translateY(-4px);
+			border-color: rgba(32, 191, 192, 0.42);
+			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+		}
+	}
+
+	.pricing-features__card-title {
+		margin: 0 0 0.85rem;
+		padding-bottom: 0.7rem;
+		border-bottom: 1px solid rgba(32, 191, 192, 0.2);
+		font-family: var(--font-display);
+		font-size: 1.02rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: #ede9fe;
+	}
+
+	.pricing-features__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.pricing-features__list--two-col {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem 1rem;
+	}
+
+	.pricing-features__list li {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.55rem;
+		color: rgba(255, 255, 255, 0.92);
+		font-size: 0.9rem;
+		font-weight: 500;
+		line-height: 1.5;
+	}
+
+	.pricing-features__bullet {
+		flex-shrink: 0;
+		width: 0.42rem;
+		height: 0.42rem;
+		margin-top: 0.48rem;
+		border-radius: 50%;
+		background: #20BFC0;
+		box-shadow: 0 0 0 2px rgba(32, 191, 192, 0.18);
+	}
+
+	.pricing-features__item-text {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.pricing-features__full-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		width: 100%;
+		padding: 0.95rem 1.15rem;
+		border-radius: 0.75rem;
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: linear-gradient(180deg, rgba(23, 65, 67, 0.22), rgba(13, 35, 36, 0.18));
+		color: var(--color-ink);
+		font-size: 0.92rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.pricing-features__full-link:hover {
+		border-color: rgba(32, 191, 192, 0.55);
+		background: linear-gradient(180deg, rgba(23, 65, 67, 0.32), rgba(13, 35, 36, 0.24));
+		transform: translateY(-1px);
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 900px) {
+		.pricing-features__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.pricing-features__list--two-col {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

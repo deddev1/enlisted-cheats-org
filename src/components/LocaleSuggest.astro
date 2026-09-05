@@ -1,0 +1,121 @@
+---
+import { locales, defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { localizedSlugs, type PageId } from '../data/i18n/routing';
+
+interface Props {
+	currentLocale: LocaleCode;
+	pageId?: PageId;
+}
+
+const { currentLocale, pageId = 'home' } = Astro.props;
+
+if (currentLocale !== defaultLocale) {
+	return null;
+}
+
+const localeList = JSON.stringify(
+	locales.map((l) => ({
+		code: l.code,
+		nativeName: l.nativeName,
+		region: l.region,
+		name: l.name,
+	})),
+);
+const pageSlugs = JSON.stringify(localizedSlugs[pageId] ?? {});
+const countryLocale = JSON.stringify({
+	GB: 'en',
+	US: 'en',
+	IE: 'en',
+	AU: 'en',
+	NZ: 'en',
+	CA: 'en',
+	ZA: 'en',
+	FR: 'fr',
+	DE: 'de',
+	AT: 'de',
+	CH: 'de',
+	ES: 'es',
+	MX: 'es',
+	AR: 'es',
+	PT: 'pt',
+	BR: 'pt',
+	IT: 'it',
+	NL: 'nl',
+	BE: 'nl',
+	PL: 'pl',
+	RU: 'ru',
+	TR: 'tr',
+	SA: 'ar',
+	AE: 'ar',
+	JP: 'ja',
+	KR: 'ko',
+	CN: 'zh',
+	TW: 'zh',
+	TH: 'th',
+	VN: 'vi',
+	UA: 'uk',
+	CZ: 'cs',
+	RO: 'ro',
+	SE: 'sv',
+	IN: 'hi',
+	ID: 'id',
+});
+---
+
+<script define:vars={{ localeList, pageSlugs, countryLocale, defaultLocale }}>
+	(function () {
+		const run = () => {
+			const storageKey = 'fc_locale_dismissed';
+			const cookieName = 'fc_locale';
+			const isLocalDev =
+				location.hostname === 'localhost' ||
+				location.hostname === '127.0.0.1';
+
+			if (isLocalDev) return;
+
+			if (sessionStorage.getItem(storageKey)) return;
+
+			const locales = JSON.parse(localeList);
+			const slugs = JSON.parse(pageSlugs);
+			const countries = JSON.parse(countryLocale);
+
+			function getLocalizedPath(locale) {
+				const slug = slugs[locale];
+				return slug ? `/${locale}/${slug}/` : `/${locale}/`;
+			}
+
+			function localeFromCookie() {
+				const cookie = document.cookie.match(/(?:^|;\s*)fc_locale=([^;]+)/)?.[1];
+				return cookie && locales.some((l) => l.code === cookie) ? cookie : null;
+			}
+
+			function localeFromNavigator() {
+				const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
+				for (const tag of langs) {
+					const lower = tag.toLowerCase();
+					if (lower.endsWith('-gb') || lower.endsWith('-uk')) return defaultLocale;
+					const primary = lower.split('-')[0];
+					if (locales.some((l) => l.code === primary)) return primary;
+				}
+				return defaultLocale;
+			}
+
+			function localeFromCountry() {
+				// Cloudflare may inject cf-country on some hosts; harmless if absent.
+				const country = document.documentElement.dataset.cfCountry;
+				return country ? countries[country] : null;
+			}
+
+			const preferred =
+				localeFromCookie() || localeFromNavigator() || localeFromCountry() || defaultLocale;
+
+			if (preferred === defaultLocale) return;
+
+			const href = getLocalizedPath(preferred);
+			document.cookie = `${cookieName}=${preferred};path=/;max-age=31536000;SameSite=Lax`;
+			window.location.replace(href);
+		};
+
+		run();
+	})();
+</script>

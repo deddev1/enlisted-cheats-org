@@ -1,0 +1,85 @@
+---
+import { getUi } from '../data/i18n';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getProductRelatedLinks, type InternalLink } from '../lib/internal-links';
+
+interface Props {
+	locale?: LocaleCode;
+	links?: InternalLink[];
+	title?: string;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+const title = Astro.props.title ?? ui.common.relatedPages;
+const links =
+	Astro.props.links ??
+	getProductRelatedLinks(locale, {
+		esp: ui.nav.esp,
+		aimbot: ui.nav.aimbot,
+		features: ui.nav.features,
+		setup: ui.nav.setup,
+		pricing: ui.nav.pricing,
+		updates: ui.nav.updates,
+		faq: ui.nav.faq,
+	});
+---
+
+{
+	links.length > 0 && (
+		<nav class="related-pages" aria-label={title}>
+			<p class="related-pages__label">{title}</p>
+			<div class="related-pages__row">
+				{links.map((link) => (
+					<a href={link.href} class="related-pages__link">
+						{link.label}
+					</a>
+				))}
+			</div>
+		</nav>
+	)
+}
+
+<style>
+	.related-pages {
+		margin-top: 1.25rem;
+	}
+
+	.related-pages__label {
+		margin: 0 0 0.65rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--color-faint);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.related-pages__row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.related-pages__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.65rem 0.95rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.2);
+		background: rgba(26, 22, 38, 0.8);
+		color: var(--color-muted);
+		font-size: 0.82rem;
+		font-weight: 600;
+		transition:
+			color 0.2s ease,
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.related-pages__link:hover {
+		color: var(--color-ink);
+		border-color: rgba(32, 191, 192, 0.45);
+		background: rgba(13, 35, 36, 0.85);
+	}
+</style>

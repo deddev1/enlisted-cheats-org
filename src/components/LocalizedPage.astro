@@ -1,0 +1,120 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getPageContent, getUi, type PageId } from '../data/i18n';
+import { getCanonicalPath, getLocalizedPath, localizeInternalHref } from '../data/i18n/routing';
+import type { LocaleCode } from '../data/i18n/locales';
+import { defaultLocale } from '../data/i18n/locales';
+import { seoFaqs, siteConfig } from '../data/site';
+import { enlistedImages } from '../data/enlisted';
+import { buildPageExtraGraph, pageFaqClusters } from '../data/schema';
+import SeoFaqPanel from '../components/SeoFaqPanel.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import PricingPlans from '../components/PricingPlans.astro';
+import PricingFeatureList from '../components/PricingFeatureList.astro';
+import FeaturesDetail from '../components/FeaturesDetail.astro';
+import { getPageRelatedLinks } from '../lib/internal-links';
+
+interface Props {
+	locale: LocaleCode;
+	pageId: PageId;
+}
+
+const { locale, pageId } = Astro.props;
+const page = getPageContent(locale, pageId);
+const ui = getUi(locale);
+const relatedLinks = getPageRelatedLinks(pageId, locale, {
+	esp: ui.nav.esp,
+	aimbot: ui.nav.aimbot,
+	features: ui.nav.features,
+	setup: ui.nav.setup,
+	pricing: ui.nav.pricing,
+	updates: ui.nav.updates,
+	faq: ui.nav.faq,
+});
+
+function localizeParagraphHtml(html: string): string {
+	return html
+		.replace(/\{checkout\}/g, siteConfig.checkoutUrl)
+		.replace(/href="(\/[^"]+)"/g, (_, path: string) => `href="${localizeInternalHref(path, locale)}"`);
+}
+
+const galleryPool = [
+	enlistedImages.product[0],
+	enlistedImages.product[1],
+	enlistedImages.product[2],
+];
+
+const canonicalPath = getCanonicalPath(pageId, locale);
+const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
+const heroImageUrl = new URL(page.heroImage ?? enlistedImages.hero, siteConfig.url).href;
+
+const extraGraph =
+	locale === defaultLocale
+		? buildPageExtraGraph(pageId, canonicalURL, heroImageUrl, seoFaqs)
+		: [];
+
+const ctaSecondaryHref = page.ctaSecondaryHref
+	? localizeInternalHref(page.ctaSecondaryHref, locale)
+	: page.ctaSecondary
+		? siteConfig.checkoutUrl
+		: getLocalizedPath('features', locale);
+---
+
+<PageLayout
+	title={page.title}
+	description={page.description}
+	canonicalPath={canonicalPath}
+	heading={page.h1}
+	intro={page.intro}
+	heroImage={page.heroImage}
+	heroAlt={page.imageAlt}
+	gallery={galleryPool.map((img) => ({
+		src: typeof img === 'string' ? img : img.src,
+		alt: typeof img === 'string' ? page.imageAlt : img.alt,
+	}))}
+	galleryTitle={page.galleryTitle}
+	locale={locale}
+	pageId={pageId}
+	showGallery={pageId !== 'pricing' && pageId !== 'features'}
+	extraGraph={extraGraph}
+	contentWidth={pageId === 'pricing' || pageId === 'features' ? 'full' : 'narrow'}
+	ctaPrimary={{ href: siteConfig.checkoutUrl, label: page.ctaPrimary }}
+	ctaSecondary={
+		page.ctaSecondary
+			? { href: ctaSecondaryHref, label: page.ctaSecondary }
+			: undefined
+	}
+>
+	{pageId === 'pricing' && <PricingPlans locale={locale} showPageTitle={false} />}
+	{pageId === 'pricing' && <PricingFeatureList locale={locale} showRelatedPages={false} />}
+	{pageId === 'features' && <FeaturesDetail locale={locale} />}
+	{
+		!(pageId === 'pricing' || pageId === 'features') &&
+		page.sections.map((section) => (
+			<section class="card-panel">
+				<h2>{section.h2}</h2>
+				{section.paragraphs.map((p) => (
+					<p set:html={localizeParagraphHtml(p)} />
+				))}
+				{section.list && (
+					<ul>
+						{section.list.map((item) => (
+							<li set:html={item} />
+						))}
+					</ul>
+				)}
+			</section>
+		))
+	}
+	{
+		locale === defaultLocale && pageId === 'faq' && (
+			<SeoFaqPanel items={seoFaqs} title="All questions" />
+		)
+	}
+	{
+		locale === defaultLocale && pageId !== 'faq' && pageFaqClusters[pageId] && (
+			<SeoFaqPanel items={pageFaqClusters[pageId]!} />
+		)
+	}
+	<RelatedPages locale={locale} links={relatedLinks} />
+</PageLayout>

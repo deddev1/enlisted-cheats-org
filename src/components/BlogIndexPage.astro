@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { blogUi, type LocaleCode } from '../data/i18n/locales';
+import {
+	absoluteBlogUrl,
+	getAllPostsForLocale,
+	getBlogBasePath,
+	getFeaturedPosts,
+	getPostsByCategory,
+} from '../data/blog/helpers';
+import { siteConfig } from '../data/site';
+import { getLocalizedPath } from '../data/i18n/routing';
+
+interface Props {
+	locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+const ui = blogUi[locale];
+const posts = getAllPostsForLocale(locale);
+const featured = getFeaturedPosts(locale, 3);
+const gameGuides = getPostsByCategory(locale, 'Enlisted Game Guides');
+const productPosts = posts.filter((post) => post.category !== 'Enlisted Game Guides');
+const canonicalPath = getBlogBasePath(locale);
+const canonicalURL = absoluteBlogUrl(locale);
+const homeHref = getLocalizedPath('home', locale);
+
+const articleListSchema = {
+	'@type': 'CollectionPage',
+	'@id': `${canonicalURL}#collection`,
+	name: ui.blogH1,
+	description: ui.blogDescription,
+	url: canonicalURL,
+	inLanguage: locale,
+	isPartOf: { '@id': `${siteConfig.url}/#website` },
+	mainEntity: {
+		'@type': 'ItemList',
+		itemListElement: posts.map((post, i) => ({
+			'@type': 'ListItem',
+			position: i + 1,
+			url: absoluteBlogUrl(locale, post.translation.slug),
+			name: post.translation.title,
+		})),
+	},
+};
+---
+
+<Layout
+	title={ui.blogTitle}
+	description={ui.blogDescription}
+	canonicalPath={canonicalPath}
+	locale={locale}
+	breadcrumbs={[{ label: ui.home, href: homeHref }, { label: ui.blogH1 }]}
+	extraGraph={[articleListSchema]}
+>
+	<Navbar locale={locale} />
+	<main class="blog">
+		<header class="blog__hero">
+			<p class="blog__eyebrow">Enlisted guides &amp; product intel</p>
+			<h1>{ui.blogH1}</h1>
+			<p class="blog__intro">{ui.blogIntro}</p>
+		</header>
+
+		{
+			featured.length > 0 && (
+				<section class="blog__featured" aria-label="Featured">
+					{
+						featured.map((post, index) => (
+							<a class="blog__feature-card" href={post.canonicalPath}>
+								<img
+									src={post.imageSrc}
+									alt={post.translation.imageAlt}
+									width="640"
+									height="360"
+									loading={index === 0 ? 'eager' : 'lazy'}
+									decoding="async"
+									fetchpriority={index === 0 ? 'high' : undefined}
+								/>
+								<div>
+									<span class="blog__cat">{post.category}</span>
+									<h2>{post.translation.title}</h2>
+									<p>{post.translation.intro}</p>
+									<span class="blog__more">{ui.readMore}</span>
+								</div>
+							</a>
+						))
+					}
+				</section>
+			)
+		}
+
+		{
+			gameGuides.length > 0 && (
+				<section class="blog__section" aria-labelledby="blog-game-guides">
+					<h2 id="blog-game-guides" class="blog__section-title">
+						Enlisted game guides
+					</h2>
+					<p class="blog__section-intro">
+						frontline campaigns, large-scale battles, factions, missions, and patch notes — with links to official Enlisted
+						Wiki and Darkflow Software supplys.
+					</p>
+					<div class="blog__list">
+						{gameGuides.map((post) => (
+							<article class="blog__card">
+								<a href={post.canonicalPath}>
+									<img
+										src={post.imageSrc}
+										alt={post.translation.imageAlt}
+										width="480"
+										height="270"
+										loading="lazy"
+										decoding="async"
+									/>
+									<span class="blog__cat">{post.category}</span>
+									<h2>{post.translation.title}</h2>
+									<p>{post.translation.intro}</p>
+									<span class="blog__meta">
+										{ui.updated} {post.updated}
+									</span>
+								</a>
+							</article>
+						))}
+					</div>
+				</section>
+			)
+		}
+
+		<section class="blog__section" aria-labelledby="blog-product-posts">
+			<h2 id="blog-product-posts" class="blog__section-title">
+				Product guides &amp; comparisons
+			</h2>
+			<div class="blog__list" aria-label={ui.allPosts}>
+				{
+					productPosts.map((post) => (
+					<article class="blog__card">
+						<a href={post.canonicalPath}>
+							<img
+								src={post.imageSrc}
+								alt={post.translation.imageAlt}
+								width="480"
+								height="270"
+								loading="lazy"
+								decoding="async"
+							/>
+							<span class="blog__cat">{post.category}</span>
+							<h2>{post.translation.title}</h2>
+							<p>{post.translation.intro}</p>
+							<span class="blog__meta">
+								{ui.updated} {post.updated}
+							</span>
+						</a>
+					</article>
+				))
+			}
+			</div>
+		</section>
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.blog {
+		width: min(1120px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 2.5rem 0 4rem;
+	}
+	.blog__hero {
+		margin-bottom: 2.5rem;
+	}
+	.blog__eyebrow {
+		margin: 0 0 0.5rem;
+		color: #20BFC0;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.75rem;
+	}
+	.blog__hero h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(2.2rem, 5vw, 3.4rem);
+		line-height: 1.05;
+	}
+	.blog__intro {
+		max-width: 42rem;
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 1.05rem;
+	}
+	.blog__featured {
+		display: grid;
+		gap: 1.25rem;
+		margin-bottom: 2.5rem;
+	}
+	.blog__section {
+		margin-bottom: 2.5rem;
+	}
+	.blog__section-title {
+		margin: 0 0 0.45rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+	}
+	.blog__section-intro {
+		margin: 0 0 1.1rem;
+		max-width: 42rem;
+		color: rgba(255, 255, 255, 0.68);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+	.blog__feature-card {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+		gap: 1.25rem;
+		padding: 1rem;
+		border: 1px solid rgba(32, 191, 192, 0.22);
+		background: linear-gradient(135deg, rgba(40, 24, 64, 0.75), rgba(14, 10, 22, 0.9));
+		text-decoration: none;
+		color: inherit;
+	}
+	.blog__feature-card img {
+		width: 100%;
+		height: 100%;
+		max-height: 240px;
+		object-fit: cover;
+	}
+	.blog__feature-card h2 {
+		margin: 0.4rem 0 0.6rem;
+		font-size: 1.35rem;
+	}
+	.blog__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.25rem;
+	}
+	.blog__card a {
+		display: block;
+		height: 100%;
+		padding: 0.85rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(18, 14, 28, 0.85);
+		text-decoration: none;
+		color: inherit;
+	}
+	.blog__card img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		margin-bottom: 0.75rem;
+	}
+	.blog__card h2 {
+		margin: 0.35rem 0 0.5rem;
+		font-size: 1.05rem;
+		line-height: 1.25;
+	}
+	.blog__card p,
+	.blog__feature-card p {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.68);
+		font-size: 0.92rem;
+	}
+	.blog__cat {
+		display: inline-block;
+		color: #20BFC0;
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+	.blog__more,
+	.blog__meta {
+		display: inline-block;
+		margin-top: 0.75rem;
+		color: rgba(255, 255, 255, 0.55);
+		font-size: 0.8rem;
+		font-weight: 600;
+	}
+	.blog__more {
+		color: #20BFC0;
+	}
+	@media (max-width: 760px) {
+		.blog__feature-card {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

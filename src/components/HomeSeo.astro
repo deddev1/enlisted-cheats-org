@@ -1,0 +1,267 @@
+---
+import { homeFaqs, productInfo, siteConfig } from '../data/site';
+
+const shareUrl = encodeURIComponent(siteConfig.url + '/');
+const shareText = encodeURIComponent('Enlisted Cheats — undetected ESP & aimbot for PC');
+
+const packageIncludes = [
+	...productInfo.features.esp.slice(0, 3),
+	...productInfo.features.aimbot.slice(0, 2),
+	...productInfo.features.general.slice(0, 2),
+];
+---
+
+<section class="home-seo shell" aria-labelledby="home-seo-title">
+	<div class="home-seo__panel card-surface">
+		<h2 id="home-seo-title">Enlisted Cheats for Windows PC</h2>
+		<p>
+			Enlisted Cheats is a Windows PC cheats and hacks package for Enlisted. It includes ESP, aimbot, and wallhack for
+			campaigns, skirmishes, and large-scale battles.
+		</p>
+		<p>
+			We update the package after Enlisted and anti-cheat patches. We do not claim it stays
+			undetected forever — check status here before you play.
+		</p>
+		<p>This page helps you:</p>
+		<ul>
+			<li>Compare <a href="/enlisted-esp/">ESP</a>, <a href="/enlisted-aimbot/">aimbot</a>, and <a href="/enlisted-wallhack/">wallhack</a></li>
+			<li>See <a href="/pricing/">monthly ($35) and lifetime ($150) pricing</a></li>
+			<li>Check if the latest build is live after an anti-cheat patch</li>
+		</ul>
+		<p>
+			Start with the <a href="/enlisted-cheats/">Enlisted Cheats guide</a>, then open
+			<a href="/enlisted-esp/">ESP</a>, <a href="/enlisted-aimbot/">Aimbot</a>,
+			<a href="/features/">Features</a>, and <a href="/pricing/">Pricing</a>.
+			Game updates come from
+			<a href="https://enlisted.net/en/" target="_blank" rel="noopener noreferrer">Enlisted</a>.
+			Anti-cheat updates come from
+			<a href="https://darkflowsoftware.com/" target="_blank" rel="noopener noreferrer">Darkflow Software</a>.
+			Always read our <a href="/updates/">Updates log</a> before you load into a match.
+		</p>
+
+		<div class="home-seo__grid">
+			<article>
+				<h3><a href="/enlisted-cheats/">Enlisted Cheats guide</a></h3>
+				<p>What the package includes: ESP, aimbot, wallhack, and how updates work after patches.</p>
+			</article>
+			<article>
+				<h3><a href="/enlisted-esp/">Enlisted ESP</a></h3>
+				<p>See enemy units, heavy vehicles, and heavy units through cover, with distance on screen.</p>
+			</article>
+			<article>
+				<h3><a href="/enlisted-aimbot/">Enlisted Aimbot</a></h3>
+				<p>Aim assist with smoothness, FOV, and hotkeys for mouse and controller.</p>
+			</article>
+			<article>
+				<h3><a href="/enlisted-wallhack/">Enlisted wallhack</a></h3>
+				<p>Wallhack overlays that show enemies through terrain when ESP is on.</p>
+			</article>
+			<article>
+				<h3><a href="/enlisted-cheats/">Undetected status</a></h3>
+				<p>What “undetected” means here, and where to check status after an anti-cheat patch.</p>
+			</article>
+			<article>
+				<h3><a href="/pricing/">Pricing</a></h3>
+				<p>Monthly $35 or lifetime $150. Digital delivery after you pay.</p>
+			</article>
+			<article>
+				<h3><a href="/setup/">Setup</a></h3>
+				<p>How to activate the license and turn on ESP and aimbot for the first time.</p>
+			</article>
+			<article>
+				<h3><a href="/faq/">FAQ</a></h3>
+				<p>Common questions on delivery, updates, Windows PC support, and billing help.</p>
+			</article>
+		</div>
+	</div>
+
+	<div class="home-seo__panel card-surface">
+		<h2>What the package includes</h2>
+		<p>
+			For Enlisted on Windows PC. ESP, aimbot, and radar in one license. Monthly or lifetime plans.
+			Updates after anti-cheat patches. Support included.
+		</p>
+		<ul>
+			{packageIncludes.map((item) => <li>{item}</li>)}
+		</ul>
+		<p>
+			Compare monthly and lifetime plans on <a href="/pricing/">Pricing</a>. After a game patch, check
+			<a href="/updates/">Updates</a> before you play. Refund, privacy, and terms links are in the footer.
+		</p>
+	</div>
+
+	<div class="home-seo__panel card-surface">
+		<h2>How to choose before you buy</h2>
+		<ul class="home-seo__choose">
+			<li>
+				<span class="home-seo__choose-q">See enemies first?</span>
+				<span class="home-seo__choose-a">Read the <a href="/enlisted-esp/">ESP page</a></span>
+			</li>
+			<li>
+				<span class="home-seo__choose-q">Need help aiming?</span>
+				<span class="home-seo__choose-a">Read the <a href="/enlisted-aimbot/">Aimbot page</a></span>
+			</li>
+			<li>
+				<span class="home-seo__choose-q">Ready to buy?</span>
+				<span class="home-seo__choose-a">
+					Check both pages, then pick <a href="/pricing/">monthly ($35)</a> or
+					<a href="/pricing/">lifetime ($150)</a> on Pricing
+				</span>
+			</li>
+		</ul>
+		<p class="home-seo__choose-note">
+			Works on {productInfo.platforms.join(' and ')}. Available {siteConfig.market}.
+		</p>
+	</div>
+
+	<div class="home-seo__panel card-surface">
+		<h2 id="faq-heading">FAQ</h2>
+		<div class="home-seo__faq">
+			{homeFaqs.map((item) => (
+				<details>
+					<summary>{item.question}</summary>
+					<p set:html={item.answer} />
+				</details>
+			))}
+		</div>
+	</div>
+
+	<div class="home-seo__share" aria-label="Share">
+		<a
+			href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`}
+			rel="noopener noreferrer"
+			target="_blank"
+		>
+			Share
+		</a>
+	</div>
+</section>
+
+<style>
+	.home-seo {
+		display: grid;
+		gap: 1.25rem;
+		padding-block: var(--section-space);
+	}
+
+	.home-seo__panel {
+		padding: 1.35rem 1.4rem;
+		border-radius: var(--radius-card);
+	}
+
+	.home-seo__panel h2 {
+		margin: 0 0 0.75rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+		font-weight: 750;
+		letter-spacing: -0.02em;
+	}
+
+	.home-seo__panel p,
+	.home-seo__panel li {
+		color: var(--color-muted);
+		line-height: 1.65;
+		font-size: 0.98rem;
+	}
+
+	.home-seo__panel ul {
+		margin: 0.5rem 0 1rem;
+		padding-left: 1.25rem;
+		display: grid;
+		gap: 0.4rem;
+		list-style: disc;
+	}
+
+	.home-seo__choose {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.home-seo__choose li {
+		display: grid;
+		gap: 0.15rem;
+		padding: 0.7rem 0.85rem;
+		border-radius: 0.7rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(13, 35, 36, 0.55);
+	}
+
+	.home-seo__choose-q {
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--color-ink);
+	}
+
+	.home-seo__choose-a {
+		font-size: 0.9rem;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+
+	.home-seo__choose-note {
+		margin: 0.75rem 0 0;
+		padding-top: 0.75rem;
+		border-top: 1px solid rgba(32, 191, 192, 0.12);
+		font-size: 0.88rem;
+		color: var(--color-faint);
+	}
+
+	.home-seo__panel a {
+		color: var(--color-orchid);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.home-seo__grid {
+		display: grid;
+		gap: 0.85rem;
+		margin-top: 1.25rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+
+	.home-seo__grid article {
+		padding: 0.85rem 0.9rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.55rem;
+		background: rgba(20, 24, 28, 0.55);
+	}
+
+	.home-seo__grid h3 {
+		margin: 0 0 0.35rem;
+		font-size: 1rem;
+		font-weight: 700;
+	}
+
+	.home-seo__grid p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.home-seo__faq details {
+		border-top: 1px solid var(--color-border);
+		padding: 0.75rem 0;
+	}
+
+	.home-seo__faq summary {
+		cursor: pointer;
+		font-weight: 650;
+		color: var(--color-ink);
+	}
+
+	.home-seo__faq p {
+		margin: 0.55rem 0 0;
+	}
+
+	.home-seo__share {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.home-seo__share a {
+		color: var(--color-faint);
+		font-size: 0.85rem;
+	}
+</style>

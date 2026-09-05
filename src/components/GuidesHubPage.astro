@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { siteConfig } from '../data/site';
+import {
+	absoluteGuideUrl,
+	getMixedExternalGuides,
+	getNativeEnlistedGuides,
+	guidesBasePath,
+} from '../data/guides/helpers';
+import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale } from '../data/i18n/locales';
+
+import type { ResolvedExternalGuide } from '../data/guides/types';
+
+const locale = defaultLocale;
+const nativeGuides = getNativeEnlistedGuides();
+const otherGameGuides = getMixedExternalGuides();
+const homeHref = getLocalizedPath('home', locale);
+
+function externalGuideLabel(guide: ResolvedExternalGuide): string {
+	const topic = guide.title.match(/Guide:\s*(.+)$/i)?.[1]?.split('&')[0].trim() ?? 'Guide';
+	const shortTopic = topic.length > 18 ? `${topic.slice(0, 15).trimEnd()}…` : topic;
+	const date = new Date(`${guide.published}T00:00:00Z`);
+	const stamp = `${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+	return `${guide.gameName}: ${shortTopic} · ${stamp}`;
+}
+
+function nativeGuideLabel(title: string): string {
+	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
+	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
+}
+
+const title = 'Game Guides Hub | Enlisted & Multi-Game Gameplay Guides';
+const description =
+	'Enlisted progression guides plus dedicated gameplay guides for Fortnite, Tarkov, Valorant, Palworld, and dozens more titles.';
+
+const canonicalURL = absoluteGuideUrl();
+
+const extraGraph = [
+	{
+		'@type': 'CollectionPage',
+		'@id': `${canonicalURL}#collection`,
+		name: title,
+		description,
+		url: canonicalURL,
+		inLanguage: 'en',
+		isPartOf: { '@id': `${siteConfig.url}/#website` },
+	},
+];
+---
+
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={guidesBasePath}
+	locale={locale}
+	breadcrumbs={[{ label: 'Home', href: homeHref }, { label: 'Guides' }]}
+	extraGraph={extraGraph}
+>
+	<Navbar locale={locale} />
+	<main class="guides">
+		<header class="guides__hero">
+			<p class="guides__eyebrow">Guides hub</p>
+			<h1>Game guides</h1>
+			<p class="guides__intro">
+				Start with our native Enlisted progression guides, then browse dedicated gameplay guides for other
+				titles below.
+			</p>
+		</header>
+
+		<section class="guides__section guides__section--native" aria-labelledby="native-guides-title">
+			<h2 id="native-guides-title" class="guides__section-title">Enlisted guides</h2>
+			<p class="guides__section-intro">
+				Our primary guides covering frontline campaigns, large-scale battle farming, factions, mission types, and patch notes.
+			</p>
+			<div class="guides__grid">
+		{
+			nativeGuides.map((post, index) => (
+				<article class="guides__card guides__card--native">
+					<img
+						src={post.imageSrc}
+						alt={post.translation.imageAlt}
+						width="640"
+						height="360"
+						loading={index < 3 ? 'eager' : 'lazy'}
+						decoding="async"
+					/>
+					<div class="guides__card-body">
+						<span class="guides__cat">Enlisted</span>
+						<h3 class="guides__card-title">
+							<a href={post.canonicalPath}>{nativeGuideLabel(post.translation.title)}</a>
+						</h3>
+						<p>{post.translation.intro}</p>
+					</div>
+				</article>
+			))
+		}
+			</div>
+
+			<EnlistedAuthorityLinks headingLevel="h3" />
+		</section>
+
+		<section class="guides__section guides__section--external" aria-labelledby="external-guides-title">
+			<h2 id="external-guides-title" class="guides__section-title">Other Games Guides</h2>
+			<p class="guides__section-intro">
+				Gameplay guides for other titles — each article focuses on one game&apos;s core loop, progression,
+				and decision-making.
+			</p>
+
+			<div class="guides__grid">
+				{
+					otherGameGuides.map((guide, index) => (
+						<article class="guides__card">
+							<img
+								src={guide.imageSrc}
+								alt={guide.imageAlt}
+								width="640"
+								height="360"
+								loading={index < 4 ? 'lazy' : 'lazy'}
+								decoding="async"
+							/>
+							<div class="guides__card-body">
+								<span class="guides__cat">{guide.gameName}</span>
+								<h3 class="guides__card-title">
+									<a href={guide.canonicalPath}>{externalGuideLabel(guide)}</a>
+								</h3>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.guides {
+		width: min(960px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 2.5rem 0 4rem;
+	}
+
+	.guides__hero {
+		margin-bottom: 2.5rem;
+	}
+
+	.guides__eyebrow {
+		margin: 0 0 0.5rem;
+		color: #20bfc0;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.guides__hero h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(2rem, 4vw, 2.8rem);
+		line-height: 1.1;
+	}
+
+	.guides__intro {
+		margin: 0;
+		max-width: 42rem;
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+
+	.guides__section {
+		margin-bottom: 3rem;
+	}
+
+	.guides__section--external {
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.guides__section-title {
+		margin: 0 0 0.5rem;
+		font-size: 1.5rem;
+	}
+
+	.guides__section-intro {
+		margin: 0 0 1.25rem;
+		max-width: 40rem;
+		color: rgba(255, 255, 255, 0.65);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.guides__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+
+	.guides__card {
+		display: flex;
+		flex-direction: column;
+		border-radius: 0.95rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(20, 24, 30, 0.88);
+		overflow: hidden;
+		color: inherit;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.guides__card:hover {
+		border-color: rgba(32, 191, 192, 0.38);
+		transform: translateY(-2px);
+	}
+
+	.guides__card img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+
+	.guides__card-body {
+		display: grid;
+		gap: 0.45rem;
+		padding: 0.9rem 1rem 1rem;
+	}
+
+	.guides__cat {
+		color: #20bfc0;
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.guides__card-body h3,
+	.guides__card-title {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.35;
+		font-weight: 800;
+	}
+
+	.guides__card-title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.guides__card-title a:hover {
+		color: #20bfc0;
+	}
+
+	.guides__card-body p:not(.guides__card-title) {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.65);
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	@media (max-width: 720px) {
+		.guides__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

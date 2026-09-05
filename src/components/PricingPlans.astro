@@ -1,0 +1,609 @@
+---
+import { pricingGallery } from '../data/enlisted';
+import { getUi } from '../data/i18n';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { productInfo, siteConfig } from '../data/site';
+import RelatedPages from './RelatedPages.astro';
+import { contentSrc, contentSrcSet, productMainSizes, productThumbSizes } from '../lib/responsive-images';
+
+interface Props {
+	locale?: LocaleCode;
+	showRelatedPages?: boolean;
+	/** When false, page banner supplies the H1 (dedicated /pricing/ page). */
+	showPageTitle?: boolean;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const showRelatedPages = Astro.props.showRelatedPages ?? true;
+const showPageTitle = Astro.props.showPageTitle ?? true;
+const ui = getUi(locale);
+
+const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? productInfo.plans[0];
+const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
+const defaultPlan = monthlyPlan;
+
+const galleryImages = pricingGallery.map((image) => ({
+	...image,
+	displaySrc: contentSrc(image.src),
+	displaySrcSet: contentSrcSet(image.src),
+}));
+const mainImage = galleryImages[0];
+
+const featurePills = [
+	{ icon: 'bolt', label: ui.trust.delivery },
+	{ icon: 'sliders', label: 'Easy to use' },
+	{ icon: 'shield', label: 'Undetected' },
+	{ icon: 'headset', label: '24/7 support' },
+] as const;
+---
+
+<section
+	class="pricing-showcase surface-card"
+	id="pricing"
+	data-product
+	aria-label={ui.nav.pricing}
+>
+	<div class="pricing-showcase__media">
+		<figure class="pricing-showcase__figure media-frame">
+			<img
+				src={mainImage.displaySrc}
+				srcset={mainImage.displaySrcSet}
+				sizes={productMainSizes}
+				alt={mainImage.alt}
+				width="1280"
+				height="720"
+				class="pricing-showcase__image"
+				data-main-image
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+			/>
+		</figure>
+		<div class="pricing-showcase__thumbs" role="group" aria-label="Enlisted cheats screenshots">
+			{
+				galleryImages.map((image, index) => (
+					<button
+						type="button"
+						class:list={['pricing-showcase__thumb', { 'is-active': index === 0 }]}
+						aria-label={image.alt}
+						aria-pressed={index === 0 ? 'true' : 'false'}
+						data-thumb
+						data-src={image.displaySrc}
+						data-srcset={image.displaySrcSet ?? ''}
+						data-alt={image.alt}
+					>
+						<img
+							src={image.displaySrc}
+							srcset={image.displaySrcSet}
+							alt={image.alt}
+							sizes={productThumbSizes}
+							width="320"
+							height="200"
+							loading={index < 4 ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+					</button>
+				))
+			}
+		</div>
+	</div>
+
+	<div
+		class="pricing-showcase__checkout"
+		data-plan-selector
+		data-default-plan={defaultPlan.id}
+		data-buy-prefix={ui.product.addToCart}
+		data-buy-show-price="false"
+	>
+		<div class="pricing-showcase__header">
+			{
+				showPageTitle ? (
+					<h1 class="pricing-showcase__title">{productInfo.name}</h1>
+				) : (
+					<h2 class="pricing-showcase__title">{ui.nav.pricing}</h2>
+				)
+			}
+			<span class="pricing-showcase__status">
+				<span class="pricing-showcase__status-dot" aria-hidden="true"></span>
+				Undetected
+			</span>
+		</div>
+
+		<div class="pricing-showcase__plans" role="group" aria-label="Select a license plan">
+			<button
+				type="button"
+				class="pricing-showcase__plan is-selected"
+				data-plan={monthlyPlan.id}
+				data-plan-label={ui.product.monthly}
+				data-plan-price={monthlyPlan.price}
+				data-checkout-url={siteConfig.checkoutUrl}
+				aria-pressed="true"
+			>
+				<span class="pricing-showcase__plan-main">
+					<span class="pricing-showcase__plan-name">{ui.product.monthly}</span>
+					<span class="pricing-showcase__plan-price">${monthlyPlan.price}</span>
+				</span>
+			</button>
+
+			{
+				lifetimePlan && (
+					<button
+						type="button"
+						class="pricing-showcase__plan pricing-showcase__plan--featured"
+						data-plan={lifetimePlan.id}
+						data-plan-label={ui.product.lifetime}
+						data-plan-price={lifetimePlan.price}
+						data-checkout-url={siteConfig.checkoutUrl}
+						aria-pressed="false"
+					>
+						<span class="pricing-showcase__plan-badge">
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+								<path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5.1L12 14.8 7.5 16.8l.9-5.1L4.8 8.2l5-.7L12 3z"></path>
+							</svg>
+							Most popular
+						</span>
+						<span class="pricing-showcase__plan-main">
+							<span class="pricing-showcase__plan-name">{ui.product.lifetime}</span>
+							<span class="pricing-showcase__plan-price">${lifetimePlan.price}</span>
+						</span>
+						<span class="pricing-showcase__plan-sub">One-time payment</span>
+					</button>
+				)
+			}
+		</div>
+
+		<a
+			href={siteConfig.checkoutUrl}
+			class="pricing-showcase__cart btn-buy"
+			data-plan-buy
+			rel="noopener noreferrer"
+		>
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path
+					d="M6 6h15l-1.5 9h-12L4 3H2"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"></path>
+				<circle cx="9" cy="20" r="1.25" fill="currentColor"></circle>
+				<circle cx="18" cy="20" r="1.25" fill="currentColor"></circle>
+			</svg>
+			<span data-plan-buy-label>{ui.product.addToCart}</span>
+		</a>
+
+		<div class="pricing-showcase__pills" aria-label="Package highlights">
+			{
+				featurePills.map((pill) => (
+					<span class="pricing-showcase__pill">
+						<span class="pricing-showcase__pill-icon" data-icon={pill.icon} aria-hidden="true">
+							{pill.icon === 'bolt' && (
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+									<path d="M13 3 5.5 13.5H12l-1 7.5L19.5 10H13l0-7Z" stroke-linejoin="round"></path>
+								</svg>
+							)}
+							{pill.icon === 'sliders' && (
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+									<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M4 14h0M12 12h0M20 16h0" stroke-linecap="round"></path>
+								</svg>
+							)}
+							{pill.icon === 'shield' && (
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+									<path d="M12 3.5 5 6.5v5.2c0 4.2 2.9 7.8 7 8.8 4.1-1 7-4.6 7-8.8V6.5L12 3.5Z" stroke-linejoin="round"></path>
+								</svg>
+							)}
+							{pill.icon === 'headset' && (
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+									<path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 2Zm16 0a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2Z" stroke-linecap="round"></path>
+								</svg>
+							)}
+						</span>
+						{pill.label}
+					</span>
+				))
+			}
+		</div>
+
+		<div class="pricing-showcase__guarantee">
+			<span class="pricing-showcase__guarantee-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+					<path d="M12 3.5 5 6.5v5.2c0 4.2 2.9 7.8 7 8.8 4.1-1 7-4.6 7-8.8V6.5L12 3.5Z" stroke-linejoin="round"></path>
+					<path d="m9.5 12 1.8 1.8 3.7-3.8" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</span>
+			<p>
+				Your purchase is backed by years of development, continuous updates, and a dedicated support
+				team committed to your success.
+			</p>
+		</div>
+
+		{showRelatedPages && <RelatedPages locale={locale} />}
+	</div>
+</section>
+
+<script>
+	import { initPlanSelectors } from '../lib/plan-selector';
+	initPlanSelectors();
+
+	document.querySelectorAll('[data-product]').forEach((root) => {
+		const imageThumbs = root.querySelectorAll('[data-thumb]');
+		const mainImage = root.querySelector('[data-main-image]');
+
+		imageThumbs.forEach((thumb) => {
+			thumb.addEventListener('click', () => {
+				if (!(mainImage instanceof HTMLImageElement)) return;
+				const src = thumb.getAttribute('data-src');
+				const srcset = thumb.getAttribute('data-srcset');
+				const alt = thumb.getAttribute('data-alt');
+				if (src) mainImage.src = src;
+				if (srcset) mainImage.srcset = srcset;
+				else mainImage.removeAttribute('srcset');
+				if (alt) mainImage.alt = alt;
+				imageThumbs.forEach((item) => {
+					const active = item === thumb;
+					item.classList.toggle('is-active', active);
+					item.setAttribute('aria-pressed', active ? 'true' : 'false');
+				});
+			});
+		});
+	});
+</script>
+
+<style>
+	.pricing-showcase {
+		display: grid;
+		grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+		gap: clamp(1rem, 2vw, 1.5rem);
+		align-items: center;
+		width: 100%;
+		margin: 0;
+		padding: clamp(0.9rem, 1.8vw, 1.25rem);
+		border-radius: var(--radius-card);
+		border: 1px solid rgba(32, 191, 192, 0.18);
+		background: linear-gradient(145deg, rgba(13, 35, 36, 0.96) 0%, rgba(10, 28, 29, 0.98) 100%);
+		box-shadow:
+			0 0 0 1px rgba(32, 191, 192, 0.05) inset,
+			0 16px 40px rgba(0, 0, 0, 0.28);
+	}
+
+	.pricing-showcase__media {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		min-width: 0;
+	}
+
+	.pricing-showcase__figure {
+		margin: 0;
+		aspect-ratio: 16 / 10;
+		border: 1px solid rgba(32, 191, 192, 0.2);
+		border-radius: 0.85rem;
+		overflow: hidden;
+	}
+
+	.pricing-showcase__figure.media-frame img,
+	.pricing-showcase__thumb img {
+		transform: none;
+	}
+
+	.pricing-showcase__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		transform: none;
+	}
+
+	.pricing-showcase__thumbs {
+		display: flex;
+		gap: 0.55rem;
+		overflow-x: auto;
+		padding-bottom: 0.15rem;
+		scroll-snap-type: x proximity;
+		scrollbar-width: thin;
+	}
+
+	.pricing-showcase__thumb {
+		position: relative;
+		flex: 0 0 5.75rem;
+		padding: 0;
+		aspect-ratio: 16 / 10;
+		border: 2px solid rgba(32, 191, 192, 0.2);
+		border-radius: 0.65rem;
+		background: rgba(13, 35, 36, 0.8);
+		cursor: pointer;
+		overflow: hidden;
+		scroll-snap-align: start;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.pricing-showcase__thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.pricing-showcase__checkout {
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+		min-width: 0;
+		justify-content: center;
+	}
+
+	.pricing-showcase__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.65rem;
+	}
+
+	.pricing-showcase__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		text-transform: uppercase;
+	}
+
+	.pricing-showcase__status {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		flex-shrink: 0;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: rgba(32, 191, 192, 0.1);
+		color: var(--color-mint);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.pricing-showcase__status-dot {
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: 999px;
+		background: var(--color-mint);
+	}
+
+	.pricing-showcase__plans {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.6rem;
+		align-items: stretch;
+	}
+
+	.pricing-showcase__plan {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.2rem;
+		width: 100%;
+		min-height: 5.25rem;
+		margin: 0;
+		padding: 0.85rem 0.9rem;
+		border-radius: 0.75rem;
+		border: 1px solid rgba(32, 191, 192, 0.22);
+		background: rgba(13, 35, 36, 0.85);
+		color: inherit;
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.pricing-showcase__plan:hover {
+		border-color: rgba(32, 191, 192, 0.45);
+	}
+
+	.pricing-showcase__plan.is-selected {
+		border-color: rgba(32, 191, 192, 0.45);
+		background: rgba(23, 65, 67, 0.14);
+	}
+
+	.pricing-showcase__plan--featured {
+		position: relative;
+		padding-top: 1.55rem;
+	}
+
+	.pricing-showcase__plan-badge {
+		position: absolute;
+		top: 0.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		background: rgba(23, 65, 67, 0.35);
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		color: var(--color-orchid);
+		font-size: 0.62rem;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.pricing-showcase__plan-main {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	.pricing-showcase__plan-name {
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		line-height: 1.2;
+	}
+
+	.pricing-showcase__plan.is-selected .pricing-showcase__plan-name {
+		color: var(--color-orchid);
+	}
+
+	.pricing-showcase__plan-price {
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-ink);
+		white-space: nowrap;
+	}
+
+	.pricing-showcase__plan-sub {
+		font-size: 0.74rem;
+		font-weight: 600;
+		color: var(--color-faint);
+		text-align: left;
+	}
+
+	.pricing-showcase__cart {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+		width: 100%;
+		margin: 0.1rem 0 0;
+		padding: 0.9rem 1.1rem;
+		border-radius: 0.75rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		text-transform: none;
+	}
+
+	.pricing-showcase__pills {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.4rem;
+	}
+
+	.pricing-showcase__pill {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.45rem;
+		min-height: auto;
+		padding: 0.55rem 0.65rem;
+		border-radius: 0.6rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(13, 35, 36, 0.75);
+		color: var(--color-muted);
+		font-size: 0.72rem;
+		font-weight: 600;
+		line-height: 1.25;
+		text-align: left;
+	}
+
+	.pricing-showcase__pill-icon {
+		display: grid;
+		place-items: center;
+		width: 1.35rem;
+		height: 1.35rem;
+		color: var(--color-orchid);
+	}
+
+	.pricing-showcase__pill-icon svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.pricing-showcase__guarantee {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.65rem;
+		padding: 0.75rem 0.85rem;
+		border-radius: 0.7rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(13, 35, 36, 0.55);
+	}
+
+	.pricing-showcase__guarantee-icon {
+		flex-shrink: 0;
+		display: grid;
+		place-items: center;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 999px;
+		background: rgba(32, 191, 192, 0.12);
+		border: 1px solid rgba(32, 191, 192, 0.3);
+		color: var(--color-mint);
+	}
+
+	.pricing-showcase__guarantee-icon svg {
+		width: 1.1rem;
+		height: 1.1rem;
+	}
+
+	.pricing-showcase__guarantee p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.82rem;
+		line-height: 1.55;
+	}
+
+	.pricing-showcase__summary.is-collapsed :global(.plan-summary__panel) {
+		padding: 0.75rem 0.95rem;
+	}
+
+	.pricing-showcase__summary :global(.plan-summary__label) {
+		font-size: 0.72rem;
+	}
+
+	.pricing-showcase__summary :global(.plan-summary__panel ul) {
+		grid-template-columns: 1fr;
+		gap: 0.15rem;
+	}
+
+	.pricing-showcase__summary :global(.plan-summary__panel li) {
+		font-size: 0.8rem;
+	}
+
+	@media (max-width: 900px) {
+		.pricing-showcase {
+			grid-template-columns: 1fr;
+			align-items: stretch;
+		}
+
+		.pricing-showcase__plans {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (min-width: 901px) and (max-width: 1040px) {
+		.pricing-showcase__plans {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pricing-showcase__thumb.is-active,
+	.pricing-showcase__thumb:hover {
+		border-color: rgba(32, 191, 192, 0.45);
+	}
+
+	@media (max-width: 480px) {
+		.pricing-showcase__header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.pricing-showcase__thumb {
+			flex-basis: 5.25rem;
+		}
+	}
+</style>

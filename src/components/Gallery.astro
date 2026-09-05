@@ -1,0 +1,188 @@
+---
+import { enlistedImages } from '../data/enlisted';
+import { getGalleryUi } from '../data/i18n/gallery-ui';
+import { localizeInternalHref } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { contentSrc, contentSrcSet, galleryTileSizes } from '../lib/responsive-images';
+
+interface Props {
+	locale?: LocaleCode;
+	priority?: boolean;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const gallery = getGalleryUi(locale);
+
+const slides = enlistedImages.gallery.map((image) => ({
+	src: contentSrc(image.src),
+	srcset: contentSrcSet(image.src),
+	alt: image.alt,
+	href: localizeInternalHref(image.href, locale),
+	linkLabel: galleryLinkLabel(localizeInternalHref(image.href, locale), image.src),
+}));
+const marqueeSlides = [...slides, ...slides];
+
+function galleryLinkLabel(href: string, src: string): string {
+	const file = src.match(/\/([^/]+?)(?:-\d+w)?\.webp$/)?.[1] ?? '';
+	const labels: Record<string, string> = {
+		'enlisted-cheats-main-menu': 'Main menu shot',
+		'enlisted-esp-wallhack-overlay': 'ESP overlay shot',
+		'enlisted-esp-enemy-boxes': 'ESP boxes shot',
+		'enlisted-sortie-aimbot-combat': 'Aimbot combat shot',
+		'enlisted-cheats-settings-panel': 'Settings panel shot',
+		'enlisted-radar-hack-minimap': 'Radar minimap shot',
+		'enlisted-cheats-combat-esp': 'Combat ESP shot',
+	};
+	if (labels[file]) return labels[file];
+	const slug = href.replace(/^\/|\/$/g, '').split('/').pop() ?? 'page';
+	return `Open ${slug.replace(/-/g, ' ')}`;
+}
+---
+
+<section class="gallery" id="gallery" aria-labelledby="gallery-title">
+	<header class="gallery__head">
+		<p class="gallery__eyebrow">{gallery.eyebrow}</p>
+		<h2 id="gallery-title" class="gallery__title">{gallery.title}</h2>
+		<p class="gallery__sub">In-game ESP, aimbot, and radar screenshots. Click any image to open that page.</p>
+	</header>
+
+	<div class="gallery__layout">
+		<div class="gallery__marquee" aria-label="Enlisted cheats image gallery">
+			<div class="gallery__marquee-track">
+				{
+					marqueeSlides.map((slide, index) => (
+						<a
+							href={slide.href}
+							class="gallery__marquee-slide"
+							aria-label={slide.linkLabel}
+							aria-hidden={index >= slides.length ? 'true' : undefined}
+							tabindex={index >= slides.length ? -1 : undefined}
+						>
+							<img
+								src={slide.src}
+								srcset={slide.srcset}
+								sizes={galleryTileSizes}
+								alt={slide.alt}
+								width="1280"
+								height="720"
+								loading={index === 0 ? 'eager' : 'lazy'}
+								decoding="async"
+								draggable="false"
+							/>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.gallery {
+		width: 100%;
+		content-visibility: auto;
+		contain-intrinsic-size: 1px 300px;
+	}
+
+	.gallery__head {
+		margin-bottom: 0.85rem;
+	}
+
+	.gallery__eyebrow {
+		margin: 0 0 0.35rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-orchid);
+	}
+
+	.gallery__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+	}
+
+	.gallery__sub {
+		margin: 0.4rem 0 0;
+		color: var(--color-muted);
+		max-width: 34rem;
+		font-size: 0.88rem;
+		line-height: 1.45;
+	}
+
+	.gallery__layout {
+		display: grid;
+		gap: 0.65rem;
+		border: 1px solid rgba(32, 191, 192, 0.12);
+		border-radius: 1rem;
+		background: rgba(13, 35, 36, 0.46);
+		overflow: hidden;
+	}
+
+	.gallery__marquee {
+		overflow: hidden;
+		width: 100%;
+		padding: 0.75rem 0 0.85rem;
+		mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+	}
+
+	.gallery__marquee-track {
+		display: flex;
+		width: max-content;
+		gap: 0.75rem;
+		animation: gallery-marquee 48s linear infinite;
+		will-change: transform;
+	}
+
+	.gallery__marquee-slide {
+		display: block;
+		flex: 0 0 auto;
+		width: clamp(220px, 28vw, 320px);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.gallery__marquee-slide img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+		border-radius: 0.75rem;
+		border: 1px solid rgba(32, 191, 192, 0.24);
+		background: #061112;
+	}
+
+	.gallery__marquee-slide:hover img {
+		border-color: rgba(32, 191, 192, 0.45);
+	}
+
+	@keyframes gallery-marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.gallery__marquee {
+			overflow-x: auto;
+			mask-image: none;
+			scrollbar-width: thin;
+		}
+
+		.gallery__marquee-track {
+			animation: none;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.gallery__marquee-slide {
+			width: clamp(200px, 72vw, 280px);
+		}
+	}
+</style>

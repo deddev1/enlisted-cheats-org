@@ -1,0 +1,450 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
+import { getReviewPath, reviewsBasePath } from '../../../data/reviews';
+import RelatedPages from '../../../components/RelatedPages.astro';
+import type { CustomerReview } from '../../../data/site';
+
+export function getStaticPaths() {
+	return customerReviews.map((review) => ({
+		params: { slug: review.slug },
+		props: { review },
+	}));
+}
+
+const { review } = Astro.props as { review: CustomerReview };
+
+const canonicalPath = getReviewPath(review.slug);
+const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
+
+function stars(rating: number): string {
+	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+}
+
+const dateLabel = new Intl.DateTimeFormat('en', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+	timeZone: 'UTC',
+}).format(new Date(`${review.date}T00:00:00Z`));
+
+const currentIndex = customerReviews.findIndex((r) => r.slug === review.slug);
+const moreReviews = [1, 2, 3].map(
+	(offset) => customerReviews[(currentIndex + offset) % customerReviews.length],
+);
+
+const extraGraph: Record<string, unknown>[] = [
+	{
+		'@type': 'Review',
+		'@id': `${canonicalURL}#review`,
+		url: canonicalURL,
+		author: { '@type': 'Person', name: review.handle },
+		datePublished: review.date,
+		reviewRating: {
+			'@type': 'Rating',
+			ratingValue: String(review.rating),
+			bestRating: '5',
+			worstRating: '1',
+		},
+		reviewBody: review.text,
+		itemReviewed: {
+			'@type': 'Product',
+			'@id': `${siteConfig.url}/#product`,
+			name: productInfo.name,
+			description: productInfo.summary,
+			brand: { '@type': 'Brand', name: productInfo.brand },
+			url: `${siteConfig.url}/`,
+			aggregateRating: {
+				'@type': 'AggregateRating',
+				ratingValue: customerReviewStats.averageRating.toFixed(1),
+				reviewCount: customerReviewStats.totalCount,
+				bestRating: '5',
+				worstRating: '1',
+			},
+		},
+		publisher: { '@id': `${siteConfig.url}/#organization` },
+	},
+];
+---
+
+<Layout
+	title={review.seoTitle}
+	description={review.seoDescription}
+	canonicalPath={canonicalPath}
+	ogImage={siteConfig.defaultOgImage}
+	ogImageAlt={`Enlisted Cheats review by @${review.handle}`}
+	type="article"
+	locale="en"
+	breadcrumbs={[
+		{ label: 'Home', href: '/' },
+		{ label: 'Reviews', href: reviewsBasePath },
+		{ label: `@${review.handle}` },
+	]}
+	extraGraph={extraGraph}
+>
+	<Navbar />
+	<main class="review-page">
+		<div class="shell review-page__wrap">
+			<nav class="review-page__crumbs" aria-label="Breadcrumb">
+				<a href="/">Home</a>
+				<span aria-hidden="true">/</span>
+				<a href={reviewsBasePath}>Reviews</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">@{review.handle}</span>
+			</nav>
+
+			<article class="review-detail">
+				<header class="review-detail__head">
+					<span class="review-detail__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
+					<div class="review-detail__meta">
+						<h1 class="review-detail__title">@{review.handle}</h1>
+						<p class="review-detail__stars" aria-label={`${review.rating} out of 5 stars`}>
+							<span aria-hidden="true">{stars(review.rating)}</span>
+						</p>
+						<p class="review-detail__date">
+							<time datetime={review.date}>{dateLabel}</time>
+						</p>
+					</div>
+				</header>
+
+				<blockquote class="review-detail__body">
+					<p>{review.text}</p>
+				</blockquote>
+
+				<div class="review-detail__ctas">
+					<a href={siteConfig.checkoutUrl} class="review-detail__buy" rel="noopener noreferrer">
+						Buy Enlisted Cheats — ${productInfo.plans[0].price}
+					</a>
+					<a href="/pricing/" class="review-detail__link-btn">Compare pricing</a>
+					<a href="/features/" class="review-detail__link-btn">See features</a>
+					<a href="/enlisted-esp/" class="review-detail__link-btn">ESP guide</a>
+					<a href="/enlisted-aimbot/" class="review-detail__link-btn">Aimbot guide</a>
+					<a href="/" class="review-detail__link-btn">Enlisted Cheats home</a>
+				</div>
+			</article>
+
+			<section class="review-detail__more" aria-labelledby="more-reviews-title">
+				<h2 id="more-reviews-title">More Enlisted Cheats reviews</h2>
+				<div class="review-detail__more-grid">
+					{
+						moreReviews.map((other) => (
+							<a class="review-detail__more-card" href={getReviewPath(other.slug)}>
+								<span class="review-detail__more-top">
+									<span class="review-detail__more-handle">@{other.handle}</span>
+									<span class="review-detail__more-stars" aria-label={`${other.rating} out of 5 stars`}>
+										{stars(other.rating)}
+									</span>
+								</span>
+								<span class="review-detail__more-text">{other.short}</span>
+							</a>
+						))
+					}
+				</div>
+				<p class="review-detail__all-link">
+					<a href={reviewsBasePath}>See all reviews</a>
+				</p>
+			</section>
+
+			<RelatedPages />
+		</div>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.review-page {
+		overflow-x: clip;
+		padding-block: 2rem 3rem;
+	}
+
+	.review-page__wrap {
+		display: grid;
+		gap: 1.75rem;
+		max-width: 780px;
+		margin-inline: auto;
+	}
+
+	.review-page__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.45rem;
+		font-size: 0.8rem;
+		color: var(--color-faint);
+	}
+
+	.review-page__crumbs a {
+		color: var(--color-muted);
+		font-weight: 600;
+	}
+
+	.review-page__crumbs a:hover {
+		color: var(--color-orchid);
+	}
+
+	.review-detail {
+		display: grid;
+		gap: 1.25rem;
+		padding: clamp(1.25rem, 3vw, 1.85rem);
+		border-radius: var(--radius-card, 1.1rem);
+		border: 1px solid rgba(32, 191, 192, 0.18);
+		background: rgba(26, 22, 38, 0.72);
+	}
+
+	.review-detail__head {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.review-detail__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 3.25rem;
+		height: 3.25rem;
+		border-radius: 999px;
+		border: 1px solid rgba(32, 191, 192, 0.35);
+		background: rgba(13, 35, 36, 0.75);
+		color: var(--color-orchid);
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 800;
+	}
+
+	.review-detail__meta {
+		display: grid;
+		gap: 0.4rem;
+		min-width: 0;
+	}
+
+	.review-detail__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 3vw, 1.8rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+		overflow-wrap: anywhere;
+	}
+
+	.review-detail__stars {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		font-size: 1.05rem;
+		letter-spacing: 0.06em;
+		color: #fbbf24;
+	}
+
+	.review-detail__rating {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		letter-spacing: 0;
+	}
+
+	.review-detail__date {
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.55rem;
+		font-size: 0.82rem;
+		color: var(--color-faint);
+	}
+
+	.review-detail__tag,
+	.review-detail__verified {
+		display: inline-flex;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		font-size: 0.66rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.review-detail__tag {
+		border: 1px solid rgba(32, 191, 192, 0.25);
+		background: rgba(6, 17, 18, 0.45);
+		color: var(--color-orchid);
+		text-decoration: none;
+	}
+
+	a.review-detail__tag:hover {
+		border-color: rgba(32, 191, 192, 0.45);
+		color: var(--color-ink);
+	}
+
+	.review-detail__verified {
+		border: 1px solid rgba(32, 191, 192, 0.3);
+		background: rgba(6, 17, 18, 0.45);
+		color: var(--color-mint, #20BFC0);
+	}
+
+	.review-detail__body {
+		margin: 0;
+		padding: 1.15rem 1.25rem;
+		border-left: 3px solid var(--color-orchid);
+		border-radius: 0.65rem;
+		background: rgba(6, 17, 18, 0.4);
+	}
+
+	.review-detail__body p {
+		margin: 0;
+		color: #ddd2ef;
+		font-size: 1.02rem;
+		line-height: 1.75;
+	}
+
+	.review-detail__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.review-detail__buy {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.8rem 1.35rem;
+		border-radius: 0.85rem;
+		background: var(--gradient-brand);
+		color: white;
+		font-size: 0.95rem;
+		font-weight: 700;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+		transition:
+			transform 0.2s ease,
+			filter 0.2s ease;
+	}
+
+	.review-detail__buy:hover {
+		transform: translateY(-1px);
+		filter: brightness(1.05);
+		color: white;
+	}
+
+	.review-detail__link-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.8rem 1.1rem;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(32, 191, 192, 0.28);
+		background: rgba(13, 35, 36, 0.55);
+		color: var(--color-ink);
+		font-size: 0.9rem;
+		font-weight: 700;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.review-detail__link-btn:hover {
+		border-color: rgba(32, 191, 192, 0.5);
+		background: rgba(13, 35, 36, 0.85);
+		color: var(--color-ink);
+	}
+
+	.review-detail__more {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.review-detail__more h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 1.2rem;
+		font-weight: 800;
+	}
+
+	.review-detail__more-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.75rem;
+	}
+
+	.review-detail__more-card {
+		display: grid;
+		gap: 0.45rem;
+		padding: 0.9rem 0.95rem;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(26, 22, 38, 0.72);
+		color: inherit;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.review-detail__more-card:hover {
+		border-color: rgba(32, 191, 192, 0.4);
+		transform: translateY(-2px);
+	}
+
+	.review-detail__more-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.review-detail__more-handle {
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		overflow-wrap: anywhere;
+	}
+
+	.review-detail__more-stars {
+		font-size: 0.72rem;
+		color: #fbbf24;
+		white-space: nowrap;
+	}
+
+	.review-detail__more-text {
+		font-size: 0.82rem;
+		line-height: 1.55;
+		color: var(--color-muted);
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.review-detail__all-link {
+		margin: 0;
+		font-size: 0.88rem;
+	}
+
+	.review-detail__all-link a {
+		color: var(--color-orchid);
+		font-weight: 700;
+	}
+
+	.review-detail__all-link a:hover {
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 720px) {
+		.review-detail__more-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.review-detail__ctas {
+			flex-direction: column;
+		}
+
+		.review-detail__buy,
+		.review-detail__link-btn {
+			width: 100%;
+			min-height: var(--touch-min, 2.75rem);
+		}
+	}
+</style>

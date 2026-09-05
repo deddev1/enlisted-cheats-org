@@ -1,0 +1,98 @@
+---
+import { homeFaqs } from '../data/site';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import FaqList from './FaqList.astro';
+
+interface Props {
+	title?: string;
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const { title = 'Frequently asked questions' } = Astro.props;
+const faqHref = getLocalizedPath('faq', locale);
+---
+
+<section class="home-faq shell" aria-labelledby="home-faq-title">
+	<div class="home-faq__head">
+		<h2 id="home-faq-title" class="home-faq__title">
+			<span class="home-faq__accent" aria-hidden="true"></span>
+			{title}
+		</h2>
+		<p class="home-faq__intro">
+			Quick answers about setup, features, campaign and large-scale battles use, patch-day status, and support.
+		</p>
+	</div>
+
+	<FaqList items={homeFaqs} groupByCategory />
+
+	<div class="home-faq__footer">
+		<a class="home-faq__link" href={faqHref}>See all FAQ questions</a>
+		<a class="home-faq__link home-faq__link--muted" href="/blog/">Read Enlisted guides</a>
+	</div>
+</section>
+
+<style>
+	.home-faq {
+		padding-block: 0;
+	}
+
+	.home-faq__head {
+		display: grid;
+		gap: 0.55rem;
+		margin-bottom: 1.15rem;
+	}
+
+	.home-faq__title {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+	}
+
+	.home-faq__accent {
+		display: inline-block;
+		width: 0.22rem;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #20BFC0, #174143);
+		flex-shrink: 0;
+	}
+
+	.home-faq__intro {
+		margin: 0;
+		max-width: 42rem;
+		color: var(--color-muted);
+		font-size: 0.92rem;
+		line-height: 1.6;
+	}
+
+	.home-faq__footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem 1.25rem;
+		margin-top: 1rem;
+	}
+
+	.home-faq__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		color: var(--color-orchid);
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
+
+	.home-faq__link--muted {
+		color: var(--color-muted);
+		font-weight: 650;
+	}
+
+	.home-faq__link:hover {
+		color: var(--color-ink);
+	}
+</style>

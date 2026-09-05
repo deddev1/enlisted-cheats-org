@@ -1,0 +1,194 @@
+---
+import { getPostsByCategory } from '../data/blog/helpers';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const guides = getPostsByCategory(locale, 'Enlisted Game Guides').slice(0, 3);
+
+function guideCardLabel(title: string): string {
+	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
+	if (trimmed.length <= 42) return trimmed;
+	const cut = trimmed.slice(0, 42);
+	const lastSpace = cut.lastIndexOf(' ');
+	return `${(lastSpace > 24 ? cut.slice(0, lastSpace) : cut).trim()}…`;
+}
+---
+
+{
+	guides.length > 0 ? (
+		<section class="home-guides shell" aria-labelledby="home-guides-title">
+			<div class="home-guides__head">
+				<h2 id="home-guides-title" class="home-guides__title">
+					<span class="home-guides__accent" aria-hidden="true" />
+					Enlisted guides
+				</h2>
+				<p class="home-guides__intro">
+					Game guides on frontline campaigns, large-scale battles, factions, and patch notes — linked to official Enlisted
+					supplys.
+				</p>
+			</div>
+
+			<div class="home-guides__grid">
+				{guides.map((post) => (
+					<article class="home-guides__card">
+						<img
+							src={post.imageSrc}
+							alt={post.translation.imageAlt}
+							width="480"
+							height="270"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div class="home-guides__body">
+							<span class="home-guides__cat">{post.category}</span>
+							<h3 class="home-guides__title">
+								<a href={post.canonicalPath}>{guideCardLabel(post.translation.title)}</a>
+							</h3>
+							<p>{post.translation.intro}</p>
+						</div>
+					</article>
+				))}
+			</div>
+
+			<p class="home-guides__more">
+				<a href="/guides/">Browse all guides</a>
+			</p>
+
+			<EnlistedAuthorityLinks headingLevel="h3" />
+		</section>
+	) : null
+}
+
+<style>
+	.home-guides {
+		padding-block: 0;
+	}
+
+	.home-guides__head {
+		display: grid;
+		gap: 0.55rem;
+		margin-bottom: 1.1rem;
+	}
+
+	.home-guides__title {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+	}
+
+	.home-guides__accent {
+		display: inline-block;
+		width: 0.22rem;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #20BFC0, #174143);
+		flex-shrink: 0;
+	}
+
+	.home-guides__intro {
+		margin: 0;
+		max-width: 42rem;
+		color: var(--color-muted);
+		font-size: 0.92rem;
+		line-height: 1.6;
+	}
+
+	.home-guides__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.home-guides__card {
+		display: flex;
+		flex-direction: column;
+		border-radius: 0.95rem;
+		border: 1px solid rgba(32, 191, 192, 0.14);
+		background: rgba(20, 24, 30, 0.88);
+		overflow: hidden;
+		color: inherit;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.home-guides__card:hover {
+		border-color: rgba(32, 191, 192, 0.38);
+		transform: translateY(-2px);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+	}
+
+	.home-guides__card img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+
+	.home-guides__body {
+		display: grid;
+		gap: 0.45rem;
+		padding: 0.9rem 1rem 1rem;
+	}
+
+	.home-guides__cat {
+		color: var(--color-orchid);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.home-guides__body h3,
+	.home-guides__title {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.35;
+		font-weight: 800;
+	}
+
+	.home-guides__title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.home-guides__title a:hover {
+		color: var(--color-orchid);
+	}
+
+	.home-guides__body p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	.home-guides__more {
+		margin: 0.9rem 0 0;
+	}
+
+	.home-guides__more a {
+		color: var(--color-orchid);
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
+
+	.home-guides__more a:hover {
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 900px) {
+		.home-guides__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
