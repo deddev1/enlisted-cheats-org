@@ -99,6 +99,16 @@ export function getFeaturedPosts(locale: LocaleCode, limit = 3): ResolvedBlogPos
 	return (featured.length >= limit ? featured : all).slice(0, limit);
 }
 
+export function getProductBlogPosts(locale: LocaleCode, limit = 3): ResolvedBlogPost[] {
+	const featured = getAllPostsForLocale(locale).filter(
+		(post) => post.featured && post.category !== 'Enlisted Game Guides',
+	);
+	const pool = featured.length >= limit ? featured : getAllPostsForLocale(locale).filter(
+		(post) => post.category !== 'Enlisted Game Guides',
+	);
+	return pool.slice(0, limit);
+}
+
 export function getPostsByCategory(locale: LocaleCode, category: string): ResolvedBlogPost[] {
 	return getAllPostsForLocale(locale).filter((post) => post.category === category);
 }

@@ -20,33 +20,34 @@ const {
 } = Astro.props;
 ---
 
-<a href={href} class="blog-cine-card">
-	<img
-		src={imageSrc}
-		alt={imageAlt}
-		width="480"
-		height="640"
-		class="blog-cine-card__img"
-		loading={loading}
-		decoding="async"
-		fetchpriority={fetchpriority}
-	/>
-	<div class="blog-cine-card__veil" aria-hidden="true"></div>
-	<div class="blog-cine-card__content">
-		<h3 class="blog-cine-card__title">{title}</h3>
-		<p class="blog-cine-card__text">{description}</p>
+<a href={href} class="blog-feature-card">
+	<figure class="blog-feature-card__media">
+		<img
+			src={imageSrc}
+			alt={imageAlt}
+			width="640"
+			height="360"
+			class="blog-feature-card__img"
+			loading={loading}
+			decoding="async"
+			fetchpriority={fetchpriority}
+		/>
+	</figure>
+	<div class="blog-feature-card__panel">
+		<h3 class="blog-feature-card__title">{title}</h3>
+		<p class="blog-feature-card__text">{description}</p>
 	</div>
 </a>
 
 <style>
-	.blog-cine-card {
-		position: relative;
+	.blog-feature-card {
 		display: flex;
-		align-items: flex-end;
-		min-height: clamp(18rem, 32vw, 22.5rem);
+		flex-direction: column;
+		height: 100%;
+		min-height: 22.5rem;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		background: rgba(13, 17, 18, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		background: rgba(18, 22, 24, 0.96);
 		color: #fff;
 		text-decoration: none;
 		transition:
@@ -54,61 +55,59 @@ const {
 			transform 0.2s ease;
 	}
 
-	.blog-cine-card:hover,
-	.blog-cine-card:focus-visible {
-		border-color: rgba(197, 138, 69, 0.38);
+	.blog-feature-card:hover,
+	.blog-feature-card:focus-visible {
+		border-color: rgba(197, 138, 69, 0.42);
 		transform: translateY(-2px);
 		color: #fff;
 	}
 
-	.blog-cine-card__img {
-		position: absolute;
-		inset: 0;
+	.blog-feature-card__media {
+		position: relative;
+		margin: 0;
+		flex: 0 0 48%;
+		min-height: 10.5rem;
+		overflow: hidden;
+	}
+
+	.blog-feature-card__img {
+		display: block;
 		width: 100%;
 		height: 100%;
+		min-height: 10.5rem;
 		object-fit: cover;
-		object-position: center 22%;
+		object-position: center 35%;
 	}
 
-	.blog-cine-card__veil {
-		position: absolute;
-		inset: 0;
-		background:
-			linear-gradient(
-				180deg,
-				rgba(13, 17, 18, 0.08) 0%,
-				rgba(13, 17, 18, 0.22) 38%,
-				rgba(13, 17, 18, 0.72) 62%,
-				rgba(13, 17, 18, 0.94) 100%
-			),
-			rgba(13, 17, 18, 0.18);
-	}
-
-	.blog-cine-card__content {
-		position: relative;
-		z-index: 1;
-		display: grid;
-		gap: 0.55rem;
-		width: 100%;
-		padding: 1.15rem 0.95rem 1.2rem;
+	.blog-feature-card__panel {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.6rem;
+		padding: 1rem 0.9rem 1.15rem;
+		background: rgba(16, 20, 22, 0.96);
 		text-align: center;
 	}
 
-	.blog-cine-card__title {
+	.blog-feature-card__title {
 		margin: 0;
+		max-width: 16rem;
 		font-family: var(--font-display);
-		font-size: clamp(0.82rem, 1.35vw, 0.92rem);
+		font-size: clamp(0.84rem, 1.2vw, 0.94rem);
 		font-weight: 800;
-		line-height: 1.2;
-		letter-spacing: 0.08em;
+		line-height: 1.25;
+		letter-spacing: 0.07em;
 		text-transform: uppercase;
 	}
 
-	.blog-cine-card__text {
+	.blog-feature-card__text {
 		margin: 0;
-		color: rgba(255, 255, 255, 0.82);
-		font-size: clamp(0.74rem, 1.1vw, 0.8rem);
-		line-height: 1.55;
+		max-width: 18rem;
+		color: rgba(255, 255, 255, 0.86);
+		font-size: clamp(0.74rem, 1vw, 0.8rem);
+		line-height: 1.62;
 		text-wrap: pretty;
 	}
 </style>

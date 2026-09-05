@@ -8,6 +8,7 @@ import PricingFeatureList from '../components/PricingFeatureList.astro';
 import HomeAboutUs from '../components/HomeAboutUs.astro';
 import HomeFaq from '../components/HomeFaq.astro';
 import HomeExplore from '../components/HomeExplore.astro';
+import HomeBlog from '../components/HomeBlog.astro';
 import HomeBlogGuides from '../components/HomeBlogGuides.astro';
 import CustomerReviews from '../components/CustomerReviews.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -118,6 +119,9 @@ const extraGraph: Record<string, unknown>[] =
 			<HomeFaq locale={locale} />
 		</section>
 		<section class="site__section site__section--blog">
+			<HomeBlog locale={locale} />
+		</section>
+		<section class="site__section site__section--guides">
 			<HomeBlogGuides locale={locale} />
 		</section>
 		<section class="site__section site__section--explore">
@@ -141,6 +145,7 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--reviews,
 	.site__section--faq,
 	.site__section--blog,
+	.site__section--guides,
 	.site__section--explore,
 	.site__section--about,
 	.site__section--store {
@@ -149,6 +154,10 @@ const extraGraph: Record<string, unknown>[] =
 	}
 
 	.site__section--about {
+		padding: 0;
+	}
+
+	.site__section--blog {
 		padding: 0;
 	}
 

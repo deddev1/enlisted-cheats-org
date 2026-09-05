@@ -1,0 +1,171 @@
+---
+import { blogCardExcerpt, blogCardHeading, getProductBlogPosts } from '../data/blog/helpers';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import {
+	heroIsExternal,
+	heroPreloadSrc,
+	heroSizes,
+	heroSrcSet,
+} from '../lib/responsive-images';
+import BlogCinematicCard from './BlogCinematicCard.astro';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const posts = getProductBlogPosts(locale, 3);
+---
+
+{
+	posts.length > 0 ? (
+		<section class="home-blog" aria-labelledby="home-blog-title">
+			<div class="home-blog__media" aria-hidden="true">
+				{
+					heroIsExternal ? (
+						<img
+							src={heroPreloadSrc}
+							alt=""
+							width="1920"
+							height="1080"
+							class="home-blog__bg"
+							loading="lazy"
+							decoding="async"
+							fetchpriority="low"
+						/>
+					) : (
+						<picture>
+							<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
+							<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
+							<img
+								src={heroPreloadSrc}
+								alt=""
+								width="1920"
+								height="1080"
+								class="home-blog__bg"
+								loading="lazy"
+								decoding="async"
+								fetchpriority="low"
+							/>
+						</picture>
+					)
+				}
+				<div class="home-blog__veil" />
+			</div>
+
+			<div class="shell home-blog__inner">
+				<h2 id="home-blog-title" class="home-blog__title">
+					Enlisted blog
+				</h2>
+
+				<div class="home-blog__grid">
+					{posts.map((post, index) => (
+						<BlogCinematicCard
+							href={post.canonicalPath}
+							imageSrc={post.imageSrc}
+							imageAlt={post.translation.imageAlt}
+							title={blogCardHeading(post.translation.title)}
+							description={blogCardExcerpt(post.translation.intro, 190)}
+							loading={index === 0 ? 'eager' : 'lazy'}
+							fetchpriority={index === 0 ? 'high' : undefined}
+						/>
+					))}
+				</div>
+
+				<p class="home-blog__more">
+					<a href="/blog/">Browse all blog posts</a>
+				</p>
+			</div>
+		</section>
+	) : null
+}
+
+<style>
+	.home-blog {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(1.35rem, 3vw, 2rem);
+	}
+
+	.home-blog__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.home-blog__bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: auto;
+		height: auto;
+		min-width: 100%;
+		min-height: 100%;
+		max-width: none;
+		transform: translate(-50%, -50%);
+		object-fit: cover;
+		object-position: center 42%;
+		filter: saturate(0.82) brightness(0.45);
+	}
+
+	.home-blog__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(
+				180deg,
+				rgba(13, 17, 18, 0.88) 0%,
+				rgba(13, 17, 18, 0.62) 45%,
+				rgba(13, 17, 18, 0.88) 100%
+			),
+			radial-gradient(ellipse 90% 70% at 50% 42%, rgba(197, 138, 69, 0.05), transparent 68%);
+	}
+
+	.home-blog__inner {
+		position: relative;
+		z-index: 1;
+	}
+
+	.home-blog__title {
+		margin: 0 0 1rem;
+		color: #fff;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: 0.14em;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.home-blog__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.55rem;
+		align-items: stretch;
+	}
+
+	.home-blog__more {
+		margin: 0.85rem 0 0;
+		text-align: center;
+	}
+
+	.home-blog__more a {
+		color: var(--color-gold-hover);
+		font-size: 0.86rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.home-blog__more a:hover {
+		color: #fff;
+	}
+
+	@media (max-width: 900px) {
+		.home-blog__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
