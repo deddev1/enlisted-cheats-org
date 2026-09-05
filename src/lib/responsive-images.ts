@@ -1,9 +1,17 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { enlistedImages } from '../data/enlisted';
 
 export interface ResponsiveWidth {
 	src: string;
 	width: number;
 }
+
+const publicImagesDir = path.resolve(
+	path.dirname(fileURLToPath(import.meta.url)),
+	'../../public/images',
+);
 
 /** Build a srcset string from width-tagged image paths. */
 export function buildSrcSet(widths: ResponsiveWidth[]): string {
@@ -27,33 +35,67 @@ function parseWebpBase(baseSrc: string): { dir: string; name: string } | undefin
 	return { dir, name };
 }
 
+function localImagePath(webPath: string): string | undefined {
+	if (!webPath.startsWith('/images/')) return undefined;
+	return path.join(publicImagesDir, webPath.slice('/images/'.length));
+}
+
+function variantWebPath(baseSrc: string, width: number): string {
+	const parsed = parseWebpBase(baseSrc);
+	if (!parsed) return baseSrc;
+	return `${parsed.dir}${parsed.name}-${width}w.webp`;
+}
+
+function variantExists(baseSrc: string, width: number): boolean {
+	const localPath = localImagePath(variantWebPath(baseSrc, width));
+	return localPath ? existsSync(localPath) : false;
+}
+
+function masterExists(baseSrc: string): boolean {
+	const localPath = localImagePath(baseSrc);
+	return localPath ? existsSync(localPath) : false;
+}
+
 /** True for remote URLs (Supabase gameplay captures, etc.). */
 export function isExternalImage(src: string): boolean {
 	return /^https?:\/\//i.test(src);
 }
 
-/** Build srcset for content images that have -480w / -960w variants. */
+/** Build srcset for content images that have responsive variants on disk. */
 export function contentSrcSet(baseSrc: string): string | undefined {
+	if (isExternalImage(baseSrc)) return undefined;
+
 	const parsed = parseWebpBase(baseSrc);
 	if (!parsed) return undefined;
 
-	const { dir, name } = parsed;
-	return buildSrcSet(
-		contentWidths.map((width) => ({
-			src: `${dir}${name}-${width}w.webp`,
+	const variants = contentWidths
+		.filter((width) => variantExists(baseSrc, width))
+		.map((width) => ({
+			src: variantWebPath(baseSrc, width),
 			width,
-		})),
-	);
+		}));
+
+	if (!variants.length) return undefined;
+	return buildSrcSet(variants);
 }
 
 /**
- * Fallback `src` for responsive stills — prefer 960w (~70KB) over full masters
- * (often 280–520KB) so slow networks never pull the huge file as a fallback.
+ * Fallback `src` for responsive stills — use the largest existing variant,
+ * otherwise the master file so small gameplay captures never 404.
  */
 export function contentSrc(baseSrc: string): string {
+	if (isExternalImage(baseSrc)) return baseSrc;
+
 	const parsed = parseWebpBase(baseSrc);
 	if (!parsed) return baseSrc;
-	return `${parsed.dir}${parsed.name}-960w.webp`;
+
+	for (const width of [...contentWidths].reverse()) {
+		if (variantExists(baseSrc, width)) {
+			return variantWebPath(baseSrc, width);
+		}
+	}
+
+	return masterExists(baseSrc) ? baseSrc : baseSrc;
 }
 
 export const heroResponsive: ResponsiveWidth[] = [

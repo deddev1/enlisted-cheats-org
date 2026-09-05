@@ -15,6 +15,7 @@
 		"build:validate": "astro build && node scripts/validate-sitemaps.mjs && node scripts/seo-audit.mjs",
 		"optimize:images": "node scripts/optimize-responsive-images.mjs",
 		"fetch:gameplay-images": "node scripts/fetch-enlisted-gameplay-images.mjs",
+		"validate:images": "node scripts/validate-images.mjs",
 		"fetch:images": "node scripts/fetch-arc-raiders-images.mjs",
     "fetch:logo": "node scripts/fetch-zadeyo-logo.mjs",
     "extract:video-poster": "node scripts/extract-video-poster.mjs",

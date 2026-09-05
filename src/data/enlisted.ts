@@ -164,8 +164,23 @@ export const pageHeroOverrides: Partial<Record<string, string>> = {
 	'eac-bypass': enlistedOfficialScreens.squadCombat.src,
 };
 
+/** Map legacy Supabase hero URLs from generated content to local WebP assets. */
+export function mapSupabaseHeroToLocal(heroImage: string): string | undefined {
+	if (!heroImage.includes('supabase.co/storage')) return undefined;
+	if (heroImage.includes('index-new-bg-5')) return enlistedHeroImage;
+	if (heroImage.includes('161627')) return gameplayScreenshots.wallhack.src;
+	if (heroImage.includes('161636')) return gameplayScreenshots.esp.src;
+	if (heroImage.includes('161643')) return gameplayScreenshots.aimbot.src;
+	if (heroImage.includes('161704')) return gameplayScreenshots.radarCombat.src;
+	if (heroImage.includes('161712')) return gameplayScreenshots.radarMap.src;
+	if (heroImage.includes('bottom-shop-bg')) return pricingShopImage.src;
+	return undefined;
+}
+
 export function resolvePageHeroImage(pageId: string, heroImage: string): string {
 	if (pageHeroOverrides[pageId]) return pageHeroOverrides[pageId]!;
+	const localHero = mapSupabaseHeroToLocal(heroImage);
+	if (localHero) return localHero;
 	if (heroImage.startsWith('http')) return heroImage;
 	return legacyGameplayImageMap[heroImage] ?? heroImage;
 }

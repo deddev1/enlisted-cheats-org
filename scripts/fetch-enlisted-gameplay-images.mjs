@@ -53,7 +53,21 @@ async function writeResponsiveWebp(sourceBuffer, base) {
 	const meta = await sharp(sourceBuffer).metadata();
 
 	for (const width of CONTENT_WIDTHS) {
-		if (meta.width && width >= meta.width) continue;
+		if (!meta.width) continue;
+
+		if (width >= meta.width) {
+			if (width === 480) {
+				const variant = `${base}-480w.webp`;
+				const buffer = await sharp(sourceBuffer)
+					.resize({ width: meta.width, withoutEnlargement: true })
+					.webp({ quality: 72, effort: 6 })
+					.toBuffer();
+				await writeFile(path.join(imagesDir, variant), buffer);
+				console.log(`Wrote ${variant} (${buffer.length} bytes, native ${meta.width}px)`);
+			}
+			continue;
+		}
+
 		const quality = width <= 480 ? 72 : width <= 640 ? 78 : 82;
 		const variant = `${base}-${width}w.webp`;
 		const buffer = await sharp(sourceBuffer)

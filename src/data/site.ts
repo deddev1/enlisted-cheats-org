@@ -10,7 +10,7 @@ export const siteConfig = {
 	logoRasterHeight: 1024,
 	logoAlt: 'Enlisted Cheats crossed rifles emblem',
 	checkoutUrl: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fenlisted',
-	defaultOgImage: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/Screenshot%202026-09-04%20161636.png',
+	defaultOgImage: '/images/enlisted-cheats-hero.webp',
 } as const;
 
 export const productInfo = {
