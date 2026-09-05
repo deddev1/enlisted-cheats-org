@@ -6,9 +6,9 @@ export const siteConfig = {
 	supportEmail: 'support@enlistedcheats.org',
 	logo: '/images/enlisted-logo-mark.png',
 	logoRaster: '/images/enlisted-logo-mark.png',
-	logoRasterWidth: 93,
+	logoRasterWidth: 95,
 	logoRasterHeight: 48,
-	logoAlt: 'Enlisted Cheats emblem',
+	logoAlt: 'Enlisted Cheats crossed rifles emblem',
 	checkoutUrl: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fenlisted',
 	defaultOgImage: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/Screenshot%202026-09-04%20161636.png',
 } as const;
