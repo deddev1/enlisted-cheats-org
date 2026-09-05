@@ -223,3 +223,33 @@ export const legacyGameplayImageMap: Record<string, string> = {
 	'/images/enlisted-battlefield-radar.webp': g.radarMap.src,
 	'/images/enlisted-esp-overlay.webp': g.esp.src,
 };
+
+const heroAltSources: EnlistedScreenshot[] = [
+	...Object.values(gameplayScreenshots),
+	...Object.values(enlistedScreenshots),
+	...Object.values(enlistedOfficialScreens),
+	pricingShopImage,
+	{ src: enlistedHeroImage, alt: enlistedHeroAlt, title: 'Enlisted Cheats home hero' },
+];
+
+export const heroAltBySrc: Record<string, string> = Object.fromEntries(
+	heroAltSources.map((item) => [item.src, item.alt]),
+);
+
+/** Match official Enlisted.net hero art with descriptive alt text on secondary pages. */
+export const pageHeroAltOverrides: Partial<Record<string, string>> = {
+	support: enlistedOfficialScreens.battlefieldPanorama.alt,
+	faq: enlistedOfficialScreens.squadCombat.alt,
+	privacy: enlistedOfficialScreens.squadThumb.alt,
+	refund: enlistedOfficialScreens.squadThumb.alt,
+	terms: enlistedOfficialScreens.squadThumb.alt,
+};
+
+export function resolvePageHeroAlt(
+	pageId: string,
+	resolvedHeroImage: string,
+	imageAlt: string,
+): string {
+	if (pageHeroAltOverrides[pageId]) return pageHeroAltOverrides[pageId]!;
+	return heroAltBySrc[resolvedHeroImage] ?? imageAlt;
+}

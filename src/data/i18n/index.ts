@@ -1,6 +1,6 @@
 import type { LocaleCode } from './locales';
 import { i18nContent, type PageId } from './content.generated';
-import { resolvePageHeroImage } from '../enlisted';
+import { resolvePageHeroAlt, resolvePageHeroImage } from '../enlisted';
 
 export { i18nContent };
 export type { PageId, PageContent, PageSection, LocaleUi } from './content.generated';
@@ -11,9 +11,11 @@ export function getLocaleContent(locale: LocaleCode) {
 
 export function getPageContent(locale: LocaleCode, pageId: PageId) {
 	const page = i18nContent[locale].pages[pageId];
+	const heroImage = resolvePageHeroImage(pageId, page.heroImage);
 	return {
 		...page,
-		heroImage: resolvePageHeroImage(pageId, page.heroImage),
+		heroImage,
+		imageAlt: resolvePageHeroAlt(pageId, heroImage, page.imageAlt),
 	};
 }
 
