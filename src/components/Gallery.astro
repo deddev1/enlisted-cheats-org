@@ -45,7 +45,7 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 	<div class="promo__bg" aria-hidden="true">
 		<img
 			src={enlistedHeroImage}
-			alt=""
+			alt={ui.images.hero}
 			width="1600"
 			height="900"
 			class="promo__bg-img"
@@ -62,7 +62,13 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 
 			<div class="promo__actions">
 				<a href={buyUrl} class="promo__cta promo__cta--primary" rel="noopener noreferrer">
-					<img src="/images/enlisted-brand-mark.svg" alt="" width="88" height="24" class="promo__cta-logo" />
+					<img
+						src="/images/enlisted-brand-mark.svg"
+						alt={productInfo.name}
+						width="88"
+						height="24"
+						class="promo__cta-logo"
+					/>
 					<span>{primaryLabel}</span>
 				</a>
 				<a href={setupHref} class="promo__cta promo__cta--ghost">

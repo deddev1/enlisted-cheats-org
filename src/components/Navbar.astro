@@ -92,6 +92,7 @@ const shopPlans = [
 				? 'ESP, aimbot, wallhack, and radar for 30 days with anti-cheat updates while your license is active.'
 				: `${productInfo.planSummaries.monthly[0]}. ${productInfo.planSummaries.monthly[2]}.`,
 		image: enlistedGameplayImages.esp,
+		alt: 'Enlisted ESP overlay preview for the monthly cheat license',
 	},
 	{
 		label: locale === 'en' ? 'Lifetime license' : ui.product.lifetime,
@@ -102,6 +103,7 @@ const shopPlans = [
 				? 'One-time purchase with no renewals. Full feature stack and anti-cheat updates for as long as you play.'
 				: `${productInfo.planSummaries.lifetime[1]}. ${productInfo.planSummaries.lifetime[2]}.`,
 		image: enlistedGameplayImages.combat,
+		alt: 'Enlisted squad combat preview for the lifetime cheat license',
 	},
 ];
 
@@ -114,7 +116,7 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 			<a href={homeHref} class="nav__brand" aria-label={siteConfig.name}>
 				<img
 					src="/images/enlisted-brand-mark.svg"
-					alt=""
+					alt={siteConfig.name}
 					width="132"
 					height="36"
 					class="nav__brand-logo"
@@ -196,7 +198,7 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 								shopPlans.map((plan) => (
 									<a href={plan.href} class="nav__shop-card" rel="noopener noreferrer">
 										<div class="nav__shop-card-media">
-											<img src={plan.image} alt="" width="320" height="180" loading="lazy" decoding="async" />
+											<img src={plan.image} alt={plan.alt} width="320" height="180" loading="lazy" decoding="async" />
 											<span class="nav__shop-card-link" aria-hidden="true">↗</span>
 										</div>
 										<div class="nav__shop-card-body">
