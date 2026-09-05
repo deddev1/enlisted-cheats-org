@@ -342,7 +342,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		flex: 0 0 clamp(13.5rem, 15vw, 15.5rem);
 		width: clamp(13.5rem, 15vw, 15.5rem);
 		min-height: 17.5rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		border: 1px solid var(--color-border-faded);
 		border-left-width: 0;
 		background: rgba(10, 12, 13, 0.62);
 		color: inherit;
@@ -368,7 +368,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 	.feat-scroll__card:focus-visible,
 	.feat-scroll__card--featured {
 		background: rgba(14, 17, 18, 0.9);
-		border-color: rgba(197, 138, 69, 0.42);
+		border-color: var(--color-border-gold-mid);
 		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
 		z-index: 2;
 		flex-basis: clamp(15rem, 17vw, 17.5rem);
@@ -377,7 +377,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 	}
 
 	.feat-scroll__card--featured {
-		border-color: rgba(197, 138, 69, 0.55);
+		border-color: var(--color-border-gold-hover);
 	}
 
 	.feat-scroll__card-media {
@@ -453,7 +453,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 
 	.feat-scroll__options li {
 		padding: 0.28rem 0.45rem;
-		border: 1px solid rgba(197, 138, 69, 0.18);
+		border: 1px solid var(--color-border-gold);
 		border-radius: 0.25rem;
 		background: rgba(8, 10, 11, 0.72);
 		font-size: 0.66rem;
