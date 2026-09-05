@@ -36,12 +36,12 @@ const premiumCopy =
 
 const primaryLabel = locale === 'en' ? 'Get Access' : ui.common.buyNow;
 const setupLabel = locale === 'en' ? 'Setup guide' : ui.nav.setup;
-const requirementsLabel = locale === 'en' ? 'System requirements' : ui.nav.setup;
+const featuresLabel = locale === 'en' ? 'Game features' : ui.nav.features;
 const purchaseLabel = locale === 'en' ? 'Purchase' : ui.common.buyNow;
 const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo.platforms[0];
 ---
 
-<section class="promo" id="gallery" aria-labelledby="promo-title">
+<section class="promo" aria-labelledby="promo-title">
 	<div class="promo__bg" aria-hidden="true">
 		<img
 			src={enlistedHeroImage}
@@ -57,7 +57,7 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 
 	<div class="promo__grid">
 		<div class="promo__main">
-			<h1 id="promo-title" class="promo__title">{heading}</h1>
+			<h2 id="promo-title" class="promo__title">{heading}</h2>
 			<p class="promo__lead">{leadCopy}</p>
 
 			<div class="promo__actions">
@@ -81,7 +81,7 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 							d="M4 4h16v2H4V4Zm0 5h10v2H4V9Zm0 5h16v2H4v-2Zm0 5h10v2H4v-2Z"
 						></path>
 					</svg>
-					<span>{requirementsLabel}</span>
+					<span>{featuresLabel}</span>
 				</a>
 			</div>
 
@@ -162,9 +162,7 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 		grid-template-columns: minmax(0, 1fr) minmax(11.5rem, 14.5rem);
 		gap: 0.85rem;
 		align-items: stretch;
-		width: min(100% - 2 * var(--page-gutter), 52rem);
-		margin-inline: auto;
-		padding-inline: var(--page-gutter);
+		width: 100%;
 	}
 
 	.promo__main {
@@ -376,11 +374,11 @@ const platformLabel = locale === 'en' ? 'Available on Windows PC:' : productInfo
 	@media (max-width: 900px) {
 		.promo__grid {
 			grid-template-columns: 1fr;
-			max-width: 28rem;
 		}
 
 		.promo__premium {
 			max-width: 16rem;
+			margin-inline: auto;
 		}
 	}
 

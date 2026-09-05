@@ -27,9 +27,14 @@ const title = locale === 'en' ? 'About us' : ui.nav.features;
 ---
 
 <section class="home-about shell" aria-labelledby="home-about-title">
-	<div class="home-about__panel">
-		<h2 id="home-about-title" class="home-about__title">{title}</h2>
+	<div class="home-about__head">
+		<h2 id="home-about-title" class="home-about__title">
+			<span class="home-about__accent" aria-hidden="true"></span>
+			{title}
+		</h2>
+	</div>
 
+	<div class="home-about__panel">
 		{
 			locale === 'en' ? (
 				<>
@@ -62,51 +67,61 @@ const title = locale === 'en' ? 'About us' : ui.nav.features;
 
 <style>
 	.home-about {
-		padding-block: 1.75rem 2rem;
+		padding-block: var(--section-space);
 	}
 
-	.home-about__panel {
-		max-width: 42rem;
-		margin-inline: auto;
-		text-align: center;
+	.home-about__head {
+		margin-bottom: 0.85rem;
 	}
 
 	.home-about__title {
-		margin: 0 0 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+		font-size: clamp(1.25rem, 2.4vw, 1.65rem);
 		font-weight: 800;
 		line-height: 1.15;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		color: var(--color-ink);
 	}
 
+	.home-about__accent {
+		display: inline-block;
+		width: 0.22rem;
+		height: 1.25rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #b47a3c, #3a3d37);
+		flex-shrink: 0;
+	}
+
+	.home-about__panel {
+		max-width: 52rem;
+	}
+
 	.home-about__text {
-		margin: 0;
-		font-size: clamp(0.92rem, 1.4vw, 1.02rem);
-		line-height: 1.7;
+		margin: 0 0 0.85rem;
+		font-size: 0.92rem;
+		line-height: 1.65;
 		color: var(--color-body);
 	}
 
-	.home-about__text + .home-about__text {
-		margin-top: 0.85rem;
+	.home-about__text:last-child {
+		margin-bottom: 0;
 	}
 
+	.home-about__brand,
 	.home-about__text a {
 		color: var(--color-cta);
-		font-weight: 600;
-		text-decoration: underline;
-		text-decoration-color: rgba(197, 138, 69, 0.45);
-		text-underline-offset: 0.15em;
-		transition: color 0.2s ease;
+		font-weight: 700;
+		text-decoration: none;
 	}
 
+	.home-about__brand:hover,
 	.home-about__text a:hover {
 		color: var(--color-cta-hover);
-	}
-
-	.home-about__brand {
-		font-weight: 700;
+		text-decoration: underline;
 	}
 </style>

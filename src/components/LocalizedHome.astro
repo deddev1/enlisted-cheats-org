@@ -114,7 +114,9 @@ const extraGraph: Record<string, unknown>[] =
 			<HomeFaq locale={locale} />
 		</section>
 		<section class="site__section site__section--promo" id="gallery">
-			<Gallery locale={locale} />
+			<div class="shell">
+				<Gallery locale={locale} />
+			</div>
 		</section>
 		<section class="site__section site__section--guides">
 			<HomeBlogGuides locale={locale} />

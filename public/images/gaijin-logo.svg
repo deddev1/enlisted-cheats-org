@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Language" content="en" />
+
+    <meta name="description" content="Enlisted is an MMO squad based shooter for PC, Xbox One, Xbox Series X|S, PlayStation 4 and PlayStation 5 in World War II where you act as an infantry squad leader, tank crew or an aircraft pilot. The weaponry, soldier&#039;s uniform, appearance and capabilities of the vehicles in the game are in line with historical facts."/>
+  <meta name="keywords" content=""/>
+  <meta name="robots" content="index/follow" />
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://enlisted.net/">
+  <meta property="twitter:title" content="Enlisted">
+  <meta property="twitter:description" content="Enlisted is an MMO squad based shooter for PC, Xbox One, Xbox Series X|S, PlayStation 4 and PlayStation 5 in World War II where you act as an infantry squad leader, tank crew or an aircraft pilot. The weaponry, soldier&#039;s uniform, appearance and capabilities of the vehicles in the game are in line with historical facts.">
+  <meta property="twitter:image" content="https://enlisted.net/i/enl-opengraph.jpg">
+
+  <meta property="fb:app_id" content=""/>
+  <meta property="og:title" content="Enlisted"/>
+  <meta property="og:description" content="Enlisted is an MMO squad based shooter for PC, Xbox One, Xbox Series X|S, PlayStation 4 and PlayStation 5 in World War II where you act as an infantry squad leader, tank crew or an aircraft pilot. The weaponry, soldier&#039;s uniform, appearance and capabilities of the vehicles in the game are in line with historical facts."/>
+    <meta property="og:url" content="https://enlisted.net/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://enlisted.net/i/enl-opengraph.jpg"/>
+
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <meta name="csrf-token" content="2866dc45dd31ced149a465091f8fdf30b83199bda4f167c336ee90ffdaf69914">
+  
+      <noscript><meta http-equiv="refresh" content="0; URL=/en/noscript"></noscript>
+  
+  
+    <link rel="icon" href="https://enlisted.net/favicon.ico?v=537fc1f" type="image/x-icon"/>
+  <link rel="shortcut icon" href="https://enlisted.net/favicon.ico?v=537fc1f" type="image/x-icon"/>
+
+    <link rel="stylesheet" type="text/css" href="/modern-3/website.styles.css?v=537fc1f" />
+
+  
+  <title>Enlisted</title>
+  <base href="https://enlisted.net/" local="false" host="enlisted.net" />
+  <script>
+    window.preconfig = {
+      lang: 'en',
+      locale: 'en',
+      geoLocale: 'en',
+      geoLang: 'en',
+      doi: false,
+      gtm: true,
+      links: {
+        login: 'https://login.gaijin.net/en/sso/reLogin/?return_url=aHR0cHM6Ly9lbmxpc3RlZC5uZXQvZW4vZXh0TG9naW4vP2Zyb209ZW4lMkZpJTJGbG9nbyUyRmdhaWppbi1sb2dvLnN2ZyUyRg%3D%3D&crc=daa29df311ecf12eb71586e781b90fb4&public_key=A0lpDCbCoP3JqdfoudMe&domain=enlisted.net&base_return_url=1&refresh_token=1',
+        register: '/en/#!/register',
+        recover: 'https://login.gaijin.net/en/sso/forgot',
+        verify: 'https://login.gaijin.net/en/sso/verify/step/1',
+        download: '/en/download/launcher',
+      },
+      isBonus: false,
+      isLogged: false,
+      isEmailConfirmed: false,
+      isSubscribed: false,
+      ref: '',
+      nickname: '',
+      prefix: '',
+      email: '',
+      cdnUrl: '',
+      fromgame: false,
+      owner: 'gaijin'
+    };
+  </script>
+</head>
+  <body class="m--error-page">
+    <style>
+    .GCM-Menu, .GCM-Menu-Dropdown {
+        background-color: #060708 !important;
+    }
+
+    .GCM-Menu-Item.active > .GCM-Menu-ItemLabel {
+        background-color: rgb(255, 255, 255, 0.07) !important;
+    }
+
+    .GCM-Menu-ItemLabel:hover {
+        background-color: rgb(255, 255, 255, 0.07) !important;
+    }
+</style>
+<script type="application/javascript">
+    ((w) => {
+        w['GSEA_init'] = {
+            debug: false,
+
+            loginURI: 'https://login.gaijin.net',
+            embedURI: 'https://embed.gaijin.net',
+
+            embed: {
+                template: 'default',
+                page: 'default',
+                language: 'en',
+            },
+
+            autoLogin: true,
+            sessionPolling: true,
+            sessionPollingInterval: 10 * 60000,
+            uid: '',
+            jwt: '',
+            queryContext: 'https://login.gaijin.net/en/sso/reLogin/?return_url=aHR0cHM6Ly9lbmxpc3RlZC5uZXQvZW4vZXh0TG9naW4vP2Zyb209ZW4lMkZpJTJGbG9nbyUyRmdhaWppbi1sb2dvLnN2ZyUyRg%3D%3D&crc=daa29df311ecf12eb71586e781b90fb4&public_key=A0lpDCbCoP3JqdfoudMe&domain=enlisted.net&base_return_url=1&refresh_token=1',
+            onLoad: (client) => {
+                client.on('change', (newSession, oldSession) => {
+                    if (newSession.uid !== oldSession.uid) {
+                        if (newSession.rt) {
+                            window.location = `/extLogin?refresh_token=${newSession.rt}&from=${window.location.pathname}`
+                        }
+
+                        if (!newSession.uid) {
+                            $.post('/logout', {_csrf: $('meta[name="csrf-token"]').attr('content')}, function (data) {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+
+                client.on('logout', () => {
+                    $.post('/logout', {_csrf: $('meta[name="csrf-token"]').attr('content')}, function (data) {
+                        window.location.reload();
+                    });
+                });
+            }
+        }
+    })(window);
+</script>
+
+<script src="https://login.gaijin.net/gsea/gsea.js" defer></script>
+
+<div style="position: absolute; top: 0px;" id="GCM-Container">
+    <div style="width:100%;background:#060708;z-index:9999;height:42px;box-shadow: 0 1px rgba(255,255,255,0.08);"></div>
+</div>
+
+<script type="application/javascript">
+    ((w) => {
+        const toGSEALangMap = {
+            'jp': 'ja',
+            'cz': 'cs',
+        };
+        const toGSEALang = (lng) => (toGSEALangMap[lng] || lng);
+
+        const fromGSEALangMap = {
+            'ja': 'jp',
+            'cs': 'cz',
+        };
+        const fromGSEALang = (lng) => (fromGSEALangMap[lng] || lng);
+
+        w['GCM_init'] = {
+            langList: ['en', 'de', 'ru'],
+            lang: 'en',
+
+            mobileBreakpoint: 640,
+            maxContentWidth: '100%',
+
+            links: false,
+            shop: false,
+
+            onLoad: [(client) => {
+                client.on('lang_change', (lang) => {
+                    lang = fromGSEALang(lang);
+                    window.location = window.location.origin + "/" + lang + "/";
+                });
+            }],
+        };
+    })(window);
+</script>
+
+<script src="https://login.gaijin.net/gcm/gcm.js" container-id="GCM-Container" defer></script>
+    <div class="en-error">
+      <a class="en-error__logo" href="/" alt="Go to main page"></a>
+      <section class="en-error__section">
+        <div class="en-error__code m--star">404</div>
+        <h1 class="en-error__title">Page not found</h1>
+        <h2 class="en-error__desc">Check the address bar or go to main page</h2>
+        <a class="en-play-button" href="/">Go to main page</a>
+        <nav class="en-error__nav">
+          <a class="en-error__nav-link" href="/en/news/">News</a>
+          <a class="en-error__nav-link" href="/en/about/">About</a>
+          <a class="en-error__nav-link" href="https://store.gaijin.net/catalog.php?category=Enlisted&partner=News&partner_val=wj5d8xt5" target="_blank" rel="noopener noreferrer">Shop</a>
+        </nav>
+      </section>
+      <footer class="en-footer f-14">
+  <nav class="en-footer__nav">
+    <a class="en-footer__link" href="https://legal.gaijin.net/">
+      Terms and Conditions
+    </a>
+    <a class="en-footer__link" href="https://legal.gaijin.net/termsofservice">
+      Terms of Service
+    </a>
+    <a class="en-footer__link" href="https://legal.gaijin.net/privacypolicy">
+      Privacy policy
+    </a>
+    <a class="en-footer__link js-cookie-first-settings" href="https://legal.gaijin.net/cookie" data-test-id="cookie-policy-settings">
+      Cookie Settings
+    </a>
+    <a class="en-footer__link " rel="noopener noreferrer" target="_blank" href="https://support.gaijin.net/hc/en-us">
+      Customer Support
+    </a>
+      </nav>
+  <div class="en-footer__main">
+    <div class="en-footer__logos m--en">
+      <a class="en-footer__incubator" rel="noopener noreferrer" target="_blank" href="https://incubator.gaijin.net/">
+        <div class="en-footer__gaijin-logo" style="margin-right: 10px;"></div>
+        Gaijin<br/>inCubator
+      </a>
+              <a class="en-footer__darkflow" rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/darkfklow/"></a>
+          </div>
+    <div class="en-footer__copyright">© 2020—2026
+      Gaijin Games Kft. All trademarks, logos and brand names are the property of their respective owners.</div>
+    <div class="en-footer__rates">
+              <div class="en-footer__rate m--esrb"></div>
+        <div class="en-footer__rate m--usk"></div>
+        <div class="en-footer__rate m--pegi"></div>
+          </div>
+  </div>
+</footer>
+
+
+    </div>
+  </body>
+</html>

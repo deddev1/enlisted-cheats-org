@@ -48,7 +48,7 @@ export const productInfo = {
 		esp: [
 			'Soldier ESP across campaigns, skirmishes, and large-scale battles',
 			'Enemy unit, heavy vehicle, and heavy unit outlines through terrain and obstacles',
-			'Reload and health markers for frames and bosses',
+			'Reload and health markers for soldiers and vehicles',
 			'Distance readouts and snapline options',
 			'Toggleable ESP categories to cut overlay noise',
 			'Team and enemy colour coding for squad fights',
@@ -105,7 +105,7 @@ export const productFeatureCategories = [
 			'Distance readout',
 			'ESP distance filter',
 			'Medkit & supply ESP',
-			'Boss, lich & heavy vehicle ESP',
+			'Officer, tank & vehicle ESP',
 		],
 	},
 	{
@@ -230,9 +230,9 @@ export const productFeatureDetails = [
 				description: 'Mark medkits, ammo crates, and supply points during long campaign and survival runs.',
 			},
 			{
-				name: 'Boss, lich & heavy vehicle ESP',
+				name: 'Officer, tank & vehicle ESP',
 				description:
-					'Dedicated styling for officers, tanks, and artillery, and heavy vehicles in endgame content.',
+					'Dedicated styling for officers, tanks, artillery, and armoured vehicles in large-scale battles.',
 			},
 		],
 	},
@@ -276,7 +276,7 @@ export const productFeatureDetails = [
 			},
 			{
 				name: 'Reload and stamina tracking',
-				description: 'Track enemy reload timers and your own reload timers during complex boss and lich fights.',
+				description: 'Track enemy reload cues and your own reload state during sustained firefights.',
 			},
 			{
 				name: 'Custom crosshair',

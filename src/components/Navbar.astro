@@ -46,7 +46,7 @@ const cheatLinks = [
 const gameLinks = [
 	{ label: locale === 'en' ? 'About' : ui.nav.features, href: getLocalizedPath('features', locale), pageId: 'features' as PageId },
 	{ label: locale === 'en' ? 'Setup' : ui.nav.setup, href: getLocalizedPath('setup', locale), pageId: 'setup' as PageId },
-	{ label: locale === 'en' ? 'Combat tips' : ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
+	{ label: locale === 'en' ? 'FAQ' : ui.nav.faq, href: getLocalizedPath('faq', locale), pageId: 'faq' as PageId },
 ];
 
 const communityLinks = [
@@ -68,10 +68,9 @@ const mainLinks = [
 		active: updatesActive,
 	},
 	{
-		label: locale === 'en' ? 'New Enlisted' : ui.nav.features,
+		label: locale === 'en' ? 'Features' : ui.nav.features,
 		href: getLocalizedPath('features', locale),
 		pageId: 'features' as PageId,
-		accent: 'purple' as const,
 		active: isActive(getLocalizedPath('features', locale), 'features'),
 	},
 	{
@@ -80,7 +79,7 @@ const mainLinks = [
 		active: current === '/reviews/' || current.startsWith('/reviews/'),
 	},
 	{
-		label: locale === 'en' ? 'Partnership' : ui.nav.pricing,
+		label: locale === 'en' ? 'Pricing' : ui.nav.pricing,
 		href: getLocalizedPath('pricing', locale),
 		pageId: 'pricing' as PageId,
 		active: isActive(getLocalizedPath('pricing', locale), 'pricing'),
@@ -169,7 +168,6 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 									class:list={[
 										'nav__link',
 										{ 'is-active': link.active },
-										link.accent === 'purple' && 'nav__link--purple',
 									]}
 								>
 									{link.label}
@@ -404,7 +402,6 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 <style is:global>
 	:root {
 		--nav-stack-height: 3.5rem;
-		--nav-enlisted-purple: #a56bff;
 		--nav-enlisted-gold: #d4a259;
 		--nav-shop-bg: rgba(42, 32, 22, 0.92);
 	}
@@ -447,7 +444,7 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 	}
 
 	.nav__shell {
-		width: min(100% - (var(--page-gutter) * 2), 1280px);
+		width: min(100% - (var(--page-gutter) * 2), var(--page-max));
 		margin: 0 auto;
 	}
 
@@ -548,12 +545,6 @@ const shopLabel = locale === 'en' ? 'Shop' : ui.nav.buyNow;
 	.nav__link.is-active,
 	.nav__trigger.is-active {
 		color: #fff;
-	}
-
-	.nav__link--purple,
-	.nav__link--purple:hover,
-	.nav__link--purple.is-active {
-		color: var(--nav-enlisted-purple);
 	}
 
 	.nav__chevron {
