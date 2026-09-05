@@ -1,5 +1,5 @@
 ---
-import { enlistedHeroImage, enlistedHeroAlt } from '../data/enlisted';
+import { enlistedHeroAlt, enlistedOfficialScreens } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -97,10 +97,10 @@ const monthlyPlan = productInfo.plans[0];
 			<aside class="home-about__card">
 				<figure class="home-about__card-media">
 					<img
-						src={enlistedHeroImage}
-						alt="Enlisted Cheats battlefield preview on Windows PC"
-						width="640"
-						height="360"
+						src={enlistedOfficialScreens.squadThumb.src}
+						alt={enlistedOfficialScreens.squadThumb.alt}
+						width="420"
+						height="236"
 						loading="lazy"
 						decoding="async"
 					/>

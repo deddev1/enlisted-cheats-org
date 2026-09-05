@@ -2,7 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import AtmosphericBanner from '../../components/AtmosphericBanner.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../data/site';
+import { reviewsHeroAlt, reviewsHeroImage } from '../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../data/reviews';
 import RelatedPages from '../../components/RelatedPages.astro';
 
@@ -76,8 +78,8 @@ const extraGraph: Record<string, unknown>[] = [
 	title={title}
 	description={description}
 	canonicalPath={reviewsBasePath}
-	ogImage={siteConfig.defaultOgImage}
-	ogImageAlt="Enlisted Cheats customer reviews for ESP soft aim and cloud DMA"
+	ogImage={reviewsHeroImage}
+	ogImageAlt={reviewsHeroAlt}
 	locale="en"
 	breadcrumbs={[
 		{ label: 'Home', href: '/' },
@@ -86,19 +88,26 @@ const extraGraph: Record<string, unknown>[] = [
 	extraGraph={extraGraph}
 >
 	<Navbar />
+	<AtmosphericBanner
+		image={reviewsHeroImage}
+		alt={reviewsHeroAlt}
+		eyebrow="Buyer feedback"
+		title="Enlisted Cheats reviews"
+		intro="Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and day-to-day use."
+		objectPosition="center 42%"
+	>
+		<nav class="reviews-index__crumbs" aria-label="Breadcrumb">
+			<a href="/">Home</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">Reviews</span>
+		</nav>
+	</AtmosphericBanner>
 	<main class="reviews-index">
 		<div class="shell reviews-index__wrap">
-			<nav class="reviews-index__crumbs" aria-label="Breadcrumb">
-				<a href="/">Home</a>
-				<span aria-hidden="true">/</span>
-				<span aria-current="page">Reviews</span>
-			</nav>
-
-			<header class="reviews-index__head">
-				<h1>Enlisted Cheats reviews</h1>
-				<p class="reviews-index__intro">
-					Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and
-					day-to-day use.
+			<header class="reviews-index__head reviews-index__head--stats" aria-label="Review summary">
+				<p class="reviews-index__rating">
+					<span class="reviews-index__rating-value">{customerReviewStats.averageRating.toFixed(1)}</span>
+					<span class="reviews-index__rating-label">average from {customerReviewStats.totalCount} buyer reviews</span>
 				</p>
 			</header>
 
@@ -156,25 +165,21 @@ const extraGraph: Record<string, unknown>[] = [
 <style>
 	.reviews-index {
 		overflow-x: clip;
-		padding-block: 2rem 3rem;
-	}
-
-	.reviews-index__wrap {
-		display: grid;
-		gap: 1.5rem;
+		padding-block: 0 3rem;
 	}
 
 	.reviews-index__crumbs {
-		display: flex;
-		flex-wrap: wrap;
+		display: inline-flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 0.45rem;
+		margin-top: 0.85rem;
 		font-size: 0.8rem;
-		color: var(--color-faint);
+		color: rgba(229, 238, 238, 0.72);
 	}
 
 	.reviews-index__crumbs a {
-		color: var(--color-muted);
+		color: rgba(255, 255, 255, 0.82);
 		font-weight: 600;
 	}
 
@@ -182,25 +187,38 @@ const extraGraph: Record<string, unknown>[] = [
 		color: var(--color-orchid);
 	}
 
-	.reviews-index__head {
-		display: grid;
-		gap: 0.55rem;
+	.reviews-index__head--stats {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-top: 0.35rem;
 	}
 
-	.reviews-index__head h1 {
+	.reviews-index__rating {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.45rem 0.65rem;
 		margin: 0;
+	}
+
+	.reviews-index__rating-value {
 		font-family: var(--font-display);
-		font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+		font-size: 1.45rem;
 		font-weight: 800;
-		letter-spacing: -0.03em;
+		color: var(--color-gold-hover);
+		line-height: 1;
 	}
 
-	.reviews-index__intro {
-		margin: 0;
+	.reviews-index__rating-label {
 		color: var(--color-muted);
-		font-size: 0.96rem;
-		line-height: 1.6;
-		max-width: 40rem;
+		font-size: 0.88rem;
+	}
+
+	.reviews-index__wrap {
+		display: grid;
+		gap: 1.5rem;
 	}
 
 	.reviews-index__grid {

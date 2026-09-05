@@ -1,0 +1,125 @@
+---
+interface Props {
+	image: string;
+	alt: string;
+	eyebrow?: string;
+	title: string;
+	intro?: string;
+	compact?: boolean;
+	objectPosition?: string;
+}
+
+const {
+	image,
+	alt,
+	eyebrow,
+	title,
+	intro,
+	compact = false,
+	objectPosition = 'center 35%',
+} = Astro.props;
+---
+
+<section
+	class:list={['atmo-banner', { 'atmo-banner--compact': compact }]}
+	aria-labelledby="atmo-banner-title"
+>
+	<div class="atmo-banner__media" aria-hidden="true">
+		<img
+			src={image}
+			alt=""
+			width="1920"
+			height="1080"
+			class="atmo-banner__img"
+			loading={compact ? 'lazy' : 'eager'}
+			decoding="async"
+			style={`object-position: ${objectPosition};`}
+		/>
+		<div class="atmo-banner__scrim"></div>
+	</div>
+
+	<div class="shell atmo-banner__content">
+		{eyebrow && <p class="atmo-banner__eyebrow">{eyebrow}</p>}
+		<h1 id="atmo-banner-title" class="atmo-banner__title">{title}</h1>
+		{intro && <p class="atmo-banner__intro">{intro}</p>}
+		<slot />
+	</div>
+</section>
+
+<style>
+	.atmo-banner {
+		position: relative;
+		isolation: isolate;
+		min-height: clamp(220px, 36vh, 360px);
+		overflow: hidden;
+		border-bottom: 1px solid rgba(197, 138, 69, 0.12);
+	}
+
+	.atmo-banner--compact {
+		min-height: clamp(180px, 28vh, 280px);
+	}
+
+	.atmo-banner__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.atmo-banner__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(1.04) contrast(1.06) brightness(0.82);
+	}
+
+	.atmo-banner__scrim {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(13, 17, 18, 0.55) 0%, rgba(13, 17, 18, 0.9) 100%),
+			linear-gradient(90deg, rgba(13, 17, 18, 0.72) 0%, rgba(13, 17, 18, 0.42) 55%, rgba(13, 17, 18, 0.68) 100%);
+	}
+
+	.atmo-banner__content {
+		position: relative;
+		z-index: 1;
+		max-width: 42rem;
+		padding: clamp(2rem, 4vw, 2.75rem) 0 clamp(1.75rem, 3vw, 2.35rem);
+	}
+
+	.atmo-banner--compact .atmo-banner__content {
+		padding-block: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.75rem);
+	}
+
+	.atmo-banner__eyebrow {
+		margin: 0 0 0.45rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-orchid);
+	}
+
+	.atmo-banner__title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 4vw, 2.45rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1.12;
+	}
+
+	.atmo-banner__intro {
+		margin: 0.75rem 0 0;
+		max-width: 36rem;
+		color: rgba(229, 238, 238, 0.88);
+		font-size: clamp(0.92rem, 1.8vw, 1.02rem);
+		line-height: 1.6;
+	}
+
+	@media (max-width: 720px) {
+		.atmo-banner__content {
+			max-width: none;
+		}
+	}
+</style>

@@ -2,7 +2,9 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
+import AtmosphericBanner from '../../../components/AtmosphericBanner.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
+import { reviewDetailHeroAlt, reviewDetailHeroImage } from '../../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../../data/reviews';
 import RelatedPages from '../../../components/RelatedPages.astro';
 import type { CustomerReview } from '../../../data/site';
@@ -73,7 +75,7 @@ const extraGraph: Record<string, unknown>[] = [
 	title={review.seoTitle}
 	description={review.seoDescription}
 	canonicalPath={canonicalPath}
-	ogImage={siteConfig.defaultOgImage}
+	ogImage={reviewDetailHeroImage}
 	ogImageAlt={`Enlisted Cheats review by @${review.handle}`}
 	type="article"
 	locale="en"
@@ -85,24 +87,33 @@ const extraGraph: Record<string, unknown>[] = [
 	extraGraph={extraGraph}
 >
 	<Navbar />
+	<AtmosphericBanner
+		image={reviewDetailHeroImage}
+		alt={reviewDetailHeroAlt}
+		eyebrow="Buyer review"
+		title={review.title}
+		intro={`@${review.handle} · ${dateLabel}`}
+		compact
+		objectPosition="center 40%"
+	>
+		<nav class="review-page__crumbs" aria-label="Breadcrumb">
+			<a href="/">Home</a>
+			<span aria-hidden="true">/</span>
+			<a href={reviewsBasePath}>Reviews</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">@{review.handle}</span>
+		</nav>
+		<p class="review-detail__banner-stars" aria-label={`${review.rating} out of 5 stars`}>
+			<span aria-hidden="true">{stars(review.rating)}</span>
+		</p>
+	</AtmosphericBanner>
 	<main class="review-page">
 		<div class="shell review-page__wrap">
-			<nav class="review-page__crumbs" aria-label="Breadcrumb">
-				<a href="/">Home</a>
-				<span aria-hidden="true">/</span>
-				<a href={reviewsBasePath}>Reviews</a>
-				<span aria-hidden="true">/</span>
-				<span aria-current="page">@{review.handle}</span>
-			</nav>
-
 			<article class="review-detail">
-				<header class="review-detail__head">
+				<header class="review-detail__head review-detail__head--compact">
 					<span class="review-detail__avatar" aria-hidden="true">{review.handle.charAt(0).toUpperCase()}</span>
 					<div class="review-detail__meta">
-						<h1 class="review-detail__title">@{review.handle}</h1>
-						<p class="review-detail__stars" aria-label={`${review.rating} out of 5 stars`}>
-							<span aria-hidden="true">{stars(review.rating)}</span>
-						</p>
+						<p class="review-detail__handle">@{review.handle}</p>
 						<p class="review-detail__date">
 							<time datetime={review.date}>{dateLabel}</time>
 						</p>
@@ -156,7 +167,46 @@ const extraGraph: Record<string, unknown>[] = [
 <style>
 	.review-page {
 		overflow-x: clip;
-		padding-block: 2rem 3rem;
+		padding-block: 0 3rem;
+	}
+
+	.review-page__crumbs {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-top: 0.85rem;
+		font-size: 0.8rem;
+		color: rgba(229, 238, 238, 0.72);
+	}
+
+	.review-page__crumbs a {
+		color: rgba(255, 255, 255, 0.82);
+		font-weight: 600;
+	}
+
+	.review-page__crumbs a:hover {
+		color: var(--color-orchid);
+	}
+
+	.review-detail__banner-stars {
+		margin: 0.55rem 0 0;
+		font-size: 1.05rem;
+		letter-spacing: 0.06em;
+		color: #fbbf24;
+	}
+
+	.review-detail__head--compact {
+		padding-bottom: 0.35rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.review-detail__handle {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		font-weight: 800;
+		color: var(--color-ink);
 	}
 
 	.review-page__wrap {
@@ -164,24 +214,6 @@ const extraGraph: Record<string, unknown>[] = [
 		gap: 1.75rem;
 		max-width: 780px;
 		margin-inline: auto;
-	}
-
-	.review-page__crumbs {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 0.45rem;
-		font-size: 0.8rem;
-		color: var(--color-faint);
-	}
-
-	.review-page__crumbs a {
-		color: var(--color-muted);
-		font-weight: 600;
-	}
-
-	.review-page__crumbs a:hover {
-		color: var(--color-orchid);
 	}
 
 	.review-detail {

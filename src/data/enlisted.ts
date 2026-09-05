@@ -121,6 +121,45 @@ export const pricingShopImage: EnlistedScreenshot = {
 	title: 'Enlisted Cheats shop preview',
 };
 
+/** Official Enlisted.net marketing screenshots for secondary page heroes and UI accents. */
+export const enlistedOfficialScreens = {
+	battlefieldPanorama: {
+		src: 'https://enlisted.net/i/scr/10.jpg?v=20251222',
+		alt: 'Enlisted WWII battlefield panorama with soldiers and vehicles in combat',
+		title: 'Enlisted battlefield panorama',
+	},
+	squadCombat: {
+		src: 'https://enlisted.net/i/scr/3.jpg?v=20251222',
+		alt: 'Enlisted squad combat screenshot with infantry action on the front line',
+		title: 'Enlisted squad combat',
+	},
+	squadThumb: {
+		src: 'https://enlisted.net/i/scr/thumb-6.webp?v=20251222',
+		alt: 'Enlisted squad gameplay thumbnail from official Enlisted screenshots',
+		title: 'Enlisted squad thumbnail',
+	},
+} as const satisfies Record<string, EnlistedScreenshot>;
+
+export const reviewsHeroImage = enlistedOfficialScreens.battlefieldPanorama.src;
+export const reviewsHeroAlt = enlistedOfficialScreens.battlefieldPanorama.alt;
+export const reviewDetailHeroImage = enlistedOfficialScreens.squadCombat.src;
+export const reviewDetailHeroAlt = enlistedOfficialScreens.squadCombat.alt;
+
+/** Prefer official Enlisted.net art on text-heavy secondary pages. */
+export const pageHeroOverrides: Partial<Record<string, string>> = {
+	support: enlistedOfficialScreens.battlefieldPanorama.src,
+	faq: enlistedOfficialScreens.squadCombat.src,
+	privacy: enlistedOfficialScreens.squadThumb.src,
+	refund: enlistedOfficialScreens.squadThumb.src,
+	terms: enlistedOfficialScreens.squadThumb.src,
+};
+
+export function resolvePageHeroImage(pageId: string, heroImage: string): string {
+	if (pageHeroOverrides[pageId]) return pageHeroOverrides[pageId]!;
+	if (heroImage.startsWith('http')) return heroImage;
+	return legacyGameplayImageMap[heroImage] ?? heroImage;
+}
+
 export const pricingGallery: EnlistedScreenshot[] = [pricingShopImage];
 
 /** Feature page section screenshots keyed to productFeatureDetails ids. */
