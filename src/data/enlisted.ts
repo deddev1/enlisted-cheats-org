@@ -47,8 +47,11 @@ export const showcaseGameplay: EnlistedScreenshot[] = [
 	gameplayScreenshots.radarMap,
 ];
 
-/** Homepage hero — self-hosted for sitemap and LCP. */
-export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
+/** Homepage hero — Supabase cinematic background. */
+export const enlistedHeroImage = `${supabaseGameplayBase}/index-new-bg-5.webp`;
+
+export const enlistedHeroAlt =
+	'Enlisted Cheats hero banner with WWII soldiers in a cinematic battlefield scene';
 
 const g = gameplayScreenshots;
 

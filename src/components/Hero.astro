@@ -1,4 +1,5 @@
 ---
+import { enlistedHeroAlt } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -17,7 +18,7 @@ const ui = getUi(locale);
 
 const {
 	accent = ui.hero.accent,
-	imageAlt = ui.images.hero,
+	imageAlt = ui.images.hero || enlistedHeroAlt,
 } = Astro.props;
 
 const buyUrl = siteConfig.checkoutUrl;

@@ -1,5 +1,5 @@
 import { siteConfig } from './site';
-import { enlistedImages } from './enlisted';
+import { enlistedImages, enlistedHeroAlt } from './enlisted';
 import { englishPaths, sitemapPageIds, type PageId } from './i18n/routing';
 import { pageSitemapMeta } from './sitemap-meta';
 
@@ -28,7 +28,7 @@ const img = (path: string, title: string, caption: string): SitemapImage => ({
 /** Sitemap image assignments for indexable pages only (see sitemapPageIds in routing.ts). */
 const sitemapImagesByPageId: Partial<Record<PageId, SitemapImage[]>> = {
 	home: [
-		img(enlistedImages.hero, 'Enlisted Cheats', 'Enlisted Cheats homepage hero'),
+		img(enlistedImages.hero, 'Enlisted Cheats', enlistedHeroAlt),
 		img(enlistedImages.espWallhack, 'Enlisted ESP', 'Enlisted ESP wallhack overlay'),
 		img(enlistedImages.aimbotCombat, 'Enlisted Aimbot', 'Enlisted Aimbot combat preview'),
 	],

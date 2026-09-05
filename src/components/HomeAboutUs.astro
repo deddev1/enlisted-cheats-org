@@ -1,10 +1,15 @@
 ---
-import { enlistedHeroImage } from '../data/enlisted';
+import { enlistedHeroImage, enlistedHeroAlt } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
-import { heroPreloadSrc, heroSrcSet, heroSizes } from '../lib/responsive-images';
+import {
+	heroIsExternal,
+	heroPreloadSrc,
+	heroSizes,
+	heroSrcSet,
+} from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -21,19 +26,33 @@ const monthlyPlan = productInfo.plans[0];
 
 <section class="home-about" id="about" aria-labelledby="home-about-title">
 	<div class="home-about__media" aria-hidden="true">
-		<picture>
-			<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
-			<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
-			<img
-				src={heroPreloadSrc}
-				alt=""
-				width="1920"
-				height="1080"
-				class="home-about__bg"
-				loading="lazy"
-				decoding="async"
-			/>
-		</picture>
+		{
+			heroIsExternal ? (
+				<img
+					src={heroPreloadSrc}
+					alt={enlistedHeroAlt}
+					width="1920"
+					height="1080"
+					class="home-about__bg"
+					loading="lazy"
+					decoding="async"
+				/>
+			) : (
+				<picture>
+					<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
+					<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
+					<img
+						src={heroPreloadSrc}
+						alt={enlistedHeroAlt}
+						width="1920"
+						height="1080"
+						class="home-about__bg"
+						loading="lazy"
+						decoding="async"
+					/>
+				</picture>
+			)
+		}
 		<div class="home-about__veil"></div>
 	</div>
 

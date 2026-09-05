@@ -16,7 +16,7 @@ export const PAGE_IDS = [
  * Banner image per page — thematic Enlisted screenshots (see public/images/enlisted-*).
  */
 export const HERO_IMAGES = {
-	home: '/images/enlisted-cheats-hero.webp',
+	home: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/index-new-bg-5.webp',
 	'enlisted-esp': '/images/enlisted-esp-wallhack-overlay.webp',
 	'enlisted-aimbot': '/images/enlisted-squad-aimbot-combat.webp',
 	features: '/images/enlisted-cheats-main-menu.webp',
@@ -29,7 +29,7 @@ export const HERO_IMAGES = {
 	wallhack: '/images/enlisted-esp-enemy-boxes.webp',
 	radar: '/images/enlisted-radar-hack-minimap.webp',
 	'eac-bypass': '/images/enlisted-campaign-mission-esp.webp',
-	'cheats-2026': '/images/enlisted-cheats-hero.webp',
+	'cheats-2026': 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/index-new-bg-5.webp',
 	hacks: '/images/enlisted-cheats-combat-esp.webp',
 	'cheat-download': '/images/enlisted-cheats-main-menu.webp',
 	'mod-menu': '/images/enlisted-cheats-main-menu.webp',
