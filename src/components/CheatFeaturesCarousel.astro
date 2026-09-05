@@ -169,16 +169,11 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 						const isDuplicate = !isStatic && index >= cards.length;
 
 						return (
-							<div
-								class:list={[
-									'feat-scroll__card',
-									isFeatured && 'feat-scroll__card--featured is-expanded',
-								]}
+							<article
+								class:list={['feat-scroll__card', isFeatured && 'feat-scroll__card--featured']}
 								data-feature-card
 								data-feature-id={card.id}
-								role="button"
 								tabindex={isDuplicate ? -1 : 0}
-								aria-expanded={isFeatured ? 'true' : 'false'}
 								aria-hidden={isDuplicate ? 'true' : undefined}
 							>
 								<div class="feat-scroll__card-media">
@@ -196,7 +191,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 										{viewLabel}
 									</a>
 								</div>
-							</div>
+							</article>
 						);
 					})
 				}
@@ -212,9 +207,6 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		const track = carousel.querySelector('[data-feat-track]') as HTMLElement | null;
 		const mode = carousel.getAttribute('data-feat-mode');
 		const highlight = carousel.getAttribute('data-feat-highlight');
-		const cards = Array.from(carousel.querySelectorAll('[data-feature-card]')).filter(
-			(card) => card.getAttribute('aria-hidden') !== 'true',
-		);
 
 		const pause = () => track?.style.setProperty('animation-play-state', 'paused');
 		const play = () => track?.style.setProperty('animation-play-state', 'running');
@@ -222,45 +214,31 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		viewport?.addEventListener('mouseenter', pause);
 		viewport?.addEventListener('mouseleave', play);
 
-		const setExpanded = (target: HTMLElement, expanded: boolean) => {
-			target.classList.toggle('is-expanded', expanded);
-			target.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-		};
-
-		const collapseOthers = (except?: HTMLElement) => {
-			cards.forEach((card) => {
-				if (card === except) return;
-				if (card.classList.contains('feat-scroll__card--featured')) return;
-				setExpanded(card as HTMLElement, false);
-			});
-		};
-
-		cards.forEach((card) => {
-			const element = card as HTMLElement;
-
+		carousel.querySelectorAll('[data-feature-card]').forEach((card) => {
 			card.addEventListener('mouseenter', pause);
 			card.addEventListener('mouseleave', () => {
 				if (!carousel.matches(':hover')) play();
 			});
 
-			card.addEventListener('click', (event) => {
-				if (event.target instanceof Element && event.target.closest('[data-feature-link]')) return;
-				const expanded = !element.classList.contains('is-expanded');
-				collapseOthers(expanded ? element : undefined);
-				setExpanded(element, expanded);
-				if (expanded) pause();
-			});
-
-			card.addEventListener('keydown', (event) => {
-				if (event.key !== 'Enter' && event.key !== ' ') return;
-				if (event.target instanceof Element && event.target.closest('[data-feature-link]')) return;
-				event.preventDefault();
-				const expanded = !element.classList.contains('is-expanded');
-				collapseOthers(expanded ? element : undefined);
-				setExpanded(element, expanded);
-				if (expanded) pause();
+			card.addEventListener('focusin', pause);
+			card.addEventListener('focusout', () => {
+				if (!carousel.contains(document.activeElement)) play();
 			});
 		});
+
+		if (!window.matchMedia('(hover: hover)').matches) {
+			carousel.querySelectorAll('[data-feature-card]').forEach((card) => {
+				card.addEventListener('click', (event) => {
+					if (event.target instanceof Element && event.target.closest('[data-feature-link]')) return;
+					const open = card.classList.contains('is-open');
+					carousel.querySelectorAll('[data-feature-card].is-open').forEach((item) => {
+						if (item !== card) item.classList.remove('is-open');
+					});
+					card.classList.toggle('is-open', !open);
+					if (!open) pause();
+				});
+			});
+		}
 
 		if (mode === 'static' && highlight && track && viewport) {
 			const featured = track.querySelector(
@@ -377,6 +355,7 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 	}
 
 	.feat-scroll__card {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		flex: 0 0 clamp(13.5rem, 15vw, 15.5rem);
@@ -387,16 +366,13 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		background: rgba(8, 10, 11, 0.42);
 		color: inherit;
 		text-decoration: none;
-		cursor: pointer;
-		overflow: hidden;
+		cursor: default;
+		overflow: visible;
 		box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 		transition:
 			background 0.25s ease,
 			border-color 0.25s ease,
-			box-shadow 0.25s ease,
-			min-height 0.3s ease,
-			flex-basis 0.3s ease,
-			width 0.3s ease;
+			box-shadow 0.25s ease;
 	}
 
 	.feat-scroll__track--static .feat-scroll__card:first-child,
@@ -404,14 +380,15 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		border-left-width: 1px;
 	}
 
-	.feat-scroll__card:hover {
+	.feat-scroll__card:hover,
+	.feat-scroll__card:focus-within {
 		border-color: rgba(255, 255, 255, 0.16);
+		z-index: 3;
 	}
 
-	.feat-scroll__card.is-expanded,
 	.feat-scroll__card--featured {
 		background: rgba(8, 10, 11, 0.72);
-		border-color: var(--color-border-gold);
+		border-color: var(--color-border-gold-mid);
 		box-shadow:
 			inset 0 0 0 1px rgba(255, 255, 255, 0.04),
 			0 16px 36px rgba(0, 0, 0, 0.34);
@@ -421,16 +398,17 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		min-height: 22rem;
 	}
 
-	.feat-scroll__card--featured {
-		border-color: var(--color-border-gold-mid);
-	}
-
 	.feat-scroll__card-media {
 		position: relative;
 		flex: 0 0 auto;
 		height: 9.5rem;
 		overflow: hidden;
 		background: #0a0c0d;
+		border-radius: 0.2rem 0.2rem 0 0;
+	}
+
+	.feat-scroll__card--featured .feat-scroll__card-media {
+		height: 11.5rem;
 	}
 
 	.feat-scroll__card-media::after {
@@ -454,22 +432,23 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		background: #0a0c0d;
 	}
 
-	.feat-scroll__card.is-expanded .feat-scroll__card-media,
 	.feat-scroll__card--featured .feat-scroll__card-media {
 		height: 11.5rem;
 	}
 
 	.feat-scroll__card-body {
+		position: relative;
 		display: flex;
 		flex: 1;
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
-		gap: 0.4rem;
-		min-height: 8rem;
+		gap: 0.35rem;
+		min-height: 7.5rem;
 		padding: 0.75rem 0.65rem 0.85rem;
 		text-align: center;
 		background: rgba(8, 10, 11, 0.92);
+		border-radius: 0 0 0.2rem 0.2rem;
 	}
 
 	.feat-scroll__card-title {
@@ -493,20 +472,27 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 	}
 
 	.feat-scroll__options {
+		position: absolute;
+		left: 0.45rem;
+		right: 0.45rem;
+		top: calc(100% - 0.15rem);
 		display: grid;
-		gap: 0.28rem;
-		width: 100%;
-		max-width: 13rem;
-		margin: 0.15rem 0 0;
-		padding: 0;
+		gap: 0.24rem;
+		margin: 0;
+		padding: 0.35rem;
 		list-style: none;
-		max-height: 0;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 0.2rem;
+		background: rgba(8, 10, 11, 0.96);
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
 		opacity: 0;
-		overflow: hidden;
+	 visibility: hidden;
+		transform: translateY(-4px);
 		transition:
-			max-height 0.3s ease,
-			opacity 0.25s ease,
-			margin 0.25s ease;
+			opacity 0.2s ease,
+			transform 0.2s ease,
+			visibility 0.2s ease;
+		pointer-events: none;
 	}
 
 	.feat-scroll__options li {
@@ -527,11 +513,14 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		vertical-align: middle;
 	}
 
-	.feat-scroll__card.is-expanded .feat-scroll__options,
+	.feat-scroll__card:hover .feat-scroll__options,
+	.feat-scroll__card:focus-within .feat-scroll__options,
+	.feat-scroll__card.is-open .feat-scroll__options,
 	.feat-scroll__card--featured .feat-scroll__options {
-		max-height: 9rem;
 		opacity: 1;
-		margin-top: 0.35rem;
+		visibility: visible;
+		transform: translateY(0);
+		pointer-events: auto;
 	}
 
 	.feat-scroll__card-link {
@@ -546,8 +535,8 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		opacity: 0;
 		transform: translateY(4px);
 		transition:
-			opacity 0.25s ease,
-			transform 0.25s ease,
+			opacity 0.2s ease,
+			transform 0.2s ease,
 			color 0.2s ease;
 	}
 
@@ -555,7 +544,9 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 		color: var(--color-cta-hover);
 	}
 
-	.feat-scroll__card.is-expanded .feat-scroll__card-link,
+	.feat-scroll__card:hover .feat-scroll__card-link,
+	.feat-scroll__card:focus-within .feat-scroll__card-link,
+	.feat-scroll__card.is-open .feat-scroll__card-link,
 	.feat-scroll__card--featured .feat-scroll__card-link {
 		opacity: 1;
 		transform: translateY(0);
@@ -581,14 +572,12 @@ const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 			min-height: 16rem;
 		}
 
-		.feat-scroll__card.is-expanded,
 		.feat-scroll__card--featured {
 			flex-basis: 14rem;
 			width: 14rem;
 			min-height: 20rem;
 		}
 
-		.feat-scroll__card.is-expanded .feat-scroll__card-media,
 		.feat-scroll__card--featured .feat-scroll__card-media {
 			height: 9rem;
 		}
