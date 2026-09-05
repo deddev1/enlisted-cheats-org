@@ -92,7 +92,7 @@ const cards = [
 		<div class="feat-scroll__bg-veil"></div>
 	</div>
 
-	<div class="feat-scroll__head shell">
+	<div class="feat-scroll__head">
 		<h2 id="feat-scroll-title" class="feat-scroll__title">{sectionTitle}</h2>
 	</div>
 
@@ -119,7 +119,7 @@ const cards = [
 	.feat-scroll {
 		position: relative;
 		overflow: hidden;
-		padding: 2.75rem 0 3rem;
+		padding: 2.5rem 0 2.75rem;
 		isolation: isolate;
 	}
 
@@ -149,12 +149,17 @@ const cards = [
 	.feat-scroll__head {
 		position: relative;
 		z-index: 1;
-		margin-bottom: 1.75rem;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1.5rem;
 		text-align: center;
 	}
 
 	.feat-scroll__title {
 		margin: 0;
+		width: 100%;
+		max-width: var(--page-max);
+		padding-inline: var(--page-gutter);
 		font-family: var(--font-display);
 		font-size: clamp(1.35rem, 3vw, 2rem);
 		font-weight: 800;
@@ -169,47 +174,54 @@ const cards = [
 		position: relative;
 		z-index: 1;
 		overflow: hidden;
+		width: 100%;
 		mask-image: linear-gradient(
 			90deg,
 			transparent 0%,
-			#000 8%,
-			#000 92%,
+			#000 6%,
+			#000 94%,
 			transparent 100%
 		);
 	}
 
 	.feat-scroll__track {
 		display: flex;
+		align-items: stretch;
 		width: max-content;
 		gap: 0;
-		animation: feat-scroll-marquee 48s linear infinite;
+		animation: feat-scroll-marquee 50s linear infinite;
 		will-change: transform;
 	}
 
 	.feat-scroll__card {
 		display: flex;
 		flex-direction: column;
-		flex: 0 0 clamp(16rem, 28vw, 22rem);
-		width: clamp(16rem, 28vw, 22rem);
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		border-right-color: rgba(255, 255, 255, 0.04);
-		background: rgba(10, 12, 13, 0.55);
+		flex: 0 0 18.5rem;
+		width: 18.5rem;
+		min-height: 21.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-right-width: 0;
+		background: rgba(10, 12, 13, 0.62);
 		color: inherit;
 		text-decoration: none;
 		transition:
 			background 0.25s ease,
-			border-color 0.25s ease,
-			transform 0.25s ease;
+			border-color 0.25s ease;
+	}
+
+	.feat-scroll__card:last-child {
+		border-right-width: 1px;
 	}
 
 	.feat-scroll__card:hover {
-		background: rgba(14, 17, 18, 0.72);
-		border-color: rgba(197, 138, 69, 0.28);
-		transform: translateY(-2px);
+		background: rgba(14, 17, 18, 0.82);
+		border-color: rgba(197, 138, 69, 0.32);
+		z-index: 1;
 	}
 
 	.feat-scroll__card-media {
-		aspect-ratio: 16 / 10;
+		flex: 0 0 auto;
+		height: 10.75rem;
 		overflow: hidden;
 		background: #0a0c0d;
 	}
@@ -223,7 +235,7 @@ const cards = [
 	}
 
 	.feat-scroll__card:hover .feat-scroll__card-media img {
-		transform: scale(1.04);
+		transform: scale(1.03);
 	}
 
 	.feat-scroll__card-body {
@@ -231,17 +243,20 @@ const cards = [
 		flex: 1;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.65rem;
-		padding: 1.1rem 1rem 1.25rem;
+		justify-content: flex-start;
+		gap: 0.55rem;
+		min-height: 10.75rem;
+		padding: 1rem 0.9rem 1.15rem;
 		text-align: center;
-		background: linear-gradient(180deg, rgba(8, 10, 11, 0.35) 0%, rgba(8, 10, 11, 0.82) 100%);
+		background: linear-gradient(180deg, rgba(8, 10, 11, 0.4) 0%, rgba(8, 10, 11, 0.88) 100%);
 	}
 
 	.feat-scroll__card-title {
 		margin: 0;
-		font-size: 0.92rem;
+		width: 100%;
+		font-size: 0.88rem;
 		font-weight: 800;
-		line-height: 1.2;
+		line-height: 1.25;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: var(--color-ink);
@@ -249,9 +264,15 @@ const cards = [
 
 	.feat-scroll__card-desc {
 		margin: 0;
-		font-size: 0.78rem;
+		width: 100%;
+		max-width: 16rem;
+		font-size: 0.76rem;
 		line-height: 1.55;
 		color: rgba(241, 238, 229, 0.72);
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 5;
+		overflow: hidden;
 	}
 
 	@keyframes feat-scroll-marquee {
@@ -269,8 +290,17 @@ const cards = [
 		}
 
 		.feat-scroll__card {
-			flex-basis: 15rem;
-			width: 15rem;
+			flex-basis: 16rem;
+			width: 16rem;
+			min-height: 20rem;
+		}
+
+		.feat-scroll__card-media {
+			height: 9.5rem;
+		}
+
+		.feat-scroll__card-body {
+			min-height: 10.5rem;
 		}
 
 		.feat-scroll__track {

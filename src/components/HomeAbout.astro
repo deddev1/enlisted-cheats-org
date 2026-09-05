@@ -1,0 +1,112 @@
+---
+import { getUi } from '../data/i18n';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { productInfo } from '../data/site';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const ui = getUi(locale);
+
+const espHref = getLocalizedPath('enlisted-esp', locale);
+const aimbotHref = getLocalizedPath('enlisted-aimbot', locale);
+const wallhackHref = getLocalizedPath('wallhack', locale);
+const radarHref = getLocalizedPath('radar', locale);
+const hacksHref = getLocalizedPath('hacks', locale);
+const updatesHref = getLocalizedPath('updates', locale);
+const setupHref = getLocalizedPath('setup', locale);
+const pricingHref = getLocalizedPath('pricing', locale);
+const featuresHref = getLocalizedPath('features', locale);
+const supportHref = getLocalizedPath('support', locale);
+const undetectedHref = getLocalizedPath('undetected', locale);
+
+const title = locale === 'en' ? 'About us' : ui.nav.features;
+---
+
+<section class="home-about shell" aria-labelledby="home-about-title">
+	<div class="home-about__panel">
+		<h2 id="home-about-title" class="home-about__title">{title}</h2>
+
+		{
+			locale === 'en' ? (
+				<>
+					<p class="home-about__text">
+						<a href={hacksHref} class="home-about__brand">{productInfo.name}</a> is a Windows PC package built for
+						large-scale battles, squad assaults, and campaign missions. We ship{' '}
+						<a href={espHref}>ESP</a>, <a href={wallhackHref}>wallhack</a>,{' '}
+						<a href={aimbotHref}>aimbot</a>, and <a href={radarHref}>radar</a> in one license with{' '}
+						<a href={updatesHref}>updates</a> after anti-cheat and game patches.
+					</p>
+					<p class="home-about__text">
+						Our team focuses on <a href={undetectedHref}>undetected maintenance</a>, fast delivery, and clear{' '}
+						<a href={setupHref}>setup docs</a> so you can toggle modules mid-match without overlay clutter.{' '}
+						<a href={pricingHref}>Monthly and lifetime plans</a> include the full{' '}
+						<a href={featuresHref}>feature stack</a> and <a href={supportHref}>support</a> when patches land.
+					</p>
+				</>
+			) : (
+				<>
+					<p class="home-about__text">{productInfo.summary}</p>
+					<p class="home-about__text">
+						<a href={featuresHref}>{ui.nav.features}</a> · <a href={pricingHref}>{ui.nav.pricing}</a> ·{' '}
+						<a href={setupHref}>{ui.nav.setup}</a> · <a href={supportHref}>Support</a>
+					</p>
+				</>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.home-about {
+		padding-block: 1.75rem 2rem;
+	}
+
+	.home-about__panel {
+		max-width: 42rem;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.home-about__title {
+		margin: 0 0 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-ink);
+	}
+
+	.home-about__text {
+		margin: 0;
+		font-size: clamp(0.92rem, 1.4vw, 1.02rem);
+		line-height: 1.7;
+		color: var(--color-body);
+	}
+
+	.home-about__text + .home-about__text {
+		margin-top: 0.85rem;
+	}
+
+	.home-about__text a {
+		color: var(--color-cta);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(197, 138, 69, 0.45);
+		text-underline-offset: 0.15em;
+		transition: color 0.2s ease;
+	}
+
+	.home-about__text a:hover {
+		color: var(--color-cta-hover);
+	}
+
+	.home-about__brand {
+		font-weight: 700;
+	}
+</style>

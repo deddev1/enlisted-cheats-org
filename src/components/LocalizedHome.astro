@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import CheatFeaturesCarousel from '../components/CheatFeaturesCarousel.astro';
+import HomeAbout from '../components/HomeAbout.astro';
 import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import Gallery from '../components/Gallery.astro';
@@ -99,6 +100,7 @@ const extraGraph: Record<string, unknown>[] =
 			accent={ui.hero.accent}
 		/>
 		<CheatFeaturesCarousel locale={locale} />
+		<HomeAbout locale={locale} />
 		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
