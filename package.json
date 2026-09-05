@@ -7,6 +7,7 @@
 	},
 	"scripts": {
 		"dev": "astro dev --host 0.0.0.0 --port 3000",
+		"dev:alt": "astro dev --host 0.0.0.0 --port 3001",
 		"start": "astro dev --host 0.0.0.0 --port 3000",
 		"dev:ip": "node scripts/dev-with-ip.mjs",
 		"build": "astro build",
@@ -20,6 +21,7 @@
     "fetch:logo": "node scripts/fetch-zadeyo-logo.mjs",
     "extract:video-poster": "node scripts/extract-video-poster.mjs",
 		"preview": "astro preview --host 0.0.0.0 --port 3000",
+		"preview:alt": "astro preview --host 0.0.0.0 --port 3001",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs",
 		"generate:i18n": "node scripts/generate-i18n-content.mjs",
 		"generate:blog": "node scripts/generate-blog-posts.mjs",
