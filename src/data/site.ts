@@ -451,7 +451,7 @@ export const customerReviews = [
 		slug: 'enlisted-soft-aim-review-xkrypt0',
 		seoTitle: 'Soft aim review by @krypt0_arc | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @krypt0_arc on soft aim for campaign missions after setup on Windows PC.',
+			'Real Enlisted cheats review from @krypt0_arc on soft aim for campaign missions — natural rifle feel and stable squad play on Windows PC after setup.',
 		date: '2026-03-14',
 	},
 	{
@@ -463,7 +463,7 @@ export const customerReviews = [
 		slug: 'enlisted-esp-realistic-review-buildsr4k',
 		seoTitle: 'ESP review by @extractR4K | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @extractR4K on ESP boxes and radar during large-scale battles.',
+			'Enlisted cheats buyer review from @extractR4K — ESP boxes and radar for Eastern Front battles, spotting heavies before objective pushes on Windows PC.',
 		date: '2026-02-08',
 	},
 	{
@@ -475,7 +475,7 @@ export const customerReviews = [
 		slug: 'enlisted-cloud-dma-review-dma-wizard',
 		seoTitle: 'Cloud DMA review by @jakeDMA | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @jakeDMA on cloud DMA setup and patch-day stability.',
+			'Verified Enlisted cheats review from @jakeDMA on cloud DMA setup, Discord support, and staying undetected through the latest Enlisted patch hotfix.',
 		date: '2026-01-22',
 	},
 	{
@@ -487,7 +487,7 @@ export const customerReviews = [
 		slug: 'enlisted-controller-aimbot-review-ctrl-player99',
 		seoTitle: 'Controller review by @padWarMain | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @padWarMain on aim assist and menu use with an Xbox controller.',
+			'Enlisted cheats review from @padWarMain on Xbox controller aim assist, FOV tuning, and in-game menu use — honest feedback after several weeks on PC.',
 		date: '2026-04-02',
 	},
 	{
@@ -499,7 +499,7 @@ export const customerReviews = [
 		slug: 'enlisted-cheat-setup-review-stormchaser07',
 		seoTitle: 'Setup review by @stormchaser07 | Enlisted Cheats',
 		seoDescription:
-			'Honest buyer review from @stormchaser07 on first-time setup and support response time.',
+			'Honest Enlisted cheats review from @stormchaser07 on Windows setup, Defender loader flags, and same-day support — ESP works in campaign missions.',
 		date: '2026-05-19',
 	},
 	{
@@ -511,7 +511,7 @@ export const customerReviews = [
 		slug: 'enlisted-ability-esp-review-lootgoblinx',
 		seoTitle: 'Resource ESP review by @loot_goblin_42 | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @loot_goblin_42 on supply ESP, cooldown markers, and survival missions.',
+			'Enlisted cheats buyer review from @loot_goblin_42 on supply ESP, cooldown markers, and medkit tracking during long defense runs on Windows PC.',
 		date: '2026-06-11',
 	},
 	{
@@ -523,7 +523,7 @@ export const customerReviews = [
 		slug: 'enlisted-aimbot-realistic-review-steelpathgrind42',
 		seoTitle: 'Aim profiles review by @steelpath42 | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @steelpath42 on per-weapon aim profiles and post-patch update timing.',
+			'Enlisted cheats review from @steelpath42 on rifle and shotgun aim profiles in tight maps, plus realistic expectations after Enlisted patch updates.',
 		date: '2026-03-28',
 	},
 	{
@@ -535,7 +535,7 @@ export const customerReviews = [
 		slug: 'enlisted-radar-hack-review-vanlifefn',
 		seoTitle: 'Radar review by @vanlife_arc | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @vanlife_arc on radar during defense sectors and squad play.',
+			'Enlisted cheats review from @vanlife_arc on radar in defense sectors — spotting flank routes early in pub squads when callouts are scarce on PC.',
 		date: '2026-07-03',
 	},
 	{
@@ -547,7 +547,7 @@ export const customerReviews = [
 		slug: 'enlisted-anti-cheat-update-review-patchdaymike',
 		seoTitle: 'Patch day review by @patchdaymike | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @patchdaymike on downtime and communication after a Enlisted patch.',
+			'Enlisted cheats review from @patchdaymike on patch-day downtime, quick status updates, and being back online the next morning after an Enlisted update.',
 		date: '2026-02-27',
 	},
 	{
@@ -559,7 +559,7 @@ export const customerReviews = [
 		slug: 'enlisted-sniper-aimbot-review-snipezonly',
 		seoTitle: 'Sniper profile review by @snipezonly | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @snipezonly on the sniper aim profile and ESP tagging.',
+			'Enlisted cheats buyer review from @snipezonly on sniper aim profiles and ESP tags for tank assault missions — long-range player feedback on PC.',
 		date: '2026-07-21',
 	},
 	{
@@ -571,7 +571,7 @@ export const customerReviews = [
 		slug: 'enlisted-monthly-sub-review-nightowl',
 		seoTitle: 'Monthly sub review by @nightowl_pc | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @nightowl_pc on trying the monthly plan before upgrading.',
+			'Enlisted cheats review from @nightowl_pc on the monthly plan, stable performance over time, and upgrading to a lifetime key after a successful trial on PC.',
 		date: '2026-05-06',
 	},
 	{
@@ -583,7 +583,7 @@ export const customerReviews = [
 		slug: 'enlisted-lifetime-key-review-oldvet',
 		seoTitle: 'Lifetime key review by @oldvet_wf | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @oldvet_wf on switching to a lifetime Enlisted Cheats key.',
+			'Enlisted cheats review from @oldvet_wf on switching from free menus to a lifetime key — ESP, aim assist, radar, and updates in one package on PC.',
 		date: '2026-01-09',
 	},
 	{
@@ -595,7 +595,7 @@ export const customerReviews = [
 		slug: 'enlisted-squad-play-review-duoqueue',
 		seoTitle: 'Squad play review by @duoqueue | Enlisted Cheats',
 		seoDescription:
-			'Buyer review from @duoqueue on using ESP and radar during duo arbitration runs.',
+			'Enlisted cheats review from @duoqueue on duo squad assaults with ESP and radar — easier voice callouts when you and a friend run Enlisted cheats on PC.',
 		date: '2026-04-18',
 	},
 ] as const satisfies readonly CustomerReview[];
