@@ -36,7 +36,7 @@ const articleListSchema = {
 	name: ui.blogH1,
 	description: ui.blogDescription,
 	url: canonicalURL,
-	inLanguage: locale,
+	inLanguage: 'en',
 	isPartOf: { '@id': `${siteConfig.url}/#website` },
 	mainEntity: {
 		'@type': 'ItemList',
@@ -55,6 +55,7 @@ const articleListSchema = {
 	description={ui.blogDescription}
 	canonicalPath={canonicalPath}
 	locale={locale}
+	englishOnlyAlternates={true}
 	breadcrumbs={[{ label: ui.home, href: homeHref }, { label: ui.blogH1 }]}
 	extraGraph={[articleListSchema]}
 >
@@ -64,6 +65,7 @@ const articleListSchema = {
 			<p class="blog__eyebrow">Enlisted guides &amp; product intel</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
+			<p class="blog__note">Product guides and reviews are published in English.</p>
 		</header>
 
 		{
@@ -167,6 +169,14 @@ const articleListSchema = {
 		color: rgba(255, 255, 255, 0.72);
 		font-size: 0.95rem;
 		line-height: 1.6;
+	}
+
+	.blog__note {
+		max-width: 40rem;
+		margin: 0.75rem auto 0;
+		color: rgba(255, 255, 255, 0.55);
+		font-size: 0.82rem;
+		line-height: 1.5;
 	}
 
 	.blog__featured,

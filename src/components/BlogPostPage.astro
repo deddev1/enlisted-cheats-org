@@ -47,7 +47,7 @@ const articleSchema = {
 	datePublished: post.published,
 	dateModified: post.updated,
 	image: new URL(post.imageSrc, siteConfig.url).href,
-	inLanguage: locale,
+	inLanguage: 'en',
 	author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
 	publisher: {
 		'@type': 'Organization',
@@ -90,6 +90,7 @@ function pageTitle(headline: string): string {
 	ogImageAlt={t.imageAlt}
 	type="article"
 	locale={locale}
+	englishOnlyAlternates={true}
 	breadcrumbs={[
 		{ label: ui.home, href: homeHref },
 		{ label: ui.blogH1, href: blogHref },

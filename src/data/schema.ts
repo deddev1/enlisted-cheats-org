@@ -163,15 +163,50 @@ const schemaRichPages = new Set<PageId>([
 	'faq',
 ]);
 
+function buildSetupHowToSchema(canonicalURL: string) {
+	return {
+		'@type': 'HowTo',
+		'@id': `${canonicalURL}#howto`,
+		name: 'Install Enlisted Cheats on Windows PC',
+		description:
+			'Activate your Enlisted Cheats license, configure ESP and aimbot profiles, and verify anti-cheat maintenance status before queueing.',
+		inLanguage: 'en',
+		step: [
+			{
+				'@type': 'HowToStep',
+				position: 1,
+				name: 'Check updates before you install',
+				text: 'Confirm your order email and license details. Check the Updates page for the latest anti-cheat maintenance build before launching Enlisted. Close conflicting overlay software on Windows 10 or 11.',
+			},
+			{
+				'@type': 'HowToStep',
+				position: 2,
+				name: 'Activate ESP and aimbot profiles',
+				text: 'Follow the delivery instructions in your license email. Load default ESP categories for enemies, pickups, and lockers, then tune radar range and aimbot smoothness to your playstyle.',
+			},
+			{
+				'@type': 'HowToStep',
+				position: 3,
+				name: 'Verify status after Enlisted patches',
+				text: 'When Gaijin ships a major Enlisted update or anti-cheat patch, revisit the Updates page before queueing and download maintenance rebuilds when posted.',
+			},
+		],
+	};
+}
+
 export function buildPageExtraGraph(
 	pageId: PageId,
 	canonicalURL: string,
 	heroImage: string,
 	allFaqs: ReadonlyArray<{ question: string; answer: string }>,
 ): Record<string, unknown>[] {
-	if (!schemaRichPages.has(pageId)) return [];
-
 	const nodes: Record<string, unknown>[] = [];
+
+	if (pageId === 'setup') {
+		nodes.push(buildSetupHowToSchema(canonicalURL));
+	}
+
+	if (!schemaRichPages.has(pageId)) return nodes;
 
 	if (pageId !== 'faq') {
 		nodes.push(buildSoftwareApplicationSchema(canonicalURL, heroImage));

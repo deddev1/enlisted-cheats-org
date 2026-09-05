@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { productInfo, siteConfig } from '../data/site';
 import { metaKeywordsContent } from '../data/seo';
 import I18nHead from '../components/I18nHead.astro';
+import EnglishOnlyHead from '../components/EnglishOnlyHead.astro';
 import LocaleSuggest from '../components/LocaleSuggest.astro';
 import { defaultLocale, localeMap, locales, type LocaleCode } from '../data/i18n/locales';
 import type { PageId } from '../data/i18n/content.generated';
@@ -28,6 +29,8 @@ interface Props {
 	lcpImage?: string;
 	lcpImageSrcSet?: string;
 	lcpImageSizes?: string;
+	/** English-only routes (blog, reviews) — emit en + x-default hreflang only. */
+	englishOnlyAlternates?: boolean;
 }
 
 const {
@@ -46,6 +49,7 @@ const {
 	lcpImage,
 	lcpImageSrcSet,
 	lcpImageSizes = '100vw',
+	englishOnlyAlternates = false,
 } = Astro.props;
 
 const path = canonicalPath.endsWith('/') || canonicalPath.includes('.') ? canonicalPath : `${canonicalPath}/`;
@@ -160,7 +164,11 @@ if (softwareNode) {
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content={siteConfig.name} />
 		<link rel="canonical" href={canonicalURL} />
-		{pageId && <I18nHead pageId={pageId} locale={locale} />}
+		{englishOnlyAlternates ? (
+			<EnglishOnlyHead canonicalPath={path} />
+		) : (
+			pageId && <I18nHead pageId={pageId} locale={locale} />
+		)}
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
