@@ -1,5 +1,5 @@
 import { getPageContent } from './i18n';
-import { getLocalizedPath, hreflangLinksXml, pageIds, type PageId } from './i18n/routing';
+import { getLocalizedPath, hreflangLinksXml, sitemapPageIds, type PageId } from './i18n/routing';
 import {
 	defaultLocale,
 	includeLocaleUrlsInSitemap,
@@ -42,7 +42,7 @@ export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntr
 		return [];
 	}
 
-	return pageIds.map((pageId) => {
+	return sitemapPageIds.map((pageId) => {
 		const meta = pageSitemapMeta[pageId];
 		const page = pageId === 'home' ? null : getPageContent(locale, pageId);
 

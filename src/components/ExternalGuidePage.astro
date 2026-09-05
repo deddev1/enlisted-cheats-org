@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import SiteFooter from './SiteFooter.astro';
-import { absoluteGuideUrl, guidesBasePath } from '../data/guides/helpers';
+import { absoluteGuideUrl, guidesBasePath, otherGamesGuidesPath } from '../data/guides/helpers';
 import type { ResolvedExternalGuide } from '../data/guides/types';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
@@ -14,7 +14,7 @@ interface Props {
 const { guide } = Astro.props;
 const locale = defaultLocale;
 const homeHref = getLocalizedPath('home', locale);
-const guidesHref = guidesBasePath;
+const guidesHref = otherGamesGuidesPath;
 
 function pageTitle(headline: string): string {
 	const suffix = ' | Guides';
@@ -75,7 +75,7 @@ function pageTitle(headline: string): string {
 		</article>
 
 		<p class="guide-post__back">
-			<a href={guidesHref}>← Back to all guides</a>
+			<a href={guidesHref}>← Back to other games guides</a>
 		</p>
 	</main>
 	<SiteFooter locale={locale} />

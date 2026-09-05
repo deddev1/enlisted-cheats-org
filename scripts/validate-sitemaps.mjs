@@ -41,13 +41,16 @@ const EXTERNAL_GUIDE_HTML_PAGES = 107; // noindex guide articles still built as 
 const SITEMAP_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_PAGES + REVIEW_PAGES + GUIDES_HUB_PAGES;
 const BUILT_ENGLISH_PAGES = SITEMAP_ENGLISH_PAGES;
 const I18N_LOCALES = 21;
-const PAGES_PER_LOCALE = 25;
-const LOCALE_UI_PAGES = I18N_LOCALES * PAGES_PER_LOCALE;
-const TOTAL_HTML_PAGES = BUILT_ENGLISH_PAGES + LOCALE_UI_PAGES + EXTERNAL_GUIDE_HTML_PAGES;
+const PAGES_PER_LOCALE = 15; // canonical locale URLs in sitemap (thin landings 301)
+const BUILT_LOCALE_HTML_PAGES = I18N_LOCALES * 25; // all locale routes still built as HTML
+const LOCALE_UI_PAGES = BUILT_LOCALE_HTML_PAGES;
+const OTHER_GAMES_GUIDE_HUB = 1;
+const TOTAL_HTML_PAGES =
+	BUILT_ENGLISH_PAGES + LOCALE_UI_PAGES + EXTERNAL_GUIDE_HTML_PAGES + OTHER_GAMES_GUIDE_HUB;
 const HREFLANG_PER_URL = 23; // 22 locales + x-default
 const SITEMAP_INDEX_ENTRIES = 23; // English + 21 locales + images
 const I18N_SITEMAP_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
-const IMAGE_SITEMAP_ENTRIES = 11; // all enlistedImages.sitemap screenshots
+const IMAGE_SITEMAP_ENTRIES = 5; // enlistedImages.sitemap (showcaseGameplay)
 
 const ENGLISH_PATHS = [
 	'/',

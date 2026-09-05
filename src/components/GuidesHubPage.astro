@@ -5,9 +5,9 @@ import SiteFooter from './SiteFooter.astro';
 import { siteConfig } from '../data/site';
 import {
 	absoluteGuideUrl,
-	getMixedExternalGuides,
 	getNativeEnlistedGuides,
 	guidesBasePath,
+	otherGamesGuidesPath,
 } from '../data/guides/helpers';
 import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
 import { getLocalizedPath } from '../data/i18n/routing';
@@ -15,7 +15,6 @@ import { defaultLocale } from '../data/i18n/locales';
 
 const locale = defaultLocale;
 const nativeGuides = getNativeEnlistedGuides();
-const otherGameGuides = getMixedExternalGuides();
 const homeHref = getLocalizedPath('home', locale);
 
 function nativeGuideLabel(title: string): string {
@@ -23,14 +22,9 @@ function nativeGuideLabel(title: string): string {
 	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
 }
 
-function otherGameGuideLabel(title: string): string {
-	const trimmed = title.replace(/\s*\|\s*Guides$/, '').trim();
-	return trimmed.length <= 52 ? trimmed : `${trimmed.slice(0, 49).trimEnd()}…`;
-}
-
 const title = 'Enlisted Game Guides | Campaign, Battlefield & Factions';
 const description =
-	'Native Enlisted guides on campaign missions, large-scale battles, factions, mission types, and patch notes — written for players using Enlisted Cheats on Windows PC.';
+	'Enlisted guides on campaign missions, large-scale battles, factions, mission types, and patch notes — for players using Enlisted Cheats on Windows PC.';
 
 const canonicalURL = absoluteGuideUrl();
 
@@ -98,39 +92,9 @@ const extraGraph = [
 			<EnlistedAuthorityLinks headingLevel="h3" />
 		</section>
 
-		{
-			otherGameGuides.length > 0 && (
-				<section class="guides__section guides__section--external" aria-labelledby="external-guides-title">
-					<h2 id="external-guides-title" class="guides__section-title">Other Games Guides</h2>
-					<p class="guides__section-intro">
-						Gameplay guides for other titles, mixed across franchises so you can browse a wider catalog without
-						one game dominating the list.
-					</p>
-
-					<div class="guides__grid">
-						{otherGameGuides.map((guide, index) => (
-							<article class="guides__card guides__card--external">
-								<img
-									src={guide.imageSrc}
-									alt={guide.imageAlt}
-									width="640"
-									height="360"
-									loading="lazy"
-									decoding="async"
-								/>
-								<div class="guides__card-body">
-									<span class="guides__cat">{guide.gameName}</span>
-									<h3 class="guides__card-title">
-										<a href={guide.canonicalPath}>{otherGameGuideLabel(guide.title)}</a>
-									</h3>
-									<p>{guide.intro}</p>
-								</div>
-							</article>
-						))}
-					</div>
-				</section>
-			)
-		}
+		<p class="guides__other-link">
+			<a href={otherGamesGuidesPath} rel="nofollow">Browse other games guides</a>
+		</p>
 	</main>
 	<SiteFooter locale={locale} />
 </Layout>
@@ -171,11 +135,6 @@ const extraGraph = [
 		margin-bottom: 2.5rem;
 	}
 
-	.guides__section--external {
-		padding-top: 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-	}
-
 	.guides__section-title {
 		margin: 0 0 0.5rem;
 		font-size: 1.5rem;
@@ -187,6 +146,23 @@ const extraGraph = [
 		color: rgba(255, 255, 255, 0.65);
 		font-size: 0.95rem;
 		line-height: 1.6;
+	}
+
+	.guides__other-link {
+		margin: 0;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.92rem;
+	}
+
+	.guides__other-link a {
+		color: rgba(255, 255, 255, 0.55);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.guides__other-link a:hover {
+		color: #B47A3C;
 	}
 
 	.guides__grid {

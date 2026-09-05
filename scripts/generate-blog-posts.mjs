@@ -599,7 +599,7 @@ const sources = [
 		slug: 'undetected-enlisted-cheats-eac',
 		title: 'Undetected Enlisted Cheats & anti-cheat Reality',
 		metaDescription:
-			'Undetected Enlisted Cheats and anti-cheat reality — ESP boxes, soft aim, and cloud DMA rebuilds for PC and controllers. Check Updates before queueing post-patch.',
+			'Undetected Enlisted Cheats and anti-cheat reality — ESP, soft aim, and cloud DMA rebuilds for PC. Check Updates before queueing post-patch.',
 		h1: 'Undetected Enlisted Cheats and Gaijin anti-cheat Reality',
 		intro:
 			'Undetected Enlisted Cheats mean active anti-cheat maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.',
@@ -639,7 +639,7 @@ const sources = [
 		slug: 'enlisted-cheats-vs-cheatvault-comparison',
 		title: 'Enlisted Cheats vs CheatVault: Honest 2026 Comparison',
 		metaDescription:
-			'Enlisted Cheats vs CheatVault compared — pricing, ESP boxes, soft aim, cloud DMA, anti-cheat detection history, and which package fits campaign missions players in 2026.',
+			'Enlisted Cheats vs CheatVault — pricing, ESP, soft aim, cloud DMA, detection history, and which package fits campaign missions players in 2026.',
 		h1: 'Enlisted Cheats vs CheatVault: Honest Comparison',
 		intro:
 			'I ran both CheatVault and Enlisted Cheats through the same mission session last season. Here is the straight comparison — price, features, patch-day behavior, and where each one actually wins.',

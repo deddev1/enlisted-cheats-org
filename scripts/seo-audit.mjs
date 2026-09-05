@@ -147,6 +147,15 @@ if (existsSync(distIndex)) {
 	if (existsSync(distGuidesHub)) {
 		const hubHtml = readFileSync(distGuidesHub, 'utf8');
 		if (hubHtml.includes('noindex')) fail('dist/guides/index.html hub must remain indexable');
+		checkBanned('dist/guides/index.html', hubHtml);
+	}
+
+	const distOtherGamesHub = join(root, 'dist/guides/other-games/index.html');
+	if (existsSync(distOtherGamesHub)) {
+		const otherHtml = readFileSync(distOtherGamesHub, 'utf8');
+		if (!otherHtml.includes('noindex')) {
+			fail('dist/guides/other-games/index.html external hub must include noindex');
+		}
 	}
 
 	const distExternalGuide = join(root, 'dist/guides/guide-fortniteaimbot-com-https/index.html');

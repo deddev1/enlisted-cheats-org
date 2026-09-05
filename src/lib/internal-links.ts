@@ -42,6 +42,16 @@ export function getHomeExploreLinks(locale: LocaleCode): InternalLink[] {
 	];
 }
 
+/** Comparison blog posts — high-intent shopping keywords. */
+export function getComparisonBlogLinks(): InternalLink[] {
+	return [
+		{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
+		{ label: 'VoidCheats comparison', href: '/blog/voidcheats-vs-enlisted-cheats-two-week-test/' },
+		{ label: 'Ghostware comparison', href: '/blog/enlisted-cheats-vs-ghostware-features-pricing/' },
+		{ label: 'Anti-cheat reality guide', href: '/blog/undetected-enlisted-cheats-eac/' },
+	];
+}
+
 /** Blog and review footer product shortcuts. */
 export function getBlogProductLinks(locale: LocaleCode, labels: NavLabels): InternalLink[] {
 	return [
@@ -51,6 +61,7 @@ export function getBlogProductLinks(locale: LocaleCode, labels: NavLabels): Inte
 		{ label: 'Reviews', href: '/reviews/' },
 		{ label: labels.setup, href: getLocalizedPath('setup', locale) },
 		{ label: labels.updates, href: getLocalizedPath('updates', locale) },
+		...getComparisonBlogLinks(),
 	];
 }
 
@@ -108,6 +119,8 @@ export function getPageRelatedLinks(
 		pricing: [
 			{ label: labels.faq, href: getLocalizedPath('faq', locale) },
 			{ label: 'Reviews', href: '/reviews/' },
+			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
+			{ label: 'VoidCheats comparison', href: '/blog/voidcheats-vs-enlisted-cheats-two-week-test/' },
 		],
 		setup: [
 			{ label: labels.updates, href: getLocalizedPath('updates', locale) },
@@ -119,6 +132,8 @@ export function getPageRelatedLinks(
 		],
 		faq: [
 			{ label: 'Enlisted guides', href: '/blog/' },
+			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
+			{ label: 'Anti-cheat guide', href: '/blog/undetected-enlisted-cheats-eac/' },
 			{ label: 'Support', href: getLocalizedPath('support', locale) },
 			{ label: 'Reviews', href: '/reviews/' },
 		],

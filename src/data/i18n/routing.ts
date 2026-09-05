@@ -63,8 +63,7 @@ export const englishPaths: Record<PageId, string> = {
 	terms: '/terms/',
 };
 
-/**
- * Core English pages for sitemap.xml — focused enlisted-cheats URLs only.
+/** Core English pages for sitemap.xml — focused enlisted-cheats URLs only.
  * Thin keyword-duplicate landings redirect to these canonical pages.
  */
 export const sitemapPageIds: PageId[] = [
@@ -84,6 +83,22 @@ export const sitemapPageIds: PageId[] = [
 	'refund',
 	'terms',
 ];
+
+/** Thin keyword landings — built for internal links; 301 to canonical pillar per locale. */
+export const thinLandingCanonicalTargets: Partial<Record<PageId, PageId>> = {
+	undetected: 'hacks',
+	'cheats-2026': 'hacks',
+	'eac-bypass': 'hacks',
+	'cheat-download': 'pricing',
+	'mod-menu': 'features',
+	'soft-aim': 'enlisted-aimbot',
+	'best-cheats': 'hacks',
+	'aimbot-hack': 'enlisted-aimbot',
+	'esp-hack': 'enlisted-esp',
+	'unlock-all': 'features',
+};
+
+export const thinLandingPageIds = Object.keys(thinLandingCanonicalTargets) as PageId[];
 
 /**
  * Localized URL slugs (path after /{lang}/).

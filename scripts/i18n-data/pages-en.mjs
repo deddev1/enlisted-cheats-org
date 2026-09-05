@@ -34,7 +34,7 @@ export const enPages = {
 	'enlisted-esp': {
 		title: 'Enlisted ESP 2026 | Wallhack & Enemy Boxes for PC',
 		description:
-			'Enlisted ESP wallhack — enemy boxes, health bars, loot markers & distance readouts. Bundled with aimbot & radar in one license.',
+			'Enlisted cheats ESP wallhack — enemy boxes, health bars, loot markers & distance readouts. Bundled with aimbot & radar in one license.',
 		h1: 'Enlisted ESP — Wallhack & Enemy Boxes',
 		intro:
 			'Visibility tools for Enlisted. Read enemy units, lockers, resource caches, and pickups, and distance before you commit to a fight — with toggleable ESP wallhack overlays for large-scale battles and campaign missions.',
@@ -79,7 +79,7 @@ export const enPages = {
 	'enlisted-aimbot': {
 		title: 'Enlisted Aimbot 2026 | Soft Aim for PC & Controller',
 		description:
-			'Enlisted aimbot with FOV, smoothing & weak-point targeting. Per-weapon profiles for rifles, shotguns & snipers. Windows PC.',
+			'Enlisted cheats aimbot with FOV, smoothing & weak-point targeting. Per-weapon profiles for rifles, shotguns & snipers on Windows PC.',
 		h1: 'Enlisted Aimbot — Soft Aim for PC & Controller',
 		intro:
 			'Configurable Aimbot tools for Enlisted firefights. Smoothness, FOV, bone priority, and per-weapon profiles — bundled with ESP wallhack and radar in one undetected license.',

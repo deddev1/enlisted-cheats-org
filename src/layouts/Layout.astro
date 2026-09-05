@@ -227,7 +227,7 @@ if (softwareNode) {
 		<meta name="twitter:image" content={ogImageURL} />
 		<meta name="twitter:image:alt" content={ogImageAlt} />
 
-		{!noindex && locale === defaultLocale && (
+		{!noindex && (
 			<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })} />
 		)}
 

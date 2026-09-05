@@ -6,6 +6,7 @@ import { externalGuidePosts } from './posts.generated';
 import type { ExternalGuidePost, ResolvedExternalGuide } from './types';
 
 export const guidesBasePath = '/guides/';
+export const otherGamesGuidesPath = '/guides/other-games/';
 export const NATIVE_GAME_GUIDES_CATEGORY = 'Enlisted Game Guides';
 
 /** Trusted third-party Enlisted resources shown below native guides on /guides/. */
@@ -159,8 +160,8 @@ export function getGuidesSitemapEntries() {
 			images: [
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Game guides hub',
-					caption: 'Enlisted native guides and multi-game gameplay guides',
+					title: 'Enlisted guides hub',
+					caption: 'Native Enlisted campaign, battlefield, and faction guides',
 				},
 			],
 		},

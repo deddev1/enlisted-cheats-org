@@ -106,7 +106,7 @@ export const blogUi: Record<
 	en: {
 		blogTitle: 'Enlisted Guides & Blog | Game Tips & Product Intel',
 		blogDescription:
-			'Enlisted game guides on campaign missions, battlefield, factions, missions, and patch notes — plus ESP, aimbot, and anti-cheat product guides with official Wiki links.',
+			'Enlisted game guides on campaign missions, battlefield, factions, and patch notes — plus ESP, aimbot, and anti-cheat guides with Wiki links.',
 		blogH1: 'Enlisted Guides & Intel',
 		blogIntro:
 			'Game guides for campaign missions, battlefield farming, factions, mission types, and patch notes — linked to the Enlisted Wiki and Gaijin. Plus product guides for ESP, soft aim, radar, and anti-cheat maintenance.',

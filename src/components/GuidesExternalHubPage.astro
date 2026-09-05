@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import {
+	getMixedExternalGuides,
+	guidesBasePath,
+	otherGamesGuidesPath,
+} from '../data/guides/helpers';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale } from '../data/i18n/locales';
+
+const locale = defaultLocale;
+const otherGameGuides = getMixedExternalGuides();
+const homeHref = getLocalizedPath('home', locale);
+
+function otherGameGuideLabel(title: string): string {
+	const trimmed = title.replace(/\s*\|\s*Guides$/, '').trim();
+	return trimmed.length <= 52 ? trimmed : `${trimmed.slice(0, 49).trimEnd()}…`;
+}
+
+const title = 'Other Games Guides';
+const description =
+	'Gameplay guides for other PC titles — browseable catalog for site visitors. Not indexed by search engines.';
+---
+
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={otherGamesGuidesPath}
+	locale={locale}
+	noindex={true}
+	breadcrumbs={[
+		{ label: 'Home', href: homeHref },
+		{ label: 'Guides', href: guidesBasePath },
+		{ label: 'Other games' },
+	]}
+>
+	<Navbar locale={locale} />
+	<main class="guides shell">
+		<header class="guides__hero">
+			<p class="guides__eyebrow">Guides catalog</p>
+			<h1>Other games guides</h1>
+			<p class="guides__intro">
+				Gameplay guides for other titles, mixed across franchises so you can browse a wider catalog without one
+				game dominating the list. For Enlisted progression guides, see the
+				<a href={guidesBasePath}>Enlisted guides hub</a>.
+			</p>
+		</header>
+
+		<section class="guides__section" aria-labelledby="external-guides-title">
+			<h2 id="external-guides-title" class="guides__section-title">Browse by game</h2>
+			<div class="guides__grid">
+				{
+					otherGameGuides.map((guide) => (
+						<article class="guides__card">
+							<img
+								src={guide.imageSrc}
+								alt={guide.imageAlt}
+								width="640"
+								height="360"
+								loading="lazy"
+								decoding="async"
+							/>
+							<div class="guides__card-body">
+								<span class="guides__cat">{guide.gameName}</span>
+								<h3 class="guides__card-title">
+									<a href={guide.canonicalPath}>{otherGameGuideLabel(guide.title)}</a>
+								</h3>
+								<p>{guide.intro}</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.guides {
+		padding: 2.5rem 0 4rem;
+	}
+
+	.guides__hero {
+		margin-bottom: 2.5rem;
+	}
+
+	.guides__eyebrow {
+		margin: 0 0 0.5rem;
+		color: #B47A3C;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.guides__hero h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(2rem, 4vw, 2.8rem);
+		line-height: 1.1;
+	}
+
+	.guides__intro {
+		margin: 0;
+		max-width: 42rem;
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+
+	.guides__intro a {
+		color: #B47A3C;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.guides__section {
+		margin-bottom: 2.5rem;
+	}
+
+	.guides__section-title {
+		margin: 0 0 1.25rem;
+		font-size: 1.5rem;
+	}
+
+	.guides__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+
+	.guides__card {
+		display: flex;
+		flex-direction: column;
+		border-radius: 0.95rem;
+		border: 1px solid rgba(197, 138, 69, 0.14);
+		background: rgba(20, 24, 30, 0.88);
+		overflow: hidden;
+		color: inherit;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.guides__card:hover {
+		border-color: rgba(197, 138, 69, 0.38);
+		transform: translateY(-2px);
+	}
+
+	.guides__card img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+
+	.guides__card-body {
+		display: grid;
+		gap: 0.45rem;
+		padding: 0.9rem 1rem 1rem;
+	}
+
+	.guides__cat {
+		color: #B47A3C;
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.guides__card-body h3,
+	.guides__card-title {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.35;
+		font-weight: 800;
+	}
+
+	.guides__card-title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.guides__card-title a:hover {
+		color: #B47A3C;
+	}
+
+	.guides__card-body p:not(.guides__card-title) {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.65);
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	@media (max-width: 720px) {
+		.guides__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

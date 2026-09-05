@@ -1,4 +1,5 @@
 import { getHomeLocaleRedirect } from './locale-redirect.js';
+import { LOCALE_PATH_REDIRECTS } from './locale-path-redirects.js';
 
 const CANONICAL_ORIGIN = 'https://enlistedcheats.org';
 const APEX_HOST = 'enlistedcheats.org';
@@ -188,8 +189,8 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 			headers.set('Content-Type', 'text/html; charset=utf-8');
 		}
 		headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-		headers.set('CDN-Cache-Control', 'no-store');
-		headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
+		headers.set('CDN-Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+		headers.set('Cloudflare-CDN-Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
 	}
 }
 
@@ -220,6 +221,16 @@ export async function onRequest(context) {
 	if (pathRedirect) {
 		const headers = new Headers({
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
+			'Cache-Control': 'no-store',
+		});
+		applySecurityHeaders(headers);
+		return new Response(null, { status: 301, headers });
+	}
+
+	const localePathRedirect = LOCALE_PATH_REDIRECTS[url.pathname];
+	if (localePathRedirect) {
+		const headers = new Headers({
+			Location: new URL(localePathRedirect + url.search, CANONICAL_ORIGIN).toString(),
 			'Cache-Control': 'no-store',
 		});
 		applySecurityHeaders(headers);
