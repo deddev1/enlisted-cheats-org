@@ -100,6 +100,9 @@ const extraGraph: Record<string, unknown>[] =
 			/>
 		</div>
 		<HomeCheatShowcase locale={locale} />
+		<section class="site__section site__section--about" aria-labelledby="home-about-title">
+			<HomeAboutUs locale={locale} />
+		</section>
 		<section
 			class="site__section site__section--store"
 			id="store"
@@ -108,7 +111,6 @@ const extraGraph: Record<string, unknown>[] =
 		>
 			<div class="shell store-stack">
 				<PricingPlans locale={locale} showRelatedPages={false} showPageTitle={false} />
-				<HomeAboutUs locale={locale} />
 				<PricingFeatureList locale={locale} showRelatedPages={false} />
 			</div>
 		</section>
@@ -137,6 +139,7 @@ const extraGraph: Record<string, unknown>[] =
 	.site__section--reviews,
 	.site__section--faq,
 	.site__section--explore,
+	.site__section--about,
 	.site__section--store {
 		content-visibility: auto;
 		contain-intrinsic-size: 1px 720px;
@@ -146,7 +149,15 @@ const extraGraph: Record<string, unknown>[] =
 		padding-block: var(--section-space);
 	}
 
-	.cheat-showcase + .site__section--store {
+	.cheat-showcase + .site__section--about {
+		padding-top: 0;
+	}
+
+	.site__section--about {
+		padding-block: clamp(1.35rem, 2.8vw, 2.15rem) clamp(0.75rem, 1.6vw, 1.1rem);
+	}
+
+	.site__section--about + .site__section--store {
 		padding-top: 0;
 	}
 
@@ -192,11 +203,6 @@ const extraGraph: Record<string, unknown>[] =
 		display: grid;
 		gap: 0.85rem;
 		align-items: start;
-	}
-
-	.store-stack :global(.home-about) {
-		border-radius: var(--radius-card);
-		border: 1px solid var(--color-border-panel);
 	}
 
 	@media (max-width: 760px) {
