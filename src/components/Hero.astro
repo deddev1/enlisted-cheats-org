@@ -3,7 +3,6 @@ import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
-import TrustBar from './TrustBar.astro';
 import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/responsive-images';
 
 interface Props {
@@ -29,7 +28,6 @@ const featuresHref = getLocalizedPath('features', locale);
 const setupHref = getLocalizedPath('setup', locale);
 const pricingHref = getLocalizedPath('pricing', locale);
 const galleryHref = '#gallery';
-const reviewsHref = '/reviews/';
 
 const buyLabels: Partial<Record<LocaleCode, string>> = {
 	en: 'Buy',
@@ -214,10 +212,6 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 			</ul>
 		</div>
 	</div>
-
-	<div class="hero__trust">
-		<TrustBar locale={locale} />
-	</div>
 </section>
 
 <script src="/scripts/enlisted-cheats-bg-video.js" defer></script>
@@ -294,7 +288,7 @@ const featureHighlights = ['ESP', 'Aimbot', 'Radar', 'Wallhack'] as const;
 		padding:
 			calc(4.75rem + env(safe-area-inset-top, 0px))
 			0
-			calc(1.25rem + env(safe-area-inset-bottom, 0px));
+			calc(2.5rem + env(safe-area-inset-bottom, 0px));
 		min-height: inherit;
 		text-align: center;
 	}
