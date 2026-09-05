@@ -114,9 +114,9 @@ export const enlistedScreenshots = {
 	},
 } as const satisfies Record<string, EnlistedScreenshot>;
 
-/** Pricing section — single shop background beside checkout. */
+/** Pricing section — shop background beside checkout. */
 export const pricingShopImage: EnlistedScreenshot = {
-	src: 'https://enlisted.net/i/bg/bottom-shop-bg.webp',
+	src: `${supabaseGameplayBase}/bottom-shop-bg.webp`,
 	alt: 'Enlisted shop background with WWII soldiers and battlefield atmosphere',
 	title: 'Enlisted Cheats shop preview',
 };
