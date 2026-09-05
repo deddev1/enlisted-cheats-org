@@ -4,6 +4,7 @@ import { getUi } from '../data/i18n';
 import { getLocalizedPath, type PageId } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
+import { enlistedGameplayImages } from '../data/enlisted';
 
 interface Props {
 	locale?: LocaleCode;
@@ -98,7 +99,7 @@ const shopPlans = [
 			locale === 'en'
 				? 'ESP, aimbot, wallhack, and radar for 30 days with anti-cheat updates while your license is active.'
 				: `${productInfo.planSummaries.monthly[0]}. ${productInfo.planSummaries.monthly[2]}.`,
-		image: '/images/enlisted-esp-overlay.webp',
+		image: enlistedGameplayImages.esp,
 	},
 	{
 		label: locale === 'en' ? 'Lifetime license' : ui.product.lifetime,
@@ -108,7 +109,7 @@ const shopPlans = [
 			locale === 'en'
 				? 'One-time purchase with no renewals. Full feature stack and anti-cheat updates for as long as you play.'
 				: `${productInfo.planSummaries.lifetime[1]}. ${productInfo.planSummaries.lifetime[2]}.`,
-		image: '/images/enlisted-loot-pickup-esp.webp',
+		image: enlistedGameplayImages.combat,
 	},
 ];
 

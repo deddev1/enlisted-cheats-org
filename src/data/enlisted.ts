@@ -1,7 +1,5 @@
 import { siteConfig } from './site';
 
-const img = (name: string) => `/images/${name}`;
-
 /** Homepage hero — self-hosted for sitemap and LCP. */
 export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
 
@@ -20,60 +18,62 @@ export type EnlistedScreenshot = {
 	title: string;
 };
 
-/** Enlisted cheat screenshots — SEO filenames under /images/. */
+const g = enlistedGameplayImages;
+
+/** Enlisted cheat screenshots — user-provided gameplay captures. */
 export const enlistedScreenshots = {
 	mainMenu: {
-		src: img('enlisted-cheats-main-menu.webp'),
+		src: g.esp,
 		alt: 'Enlisted cheats main menu with ESP, aimbot, and radar toggles on Windows PC',
 		title: 'Enlisted Cheats main menu',
 	},
 	espOverlay: {
-		src: img('enlisted-esp-wallhack-overlay.webp'),
+		src: g.esp,
 		alt: 'Enlisted ESP wallhack overlay highlighting Axis and Allied soldiers through terrain',
 		title: 'Enlisted ESP wallhack overlay',
 	},
 	espBoxes: {
-		src: img('enlisted-esp-enemy-boxes.webp'),
+		src: g.wallhack,
 		alt: 'Enlisted ESP enemy bounding boxes with health bars in a frontline campaign',
 		title: 'Enlisted ESP enemy boxes',
 	},
 	aimbotMenu: {
-		src: img('enlisted-aimbot-targeting-menu.webp'),
+		src: g.aimbot,
 		alt: 'Enlisted aimbot settings menu with FOV, smoothing, and bone priority controls',
 		title: 'Enlisted aimbot targeting menu',
 	},
 	radarMinimap: {
-		src: img('enlisted-radar-hack-minimap.webp'),
+		src: g.radar,
 		alt: 'Enlisted radar hack 2D minimap showing enemy positions outside the camera view',
 		title: 'Enlisted radar hack minimap',
 	},
 	combatEsp: {
-		src: img('enlisted-cheats-combat-esp.webp'),
+		src: g.combat,
 		alt: 'Enlisted cheats combat ESP active during a Axis heavy unit fight',
 		title: 'Enlisted combat ESP',
 	},
 	steelPathEsp: {
-		src: img('enlisted-steel-path-mission-esp.webp'),
+		src: g.combat,
 		alt: 'Enlisted frontline campaign with ESP overlays on elite enemy units',
 		title: 'Enlisted frontline campaigns ESP',
 	},
 	sortieAimbot: {
-		src: img('enlisted-sortie-aimbot-combat.webp'),
+		src: g.aimbot,
 		alt: 'Enlisted skirmish combat with aimbot lock on a Allied heavy unit',
 		title: 'Enlisted skirmish aimbot combat',
 	},
 	openWorldRadar: {
-		src: img('enlisted-open-world-radar.webp'),
+		src: g.radar,
 		alt: 'Enlisted large-scale battles radar and ESP on Moscow bounty route',
 		title: 'Enlisted large-scale battles radar',
 	},
 	lootEsp: {
-		src: img('enlisted-loot-pickup-esp.webp'),
+		src: g.esp,
 		alt: 'Enlisted loot and pickup ESP markers for ammo, supplies, and medkits',
 		title: 'Enlisted loot pickup ESP',
 	},
 	settingsPanel: {
-		src: img('enlisted-cheats-settings-panel.webp'),
+		src: g.aimbot,
 		alt: 'Enlisted cheats settings panel with hotkeys, colours, and module toggles',
 		title: 'Enlisted cheats settings panel',
 	},

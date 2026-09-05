@@ -23,15 +23,13 @@ const slides = enlistedImages.gallery.map((image) => ({
 const marqueeSlides = [...slides, ...slides];
 
 function galleryLinkLabel(href: string, src: string): string {
-	const file = src.match(/\/([^/]+?)(?:-\d+w)?\.webp$/)?.[1] ?? '';
+	const file = src.match(/\/([^/]+?)(?:-\d+w)?\.(?:webp|png)$/)?.[1] ?? '';
 	const labels: Record<string, string> = {
-		'enlisted-cheats-main-menu': 'Main menu shot',
-		'enlisted-esp-wallhack-overlay': 'ESP overlay shot',
-		'enlisted-esp-enemy-boxes': 'ESP boxes shot',
-		'enlisted-sortie-aimbot-combat': 'Aimbot combat shot',
-		'enlisted-cheats-settings-panel': 'Settings panel shot',
-		'enlisted-radar-hack-minimap': 'Radar minimap shot',
-		'enlisted-cheats-combat-esp': 'Combat ESP shot',
+		esp: 'ESP overlay shot',
+		aimbot: 'Aimbot combat shot',
+		wallhack: 'Wallhack ESP shot',
+		radar: 'Radar minimap shot',
+		combat: 'Combat ESP shot',
 	};
 	if (labels[file]) return labels[file];
 	const slug = href.replace(/^\/|\/$/g, '').split('/').pop() ?? 'page';
