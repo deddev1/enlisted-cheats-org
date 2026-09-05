@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import BreadcrumbBar from '../components/BreadcrumbBar.astro';
 import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import Gallery from '../components/Gallery.astro';
@@ -99,10 +98,6 @@ const extraGraph: Record<string, unknown>[] =
 			accent={ui.hero.accent}
 			subtitle={ui.hero.subtitle}
 			subtitleShort={ui.hero.subtitleShort}
-		/>
-		<BreadcrumbBar
-			locale={locale}
-			items={[{ label: ui.product.title }]}
 		/>
 		<section class="site__section site__section--store" id="store" aria-label={ui.product.title}>
 			<div class="shell store-stack">
