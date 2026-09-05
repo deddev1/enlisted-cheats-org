@@ -114,8 +114,14 @@ export const enlistedScreenshots = {
 	},
 } as const satisfies Record<string, EnlistedScreenshot>;
 
-/** Pricing gallery — main viewer + thumbnail strip. */
-export const pricingGallery: EnlistedScreenshot[] = [...showcaseGameplay];
+/** Pricing section — single shop background beside checkout. */
+export const pricingShopImage: EnlistedScreenshot = {
+	src: 'https://enlisted.net/i/bg/bottom-shop-bg.webp',
+	alt: 'Enlisted shop background with WWII soldiers and battlefield atmosphere',
+	title: 'Enlisted Cheats shop preview',
+};
+
+export const pricingGallery: EnlistedScreenshot[] = [pricingShopImage];
 
 /** Feature page section screenshots keyed to productFeatureDetails ids. */
 export const featureSectionImages: Record<'aimbot' | 'visual' | 'misc', EnlistedScreenshot> = {
