@@ -23,8 +23,6 @@ const LEGACY_HOSTS = new Set([
 	'www.fortnitecheats.net',
 	'fortnitecheats.com',
 	'www.fortnitecheats.com',
-	'enlistedcheats.org',
-	'www.enlistedcheats.org',
 ]);
 
 // Keep in sync with public/_redirects (which preserves query strings by default).
@@ -209,14 +207,17 @@ export async function onRequest(context) {
 	if (needsHostRedirect || needsHttpsRedirect) {
 		const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
 		const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);
-		const headers = new Headers({
-			Location: target.toString(),
-			'Cache-Control': 'no-store',
-			'CDN-Cache-Control': 'no-store',
-			'Cloudflare-CDN-Cache-Control': 'no-store',
-		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 301, headers });
+		// Never redirect to the same URL — prevents loops if LEGACY_HOSTS is misconfigured.
+		if (target.origin + target.pathname + target.search !== url.origin + url.pathname + url.search) {
+			const headers = new Headers({
+				Location: target.toString(),
+				'Cache-Control': 'no-store',
+				'CDN-Cache-Control': 'no-store',
+				'Cloudflare-CDN-Cache-Control': 'no-store',
+			});
+			applySecurityHeaders(headers);
+			return new Response(null, { status: 301, headers });
+		}
 	}
 
 	const pathRedirect = PATH_REDIRECTS[url.pathname];

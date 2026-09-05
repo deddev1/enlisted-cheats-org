@@ -95,6 +95,9 @@ checkBanned('robots.txt', robots);
 
 const middleware = readFileSync(join(root, 'functions/_middleware.js'), 'utf8');
 if (!middleware.includes(ORIGIN)) fail(`_middleware.js missing ${ORIGIN}`);
+if (/['"]enlistedcheats\.org['"]/.test(middleware.match(/LEGACY_HOSTS[\s\S]*?];/)?.[0] ?? '')) {
+	fail('_middleware.js: LEGACY_HOSTS must not include apex enlistedcheats.org (causes redirect loops)');
+}
 checkBanned('_middleware.js (content)', middleware.replace(/LEGACY_HOSTS[\s\S]*?;/, ''));
 
 const workerEntry = readFileSync(join(root, 'worker.js'), 'utf8');
