@@ -5,6 +5,7 @@ import SiteFooter from './SiteFooter.astro';
 import { siteConfig } from '../data/site';
 import {
 	absoluteGuideUrl,
+	getMixedExternalGuides,
 	getNativeEnlistedGuides,
 	guidesBasePath,
 } from '../data/guides/helpers';
@@ -14,11 +15,17 @@ import { defaultLocale } from '../data/i18n/locales';
 
 const locale = defaultLocale;
 const nativeGuides = getNativeEnlistedGuides();
+const otherGameGuides = getMixedExternalGuides();
 const homeHref = getLocalizedPath('home', locale);
 
 function nativeGuideLabel(title: string): string {
 	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
 	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
+}
+
+function otherGameGuideLabel(title: string): string {
+	const trimmed = title.replace(/\s*\|\s*Guides$/, '').trim();
+	return trimmed.length <= 52 ? trimmed : `${trimmed.slice(0, 49).trimEnd()}…`;
 }
 
 const title = 'Enlisted Game Guides | Campaign, Battlefield & Factions';
@@ -90,6 +97,40 @@ const extraGraph = [
 
 			<EnlistedAuthorityLinks headingLevel="h3" />
 		</section>
+
+		{
+			otherGameGuides.length > 0 && (
+				<section class="guides__section guides__section--external" aria-labelledby="external-guides-title">
+					<h2 id="external-guides-title" class="guides__section-title">Other Games Guides</h2>
+					<p class="guides__section-intro">
+						Gameplay guides for other titles, mixed across franchises so you can browse a wider catalog without
+						one game dominating the list.
+					</p>
+
+					<div class="guides__grid">
+						{otherGameGuides.map((guide, index) => (
+							<article class="guides__card guides__card--external">
+								<img
+									src={guide.imageSrc}
+									alt={guide.imageAlt}
+									width="640"
+									height="360"
+									loading="lazy"
+									decoding="async"
+								/>
+								<div class="guides__card-body">
+									<span class="guides__cat">{guide.gameName}</span>
+									<h3 class="guides__card-title">
+										<a href={guide.canonicalPath}>{otherGameGuideLabel(guide.title)}</a>
+									</h3>
+									<p>{guide.intro}</p>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+			)
+		}
 	</main>
 	<SiteFooter locale={locale} />
 </Layout>
@@ -127,7 +168,12 @@ const extraGraph = [
 	}
 
 	.guides__section {
-		margin-bottom: 0;
+		margin-bottom: 2.5rem;
+	}
+
+	.guides__section--external {
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
 	.guides__section-title {

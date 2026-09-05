@@ -89,7 +89,7 @@ export function getMixedExternalGuides(): ResolvedExternalGuide[] {
 		byGame.set(guide.gameId, list);
 	}
 
-	const groups = [...byGame.values()];
+	const groups = [...byGame.values()].sort((a, b) => b.length - a.length);
 	const mixed: ResolvedExternalGuide[] = [];
 	let round = 0;
 
@@ -100,13 +100,29 @@ export function getMixedExternalGuides(): ResolvedExternalGuide[] {
 		round++;
 	}
 
-	// Break any trailing same-game pairs when one title has more guides than others.
+	const breaksPair = (left: ResolvedExternalGuide | undefined, right: ResolvedExternalGuide | undefined) =>
+		Boolean(left && right && left.gameId === right.gameId);
+
 	for (let i = 1; i < mixed.length; i++) {
-		if (mixed[i].gameId === mixed[i - 1].gameId) {
-			const swapIndex = mixed.findIndex((guide, j) => j > i && guide.gameId !== mixed[i - 1].gameId);
-			if (swapIndex > i) {
-				[mixed[i], mixed[swapIndex]] = [mixed[swapIndex], mixed[i]];
-			}
+		if (!breaksPair(mixed[i - 1], mixed[i])) continue;
+
+		const swapIndex = mixed.findIndex((guide, j) => {
+			if (j === i || guide.gameId === mixed[i - 1].gameId) return false;
+			const leftNeighbor = j > 0 ? mixed[j - 1] : undefined;
+			const rightNeighbor = j + 1 < mixed.length ? mixed[j + 1] : undefined;
+			const incomingLeft = j > i ? mixed[j - 1] : j === i - 1 ? mixed[i - 2] : mixed[j - 1];
+			const incomingRight = j < i ? mixed[j + 1] : j === i + 1 ? mixed[i + 2] : mixed[j + 1];
+			return (
+				!breaksPair(incomingLeft, mixed[i]) &&
+				!breaksPair(mixed[i], incomingRight) &&
+				!breaksPair(leftNeighbor, guide) &&
+				!breaksPair(guide, rightNeighbor)
+			);
+		});
+
+		if (swapIndex >= 0) {
+			[mixed[i], mixed[swapIndex]] = [mixed[swapIndex], mixed[i]];
+			i = Math.max(1, i - 1);
 		}
 	}
 
