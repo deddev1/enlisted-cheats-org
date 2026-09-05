@@ -1,5 +1,5 @@
 ---
-import { getUi } from '../data/i18n';
+import { getUi, type PageId } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { enlistedGameplayImages } from '../data/enlisted';
@@ -7,68 +7,131 @@ import { productInfo } from '../data/site';
 
 interface Props {
 	locale?: LocaleCode;
+	pageId?: PageId;
 }
 
+type FeatureId = 'esp' | 'aimbot' | 'wallhack' | 'radar' | 'combat';
+
 const locale = Astro.props.locale ?? defaultLocale;
+const pageId = Astro.props.pageId;
 const ui = getUi(locale);
 
 const sectionTitle = locale === 'en' ? 'Cheat Features' : ui.nav.features;
 
-const cards = [
+const pageToFeature: Partial<Record<PageId, FeatureId>> = {
+	'enlisted-esp': 'esp',
+	'enlisted-aimbot': 'aimbot',
+	wallhack: 'wallhack',
+	radar: 'radar',
+	hacks: 'combat',
+	'esp-hack': 'esp',
+	'aimbot-hack': 'aimbot',
+	'soft-aim': 'aimbot',
+	'cheats-2026': 'combat',
+	'best-cheats': 'combat',
+	'mod-menu': 'combat',
+};
+
+const highlightId = pageId ? pageToFeature[pageId] : undefined;
+const isStatic = Boolean(highlightId);
+
+const cards: {
+	id: FeatureId;
+	title: string;
+	desc: string;
+	options: string[];
+	image: string;
+	alt: string;
+	href: string;
+}[] = [
 	{
+		id: 'esp',
 		title: 'ESP',
 		desc:
 			locale === 'en'
 				? 'Enemy outlines, health bars, and distance readouts through terrain and cover.'
 				: productInfo.features.esp[0],
+		options:
+			locale === 'en'
+				? ['Soldier outlines', 'Health bars', 'Distance readouts', 'Medkit markers', 'Team colours']
+				: productInfo.features.esp.slice(0, 5),
 		image: enlistedGameplayImages.esp,
 		alt: 'Enlisted ESP overlay showing soldier boxes and distance readouts in combat',
 		href: getLocalizedPath('enlisted-esp', locale),
 	},
 	{
+		id: 'aimbot',
 		title: locale === 'en' ? 'Aimbot' : ui.nav.aimbot,
 		desc:
 			locale === 'en'
 				? 'FOV, smoothing, and bone priority for rifles, SMGs, and snipers.'
 				: productInfo.features.aimbot[0],
+		options:
+			locale === 'en'
+				? ['Custom FOV arc', 'Aim smoothing', 'Weak-point lock', 'Per-weapon profiles', 'Hold / toggle modes']
+				: productInfo.features.aimbot.slice(0, 5),
 		image: enlistedGameplayImages.aimbot,
 		alt: 'Enlisted aimbot targeting overlay with FOV and weak-point lock in a firefight',
 		href: getLocalizedPath('enlisted-aimbot', locale),
 	},
 	{
+		id: 'wallhack',
 		title: 'Wallhack',
 		desc:
 			locale === 'en'
 				? 'See enemies through walls with boxes, snaplines, and team colour coding.'
 				: productInfo.features.esp[1],
+		options:
+			locale === 'en'
+				? ['Enemy bounding boxes', 'Snaplines', 'Through-terrain outlines', 'Axis / Allied colours', 'Distance filter']
+				: ['Enemy bounding boxes', 'Snaplines', productInfo.features.esp[2], productInfo.features.esp[4], productInfo.features.esp[3]],
 		image: enlistedGameplayImages.wallhack,
 		alt: 'Enlisted wallhack ESP highlighting enemies through terrain and cover',
 		href: getLocalizedPath('wallhack', locale),
 	},
 	{
+		id: 'radar',
 		title: 'Radar',
 		desc:
 			locale === 'en'
 				? '2D off-screen radar for flanks, spawn pushes, and early rotations.'
 				: productInfo.features.radar[0],
+		options:
+			locale === 'en'
+				? ['2D off-screen radar', 'Flank direction cues', 'Spawn push alerts', 'Configurable range', 'Squad rotations']
+				: productInfo.features.radar.concat(productInfo.features.general[0]).slice(0, 5),
 		image: enlistedGameplayImages.radar,
 		alt: 'Enlisted 2D radar minimap showing off-screen enemy positions',
 		href: getLocalizedPath('radar', locale),
 	},
 	{
-		title: locale === 'en' ? 'Combat ESP' : ui.nav.cheats ?? 'Cheats',
+		id: 'combat',
+		title: locale === 'en' ? 'Combat ESP' : (ui.nav.cheats ?? 'Cheats'),
 		desc:
 			locale === 'en'
 				? 'Live overlays for soldiers, vehicles, and artillery in frontline fights.'
 				: productInfo.features.esp[4],
+		options:
+			locale === 'en'
+				? ['Soldier overlays', 'Vehicle ESP', 'Artillery cues', 'Officer markers', 'Frontline presets']
+				: productInfo.features.esp.slice(0, 5),
 		image: enlistedGameplayImages.combat,
 		alt: 'Enlisted combat ESP with live soldier and vehicle overlays in a large-scale battle',
 		href: getLocalizedPath('hacks', locale),
 	},
-] as const;
+];
+
+const displayCards = isStatic ? cards : [...cards, ...cards];
+const viewLabel = locale === 'en' ? 'View guide' : ui.common.readGuide;
 ---
 
-<section class="feat-scroll" aria-labelledby="feat-scroll-title">
+<section
+	class:list={['feat-scroll', isStatic && 'feat-scroll--static']}
+	aria-labelledby="feat-scroll-title"
+	data-feat-carousel
+	data-feat-mode={isStatic ? 'static' : 'marquee'}
+	data-feat-highlight={highlightId ?? ''}
+>
 	<div class="feat-scroll__bg" aria-hidden="true">
 		<img
 			src={enlistedGameplayImages.combat}
@@ -82,34 +145,107 @@ const cards = [
 		<div class="feat-scroll__bg-veil"></div>
 	</div>
 
-	<div class="feat-scroll__head">
-		<h2 id="feat-scroll-title" class="feat-scroll__title">{sectionTitle}</h2>
-	</div>
-
-	<div class="feat-scroll__viewport">
-		<div class="feat-scroll__track" data-feat-track>
+	<div class="feat-scroll__shell shell">
+		<div class="feat-scroll__head">
+			<h2 id="feat-scroll-title" class="feat-scroll__title">{sectionTitle}</h2>
 			{
-				[...cards, ...cards].map((card) => (
-					<a href={card.href} class="feat-scroll__card">
-						<div class="feat-scroll__card-media">
-							<img src={card.image} alt={card.alt} width="420" height="260" loading="lazy" decoding="async" />
-						</div>
-						<div class="feat-scroll__card-body">
-							<h3 class="feat-scroll__card-title">{card.title}</h3>
-							<p class="feat-scroll__card-desc">{card.desc}</p>
-						</div>
-					</a>
-				))
+				highlightId && locale === 'en' && (
+					<p class="feat-scroll__context">
+						Relevant options for{' '}
+						<strong>{cards.find((card) => card.id === highlightId)?.title ?? 'this module'}</strong> on Enlisted.
+					</p>
+				)
 			}
+		</div>
+
+		<div class="feat-scroll__viewport" data-feat-viewport>
+			<div
+				class:list={['feat-scroll__track', isStatic && 'feat-scroll__track--static']}
+				data-feat-track
+			>
+				{
+					displayCards.map((card, index) => {
+						const isFeatured = highlightId === card.id;
+						const isDuplicate = !isStatic && index >= cards.length;
+
+						return (
+							<a
+								href={card.href}
+								class:list={[
+									'feat-scroll__card',
+									isFeatured && 'feat-scroll__card--featured',
+								]}
+								data-feature-id={card.id}
+								aria-hidden={isDuplicate ? 'true' : undefined}
+								tabindex={isDuplicate ? -1 : undefined}
+							>
+								<div class="feat-scroll__card-media">
+									<img src={card.image} alt={card.alt} width="420" height="260" loading="lazy" decoding="async" />
+								</div>
+								<div class="feat-scroll__card-body">
+									<h3 class="feat-scroll__card-title">{card.title}</h3>
+									<p class="feat-scroll__card-desc">{card.desc}</p>
+									<ul class="feat-scroll__options" aria-label={`${card.title} options`}>
+										{card.options.map((option) => (
+											<li>{option}</li>
+										))}
+									</ul>
+									<span class="feat-scroll__card-link">{viewLabel}</span>
+								</div>
+							</a>
+						);
+					})
+				}
+			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	const carousel = document.querySelector('[data-feat-carousel]');
+	if (carousel) {
+		const viewport = carousel.querySelector('[data-feat-viewport]') as HTMLElement | null;
+		const track = carousel.querySelector('[data-feat-track]') as HTMLElement | null;
+		const mode = carousel.getAttribute('data-feat-mode');
+		const highlight = carousel.getAttribute('data-feat-highlight');
+
+		const pause = () => track?.style.setProperty('animation-play-state', 'paused');
+		const play = () => track?.style.setProperty('animation-play-state', 'running');
+
+		viewport?.addEventListener('mouseenter', pause);
+		viewport?.addEventListener('mouseleave', play);
+
+		carousel.querySelectorAll('.feat-scroll__card').forEach((card) => {
+			card.addEventListener('mouseenter', pause);
+			card.addEventListener('mouseleave', () => {
+				if (!carousel.matches(':hover')) play();
+			});
+			card.addEventListener('focusin', pause);
+			card.addEventListener('focusout', () => {
+				if (!carousel.contains(document.activeElement)) play();
+			});
+		});
+
+		if (mode === 'static' && highlight && track && viewport) {
+			const featured = track.querySelector(`[data-feature-id="${highlight}"]:not([aria-hidden="true"])`) as HTMLElement | null;
+			if (featured) {
+				const center = () => {
+					const offset =
+						featured.offsetLeft - viewport.clientWidth / 2 + featured.offsetWidth / 2;
+					track.style.transform = `translateX(${-Math.max(0, offset)}px)`;
+				};
+				center();
+				window.addEventListener('resize', center, { passive: true });
+			}
+		}
+	}
+</script>
 
 <style>
 	.feat-scroll {
 		position: relative;
 		overflow: hidden;
-		padding: 2.25rem 0 2.5rem;
+		padding: 2rem 0 2.25rem;
 		isolation: isolate;
 	}
 
@@ -136,35 +272,51 @@ const cards = [
 			radial-gradient(ellipse 90% 70% at 50% 50%, rgba(13, 17, 18, 0.15) 0%, rgba(8, 10, 11, 0.75) 100%);
 	}
 
-	.feat-scroll__head {
+	.feat-scroll__shell {
 		position: relative;
 		z-index: 1;
+	}
+
+	.feat-scroll__head {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		justify-content: center;
-		margin-bottom: 1.5rem;
+		gap: 0.45rem;
+		margin-bottom: 1.25rem;
 		text-align: center;
 	}
 
 	.feat-scroll__title {
 		margin: 0;
-		width: 100%;
-		max-width: var(--page-max);
-		padding-inline: var(--page-gutter);
 		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 3vw, 2rem);
+		font-size: clamp(1.25rem, 2.6vw, 1.75rem);
 		font-weight: 800;
 		line-height: 1.1;
-		letter-spacing: 0.14em;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: var(--color-ink);
 		text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
 	}
 
+	.feat-scroll__context {
+		margin: 0;
+		max-width: 32rem;
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: rgba(241, 238, 229, 0.72);
+	}
+
+	.feat-scroll__context strong {
+		color: var(--color-cta);
+		font-weight: 700;
+	}
+
 	.feat-scroll__viewport {
-		position: relative;
-		z-index: 1;
 		overflow: hidden;
 		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	.feat-scroll__track {
@@ -174,6 +326,14 @@ const cards = [
 		gap: 0;
 		animation: feat-scroll-marquee 28s linear infinite;
 		will-change: transform;
+	}
+
+	.feat-scroll__track--static {
+		animation: none;
+		justify-content: center;
+		width: 100%;
+		flex-wrap: nowrap;
+		gap: 0;
 	}
 
 	.feat-scroll__card {
@@ -189,17 +349,35 @@ const cards = [
 		text-decoration: none;
 		transition:
 			background 0.25s ease,
-			border-color 0.25s ease;
+			border-color 0.25s ease,
+			min-height 0.3s ease,
+			flex-basis 0.3s ease,
+			width 0.3s ease,
+			box-shadow 0.3s ease;
+	}
+
+	.feat-scroll__track--static .feat-scroll__card:first-child {
+		border-left-width: 1px;
 	}
 
 	.feat-scroll__card:first-child {
 		border-left-width: 1px;
 	}
 
-	.feat-scroll__card:hover {
-		background: rgba(14, 17, 18, 0.82);
-		border-color: rgba(197, 138, 69, 0.32);
-		z-index: 1;
+	.feat-scroll__card:hover,
+	.feat-scroll__card:focus-visible,
+	.feat-scroll__card--featured {
+		background: rgba(14, 17, 18, 0.9);
+		border-color: rgba(197, 138, 69, 0.42);
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+		z-index: 2;
+		flex-basis: clamp(15rem, 17vw, 17.5rem);
+		width: clamp(15rem, 17vw, 17.5rem);
+		min-height: 22rem;
+	}
+
+	.feat-scroll__card--featured {
+		border-color: rgba(197, 138, 69, 0.55);
 	}
 
 	.feat-scroll__card-media {
@@ -218,8 +396,9 @@ const cards = [
 		transition: transform 0.35s ease;
 	}
 
-	.feat-scroll__card:hover .feat-scroll__card-media img {
-		transform: scale(1.03);
+	.feat-scroll__card:hover .feat-scroll__card-media img,
+	.feat-scroll__card--featured .feat-scroll__card-media img {
+		transform: scale(1.04);
 	}
 
 	.feat-scroll__card-body {
@@ -228,7 +407,7 @@ const cards = [
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
-		gap: 0.35rem;
+		gap: 0.4rem;
 		min-height: 8rem;
 		padding: 0.75rem 0.65rem 0.85rem;
 		text-align: center;
@@ -253,10 +432,71 @@ const cards = [
 		font-size: 0.72rem;
 		line-height: 1.5;
 		color: rgba(241, 238, 229, 0.72);
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
+	}
+
+	.feat-scroll__options {
+		display: grid;
+		gap: 0.28rem;
+		width: 100%;
+		max-width: 13rem;
+		margin: 0.15rem 0 0;
+		padding: 0;
+		list-style: none;
+		max-height: 0;
+		opacity: 0;
 		overflow: hidden;
+		transition:
+			max-height 0.3s ease,
+			opacity 0.25s ease,
+			margin 0.25s ease;
+	}
+
+	.feat-scroll__options li {
+		padding: 0.28rem 0.45rem;
+		border: 1px solid rgba(197, 138, 69, 0.18);
+		border-radius: 0.25rem;
+		background: rgba(8, 10, 11, 0.72);
+		font-size: 0.66rem;
+		line-height: 1.35;
+		color: rgba(241, 238, 229, 0.82);
+	}
+
+	.feat-scroll__options li::before {
+		content: '●';
+		margin-right: 0.35rem;
+		color: var(--color-cta);
+		font-size: 0.5rem;
+		vertical-align: middle;
+	}
+
+	.feat-scroll__card:hover .feat-scroll__options,
+	.feat-scroll__card:focus-visible .feat-scroll__options,
+	.feat-scroll__card--featured .feat-scroll__options {
+		max-height: 9rem;
+		opacity: 1;
+		margin-top: 0.35rem;
+	}
+
+	.feat-scroll__card-link {
+		margin-top: auto;
+		padding-top: 0.35rem;
+		font-size: 0.64rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-cta);
+		opacity: 0;
+		transform: translateY(4px);
+		transition:
+			opacity 0.25s ease,
+			transform 0.25s ease;
+	}
+
+	.feat-scroll__card:hover .feat-scroll__card-link,
+	.feat-scroll__card:focus-visible .feat-scroll__card-link,
+	.feat-scroll__card--featured .feat-scroll__card-link {
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	@keyframes feat-scroll-marquee {
@@ -279,16 +519,32 @@ const cards = [
 			min-height: 16rem;
 		}
 
+		.feat-scroll__card:hover,
+		.feat-scroll__card:focus-visible,
+		.feat-scroll__card--featured {
+			flex-basis: 14rem;
+			width: 14rem;
+			min-height: 20rem;
+		}
+
 		.feat-scroll__card-media {
 			height: 7.25rem;
 		}
 
-		.feat-scroll__card-body {
-			min-height: 7.5rem;
+		.feat-scroll__track:not(.feat-scroll__track--static) {
+			animation-duration: 20s;
 		}
 
-		.feat-scroll__track {
-			animation-duration: 20s;
+		.feat-scroll__track--static {
+			justify-content: flex-start;
+			overflow-x: auto;
+			padding-bottom: 0.35rem;
+			scroll-snap-type: x mandatory;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.feat-scroll__track--static .feat-scroll__card {
+			scroll-snap-align: center;
 		}
 	}
 
@@ -298,22 +554,32 @@ const cards = [
 			flex-wrap: nowrap;
 			overflow-x: auto;
 			width: 100%;
-			padding-inline: var(--page-gutter);
+			padding-inline: 0;
 			scroll-snap-type: x mandatory;
 			-webkit-overflow-scrolling: touch;
 		}
 
 		.feat-scroll__viewport {
-			mask-image: none;
 			overflow-x: auto;
 		}
 
 		.feat-scroll__card {
-			scroll-snap-align: start;
+			scroll-snap-align: center;
 		}
 
 		.feat-scroll__card:nth-child(n + 6) {
 			display: none;
+		}
+
+		.feat-scroll__options {
+			max-height: none;
+			opacity: 1;
+			margin-top: 0.35rem;
+		}
+
+		.feat-scroll__card-link {
+			opacity: 1;
+			transform: none;
 		}
 	}
 </style>

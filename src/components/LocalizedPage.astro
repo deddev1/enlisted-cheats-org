@@ -12,6 +12,7 @@ import RelatedPages from '../components/RelatedPages.astro';
 import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import FeaturesDetail from '../components/FeaturesDetail.astro';
+import CheatFeaturesCarousel from '../components/CheatFeaturesCarousel.astro';
 import { getPageRelatedLinks } from '../lib/internal-links';
 
 interface Props {
@@ -58,6 +59,21 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 	: page.ctaSecondary
 		? siteConfig.checkoutUrl
 		: getLocalizedPath('features', locale);
+
+const featureCarouselPages = new Set<PageId>([
+	'enlisted-esp',
+	'enlisted-aimbot',
+	'wallhack',
+	'radar',
+	'hacks',
+	'esp-hack',
+	'aimbot-hack',
+	'soft-aim',
+	'cheats-2026',
+	'best-cheats',
+	'mod-menu',
+	'features',
+]);
 ---
 
 <PageLayout
@@ -85,6 +101,7 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 			: undefined
 	}
 >
+	{featureCarouselPages.has(pageId) && <CheatFeaturesCarousel locale={locale} pageId={pageId} />}
 	{pageId === 'pricing' && <PricingPlans locale={locale} showPageTitle={false} />}
 	{pageId === 'pricing' && <PricingFeatureList locale={locale} showRelatedPages={false} />}
 	{pageId === 'features' && <FeaturesDetail locale={locale} />}
