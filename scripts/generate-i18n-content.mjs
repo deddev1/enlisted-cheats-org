@@ -11,6 +11,7 @@ import { LOCALES, TS_HEADER } from './i18n-data/constants.mjs';
 import { allUiStrings } from './i18n-data/ui-strings.mjs';
 import { englishPagesFinal } from './i18n-data/pages-en.mjs';
 import { buildPagesForLocale } from './i18n-data/pages-i18n.mjs';
+import { homeUiByLocale } from './i18n-data/home-ui.generated.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -44,8 +45,9 @@ function buildI18nContent() {
 	const content = {};
 
 	for (const locale of LOCALES) {
-		const ui = allUiStrings[locale];
-		if (!ui) throw new Error(`Missing UI strings for locale: ${locale}`);
+		const ui = { ...allUiStrings[locale], ...homeUiByLocale[locale] };
+		if (!allUiStrings[locale]) throw new Error(`Missing UI strings for locale: ${locale}`);
+		if (!homeUiByLocale[locale]) throw new Error(`Missing home UI for locale: ${locale}`);
 
 		const pages = locale === 'en' ? englishPagesFinal : buildPagesForLocale(locale);
 
@@ -61,7 +63,10 @@ function buildI18nContent() {
 			const p = pages[pageId];
 			if (p.title.length > 60) console.warn(`WARN [${locale}/${pageId}] title ${p.title.length} chars: ${p.title}`);
 			if (p.description.length > 160) console.warn(`WARN [${locale}/${pageId}] desc ${p.description.length} chars`);
-			if (!p.heroImage?.startsWith('/images/enlisted') && !p.heroImage?.startsWith('/images/enlisted')) {
+			if (
+				!p.heroImage?.startsWith('/images/enlisted') &&
+				!p.heroImage?.startsWith('https://')
+			) {
 				throw new Error(`Invalid heroImage for ${locale}/${pageId}: ${p.heroImage}`);
 			}
 			if (pageId === 'home' && p.sections.length !== 2) {

@@ -3,7 +3,7 @@ import { enlistedHeroAlt, enlistedOfficialScreens } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import { productInfo, siteConfig } from '../data/site';
+import { siteConfig } from '../data/site';
 import {
 	heroIsExternal,
 	heroPreloadSrc,
@@ -17,25 +17,21 @@ interface Props {
 
 const locale = Astro.props.locale ?? defaultLocale;
 const ui = getUi(locale);
+const about = ui.homeAbout;
 
-const cheatsUrl = getLocalizedPath('hacks', locale);
 const featuresUrl = getLocalizedPath('features', locale);
 const setupUrl = getLocalizedPath('setup', locale);
 const pricingUrl = getLocalizedPath('pricing', locale);
-const updatesUrl = getLocalizedPath('updates', locale);
 const espUrl = getLocalizedPath('enlisted-esp', locale);
 const wallhackUrl = getLocalizedPath('wallhack', locale);
 const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
 const radarUrl = getLocalizedPath('radar', locale);
-const reviewsUrl = '/reviews/';
-const monthlyPlan = productInfo.plans[0];
-const lifetimePlan = productInfo.plans[1];
 
 const moduleLinks = [
 	{ label: ui.nav.esp, href: espUrl },
 	{ label: ui.nav.aimbot, href: aimbotUrl },
-	{ label: 'Wallhack', href: wallhackUrl },
-	{ label: 'Radar', href: radarUrl },
+	{ label: about.wallhack, href: wallhackUrl },
+	{ label: about.radar, href: radarUrl },
 ] as const;
 ---
 
@@ -76,33 +72,12 @@ const moduleLinks = [
 	<div class="shell home-about__inner">
 		<div class="home-about__layout">
 			<div class="home-about__content">
-				<h2 id="home-about-title" class="home-about__title">Cheats for Enlisted</h2>
+				<h2 id="home-about-title" class="home-about__title">{about.title}</h2>
 
 				<div class="home-about__copy">
-					<p class="home-about__lead">
-						<a href={cheatsUrl} class="home-about__inline-link">Enlisted Cheats</a> is a{' '}
-						<a href={setupUrl} class="home-about__inline-link">Windows PC</a> package for campaign missions,
-						squad assaults, and large-scale battles —{' '}
-						<a href={espUrl} class="home-about__inline-link">ESP</a>,{' '}
-						<a href={wallhackUrl} class="home-about__inline-link">wallhack</a>,{' '}
-						<a href={aimbotUrl} class="home-about__inline-link">aimbot</a>, and{' '}
-						<a href={radarUrl} class="home-about__inline-link">radar</a> in one license with{' '}
-						<a href={updatesUrl} class="home-about__inline-link">updates</a> after patches.
-					</p>
-					<p class="home-about__text">
-						Read enemy positions through smoke and cover with soldier ESP, 2D radar overlays, and configurable
-						aim assist for rifles, SMGs, and sniper rifles. Toggle modules in-client during Eastern Front,
-						Western Front, and urban combat without reloading — see the full{' '}
-						<a href={featuresUrl} class="home-about__inline-link">feature list</a> for per-weapon profiles,
-						distance readouts, and squad colour coding.
-					</p>
-					<p class="home-about__text">
-						Setup takes minutes on Windows PC with controller support available. We publish maintenance notes
-						after Gaijin and anti-cheat patches so you know when to load in. Compare{' '}
-						<a href={pricingUrl} class="home-about__inline-link">monthly and lifetime plans</a>, read{' '}
-						<a href={reviewsUrl} class="home-about__inline-link">buyer reviews</a>, or follow the{' '}
-						<a href={setupUrl} class="home-about__inline-link">setup guide</a> before your first match.
-					</p>
+					<p class="home-about__lead" set:html={about.lead} />
+					<p class="home-about__text" set:html={about.text1} />
+					<p class="home-about__text" set:html={about.text2} />
 				</div>
 
 				<div class="home-about__actions">
@@ -133,7 +108,7 @@ const moduleLinks = [
 				</div>
 
 				<div class="home-about__modules">
-					<p class="home-about__modules-label">Included in every license:</p>
+					<p class="home-about__modules-label">{about.modulesLabel}</p>
 					<div class="home-about__modules-list">
 						{
 							moduleLinks.map((item) => (
@@ -158,17 +133,10 @@ const moduleLinks = [
 					/>
 				</figure>
 				<div class="home-about__premium-body">
-					<h3 class="home-about__premium-title">Premium access</h3>
-					<p class="home-about__premium-copy">
-						Get the full <a href={featuresUrl} class="home-about__inline-link">cheat stack</a> with instant
-						delivery, undetected maintenance, and rebuilds when{' '}
-						<a href={updatesUrl} class="home-about__inline-link">anti-cheat updates</a> land. Choose{' '}
-						<a href={pricingUrl} class="home-about__inline-link">monthly</a> from ${monthlyPlan.price}/mo or a
-						one-time <a href={pricingUrl} class="home-about__inline-link">lifetime license</a> at $
-						{lifetimePlan.price}.
-					</p>
+					<h3 class="home-about__premium-title">{about.premiumTitle}</h3>
+					<p class="home-about__premium-copy" set:html={about.premiumCopy} />
 					<a href={pricingUrl} class="home-about__btn home-about__btn--purchase" rel="noopener noreferrer">
-						View pricing
+						{about.viewPricing}
 					</a>
 				</div>
 			</aside>
@@ -264,7 +232,8 @@ const moduleLinks = [
 	}
 
 	.home-about__lead,
-	.home-about__text {
+	.home-about__text,
+	.home-about__premium-copy {
 		margin: 0;
 		color: rgba(255, 255, 255, 0.9);
 		font-size: clamp(0.86rem, 1.2vw, 0.92rem);
@@ -272,7 +241,8 @@ const moduleLinks = [
 		text-wrap: pretty;
 	}
 
-	.home-about__inline-link {
+	.home-about__copy :global(a),
+	.home-about__premium-copy :global(a) {
 		color: var(--color-gold-hover);
 		text-decoration: underline;
 		text-decoration-color: rgba(211, 154, 80, 0.42);
@@ -283,8 +253,10 @@ const moduleLinks = [
 			text-decoration-color 0.2s ease;
 	}
 
-	.home-about__inline-link:hover,
-	.home-about__inline-link:focus-visible {
+	.home-about__copy :global(a:hover),
+	.home-about__copy :global(a:focus-visible),
+	.home-about__premium-copy :global(a:hover),
+	.home-about__premium-copy :global(a:focus-visible) {
 		color: #fff;
 		text-decoration-color: rgba(255, 255, 255, 0.55);
 	}

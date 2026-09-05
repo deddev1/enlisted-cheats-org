@@ -12,7 +12,7 @@ interface Props {
 
 const { items, groupByCategory = false } = Astro.props;
 
-const categoryOrder = ['Getting started', 'Features & gameplay', 'Updates & support', 'Product details'];
+const categoryOrder = [...new Set(items.map((item) => item.category).filter(Boolean))];
 
 function groupItems(list: ReadonlyArray<FaqItem>) {
 	if (!groupByCategory) {

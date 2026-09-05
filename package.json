@@ -21,7 +21,7 @@
     "extract:video-poster": "node scripts/extract-video-poster.mjs",
 		"preview": "astro preview --host 0.0.0.0 --port 4321",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs",
-		"generate:i18n": "node scripts/generate-i18n-content.mjs",
+		"generate:i18n": "node scripts/i18n-data/build-home-ui.mjs && node scripts/generate-i18n-content.mjs",
 		"generate:blog": "node scripts/generate-blog-posts.mjs",
 		"generate:guides": "node scripts/generate-external-guides.mjs",
 		"fetch:guide-images": "node scripts/fetch-guide-ign-images.mjs",

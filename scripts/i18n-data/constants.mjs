@@ -71,6 +71,14 @@ export type LocaleUi = {
 \t\thero: string; espWallhack: string; aimbotCombat: string; squadFight: string; playerEsp: string;
 \t\theaderArt: string; cheatsPackage: string; rebootFight: string; battleRoyale: string; battleRoyaleIsland: string;
 \t};
+\thomeAbout: {
+\t\ttitle: string; lead: string; text1: string; text2: string; modulesLabel: string;
+\t\twallhack: string; radar: string; premiumTitle: string; premiumCopy: string; viewPricing: string;
+\t};
+\thomeFaq: {
+\t\ttitle: string; intro: string; seeAll: string; readGuides: string;
+\t\titems: { category: string; question: string; answer: string }[];
+\t};
 };
 export type PageId = 'home' | 'enlisted-esp' | 'enlisted-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;

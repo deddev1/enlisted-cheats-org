@@ -1,5 +1,5 @@
 import { HERO_IMAGES, clampTitle, clampDesc, section, stripZadeyoFromMeta } from './constants.mjs';
-import { phrases } from './phrases.mjs';
+import { phrases, KW } from './phrases.mjs';
 
 /** Page-specific translated meta for home across locales. */
 const PAGE_META_HOME = {
@@ -41,8 +41,8 @@ function buildHome(locale) {
 		ctaSecondary: m.cta2,
 		ctaSecondaryHref: '/features/',
 		sections: [
-			section(m.h2a, p.s1(m.topicA), p.s2()),
-			section(m.h2b, p.s1(m.topicB), p.s3()),
+			section(m.h2a, p.s1(p.topicEnemySquads), p.s2()),
+			section(m.h2b, p.s1(p.topicOneLicense), p.s3()),
 		],
 	};
 }
@@ -85,13 +85,9 @@ function productPage(locale, pageKey, topicName, cta2href) {
 	}
 	return {
 		title: clampTitle(stripZadeyoFromMeta(titleBase)),
-		description: clampDesc(
-			stripZadeyoFromMeta(
-				`${topicName}: ${meta.focus} for Enlisted. ${p.delivery}. anti-cheat maintenance included.`,
-			),
-		),
+		description: clampDesc(stripZadeyoFromMeta(p.metaDesc(topicName))),
 		h1: `${topicName} — ${meta.suffix}`,
-		intro: p.s1(`${topicName} for ${p.maps}: ${meta.focus}.`),
+		intro: p.s1(`${topicName} — ${p.maps}.`),
 		imageAlt: `enlisted-cheats ${pageKey} ${meta.focus} preview`,
 		galleryTitle: `Enlisted Cheats ${topicName} gallery`,
 		heroImage: HERO_IMAGES[pageKey],
@@ -99,9 +95,9 @@ function productPage(locale, pageKey, topicName, cta2href) {
 		ctaSecondary: home.cta2,
 		ctaSecondaryHref: cta2href,
 		sections: [
-			section(`${topicName} — ${p.maps}`, p.s1(`Read enemy units with ESP wallhack.`), p.s2()),
-			section(`ESP wallhack & ${p.undetected}`, p.s1('Toggle overlays for large-scale battles and campaign missions.'), p.s3()),
-			section(`${p.delivery}`, p.s2(), p.s3()),
+			section(`${topicName} — ${p.maps}`, p.s1(p.espRead), p.s2()),
+			section(p.sectionEspUndetected, p.s1(p.overlayToggle), p.s3()),
+			section(p.delivery.charAt(0).toUpperCase() + p.delivery.slice(1), p.s2(), p.s3()),
 		],
 	};
 }
@@ -164,9 +160,9 @@ function buildLegal(locale, pageKey, kind) {
 	const h1 = titles[kind][locale] ?? (kind === 'privacy' ? 'Privacy Policy' : kind === 'refund' ? 'Refund Policy' : 'Terms of Use');
 	return {
 		title: clampTitle(stripZadeyoFromMeta(`${h1} | Enlisted Cheats`)),
-		description: clampDesc(stripZadeyoFromMeta(`${h1} for Enlisted Cheats — ESP wallhack, Aimbot, ${p.win}.`)),
+		description: clampDesc(stripZadeyoFromMeta(p.metaDesc(h1))),
 		h1,
-		intro: p.s1(`${h1} for enlistedcheats.org and Enlisted licenses.`),
+		intro: p.s1(`${h1} — enlistedcheats.org`),
 		imageAlt: `enlisted-cheats ${kind} ESP wallhack Aimbot legal page`,
 		galleryTitle: `Enlisted Cheats ${kind} resources`,
 		heroImage: HERO_IMAGES[pageKey],
@@ -178,22 +174,22 @@ function buildLegal(locale, pageKey, kind) {
 				kind === 'privacy' ? (locale === 'es' ? 'Información que recopilamos' : locale === 'fr' ? 'Informations collectées' : locale === 'de' ? 'Erhobene Daten' : locale === 'ar' ? 'المعلومات التي نجمعها' : locale === 'ja' ? '収集する情報' : 'Information we collect') :
 				kind === 'refund' ? (locale === 'es' ? 'Entrega digital' : locale === 'fr' ? 'Livraison numérique' : locale === 'de' ? 'Digitale Lieferung' : locale === 'ar' ? 'التسليم الرقمي' : locale === 'ja' ? 'デジタル配信' : 'Digital delivery') :
 				(locale === 'es' ? 'Aceptación de términos' : locale === 'fr' ? 'Acceptation' : locale === 'de' ? 'Annahme' : locale === 'ar' ? 'قبول الشروط' : locale === 'ja' ? '規約への同意' : 'Acceptance of terms'),
-				p.s1('Contact email, Zadeyo order references, and basic site security data.'),
-				kind === 'privacy' ? 'Payment details are processed by Zadeyo checkout — not stored on enlistedcheats.org.' : p.s2(),
+				p.legalCollect,
+				kind === 'privacy' ? p.legalPayment : p.s2(),
 			),
 			section(
 				kind === 'privacy' ? (locale === 'es' ? 'Uso de la información' : locale === 'fr' ? 'Utilisation' : locale === 'de' ? 'Datennutzung' : locale === 'ar' ? 'استخدام المعلومات' : locale === 'ja' ? '情報の利用' : 'How we use data') :
 				kind === 'refund' ? (locale === 'es' ? 'Cuándo se aprueba' : locale === 'fr' ? 'Approbation' : locale === 'de' ? 'Genehmigung' : locale === 'ar' ? 'موافقة الاسترداد' : locale === 'ja' ? '返金承認' : 'Refund approval') :
 				(locale === 'es' ? 'Riesgos y anti-cheat' : locale === 'fr' ? 'Risques' : locale === 'de' ? 'Risiko' : locale === 'ar' ? 'المخاطر' : locale === 'ja' ? 'リスク' : 'Risk disclaimer'),
-				p.s1('Support responses, order resolution, and legal compliance when required.'),
-				kind === 'terms' ? 'Using cheats may violate Enlisted terms — you assume all ban risk.' : p.s3(),
+				p.legalUse,
+				kind === 'terms' ? p.legalRisk : p.s3(),
 			),
 			section(
 				kind === 'privacy' ? (locale === 'es' ? 'Tus derechos' : locale === 'fr' ? 'Vos droits' : locale === 'de' ? 'Ihre Rechte' : locale === 'ar' ? 'حقوقك' : locale === 'ja' ? 'あなたの権利' : 'Your rights') :
 				kind === 'refund' ? (locale === 'es' ? 'Cómo solicitar' : locale === 'fr' ? 'Comment demander' : locale === 'de' ? 'Anfrage stellen' : locale === 'ar' ? 'كيفية الطلب' : locale === 'ja' ? '申請方法' : 'How to request') :
 				(locale === 'es' ? 'Cambios' : locale === 'fr' ? 'Modifications' : locale === 'de' ? 'Änderungen' : locale === 'ar' ? 'التغييرات' : locale === 'ja' ? '変更' : 'Policy changes'),
 				p.legal(),
-				'Email: support@enlistedcheats.org',
+				p.legalEmail,
 			),
 		],
 	};

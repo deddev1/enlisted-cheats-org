@@ -1,16 +1,15 @@
 ---
-import { homeFaqs } from '../data/site';
+import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import FaqList from './FaqList.astro';
 
 interface Props {
-	title?: string;
 	locale?: LocaleCode;
 }
 
 const locale = Astro.props.locale ?? defaultLocale;
-const { title = 'Frequently asked questions' } = Astro.props;
+const faq = getUi(locale).homeFaq;
 const faqHref = getLocalizedPath('faq', locale);
 ---
 
@@ -18,18 +17,16 @@ const faqHref = getLocalizedPath('faq', locale);
 	<div class="home-faq__head">
 		<h2 id="home-faq-title" class="home-faq__title">
 			<span class="home-faq__accent" aria-hidden="true"></span>
-			{title}
+			{faq.title}
 		</h2>
-		<p class="home-faq__intro">
-			Quick answers about setup, features, campaign missions and large-scale battles, patch-day status, and support.
-		</p>
+		<p class="home-faq__intro">{faq.intro}</p>
 	</div>
 
-	<FaqList items={homeFaqs} groupByCategory />
+	<FaqList items={faq.items} groupByCategory />
 
 	<div class="home-faq__footer">
-		<a class="home-faq__link" href={faqHref}>See all FAQ questions</a>
-		<a class="home-faq__link home-faq__link--muted" href="/blog/">Read Enlisted guides</a>
+		<a class="home-faq__link" href={faqHref}>{faq.seeAll}</a>
+		<a class="home-faq__link home-faq__link--muted" href="/blog/">{faq.readGuides}</a>
 	</div>
 </section>
 
