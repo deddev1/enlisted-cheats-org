@@ -2,6 +2,7 @@
 import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { customerReviews } from '../data/site';
+import { reviewHeroImage } from '../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../data/reviews';
 
 interface Props {
@@ -33,18 +34,18 @@ const seeAllLabel = reviewsUi.seeAll ?? 'See all reviews';
 ---
 
 <section class="reviews shell" aria-labelledby="reviews-title">
-	<div class="reviews__banner" aria-hidden="true">
+	<div class="reviews__banner">
 		<img
 			src="/images/enlisted-official/battle-hero-960w.webp"
 			srcset="/images/enlisted-official/battle-hero-640w.webp 640w, /images/enlisted-official/battle-hero-960w.webp 960w, /images/enlisted-official/battle-hero-1400w.webp 1400w"
 			sizes="100vw"
-			alt=""
+			alt={reviewHeroImage.alt}
 			width="1920"
 			height="1080"
 			loading="lazy"
 			decoding="async"
 		/>
-		<div class="reviews__banner-scrim"></div>
+		<div class="reviews__banner-scrim" aria-hidden="true"></div>
 	</div>
 	<header class="reviews__header">
 		<div class="reviews__intro">

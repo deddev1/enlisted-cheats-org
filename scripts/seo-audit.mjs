@@ -189,6 +189,11 @@ checkBanned('enlisted.ts', enlistedSrc);
 const heroAstro = readFileSync(join(root, 'src/components/Hero.astro'), 'utf8');
 if (/alt=""/.test(heroAstro)) fail('Hero.astro must not use empty alt on hero images');
 
+for (const file of ['ReviewHero.astro', 'CustomerReviews.astro', 'Gallery.astro', 'CheatFeaturesCarousel.astro']) {
+	const src = readFileSync(join(root, 'src/components', file), 'utf8');
+	if (/alt=""/.test(src)) fail(`${file} must not use empty alt on images`);
+}
+
 if (existsSync(distIndex)) {
 	const emptyAltCount = (readFileSync(distIndex, 'utf8').match(/alt=""/g) || []).length;
 	if (emptyAltCount > 0) {
