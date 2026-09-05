@@ -14,51 +14,51 @@ const showcaseCards = [
 	{
 		badge: 'Wallhack',
 		badgeTone: 'green',
-		title: 'See enemies through cover',
+		title: 'Enemy ESP through cover',
 		description:
-			'Green wallhack silhouettes reveal infantry behind wooden walls, sandbags, and trench lines.',
+			'Green wallhack highlights soldiers behind wooden walls and trench fortifications before they peek.',
 		image: showcaseGameplay[0],
 		href: getLocalizedPath('wallhack', locale),
 	},
 	{
 		badge: 'ESP',
 		badgeTone: 'green',
-		title: 'Red soldier ESP overlay',
+		title: 'Red soldier silhouettes',
 		description:
-			'Bright enemy outlines across open ground so you can track flanks before they push your position.',
+			'Bright red ESP outlines on open ground so you spot pushes, flanks, and exposed infantry early.',
 		image: showcaseGameplay[1],
 		href: getLocalizedPath('enlisted-esp', locale),
 	},
 	{
 		badge: 'Aimbot',
 		badgeTone: 'gold',
-		title: 'Scoped target highlight',
+		title: 'Scoped enemy highlight',
 		description:
-			'Purple chams and mark-enemy cues through optics for fast weak-spot shots at range.',
+			'Purple chams and mark-enemy cues through optics for faster long-range weak-spot shots.',
 		image: showcaseGameplay[2],
 		href: getLocalizedPath('enlisted-aimbot', locale),
 	},
 	{
 		badge: 'Radar',
 		badgeTone: 'gold',
-		title: 'Radar with skeleton ESP',
+		title: 'Skeleton ESP and snaplines',
 		description:
-			'Top-down threat map plus skeleton boxes, snaplines, and distance tags in heavy combat.',
+			'2D radar, skeleton boxes, snaplines, and soldier distance tags during heavy firefights.',
 		image: showcaseGameplay[3],
 		href: getLocalizedPath('radar', locale),
 	},
 	{
-		badge: 'Combat',
-		badgeTone: 'green',
-		title: 'Soldier icons through terrain',
+		badge: 'Radar',
+		badgeTone: 'gold',
+		title: 'Soldiers visible through terrain',
 		description:
-			'2D radar and soldier markers that stay visible through hills, smoke, and hard cover.',
+			'Top-down radar plus soldier icons that stay readable through hills, smoke, and hard cover.',
 		image: showcaseGameplay[4],
-		href: getLocalizedPath('features', locale),
+		href: getLocalizedPath('radar', locale),
 	},
 ] as const;
 
-const scrollCards = [...showcaseCards, ...showcaseCards];
+const scrollCards = [...showcaseCards, ...showcaseCards, ...showcaseCards];
 ---
 
 <section class="cheat-showcase" aria-labelledby="cheat-showcase-title">
@@ -74,14 +74,15 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 					</svg>
 				</h2>
 				<p class="cheat-showcase__lead">
-					ESP, aimbot, radar, and wallhack screenshots from the live Enlisted Cheats package.
+					Live Enlisted Cheats screenshots — wallhack, ESP, aimbot, and radar from the Windows PC package.
 				</p>
 			</div>
 		</header>
+	</div>
 
-		<div class="cheat-showcase__stage">
-			<div class="cheat-showcase__viewport" data-cheat-scroll-viewport>
-				<div class="cheat-showcase__track" data-cheat-scroll-track>
+	<div class="cheat-showcase__stage">
+		<div class="cheat-showcase__viewport" data-cheat-scroll-viewport>
+			<div class="cheat-showcase__track" data-cheat-scroll-track>
 					{
 						scrollCards.map((card) => {
 							const imageSrc = contentSrc(card.image.src);
@@ -94,7 +95,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 											<img
 												src={imageSrc}
 												{...(imageSrcSet ? { srcset: imageSrcSet } : {})}
-												sizes="(max-width: 560px) 78vw, 296px"
+												sizes="(max-width: 560px) 82vw, 320px"
 												alt={card.image.alt}
 												width="530"
 												height="320"
@@ -120,7 +121,6 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 				</div>
 			</div>
 		</div>
-	</div>
 </section>
 
 <style>
@@ -155,9 +155,8 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	.cheat-showcase__inner {
 		position: relative;
 		z-index: 1;
-		display: grid;
-		gap: 1.1rem;
 		padding-top: 3.75rem;
+		padding-bottom: 1.1rem;
 	}
 
 	.cheat-showcase__head {
@@ -201,31 +200,25 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	}
 
 	.cheat-showcase__stage {
-		width: 100%;
-		min-width: 0;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		overflow: hidden;
 	}
 
 	.cheat-showcase__viewport {
-		position: relative;
 		width: 100%;
 		overflow: hidden;
-		mask-image: linear-gradient(
-			90deg,
-			#000 0%,
-			#000 calc(100% - 3.5rem),
-			transparent 100%
-		);
 	}
 
 	.cheat-showcase__track {
 		display: flex;
 		flex-direction: row;
 		align-items: stretch;
-		gap: 0.85rem;
+		gap: 0.75rem;
 		width: max-content;
 		padding-block: 0.15rem;
 		will-change: transform;
-		animation: cheat-showcase-scroll 26s linear infinite;
+		animation: cheat-showcase-scroll 18s linear infinite;
 	}
 
 	.cheat-showcase__viewport:hover .cheat-showcase__track,
@@ -235,8 +228,8 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 
 	.cheat-showcase__card {
 		display: flex;
-		flex: 0 0 clamp(16.5rem, 28vw, 18.5rem);
-		width: clamp(16.5rem, 28vw, 18.5rem);
+		flex: 0 0 clamp(16.5rem, 24vw, 20rem);
+		width: clamp(16.5rem, 24vw, 20rem);
 	}
 
 	.cheat-showcase__card-link {
@@ -343,7 +336,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 			transform: translateX(0);
 		}
 		to {
-			transform: translateX(-50%);
+			transform: translateX(calc(-100% / 3));
 		}
 	}
 
@@ -355,12 +348,12 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 
 		.cheat-showcase__inner {
 			padding-top: 3rem;
-			gap: 0.9rem;
+			padding-bottom: 0.9rem;
 		}
 
 		.cheat-showcase__card {
-			flex-basis: min(78vw, 17.5rem);
-			width: min(78vw, 17.5rem);
+			flex-basis: min(82vw, 18rem);
+			width: min(82vw, 18rem);
 		}
 
 		.cheat-showcase__body {
