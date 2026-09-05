@@ -5,6 +5,15 @@ const img = (name: string) => `/images/${name}`;
 /** Homepage hero — self-hosted for sitemap and LCP. */
 export const enlistedHeroImage = '/images/enlisted-cheats-hero.webp';
 
+/** Real Enlisted gameplay screenshots for marketing carousel. */
+export const enlistedGameplayImages = {
+	esp: '/images/enlisted-gameplay/esp.png',
+	aimbot: '/images/enlisted-gameplay/aimbot.png',
+	wallhack: '/images/enlisted-gameplay/wallhack.png',
+	radar: '/images/enlisted-gameplay/radar.png',
+	combat: '/images/enlisted-gameplay/combat.png',
+} as const;
+
 export type EnlistedScreenshot = {
 	src: string;
 	alt: string;
