@@ -420,6 +420,13 @@ const sources = [
 				],
 			},
 			{
+				h2: 'What changed for Enlisted cheats in 2026',
+				paragraphs: [
+					'Tileset updates, weapons, and anti-cheat patches still break stale builds. A 2026-ready package publishes rebuild notes on Updates — not a frozen prior-year loader.',
+					`Track official messaging on ${EXT.rust}, then confirm product status on <a href="/updates/">Updates</a> and the <a href="/enlisted-cheats/">Enlisted Cheats pillar</a>. Enlisted cheats and Enlisted Cheats searches both map to the same ESP + Aimbot + radar stack.`,
+				],
+			},
+			{
 				h2: 'Next steps — pricing, setup, and cheats pages',
 				paragraphs: [
 					'Ready to buy? Start at the <a href="/enlisted-cheats/">Enlisted Cheats pillar page</a>, then <a href="/pricing/">Pricing</a> and <a href="/setup/">Setup</a>. Prefer cheats wording? Read <a href="/enlisted-cheats/">Enlisted cheats 2026</a> and <a href="/blog/enlisted-cheats-buyers-guide/">cheats buyers guide</a>.',
@@ -463,48 +470,8 @@ const sources = [
 				h2: 'Feature pages worth opening',
 				paragraphs: [
 					'Open <a href="/enlisted-esp/">ESP</a>, <a href="/enlisted-aimbot/">Aimbot</a>, <a href="/features/">Features</a>, and <a href="/pricing/">Pricing</a> before you buy. Delivery and activation steps live on <a href="/setup/">Setup</a>.',
-					'Related reading: <a href="/blog/enlisted-cheats-complete-guide-2026/">hacks complete guide</a> and <a href="/blog/enlisted-cheats-2026-whats-new/">cheats 2026 what\'s new</a>.',
+					'Related reading: <a href="/blog/enlisted-cheats-complete-guide-2026/">complete 2026 guide</a> and <a href="/blog/undetected-enlisted-cheats-eac/">undetected anti-cheat notes</a>.',
 					'Try This Today: Write your must-have list (ESP categories, Aimbot smoothness, lifetime vs monthly), then compare against Features once.',
-				],
-			},
-		],
-	},
-	{
-		id: 'enlisted-cheats-2026-whats-new',
-		imageKey: 'hero',
-		published: '2026-07-28',
-		updated: '2026-08-01',
-		category: 'Enlisted Cheats',
-		featured: false,
-		slug: 'enlisted-cheats-2026-whats-new',
-		title: 'Enlisted Cheats 2026: What Changed This Year',
-		metaDescription:
-			'Enlisted cheats 2026 overview — ESP boxes, soft aim, and cloud DMA for PC and controllers with anti-cheat maintenance. Pair with the hacks pillar before buying.',
-		h1: 'Enlisted Cheats 2026: What Buyers Need Now',
-		intro:
-			'Enlisted cheats 2026 searches spike every season. Here is what still matters: maintained ESP wallhack, Aimbot profiles, radar awareness, and rebuilds after Gaijin anti-cheat patches.',
-		keywords: ['Enlisted cheats 2026', 'Enlisted Cheats', 'eac', 'esp', 'aimbot'],
-		imageAlt: 'Enlisted cheats 2026 overview for undetected ESP and Aimbot buyers',
-		sections: [
-			{
-				h2: 'Why 2026 buyers still need maintenance',
-				paragraphs: [
-					'tileset updates, weapons, and anti-cheat updates still break stale tools. A 2026-ready package publishes rebuild notes — not a frozen prior-year build.',
-					`Track official messaging on ${EXT.rust}, then confirm product status on <a href="/updates/">Updates</a> and <a href="/enlisted-cheats/">the cheats 2026 landing</a>.`,
-				],
-			},
-			{
-				h2: 'Keyword map: cheats 2026 ↔ hacks',
-				paragraphs: [
-					'Use the <a href="/enlisted-cheats/">Enlisted cheats 2026 guide</a> for cheats-year intent and the <a href="/enlisted-cheats/">Enlisted Cheats pillar page</a> for the primary hacks intent. Both point to the same ESP + Aimbot + radar stack.',
-					'Also see <a href="/blog/enlisted-cheats-complete-guide-2026/">hacks guide</a> and <a href="/enlisted-cheats/">undetected status</a>.',
-				],
-			},
-			{
-				h2: 'Pricing and setup for new buyers',
-				paragraphs: [
-					'Monthly ($35) and lifetime ($150) plans share features. After checkout, follow <a href="/setup/">Setup</a>. Questions go to <a href="/support/">Support</a> with your order ID.',
-					'Try This Today: Skim Features, open Pricing, and bookmark Updates before the next Enlisted patch window.',
 				],
 			},
 		],
@@ -1119,7 +1086,6 @@ const sources = [
 const ENLISTED_BLOG_IDS = new Set([
 	'enlisted-cheats-complete-guide',
 	'enlisted-cheats-buyers-guide',
-	'enlisted-cheats-2026-whats-new',
 	'enlisted-aimbot-settings-guide',
 	'enlisted-esp-wallhack-explained',
 	'undetected-enlisted-cheats-eac',

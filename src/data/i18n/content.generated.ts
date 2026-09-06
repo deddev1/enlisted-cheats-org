@@ -731,7 +731,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Before you buy in 2026",
 							paragraphs: [
 								"Read the <a href=\"/enlisted-cheats/\">Enlisted Cheats</a> pillar, Features, Pricing, Setup, and Updates pages. Check undetected status notes after every major patch — responsible use and maintenance awareness matter.",
-								"Also compare the <a href=\"/enlisted-cheats/\">best Enlisted cheats</a> checklist, <a href=\"/blog/enlisted-cheats-2026-whats-new/\">2026 blog guide</a>, and <a href=\"/faq/\">FAQ</a>.",
+								"Also compare the <a href=\"/enlisted-cheats/\">best Enlisted cheats</a> checklist, <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">2026 complete guide</a>, and <a href=\"/faq/\">FAQ</a>.",
 								"Support is available at support@enlistedcheats.org via the <a href=\"/support/\">Support page</a>.",
 							],
 						},

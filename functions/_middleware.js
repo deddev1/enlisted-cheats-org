@@ -39,6 +39,8 @@ const PATH_REDIRECTS = {
 	'/warframe-cheats/': '/enlisted-cheats/',
 	'/warframe-cheats': '/enlisted-cheats/',
 	'/sitemap-0.xml': '/sitemap.xml',
+	'/blog/enlisted-cheats-2026-whats-new/': '/blog/enlisted-cheats-complete-guide-2026/',
+	'/blog/enlisted-cheats-2026-whats-new': '/blog/enlisted-cheats-complete-guide-2026/',
 	'/guides/other-games/': '/guides/#other-games-guides',
 	'/guides/other-games': '/guides/#other-games-guides',
 	'/fortnite-cheats': '/',
