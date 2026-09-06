@@ -210,8 +210,8 @@ export function getBlogSitemapEntries() {
 			images: [
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Enlisted Cheats Intel blog',
-					caption: 'Enlisted Intel blog covering meta guides, ESP, Aimbot, and EAC notes',
+					title: 'Enlisted cheats guides',
+					caption: 'Enlisted cheats guides covering ESP, aimbot, undetected status, and vendor comparisons',
 				},
 			],
 		},

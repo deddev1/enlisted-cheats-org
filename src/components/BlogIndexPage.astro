@@ -60,19 +60,19 @@ const articleListSchema = {
 	<Navbar locale={locale} />
 	<main class="blog">
 		<header class="blog__hero">
-			<p class="blog__eyebrow">Enlisted Cheats intel</p>
+			<p class="blog__eyebrow">Enlisted Cheats guides</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
 			<p class="blog__note">
-				Product guides and comparisons are published in English. For in-game mission and faction guides, see the
-				<a href={guidesHref}>Enlisted guides hub</a>.
+				Cheats guides are published in English. For in-game mission and faction walkthroughs, see the
+				<a href={guidesHref}>Enlisted game guides hub</a>.
 			</p>
 		</header>
 
 		{
 			featured.length > 0 && (
 				<section class="blog__featured" aria-label="Featured">
-					<h2 class="blog__section-title blog__section-title--center">Featured cheat guides</h2>
+					<h2 class="blog__section-title blog__section-title--center">Featured cheats guides</h2>
 					<div class="blog__grid">
 						{featured.map((post, index) => (
 							<BlogCinematicCard
@@ -92,7 +92,7 @@ const articleListSchema = {
 
 		<section class="blog__section" aria-labelledby="blog-cheats-posts">
 			<h2 id="blog-cheats-posts" class="blog__section-title blog__section-title--center">
-				All cheat guides
+				All cheats guides
 			</h2>
 			<div class="blog__grid" aria-label={ui.allPosts}>
 				{

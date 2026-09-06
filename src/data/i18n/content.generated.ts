@@ -762,7 +762,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Searchers use Enlisted Cheats and Enlisted cheats interchangeably. This pillar focuses on hacks language; the <a href=\"/enlisted-cheats/\">Enlisted cheats 2026</a> and <a href=\"/enlisted-cheats/\">best Enlisted cheats</a> pages cover buyer comparisons in cheats wording.",
 								"Deep-dive modules: <a href=\"/enlisted-esp/\">Enlisted ESP</a>, <a href=\"/enlisted-aimbot/\">Enlisted Aimbot</a>, <a href=\"/enlisted-wallhack/\">wallhack</a>, <a href=\"/enlisted-radar/\">radar hack</a>, and <a href=\"/enlisted-aimbot/\">soft aim</a>.",
-								"Blog guides expand each keyword: <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">hacks complete guide</a>, <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>, and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
+								"Cheats guides expand each keyword: <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">complete cheats guide</a>, <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>, and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
 							],
 						},
 						{

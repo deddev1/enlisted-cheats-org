@@ -89,12 +89,12 @@ export function getLocale(code: string): LocaleMeta | undefined {
 /** UI strings for blog index pages per locale. */
 /** Shared English blog SEO copy — blog posts ship in English only. */
 const blogUiContent = {
-	blogTitle: 'Enlisted Cheats Blog | ESP, Aimbot & Anti-Cheat Guides',
+	blogTitle: 'Enlisted Cheats Guides | ESP, Aimbot & Anti-Cheat',
 	blogDescription:
-		'Enlisted Cheats blog — ESP, aimbot, wallhack, undetected status, vendor comparisons, setup tips, and anti-cheat maintenance after Gaijin patches.',
-	blogH1: 'Enlisted Cheats blog',
+		'Enlisted cheats guides for ESP, aimbot, wallhack, undetected status, vendor comparisons, setup, and anti-cheat maintenance after Gaijin patches.',
+	blogH1: 'Enlisted cheats guides',
 	blogIntro:
-		'Buying guides, feature breakdowns, undetected anti-cheat notes, and honest comparisons — written for players evaluating Enlisted Cheats on Windows PC.',
+		'Cheats buying guides, ESP and aimbot setup notes, undetected anti-cheat checklists, and honest vendor comparisons for Enlisted Cheats on Windows PC.',
 } as const;
 
 export const blogUi: Record<
@@ -119,7 +119,7 @@ export const blogUi: Record<
 		published: 'Published',
 		updated: 'Updated',
 		relatedPosts: 'Related cheat guides',
-		allPosts: 'All blog posts',
+		allPosts: 'All cheats guides',
 		home: 'Enlisted Cheats home',
 		language: 'Language',
 	},

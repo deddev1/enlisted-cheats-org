@@ -784,7 +784,7 @@ const sources = [
 				paragraphs: [
 					'<strong>Enlisted Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.',
 					'<strong>GhostWare pros:</strong> lower entry price, clean minimal ESP, quick to launch, smaller feature surface. <strong>Cons:</strong> no radar, limited squad ESP, patch status mostly in Discord, no DMA option, lighter aim tools.',
-					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/enlisted-cheats-complete-guide-2026/">co-op missions aggression guide</a> and <a href="/blog/enlisted-cheats-complete-guide-2026/">complete hacks guide</a>.',
+					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/enlisted-cheats-complete-guide-2026/">complete Enlisted cheats guide</a> and <a href="/blog/enlisted-cheats-buyers-guide/">cheats buyers guide</a>.',
 				],
 			},
 			{

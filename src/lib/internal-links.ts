@@ -38,7 +38,7 @@ export function getHomeExploreLinks(locale: LocaleCode): InternalLink[] {
 		{ label: 'Enlisted radar', href: getLocalizedPath('radar', locale) },
 		{ label: 'Setup guide', href: getLocalizedPath('setup', locale) },
 		{ label: 'Guides hub', href: '/guides/' },
-		{ label: 'Enlisted blog', href: '/blog/' },
+		{ label: 'Cheats guides', href: '/blog/' },
 	];
 }
 
@@ -115,7 +115,7 @@ export function getPageRelatedLinks(
 			{ label: 'ESP', href: getLocalizedPath('enlisted-esp', locale) },
 			{ label: 'Wallhack', href: getLocalizedPath('wallhack', locale) },
 		],
-		features: [{ label: 'Reviews', href: '/reviews/' }, { label: 'Blog', href: '/blog/' }],
+		features: [{ label: 'Reviews', href: '/reviews/' }, { label: 'Cheats guides', href: '/blog/' }],
 		pricing: [
 			{ label: labels.faq, href: getLocalizedPath('faq', locale) },
 			{ label: 'Reviews', href: '/reviews/' },
