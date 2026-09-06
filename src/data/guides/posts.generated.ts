@@ -3,8 +3,8 @@ import type { ExternalGuidePost } from './types';
 
 export const externalGuidePosts: ExternalGuidePost[] = [
 		{
-			id: "guide-deadsidecheats-net-https",
-			slug: "guide-deadsidecheats-net-https",
+			id: "deadsidecheats-net",
+			slug: "deadsidecheats-net",
 			gameId: "deadside",
 			gameName: "Deadside",
 			externalUrl: "https://deadsidecheats.net/",
@@ -66,8 +66,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-arcraiderscheat-net-https",
-			slug: "guide-arcraiderscheat-net-https",
+			id: "arcraiderscheat-net",
+			slug: "arcraiderscheat-net",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheat.net/",
@@ -129,8 +129,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-genshincheats-net-https",
-			slug: "guide-genshincheats-net-https",
+			id: "genshincheats-net",
+			slug: "genshincheats-net",
 			gameId: "genshin-impact",
 			gameName: "Genshin Impact",
 			externalUrl: "https://genshincheats.net/",
@@ -192,8 +192,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-dbdcheats-net-https",
-			slug: "guide-dbdcheats-net-https",
+			id: "dbdcheats-net",
+			slug: "dbdcheats-net",
 			gameId: "dead-by-daylight",
 			gameName: "Dead by Daylight",
 			externalUrl: "https://dbdcheats.net/",
@@ -255,8 +255,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovcheats-net-https",
-			slug: "guide-tarkovcheats-net-https",
+			id: "tarkovcheats-net",
+			slug: "tarkovcheats-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheats.net/",
@@ -318,8 +318,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-unturnedcheats-net-https",
-			slug: "guide-unturnedcheats-net-https",
+			id: "unturnedcheats-net",
+			slug: "unturnedcheats-net",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedcheats.net/",
@@ -381,8 +381,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-unturnedcheats-com-https",
-			slug: "guide-unturnedcheats-com-https",
+			id: "unturnedcheats-com",
+			slug: "unturnedcheats-com",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedcheats.com/",
@@ -444,8 +444,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warthundercheats-com-https",
-			slug: "guide-warthundercheats-com-https",
+			id: "warthundercheats-com",
+			slug: "warthundercheats-com",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthundercheats.com/",
@@ -507,8 +507,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-fortniteaimbot-com-https",
-			slug: "guide-fortniteaimbot-com-https",
+			id: "fortniteaimbot-com",
+			slug: "fortniteaimbot-com",
 			gameId: "fortnite",
 			gameName: "Fortnite",
 			externalUrl: "https://fortniteaimbot.com/",
@@ -570,8 +570,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marathoncheats-org-https",
-			slug: "guide-marathoncheats-org-https",
+			id: "marathoncheats-org",
+			slug: "marathoncheats-org",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathoncheats.org/",
@@ -633,8 +633,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-battlefieldcheats-org-https",
-			slug: "guide-battlefieldcheats-org-https",
+			id: "battlefieldcheats-org",
+			slug: "battlefieldcheats-org",
 			gameId: "battlefield",
 			gameName: "Battlefield",
 			externalUrl: "https://battlefieldcheats.org/",
@@ -696,8 +696,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-lolcheats-org-https",
-			slug: "guide-lolcheats-org-https",
+			id: "lolcheats-org",
+			slug: "lolcheats-org",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheats.org/",
@@ -759,8 +759,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warzonecheats-org-https",
-			slug: "guide-warzonecheats-org-https",
+			id: "warzonecheats-org",
+			slug: "warzonecheats-org",
 			gameId: "call-of-duty-warzone",
 			gameName: "Call of Duty: Warzone",
 			externalUrl: "https://warzonecheats.org/",
@@ -822,8 +822,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-valocheats-com-https",
-			slug: "guide-valocheats-com-https",
+			id: "valocheats-com",
+			slug: "valocheats-com",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valocheats.com/",
@@ -885,8 +885,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-grayzonecheats-com-https",
-			slug: "guide-grayzonecheats-com-https",
+			id: "grayzonecheats-com",
+			slug: "grayzonecheats-com",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "https://grayzonecheats.com/",
@@ -948,8 +948,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-arcraiderscheats-org-https",
-			slug: "guide-arcraiderscheats-org-https",
+			id: "arcraiderscheats-org",
+			slug: "arcraiderscheats-org",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheats.org/",
@@ -1011,8 +1011,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovcheats-org-https",
-			slug: "guide-tarkovcheats-org-https",
+			id: "tarkovcheats-org",
+			slug: "tarkovcheats-org",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheats.org/",
@@ -1074,8 +1074,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-overwatchhacks-com-https",
-			slug: "guide-overwatchhacks-com-https",
+			id: "overwatchhacks-com",
+			slug: "overwatchhacks-com",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatchhacks.com/",
@@ -1137,8 +1137,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-dbdcheats-org-https",
-			slug: "guide-dbdcheats-org-https",
+			id: "dbdcheats-org",
+			slug: "dbdcheats-org",
 			gameId: "dead-by-daylight",
 			gameName: "Dead by Daylight",
 			externalUrl: "https://dbdcheats.org/",
@@ -1200,8 +1200,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-theislehacks-org-https",
-			slug: "guide-theislehacks-org-https",
+			id: "theislehacks-org",
+			slug: "theislehacks-org",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislehacks.org/",
@@ -1263,8 +1263,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-islecheats-net-https",
-			slug: "guide-islecheats-net-https",
+			id: "islecheats-net",
+			slug: "islecheats-net",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://islecheats.net/",
@@ -1326,8 +1326,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warthunderhacks-com-https",
-			slug: "guide-warthunderhacks-com-https",
+			id: "warthunderhacks-com",
+			slug: "warthunderhacks-com",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthunderhacks.com/",
@@ -1389,8 +1389,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marathoncheats-cc-https",
-			slug: "guide-marathoncheats-cc-https",
+			id: "marathoncheats-cc",
+			slug: "marathoncheats-cc",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathoncheats.cc/",
@@ -1452,8 +1452,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-besttarkovcheats-com-https",
-			slug: "guide-besttarkovcheats-com-https",
+			id: "besttarkovcheats-com",
+			slug: "besttarkovcheats-com",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://besttarkovcheats.com/",
@@ -1515,8 +1515,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-thefinalscheats-org-https",
-			slug: "guide-thefinalscheats-org-https",
+			id: "thefinalscheats-org",
+			slug: "thefinalscheats-org",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalscheats.org/",
@@ -1578,8 +1578,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-dayzcheat-net-https",
-			slug: "guide-dayzcheat-net-https",
+			id: "dayzcheat-net",
+			slug: "dayzcheat-net",
 			gameId: "dayz",
 			gameName: "DayZ",
 			externalUrl: "https://dayzcheat.net/",
@@ -1641,8 +1641,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-fncheats-net-https",
-			slug: "guide-fncheats-net-https",
+			id: "fncheats-net",
+			slug: "fncheats-net",
 			gameId: "fortnite",
 			gameName: "Fortnite",
 			externalUrl: "https://fncheats.net/",
@@ -1704,8 +1704,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-islecheat-com-http",
-			slug: "guide-islecheat-com-http",
+			id: "islecheat-com",
+			slug: "islecheat-com",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "http://islecheat.com",
@@ -1767,8 +1767,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-deadsidecheats-com-https",
-			slug: "guide-deadsidecheats-com-https",
+			id: "deadsidecheats-com",
+			slug: "deadsidecheats-com",
 			gameId: "deadside",
 			gameName: "Deadside",
 			externalUrl: "https://deadsidecheats.com/",
@@ -1830,8 +1830,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marvelrivalscheat-net-http",
-			slug: "guide-marvelrivalscheat-net-http",
+			id: "marvelrivalscheat-net",
+			slug: "marvelrivalscheat-net",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "http://marvelrivalscheat.net/",
@@ -1893,8 +1893,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-meccacheats-com-http",
-			slug: "guide-meccacheats-com-http",
+			id: "meccacheats-com",
+			slug: "meccacheats-com",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "http://meccacheats.com/",
@@ -1956,8 +1956,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-rusthack-net-http",
-			slug: "guide-rusthack-net-http",
+			id: "rusthack-net",
+			slug: "rusthack-net",
 			gameId: "rust",
 			gameName: "Rust",
 			externalUrl: "http://rusthack.net",
@@ -2019,8 +2019,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-grayzonecheats-net-http",
-			slug: "guide-grayzonecheats-net-http",
+			id: "grayzonecheats-net",
+			slug: "grayzonecheats-net",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "http://grayzonecheats.net/",
@@ -2082,8 +2082,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-unturnedhacks-com-https",
-			slug: "guide-unturnedhacks-com-https",
+			id: "unturnedhacks-com",
+			slug: "unturnedhacks-com",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedhacks.com/",
@@ -2145,8 +2145,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-palworldhack-net-http",
-			slug: "guide-palworldhack-net-http",
+			id: "palworldhack-net",
+			slug: "palworldhack-net",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "http://palworldhack.net/",
@@ -2208,8 +2208,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-r6siegecheats-net-http",
-			slug: "guide-r6siegecheats-net-http",
+			id: "r6siegecheats-net",
+			slug: "r6siegecheats-net",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "http://r6siegecheats.net/",
@@ -2271,8 +2271,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-eftcheat-net-http",
-			slug: "guide-eftcheat-net-http",
+			id: "eftcheat-net",
+			slug: "eftcheat-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "http://eftcheat.net/",
@@ -2334,8 +2334,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-calibercheats-com-https",
-			slug: "guide-calibercheats-com-https",
+			id: "calibercheats-com",
+			slug: "calibercheats-com",
 			gameId: "caliber",
 			gameName: "Caliber",
 			externalUrl: "https://calibercheats.com/",
@@ -2397,8 +2397,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-codcheats-net-https",
-			slug: "guide-codcheats-net-https",
+			id: "codcheats-net",
+			slug: "codcheats-net",
 			gameId: "call-of-duty",
 			gameName: "Call of Duty",
 			externalUrl: "https://codcheats.net/",
@@ -2460,8 +2460,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-huntcheats-com-https",
-			slug: "guide-huntcheats-com-https",
+			id: "huntcheats-com",
+			slug: "huntcheats-com",
 			gameId: "hunt-showdown",
 			gameName: "Hunt: Showdown",
 			externalUrl: "https://huntcheats.com/",
@@ -2523,8 +2523,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-lolcheat-net-https",
-			slug: "guide-lolcheat-net-https",
+			id: "lolcheat-net",
+			slug: "lolcheat-net",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheat.net/",
@@ -2586,8 +2586,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marathonhacks-net-https",
-			slug: "guide-marathonhacks-net-https",
+			id: "marathonhacks-net",
+			slug: "marathonhacks-net",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathonhacks.net/",
@@ -2649,8 +2649,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-mecchahacks-com-https",
-			slug: "guide-mecchahacks-com-https",
+			id: "mecchahacks-com",
+			slug: "mecchahacks-com",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchahacks.com/",
@@ -2712,8 +2712,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-palworldhack-com-https",
-			slug: "guide-palworldhack-com-https",
+			id: "palworldhack-com",
+			slug: "palworldhack-com",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhack.com/",
@@ -2775,8 +2775,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovhack-net-https",
-			slug: "guide-tarkovhack-net-https",
+			id: "tarkovhack-net",
+			slug: "tarkovhack-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovhack.net/",
@@ -2838,8 +2838,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warthundercheats-net-https",
-			slug: "guide-warthundercheats-net-https",
+			id: "warthundercheats-net",
+			slug: "warthundercheats-net",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthundercheats.net/",
@@ -2901,8 +2901,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-huntshowdowncheats-com-https",
-			slug: "guide-huntshowdowncheats-com-https",
+			id: "huntshowdowncheats-com",
+			slug: "huntshowdowncheats-com",
 			gameId: "hunt-showdown",
 			gameName: "Hunt: Showdown",
 			externalUrl: "https://huntshowdowncheats.com/",
@@ -2964,8 +2964,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-destiny2cheats-com-https",
-			slug: "guide-destiny2cheats-com-https",
+			id: "destiny2cheats-com",
+			slug: "destiny2cheats-com",
 			gameId: "destiny-2",
 			gameName: "Destiny 2",
 			externalUrl: "https://destiny2cheats.com/",
@@ -3027,8 +3027,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovhacks-net-https",
-			slug: "guide-tarkovhacks-net-https",
+			id: "tarkovhacks-net",
+			slug: "tarkovhacks-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovhacks.net/",
@@ -3090,8 +3090,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-r6siegecheats-com-https",
-			slug: "guide-r6siegecheats-com-https",
+			id: "r6siegecheats-com",
+			slug: "r6siegecheats-com",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "https://r6siegecheats.com/",
@@ -3153,8 +3153,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-sandraiderscheat-com-https",
-			slug: "guide-sandraiderscheat-com-https",
+			id: "sandraiderscheat-com",
+			slug: "sandraiderscheat-com",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraiderscheat.com/",
@@ -3216,8 +3216,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-palworldhacks-com-https",
-			slug: "guide-palworldhacks-com-https",
+			id: "palworldhacks-com",
+			slug: "palworldhacks-com",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhacks.com/",
@@ -3279,8 +3279,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-squadhacks-com-https",
-			slug: "guide-squadhacks-com-https",
+			id: "squadhacks-com",
+			slug: "squadhacks-com",
 			gameId: "squad",
 			gameName: "Squad",
 			externalUrl: "https://squadhacks.com/",
@@ -3342,8 +3342,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-eftcheats-net-https",
-			slug: "guide-eftcheats-net-https",
+			id: "eftcheats-net",
+			slug: "eftcheats-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://eftcheats.net/",
@@ -3405,8 +3405,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marathonhack-net-https",
-			slug: "guide-marathonhack-net-https",
+			id: "marathonhack-net",
+			slug: "marathonhack-net",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathonhack.net/",
@@ -3468,8 +3468,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-abicheats-com-https",
-			slug: "guide-abicheats-com-https",
+			id: "abicheats-com",
+			slug: "abicheats-com",
 			gameId: "arena-breakout-infinite",
 			gameName: "Arena Breakout: Infinite",
 			externalUrl: "https://abicheats.com/",
@@ -3531,8 +3531,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-bodycamcheats-com-https",
-			slug: "guide-bodycamcheats-com-https",
+			id: "bodycamcheats-com",
+			slug: "bodycamcheats-com",
 			gameId: "bodycam",
 			gameName: "Bodycam",
 			externalUrl: "https://bodycamcheats.com/",
@@ -3594,8 +3594,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-grayzonehacks-com-https",
-			slug: "guide-grayzonehacks-com-https",
+			id: "grayzonehacks-com",
+			slug: "grayzonehacks-com",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "https://grayzonehacks.com/",
@@ -3657,8 +3657,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-lolcheats-net-https",
-			slug: "guide-lolcheats-net-https",
+			id: "lolcheats-net",
+			slug: "lolcheats-net",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheats.net/",
@@ -3720,8 +3720,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-oncehumanhacks-com-https",
-			slug: "guide-oncehumanhacks-com-https",
+			id: "oncehumanhacks-com",
+			slug: "oncehumanhacks-com",
 			gameId: "once-human",
 			gameName: "Once Human",
 			externalUrl: "https://oncehumanhacks.com/",
@@ -3783,8 +3783,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-palworldhacks-net-https",
-			slug: "guide-palworldhacks-net-https",
+			id: "palworldhacks-net",
+			slug: "palworldhacks-net",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhacks.net/",
@@ -3846,8 +3846,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-reforgercheats-com-https",
-			slug: "guide-reforgercheats-com-https",
+			id: "reforgercheats-com",
+			slug: "reforgercheats-com",
 			gameId: "arma-reforger",
 			gameName: "Arma Reforger",
 			externalUrl: "https://reforgercheats.com/",
@@ -3909,8 +3909,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-rivalshacks-com-https",
-			slug: "guide-rivalshacks-com-https",
+			id: "rivalshacks-com",
+			slug: "rivalshacks-com",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://rivalshacks.com/",
@@ -3972,8 +3972,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-oncehumancheats-net-https",
-			slug: "guide-oncehumancheats-net-https",
+			id: "oncehumancheats-net",
+			slug: "oncehumancheats-net",
 			gameId: "once-human",
 			gameName: "Once Human",
 			externalUrl: "https://oncehumancheats.net/",
@@ -4035,8 +4035,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-overwatchcheat-net-https",
-			slug: "guide-overwatchcheat-net-https",
+			id: "overwatchcheat-net",
+			slug: "overwatchcheat-net",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatchcheat.net/",
@@ -4098,8 +4098,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-dayzhack-net-https",
-			slug: "guide-dayzhack-net-https",
+			id: "dayzhack-net",
+			slug: "dayzhack-net",
 			gameId: "dayz",
 			gameName: "DayZ",
 			externalUrl: "https://dayzhack.net/",
@@ -4161,8 +4161,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-battlefieldcheat-com-https",
-			slug: "guide-battlefieldcheat-com-https",
+			id: "battlefieldcheat-com",
+			slug: "battlefieldcheat-com",
 			gameId: "battlefield",
 			gameName: "Battlefield",
 			externalUrl: "https://battlefieldcheat.com/",
@@ -4224,8 +4224,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-abihacks-com-https",
-			slug: "guide-abihacks-com-https",
+			id: "abihacks-com",
+			slug: "abihacks-com",
 			gameId: "arena-breakout-infinite",
 			gameName: "Arena Breakout: Infinite",
 			externalUrl: "https://abihacks.com/",
@@ -4287,8 +4287,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-arcraidershack-com-https",
-			slug: "guide-arcraidershack-com-https",
+			id: "arcraidershack-com",
+			slug: "arcraidershack-com",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraidershack.com/",
@@ -4350,8 +4350,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-backroomscheats-com-https",
-			slug: "guide-backroomscheats-com-https",
+			id: "backroomscheats-com",
+			slug: "backroomscheats-com",
 			gameId: "backrooms",
 			gameName: "Backrooms",
 			externalUrl: "https://backroomscheats.com/",
@@ -4413,8 +4413,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-marvelrivalshacks-net-https",
-			slug: "guide-marvelrivalshacks-net-https",
+			id: "marvelrivalshacks-net",
+			slug: "marvelrivalshacks-net",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://marvelrivalshacks.net/",
@@ -4476,8 +4476,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-mecchachameleonhacks-com-https",
-			slug: "guide-mecchachameleonhacks-com-https",
+			id: "mecchachameleonhacks-com",
+			slug: "mecchachameleonhacks-com",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchachameleonhacks.com/",
@@ -4539,8 +4539,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-mecchachameleonhacks-net-https",
-			slug: "guide-mecchachameleonhacks-net-https",
+			id: "mecchachameleonhacks-net",
+			slug: "mecchachameleonhacks-net",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchachameleonhacks.net/",
@@ -4602,8 +4602,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-overwatch2cheats-com-https",
-			slug: "guide-overwatch2cheats-com-https",
+			id: "overwatch2cheats-com",
+			slug: "overwatch2cheats-com",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatch2cheats.com/",
@@ -4665,8 +4665,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-sandraiderscheats-com-https",
-			slug: "guide-sandraiderscheats-com-https",
+			id: "sandraiderscheats-com",
+			slug: "sandraiderscheats-com",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraiderscheats.com/",
@@ -4728,8 +4728,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-rivalscheats-net-https",
-			slug: "guide-rivalscheats-net-https",
+			id: "rivalscheats-net",
+			slug: "rivalscheats-net",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://rivalscheats.net/",
@@ -4791,8 +4791,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-squadcheat-com-https",
-			slug: "guide-squadcheat-com-https",
+			id: "squadcheat-com",
+			slug: "squadcheat-com",
 			gameId: "squad",
 			gameName: "Squad",
 			externalUrl: "https://squadcheat.com/",
@@ -4854,8 +4854,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-sandraidersofsophiecheats-net-https",
-			slug: "guide-sandraidersofsophiecheats-net-https",
+			id: "sandraidersofsophiecheats-net",
+			slug: "sandraidersofsophiecheats-net",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraidersofsophiecheats.net/",
@@ -4917,8 +4917,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovcheat-net-https",
-			slug: "guide-tarkovcheat-net-https",
+			id: "tarkovcheat-net",
+			slug: "tarkovcheat-net",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheat.net/",
@@ -4980,8 +4980,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-thefinalscheats-net-https",
-			slug: "guide-thefinalscheats-net-https",
+			id: "thefinalscheats-net",
+			slug: "thefinalscheats-net",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalscheats.net/",
@@ -5043,8 +5043,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-theislehacks-net-https",
-			slug: "guide-theislehacks-net-https",
+			id: "theislehacks-net",
+			slug: "theislehacks-net",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislehacks.net/",
@@ -5106,8 +5106,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-valoranthack-net-https",
-			slug: "guide-valoranthack-net-https",
+			id: "valoranthack-net",
+			slug: "valoranthack-net",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valoranthack.net/",
@@ -5169,8 +5169,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warzonehacks-net-https",
-			slug: "guide-warzonehacks-net-https",
+			id: "warzonehacks-net",
+			slug: "warzonehacks-net",
 			gameId: "call-of-duty-warzone",
 			gameName: "Call of Duty: Warzone",
 			externalUrl: "https://warzonehacks.net/",
@@ -5232,8 +5232,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-thefrontcheats-com-https",
-			slug: "guide-thefrontcheats-com-https",
+			id: "thefrontcheats-com",
+			slug: "thefrontcheats-com",
 			gameId: "the-front",
 			gameName: "The Front",
 			externalUrl: "https://thefrontcheats.com/",
@@ -5295,8 +5295,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-lostarkcheats-net-https",
-			slug: "guide-lostarkcheats-net-https",
+			id: "lostarkcheats-net",
+			slug: "lostarkcheats-net",
 			gameId: "lost-ark",
 			gameName: "Lost Ark",
 			externalUrl: "https://lostarkcheats.net/",
@@ -5358,8 +5358,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-valoranthacks-org-https",
-			slug: "guide-valoranthacks-org-https",
+			id: "valoranthacks-org",
+			slug: "valoranthacks-org",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valoranthacks.org/",
@@ -5421,8 +5421,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-siegehacks-com-https",
-			slug: "guide-siegehacks-com-https",
+			id: "siegehacks-com",
+			slug: "siegehacks-com",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "https://siegehacks.com/",
@@ -5484,8 +5484,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warframehacks-com-https",
-			slug: "guide-warframehacks-com-https",
+			id: "warframehacks-com",
+			slug: "warframehacks-com",
 			gameId: "warframe",
 			gameName: "Enlisted",
 			externalUrl: "https://warframehacks.com/",
@@ -5547,8 +5547,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warframecheat-com-https",
-			slug: "guide-warframecheat-com-https",
+			id: "warframecheat-com",
+			slug: "warframecheat-com",
 			gameId: "warframe",
 			gameName: "Enlisted",
 			externalUrl: "https://warframecheat.com/",
@@ -5610,8 +5610,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-narakacheats-org-https",
-			slug: "guide-narakacheats-org-https",
+			id: "narakacheats-org",
+			slug: "narakacheats-org",
 			gameId: "naraka-bladepoint",
 			gameName: "Naraka: Bladepoint",
 			externalUrl: "https://narakacheats.org/",
@@ -5673,8 +5673,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-minecraftcheat-com-https",
-			slug: "guide-minecraftcheat-com-https",
+			id: "minecraftcheat-com",
+			slug: "minecraftcheat-com",
 			gameId: "minecraft",
 			gameName: "Minecraft",
 			externalUrl: "https://minecraftcheat.com/",
@@ -5736,8 +5736,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-destiny2hack-com-https",
-			slug: "guide-destiny2hack-com-https",
+			id: "destiny2hack-com",
+			slug: "destiny2hack-com",
 			gameId: "destiny-2",
 			gameName: "Destiny 2",
 			externalUrl: "https://destiny2hack.com/",
@@ -5799,8 +5799,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-poecheats-com-https",
-			slug: "guide-poecheats-com-https",
+			id: "poecheats-com",
+			slug: "poecheats-com",
 			gameId: "path-of-exile",
 			gameName: "Path of Exile",
 			externalUrl: "https://poecheats.com/",
@@ -5862,8 +5862,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-genshinhacks-com-https",
-			slug: "guide-genshinhacks-com-https",
+			id: "genshinhacks-com",
+			slug: "genshinhacks-com",
 			gameId: "genshin-impact",
 			gameName: "Genshin Impact",
 			externalUrl: "https://genshinhacks.com/",
@@ -5925,8 +5925,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-arcraiderscheat-org-https",
-			slug: "guide-arcraiderscheat-org-https",
+			id: "arcraiderscheat-org",
+			slug: "arcraiderscheat-org",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheat.org/",
@@ -5988,8 +5988,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-palworldcheats-org-https",
-			slug: "guide-palworldcheats-org-https",
+			id: "palworldcheats-org",
+			slug: "palworldcheats-org",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldcheats.org/",
@@ -6051,8 +6051,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-theislecheat-net-https",
-			slug: "guide-theislecheat-net-https",
+			id: "theislecheat-net",
+			slug: "theislecheat-net",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislecheat.net/",
@@ -6114,8 +6114,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-tarkovcheat-org-https",
-			slug: "guide-tarkovcheat-org-https",
+			id: "tarkovcheat-org",
+			slug: "tarkovcheat-org",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheat.org/",
@@ -6177,8 +6177,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-theislecheats-org-https",
-			slug: "guide-theislecheats-org-https",
+			id: "theislecheats-org",
+			slug: "theislecheats-org",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislecheats.org/",
@@ -6240,8 +6240,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-raftcheats-com-https",
-			slug: "guide-raftcheats-com-https",
+			id: "raftcheats-com",
+			slug: "raftcheats-com",
 			gameId: "raft",
 			gameName: "Raft",
 			externalUrl: "https://raftcheats.com/",
@@ -6303,8 +6303,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-sandhacks-com-https",
-			slug: "guide-sandhacks-com-https",
+			id: "sandhacks-com",
+			slug: "sandhacks-com",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandhacks.com/",
@@ -6366,8 +6366,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-seaofthievescheats-net-https",
-			slug: "guide-seaofthievescheats-net-https",
+			id: "seaofthievescheats-net",
+			slug: "seaofthievescheats-net",
 			gameId: "sea-of-thieves",
 			gameName: "Sea of Thieves",
 			externalUrl: "https://seaofthievescheats.net/",
@@ -6429,8 +6429,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-battlefieldhacks-net-https",
-			slug: "guide-battlefieldhacks-net-https",
+			id: "battlefieldhacks-net",
+			slug: "battlefieldhacks-net",
 			gameId: "battlefield",
 			gameName: "Battlefield",
 			externalUrl: "https://battlefieldhacks.net/",
@@ -6492,8 +6492,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-thefinalshacks-com-https",
-			slug: "guide-thefinalshacks-com-https",
+			id: "thefinalshacks-com",
+			slug: "thefinalshacks-com",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalshacks.com/",
@@ -6555,8 +6555,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-deltaforcecheats-org-https",
-			slug: "guide-deltaforcecheats-org-https",
+			id: "deltaforcecheats-org",
+			slug: "deltaforcecheats-org",
 			gameId: "delta-force",
 			gameName: "Delta Force",
 			externalUrl: "https://deltaforcecheats.org/",
@@ -6618,8 +6618,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-warthunderhacks-net-https",
-			slug: "guide-warthunderhacks-net-https",
+			id: "warthunderhacks-net",
+			slug: "warthunderhacks-net",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthunderhacks.net/",
@@ -6681,8 +6681,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "guide-valohacks-com-https",
-			slug: "guide-valohacks-com-https",
+			id: "valohacks-com",
+			slug: "valohacks-com",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valohacks.com/",

@@ -366,7 +366,7 @@ export const homeFaqs = [
 		category: 'Features & gameplay',
 		question: 'Does this work for campaign missions, squad assaults, and large-scale battles?',
 		answer:
-			'Yes. ESP and radar help you read enemy positions in campaign missions, squad assaults, and <a href="/blog/enlisted-battlefield-farming-guide/">battlefield</a> tilesets like Eastern Front, Western Front, and urban combat maps. Aim assist covers rifle, shotgun, and sniper profiles for solo or squad play.',
+			'Yes. ESP and radar help you read enemy positions in campaign missions, squad assaults, and <a href="/blog/battlefield/">battlefield</a> tilesets like Eastern Front, Western Front, and urban combat maps. Aim assist covers rifle, shotgun, and sniper profiles for solo or squad play.',
 	},
 	{
 		category: 'Features & gameplay',
@@ -390,7 +390,7 @@ export const homeFaqs = [
 		category: 'Updates & support',
 		question: 'Where do I check status after a Enlisted patch?',
 		answer:
-			'Start with our <a href="/updates/">Updates page</a>, then cross-check <a href="https://enlisted.net/en/news/" target="_blank" rel="noopener noreferrer">official PC update notes</a>. For how patches affect gameplay, read our <a href="/blog/enlisted-patch-notes-guide/">patch notes guide</a>.',
+			'Start with our <a href="/updates/">Updates page</a>, then cross-check <a href="https://enlisted.net/en/news/" target="_blank" rel="noopener noreferrer">official PC update notes</a>. For how patches affect gameplay, read our <a href="/blog/patch-notes/">patch notes guide</a>.',
 	},
 	{
 		category: 'Updates & support',
@@ -418,7 +418,7 @@ export const seoFaqs = [
 		category: 'Product details',
 		question: 'How does anti-cheat affect Enlisted Cheats?',
 		answer:
-			'Anti-cheat monitors Enlisted on Windows PC. After major patches we publish maintenance notes on <a href="/updates/">Updates</a>. Read the <a href="/enlisted-cheats/">maintenance guide</a> and our <a href="/blog/undetected-enlisted-cheats-eac/">anti-cheat explainer</a> for what to expect on patch day.',
+			'Anti-cheat monitors Enlisted on Windows PC. After major patches we publish maintenance notes on <a href="/updates/">Updates</a>. Read the <a href="/enlisted-cheats/">maintenance guide</a> and our <a href="/blog/undetected-eac/">anti-cheat explainer</a> for what to expect on patch day.',
 	},
 	{
 		category: 'Product details',

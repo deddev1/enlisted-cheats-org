@@ -44,10 +44,10 @@ export function getHomeExploreLinks(locale: LocaleCode): InternalLink[] {
 /** Comparison blog posts — high-intent shopping keywords. */
 export function getComparisonBlogLinks(): InternalLink[] {
 	return [
-		{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
-		{ label: 'VoidCheats comparison', href: '/blog/voidcheats-vs-enlisted-cheats-two-week-test/' },
-		{ label: 'Ghostware comparison', href: '/blog/enlisted-cheats-vs-ghostware-features-pricing/' },
-		{ label: 'Anti-cheat reality guide', href: '/blog/undetected-enlisted-cheats-eac/' },
+		{ label: 'CheatVault comparison', href: '/blog/vs-cheatvault/' },
+		{ label: 'VoidCheats comparison', href: '/blog/vs-voidcheats/' },
+		{ label: 'Ghostware comparison', href: '/blog/vs-ghostware/' },
+		{ label: 'Anti-cheat reality guide', href: '/blog/undetected-eac/' },
 	];
 }
 
@@ -118,8 +118,8 @@ export function getPageRelatedLinks(
 		pricing: [
 			{ label: labels.faq, href: getLocalizedPath('faq', locale) },
 			{ label: 'Reviews', href: '/reviews/' },
-			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
-			{ label: 'VoidCheats comparison', href: '/blog/voidcheats-vs-enlisted-cheats-two-week-test/' },
+			{ label: 'CheatVault comparison', href: '/blog/vs-cheatvault/' },
+			{ label: 'VoidCheats comparison', href: '/blog/vs-voidcheats/' },
 		],
 		setup: [
 			{ label: labels.updates, href: getLocalizedPath('updates', locale) },
@@ -131,8 +131,8 @@ export function getPageRelatedLinks(
 		],
 		faq: [
 			{ label: 'Cheats guides', href: '/blog/' },
-			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
-			{ label: 'Anti-cheat guide', href: '/blog/undetected-enlisted-cheats-eac/' },
+			{ label: 'CheatVault comparison', href: '/blog/vs-cheatvault/' },
+			{ label: 'Anti-cheat guide', href: '/blog/undetected-eac/' },
 			{ label: 'Support', href: getLocalizedPath('support', locale) },
 			{ label: 'Reviews', href: '/reviews/' },
 		],
