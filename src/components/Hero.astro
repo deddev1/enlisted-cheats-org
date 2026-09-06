@@ -25,10 +25,6 @@ const buyUrl = siteConfig.checkoutUrl;
 const featuresUrl = getLocalizedPath('features', locale);
 const pricingUrl = getLocalizedPath('pricing', locale);
 const setupUrl = getLocalizedPath('setup', locale);
-const espUrl = getLocalizedPath('enlisted-esp', locale);
-const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
-const wallhackUrl = getLocalizedPath('wallhack', locale);
-const radarUrl = getLocalizedPath('radar', locale);
 const reviewsUrl = '/reviews/';
 
 const gameFeatures = ui.hero.gameFeatures ?? ui.hero.seeFeatures;
@@ -37,12 +33,7 @@ const viewPricing = ui.hero.viewPricing ?? ui.nav.pricing;
 const seeReviews = ui.nav.reviews ?? 'See Reviews';
 const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 
-const featurePills = [
-	{ label: ui.nav.esp, href: espUrl },
-	{ label: ui.nav.aimbot, href: aimbotUrl },
-	{ label: 'Wallhack', href: wallhackUrl },
-	{ label: 'Radar', href: radarUrl },
-];
+const featurePills = [ui.nav.esp, ui.nav.aimbot, 'Wallhack', 'Radar'];
 ---
 
 <section class="hero" aria-label={ui.images.hero}>
@@ -95,11 +86,9 @@ const featurePills = [
 
 			<ul class="hero__features" aria-label="Included modules">
 				{
-					featurePills.map((pill) => (
+					featurePills.map((label) => (
 						<li>
-							<a href={pill.href} class="hero__feature-pill">
-								{pill.label}
-							</a>
+							<span class="hero__feature-pill">{label}</span>
 						</li>
 					))
 				}
@@ -300,18 +289,8 @@ const featurePills = [
 		font-weight: 700;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		text-decoration: none;
 		white-space: nowrap;
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease,
-			color 0.2s ease;
-	}
-
-	.hero__feature-pill:hover {
-		border-color: var(--color-border-gold-hover);
-		background: rgba(197, 138, 69, 0.12);
-		color: #fff;
+		user-select: none;
 	}
 
 	.hero__actions {
