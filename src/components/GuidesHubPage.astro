@@ -7,31 +7,24 @@ import {
 	absoluteGuideUrl,
 	formatExternalGuideHost,
 	getMixedExternalGuides,
-	getNativeEnlistedGuides,
 	guidesBasePath,
 } from '../data/guides/helpers';
-import EnlistedAuthorityLinks from './EnlistedAuthorityLinks.astro';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
 
 const locale = defaultLocale;
-const nativeGuides = getNativeEnlistedGuides();
 const otherGameGuides = getMixedExternalGuides();
 const homeHref = getLocalizedPath('home', locale);
-
-function nativeGuideLabel(title: string): string {
-	const trimmed = title.replace(/^Enlisted\s+/i, '').trim();
-	return trimmed.length <= 38 ? trimmed : `${trimmed.slice(0, 35).trimEnd()}…`;
-}
+const cheatsGuidesHref = '/blog/';
 
 function otherGameGuideLabel(title: string): string {
 	const trimmed = title.replace(/\s*\|\s*Guides$/, '').trim();
 	return trimmed.length <= 52 ? trimmed : `${trimmed.slice(0, 49).trimEnd()}…`;
 }
 
-const title = 'Enlisted Game Guides | Campaign, Battlefield & Factions';
+const title = 'Other PC Game Cheat Guides | Partner Directory';
 const description =
-	'Enlisted guides on campaign missions, large-scale battles, factions, mission types, and patch notes — for players using Enlisted Cheats on Windows PC.';
+	'Partner cheat guides for other PC games — outbound links only, not indexed. Enlisted cheats guides (ESP, aimbot, setup) live on our cheats guides hub.';
 
 const canonicalURL = absoluteGuideUrl();
 
@@ -53,51 +46,21 @@ const extraGraph = [
 	description={description}
 	canonicalPath={guidesBasePath}
 	locale={locale}
-	breadcrumbs={[{ label: 'Home', href: homeHref }, { label: 'Guides' }]}
+	noindex={true}
+	breadcrumbs={[{ label: 'Home', href: homeHref }, { label: 'Partner guides' }]}
 	extraGraph={extraGraph}
 >
 	<Navbar locale={locale} />
 	<main class="guides shell">
 		<header class="guides__hero">
-			<p class="guides__eyebrow">Guides hub</p>
-			<h1>Enlisted guides</h1>
+			<p class="guides__eyebrow">Partner directory</p>
+			<h1>Other games cheat guides</h1>
 			<p class="guides__intro">
-				Progression guides for campaign missions, large-scale battles, factions, and patch notes — aligned
-				with the Enlisted Cheats feature set on Windows PC.
+				Outbound partner links for cheat guides on other PC titles. This page is not indexed — search engines
+				should focus on our
+				<a href={cheatsGuidesHref}>Enlisted cheats guides</a> for ESP, aimbot, setup, and vendor comparisons.
 			</p>
 		</header>
-
-		<section class="guides__section guides__section--native" aria-labelledby="native-guides-title">
-			<h2 id="native-guides-title" class="guides__section-title">Enlisted guides</h2>
-			<p class="guides__section-intro">
-				Our primary guides covering campaign missions, battlefield farming, factions, mission types, and patch notes.
-			</p>
-			<div class="guides__grid">
-		{
-			nativeGuides.map((post, index) => (
-				<article class="guides__card guides__card--native">
-					<img
-						src={post.imageSrc}
-						alt={post.translation.imageAlt}
-						width="640"
-						height="360"
-						loading={index < 3 ? 'eager' : 'lazy'}
-						decoding="async"
-					/>
-					<div class="guides__card-body">
-						<span class="guides__cat">Enlisted</span>
-						<h3 class="guides__card-title">
-							<a href={post.canonicalPath}>{nativeGuideLabel(post.translation.title)}</a>
-						</h3>
-						<p>{post.translation.intro}</p>
-					</div>
-				</article>
-			))
-		}
-			</div>
-
-			<EnlistedAuthorityLinks headingLevel="h3" />
-		</section>
 
 		{
 			otherGameGuides.length > 0 && (
@@ -106,10 +69,11 @@ const extraGraph = [
 					id="other-games-guides"
 					aria-labelledby="external-guides-title"
 				>
-					<h2 id="external-guides-title" class="guides__section-title">Other games guides</h2>
+					<h2 id="external-guides-title" class="guides__section-title">Partner cheat guides</h2>
 					<p class="guides__section-intro">
-						Partner gameplay guides for other PC titles — mixed across franchises so one game does not
-						dominate the list. These outbound links are not indexed by search engines.
+						Mixed across franchises so one game does not dominate the list. Links use
+						<code>nofollow</code> and this hub uses <code>noindex</code> so it does not compete with
+						<a href={cheatsGuidesHref}>Enlisted cheats guides</a>.
 					</p>
 
 					<div class="guides__grid">
@@ -178,13 +142,18 @@ const extraGraph = [
 		line-height: 1.65;
 	}
 
+	.guides__intro a {
+		color: #B47A3C;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
 	.guides__section {
 		margin-bottom: 2.5rem;
 	}
 
 	.guides__section--external {
-		padding-top: 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		padding-top: 0.5rem;
 	}
 
 	.guides__section-title {
@@ -198,6 +167,17 @@ const extraGraph = [
 		color: rgba(255, 255, 255, 0.65);
 		font-size: 0.95rem;
 		line-height: 1.6;
+	}
+
+	.guides__section-intro a {
+		color: #B47A3C;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.guides__section-intro code {
+		font-size: 0.88em;
+		color: rgba(180, 122, 60, 0.95);
 	}
 
 	.guides__grid {

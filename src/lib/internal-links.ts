@@ -37,7 +37,6 @@ export function getHomeExploreLinks(locale: LocaleCode): InternalLink[] {
 		{ label: 'Enlisted wallhack', href: getLocalizedPath('wallhack', locale) },
 		{ label: 'Enlisted radar', href: getLocalizedPath('radar', locale) },
 		{ label: 'Setup guide', href: getLocalizedPath('setup', locale) },
-		{ label: 'Guides hub', href: '/guides/' },
 		{ label: 'Cheats guides', href: '/blog/' },
 	];
 }
@@ -131,7 +130,7 @@ export function getPageRelatedLinks(
 			{ label: 'Support', href: getLocalizedPath('support', locale) },
 		],
 		faq: [
-			{ label: 'Enlisted guides', href: '/guides/' },
+			{ label: 'Cheats guides', href: '/blog/' },
 			{ label: 'CheatVault comparison', href: '/blog/enlisted-cheats-vs-cheatvault-comparison/' },
 			{ label: 'Anti-cheat guide', href: '/blog/undetected-enlisted-cheats-eac/' },
 			{ label: 'Support', href: getLocalizedPath('support', locale) },

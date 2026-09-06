@@ -152,27 +152,7 @@ export function getExternalGuidesByGame(): { gameName: string; guides: ResolvedE
 		.map(([gameName, guides]) => ({ gameName, guides }));
 }
 
-/** Guides sitemap entries — hub only; external guide articles are noindex. */
+/** Guides sitemap entries — none; /guides/ is noindex (partner directory only). Cheats guides live on /blog/. */
 export function getGuidesSitemapEntries() {
-	const guides = getAllExternalGuides();
-	const indexLastmod = guides.reduce(
-		(max, guide) => (guide.updated > max ? guide.updated : max),
-		guides[0]?.updated ?? new Date().toISOString().slice(0, 10),
-	);
-
-	return [
-		{
-			path: guidesBasePath,
-			lastmod: indexLastmod,
-			priority: 0.88,
-			changefreq: 'weekly' as const,
-			images: [
-				{
-					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Enlisted guides hub',
-					caption: 'Native Enlisted campaign, battlefield, and faction guides',
-				},
-			],
-		},
-	];
+	return [];
 }

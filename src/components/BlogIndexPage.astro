@@ -26,8 +26,6 @@ const featured = getFeaturedPosts(locale, 3);
 const canonicalPath = getBlogBasePath(locale);
 const canonicalURL = absoluteBlogUrl(locale);
 const homeHref = getLocalizedPath('home', locale);
-const guidesHref = '/guides/';
-
 const articleListSchema = {
 	'@type': 'CollectionPage',
 	'@id': `${canonicalURL}#collection`,
@@ -63,10 +61,7 @@ const articleListSchema = {
 			<p class="blog__eyebrow">Enlisted Cheats guides</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
-			<p class="blog__note">
-				Cheats guides are published in English. For in-game mission and faction walkthroughs, see the
-				<a href={guidesHref}>Enlisted game guides hub</a>.
-			</p>
+			<p class="blog__note">Cheats guides are published in English and are the only indexed guide content on this site.</p>
 		</header>
 
 		{

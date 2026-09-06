@@ -38,7 +38,7 @@ export const blogPosts: BlogPostDefinition[] = rawBlogPosts.map((post) => ({
 	translations: expandTranslations(post.translations as Partial<Record<LocaleCode, BlogTranslation>> & { en: BlogTranslation }),
 }));
 
-/** Game progression posts — shown on /guides/, not the cheats blog hub. */
+/** Game progression posts — noindex at /blog/*; not shown on indexable hubs. */
 export const GAME_GUIDES_CATEGORY = 'Enlisted Game Guides';
 
 export function isGameGuidePost(post: Pick<BlogPostDefinition, 'category'>): boolean {

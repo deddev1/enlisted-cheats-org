@@ -38,8 +38,8 @@ const t = post.translation;
 const homeHref = getLocalizedPath('home', locale);
 const blogHref = getBlogBasePath(locale);
 const isGameGuide = isGameGuidePost(post);
-const hubHref = isGameGuide ? '/guides/' : blogHref;
-const hubLabel = isGameGuide ? 'Guides' : ui.blogH1;
+const hubHref = blogHref;
+const hubLabel = isGameGuide ? 'Game guides (archive)' : ui.blogH1;
 const related = getRelatedPosts(locale, post, 3);
 
 const articleUrl = absoluteBlogUrl(locale, t.slug);

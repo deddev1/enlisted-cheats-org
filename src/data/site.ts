@@ -422,9 +422,9 @@ export const seoFaqs = [
 	},
 	{
 		category: 'Product details',
-		question: 'Where can I read Enlisted game guides?',
+		question: 'Where can I read Enlisted cheats guides?',
 		answer:
-			'Our <a href="/blog/">blog</a> covers Enlisted mission types, campaign missions, factions, battlefield farming, and how to read official patch notes — with links to the <a href="https://enlisted.fandom.com/wiki/Enlisted_Wiki" target="_blank" rel="noopener noreferrer">Enlisted Wiki</a> and <a href="https://enlisted.net/en/game/about/" target="_blank" rel="noopener noreferrer">official game guide</a>.',
+			'Our <a href="/blog/">Enlisted cheats guides</a> cover ESP, aimbot, wallhack, undetected status, vendor comparisons, setup, and anti-cheat maintenance after Gaijin patches. For official game lore and patch notes, see the <a href="https://enlisted.fandom.com/wiki/Enlisted_Wiki" target="_blank" rel="noopener noreferrer">Enlisted Wiki</a> and <a href="https://enlisted.net/en/news/" target="_blank" rel="noopener noreferrer">official update notes</a>.',
 	},
 ] as const;
 

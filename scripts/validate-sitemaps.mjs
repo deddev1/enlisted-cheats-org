@@ -34,13 +34,13 @@ const SITE = 'https://enlistedcheats.org';
 
 const MARKETING_SITEMAP_PAGES = 15;
 const BUILT_MARKETING_PAGES = 25; // thin landings still built; 301 to canonical URLs
-const BLOG_SITEMAP_PAGES = 9; // /blog/ index + 8 cheats posts (game guides live on /guides/, noindex at /blog/)
+const BLOG_SITEMAP_PAGES = 9; // /blog/ index + 8 cheats posts (game guides at /blog/* are noindex)
 const BLOG_HTML_PAGES = 15; // /blog/ index + all 14 posts still built as HTML
 const REVIEW_PAGES = 14; // /reviews/ index + 13 review detail pages
-const GUIDES_HUB_PAGES = 1; // /guides/ hub only — external guide articles are noindex
+const GUIDES_HUB_BUILT = 1; // /guides/ partner directory — built but noindex, not in sitemap
 const EXTERNAL_GUIDE_HTML_PAGES = 107; // noindex guide articles still built as HTML
-const SITEMAP_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_SITEMAP_PAGES + REVIEW_PAGES + GUIDES_HUB_PAGES;
-const BUILT_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_HTML_PAGES + REVIEW_PAGES + GUIDES_HUB_PAGES;
+const SITEMAP_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_SITEMAP_PAGES + REVIEW_PAGES;
+const BUILT_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_HTML_PAGES + REVIEW_PAGES + GUIDES_HUB_BUILT;
 const I18N_LOCALES = 21;
 const PAGES_PER_LOCALE = 15; // canonical locale URLs in sitemap (thin landings 301)
 const BUILT_LOCALE_HTML_PAGES = I18N_LOCALES * 25; // all locale routes still built as HTML

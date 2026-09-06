@@ -120,19 +120,32 @@ if (!wranglerToml.includes('binding = "ASSETS"')) {
 }
 
 // --- guides indexing policy ---
+const guidesHubPage = readFileSync(join(root, 'src/components/GuidesHubPage.astro'), 'utf8');
+if (!/noindex=\{true\}/.test(guidesHubPage)) {
+	fail('GuidesHubPage.astro: /guides/ hub must be noindex (cheats guides live on /blog/)');
+}
+
 const externalGuidePage = readFileSync(join(root, 'src/components/ExternalGuidePage.astro'), 'utf8');
 if (!/noindex=\{true\}/.test(externalGuidePage)) {
 	fail('ExternalGuidePage.astro: external guides must be noindex');
+}
+
+const blogHelpers = readFileSync(join(root, 'src/data/blog/helpers.ts'), 'utf8');
+if (!/if \(isGameGuidePost\(post\)\) continue/.test(blogHelpers)) {
+	fail('blog/helpers.ts: game guide posts must be excluded from blog sitemap');
 }
 
 const guidesHelpers = readFileSync(join(root, 'src/data/guides/helpers.ts'), 'utf8');
 if (/guide\.canonicalPath/.test(guidesHelpers) && /getGuidesSitemapEntries/.test(guidesHelpers)) {
 	const sitemapFn = guidesHelpers.slice(
 		guidesHelpers.indexOf('export function getGuidesSitemapEntries'),
-		guidesHelpers.indexOf('export function getGuidesSitemapEntries') + 1200,
+		guidesHelpers.indexOf('export function getGuidesSitemapEntries') + 400,
 	);
 	if (sitemapFn.includes('for (const guide of guides)')) {
-		fail('guides/helpers.ts: external guide URLs must not be in sitemap (hub only)');
+		fail('guides/helpers.ts: external guide URLs must not be in sitemap');
+	}
+	if (sitemapFn.includes('guidesBasePath') && !/return \[\]/.test(sitemapFn)) {
+		fail('guides/helpers.ts: getGuidesSitemapEntries must return [] — /guides/ is noindex');
 	}
 }
 
@@ -149,14 +162,43 @@ if (existsSync(distIndex)) {
 	const distGuidesHub = join(root, 'dist/guides/index.html');
 	if (existsSync(distGuidesHub)) {
 		const hubHtml = readFileSync(distGuidesHub, 'utf8');
-		if (hubHtml.includes('noindex')) fail('dist/guides/index.html hub must remain indexable');
-		const nativeHubHtml = hubHtml.split('id="other-games-guides"')[0] ?? hubHtml;
-		checkBanned('dist/guides/index.html (native section)', nativeHubHtml);
+		if (!hubHtml.includes('noindex')) {
+			fail('dist/guides/index.html hub must be noindex (cheats guides live on /blog/)');
+		}
+		const guidesHeroHtml = hubHtml.split('id="other-games-guides"')[0] ?? hubHtml;
+		checkBanned('dist/guides/index.html (hero)', guidesHeroHtml);
 		const externalLinkCount = (hubHtml.match(/rel="nofollow noopener noreferrer"/g) ?? []).length;
 		if (externalLinkCount < 100) {
 			fail(
 				`dist/guides/index.html: expected ~107 external guide links on hub, found ${externalLinkCount}`,
 			);
+		}
+	}
+
+	const distBlogIndex = join(root, 'dist/blog/index.html');
+	if (existsSync(distBlogIndex)) {
+		const blogIndexHtml = readFileSync(distBlogIndex, 'utf8');
+		if (blogIndexHtml.includes('noindex')) {
+			fail('dist/blog/index.html cheats hub must remain indexable');
+		}
+		if (/Enlisted game guides hub/i.test(blogIndexHtml)) {
+			fail('dist/blog/index.html must not promote game guides hub — cheats-only SEO');
+		}
+	}
+
+	const distCheatsPost = join(root, 'dist/blog/enlisted-cheats-complete-guide-2026/index.html');
+	if (existsSync(distCheatsPost)) {
+		const cheatsHtml = readFileSync(distCheatsPost, 'utf8');
+		if (cheatsHtml.includes('noindex')) {
+			fail('dist cheats blog post must remain indexable');
+		}
+	}
+
+	const distGamePost = join(root, 'dist/blog/enlisted-new-player-guide/index.html');
+	if (existsSync(distGamePost)) {
+		const gameHtml = readFileSync(distGamePost, 'utf8');
+		if (!gameHtml.includes('noindex')) {
+			fail('dist game guide blog post must be noindex');
 		}
 	}
 
@@ -181,10 +223,14 @@ if (existsSync(distIndex)) {
 		const sitemapXml = readFileSync(distSitemap, 'utf8');
 		const guideUrls = (sitemapXml.match(/\/guides\/guide-[^<]+/g) ?? []).length;
 		if (guideUrls > 0) {
-			fail(`dist/sitemap.xml lists ${guideUrls} external guide URLs — hub only expected`);
+			fail(`dist/sitemap.xml lists ${guideUrls} external guide URLs — none expected`);
 		}
-		if (!sitemapXml.includes('/guides/')) {
-			warn('dist/sitemap.xml: /guides/ hub not found in sitemap');
+		if (sitemapXml.includes('/guides/')) {
+			fail('dist/sitemap.xml must not list /guides/ — hub is noindex; cheats guides live on /blog/');
+		}
+		const blogUrls = sitemapXml.match(/\/blog\/[^<]+/g) ?? [];
+		if (blogUrls.length > 0 && blogUrls.some((u) => /enlisted-new-player-guide|enlisted-mission-types-guide|enlisted-factions-explained|enlisted-open-world-farming|enlisted-steel-path-guide|enlisted-patch-notes-guide/.test(u))) {
+			fail('dist/sitemap.xml must not list game guide blog posts — cheats posts only');
 		}
 	}
 }
