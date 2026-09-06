@@ -1,4 +1,5 @@
 import { getHomeLocaleRedirect } from './locale-redirect.js';
+import { GUIDE_SLUG_REDIRECTS } from './guide-slug-redirects.js';
 import { LOCALE_PATH_REDIRECTS } from './locale-path-redirects.js';
 
 const CANONICAL_ORIGIN = 'https://enlistedcheats.org';
@@ -231,7 +232,7 @@ export async function onRequest(context) {
 		}
 	}
 
-	const pathRedirect = PATH_REDIRECTS[url.pathname];
+	const pathRedirect = PATH_REDIRECTS[url.pathname] ?? GUIDE_SLUG_REDIRECTS[url.pathname];
 	if (pathRedirect) {
 		const headers = new Headers({
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),

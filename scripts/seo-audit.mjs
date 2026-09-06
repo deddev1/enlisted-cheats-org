@@ -247,7 +247,7 @@ if (existsSync(distIndex)) {
 		}
 	}
 
-	const distExternalGuide = join(root, 'dist/guides/guide-fortniteaimbot-com-https/index.html');
+	const distExternalGuide = join(root, 'dist/guides/fortniteaimbot-com/index.html');
 	if (existsSync(distExternalGuide)) {
 		const guideHtml = readFileSync(distExternalGuide, 'utf8');
 		if (!hasRobotsNoindex(guideHtml)) {
