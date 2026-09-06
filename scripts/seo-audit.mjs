@@ -4,7 +4,7 @@
  * Run: node scripts/seo-audit.mjs
  * Exit 1 on critical failures.
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { englishPagesFinal } from './i18n-data/pages-en.mjs';
@@ -46,6 +46,22 @@ function checkBanned(label, text) {
 	for (const re of BANNED) {
 		if (re.test(text)) fail(`${label}: banned match ${re} → "${text.slice(0, 80)}..."`);
 	}
+}
+
+function hasRobotsNoindex(html) {
+	return (
+		/name="robots"\s+content="noindex(?:,\s*nofollow)?"/.test(html) ||
+		/name="googlebot"\s+content="noindex(?:,\s*nofollow)?"/.test(html)
+	);
+}
+
+function walkGuideIndexHtml(dir, out = []) {
+	for (const entry of readdirSync(dir, { withFileTypes: true })) {
+		const child = join(dir, entry.name);
+		if (entry.isDirectory()) walkGuideIndexHtml(child, out);
+		else if (entry.name === 'index.html') out.push(child);
+	}
+	return out;
 }
 
 // --- EN page content ---
@@ -149,6 +165,16 @@ if (/guide\.canonicalPath/.test(guidesHelpers) && /getGuidesSitemapEntries/.test
 	}
 }
 
+if (!/function isPartnerGuidePath/.test(middleware)) {
+	fail('_middleware.js: must define isPartnerGuidePath for partner guide noindex headers');
+}
+if (!/X-Robots-Tag/.test(middleware)) {
+	fail('_middleware.js: must set X-Robots-Tag for partner guide routes');
+}
+if (!/noindex: isPartnerGuidePath\(url\.pathname\)/.test(middleware)) {
+	fail('_middleware.js: HTML responses under /guides/ must send X-Robots-Tag noindex');
+}
+
 // --- built output (optional) ---
 const distIndex = join(root, 'dist/index.html');
 if (existsSync(distIndex)) {
@@ -158,6 +184,17 @@ if (existsSync(distIndex)) {
 		fail('dist/index.html missing Enlisted in title/meta');
 	}
 	checkBanned('dist/index.html', html);
+
+	const distGuidesDir = join(root, 'dist/guides');
+	if (existsSync(distGuidesDir)) {
+		const guidePages = walkGuideIndexHtml(distGuidesDir);
+		const missingNoindex = guidePages.filter((page) => !hasRobotsNoindex(readFileSync(page, 'utf8')));
+		if (missingNoindex.length > 0) {
+			fail(
+				`dist/guides: ${missingNoindex.length} partner guide page(s) missing robots noindex meta (e.g. ${missingNoindex[0]})`,
+			);
+		}
+	}
 
 	const distGuidesHub = join(root, 'dist/guides/index.html');
 	if (existsSync(distGuidesHub)) {
@@ -205,16 +242,16 @@ if (existsSync(distIndex)) {
 	const distOtherGamesHub = join(root, 'dist/guides/other-games/index.html');
 	if (existsSync(distOtherGamesHub)) {
 		const otherHtml = readFileSync(distOtherGamesHub, 'utf8');
-		if (!otherHtml.includes('noindex') && !/http-equiv="refresh"/i.test(otherHtml)) {
-			fail('dist/guides/other-games/index.html external hub must include noindex or redirect to /guides/');
+		if (!hasRobotsNoindex(otherHtml) && !/http-equiv="refresh"/i.test(otherHtml)) {
+			fail('dist/guides/other-games/index.html must include robots noindex or redirect to /guides/');
 		}
 	}
 
 	const distExternalGuide = join(root, 'dist/guides/guide-fortniteaimbot-com-https/index.html');
 	if (existsSync(distExternalGuide)) {
 		const guideHtml = readFileSync(distExternalGuide, 'utf8');
-		if (!guideHtml.includes('noindex')) {
-			fail('dist external guide page must include noindex robots meta');
+		if (!hasRobotsNoindex(guideHtml)) {
+			fail('dist external guide page must include robots noindex meta');
 		}
 	}
 

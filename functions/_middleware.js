@@ -180,9 +180,18 @@ function getClientProtocol(request) {
 	return new URL(request.url).protocol.replace(':', '').toLowerCase();
 }
 
-function applySecurityHeaders(headers, { html = false } = {}) {
+/** Partner guide routes — hub, wrappers, and legacy paths must never be indexed. */
+function isPartnerGuidePath(pathname) {
+	return pathname === '/guides' || pathname.startsWith('/guides/');
+}
+
+function applySecurityHeaders(headers, { html = false, noindex = false } = {}) {
 	for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
 		headers.set(key, value);
+	}
+
+	if (noindex) {
+		headers.set('X-Robots-Tag', 'noindex, nofollow');
 	}
 
 	if (html) {
@@ -217,7 +226,7 @@ export async function onRequest(context) {
 				'CDN-Cache-Control': 'no-store',
 				'Cloudflare-CDN-Cache-Control': 'no-store',
 			});
-			applySecurityHeaders(headers);
+			applySecurityHeaders(headers, { noindex: isPartnerGuidePath(mappedPath) });
 			return new Response(null, { status: 301, headers });
 		}
 	}
@@ -228,7 +237,9 @@ export async function onRequest(context) {
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
 			'Cache-Control': 'no-store',
 		});
-		applySecurityHeaders(headers);
+		applySecurityHeaders(headers, {
+			noindex: isPartnerGuidePath(url.pathname) || isPartnerGuidePath(pathRedirect.split('#')[0]),
+		});
 		return new Response(null, { status: 301, headers });
 	}
 
@@ -261,7 +272,10 @@ export async function onRequest(context) {
 	const contentType = headers.get('Content-Type') || '';
 	const isHtml = contentType.includes('text/html');
 
-	applySecurityHeaders(headers, { html: isHtml });
+	applySecurityHeaders(headers, {
+		html: isHtml,
+		noindex: isPartnerGuidePath(url.pathname),
+	});
 
 	return new Response(response.body, {
 		status: response.status,
