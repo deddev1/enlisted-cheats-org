@@ -223,7 +223,7 @@ if (existsSync(distIndex)) {
 		}
 	}
 
-	const distCheatsPost = join(root, 'dist/blog/enlisted-cheats-complete-guide-2026/index.html');
+	const distCheatsPost = join(root, 'dist/blog/cheats-2026/index.html');
 	if (existsSync(distCheatsPost)) {
 		const cheatsHtml = readFileSync(distCheatsPost, 'utf8');
 		if (cheatsHtml.includes('noindex')) {
@@ -231,7 +231,7 @@ if (existsSync(distIndex)) {
 		}
 	}
 
-	const distGamePost = join(root, 'dist/blog/enlisted-new-player-guide/index.html');
+	const distGamePost = join(root, 'dist/blog/new-player/index.html');
 	if (existsSync(distGamePost)) {
 		const gameHtml = readFileSync(distGamePost, 'utf8');
 		if (!gameHtml.includes('noindex')) {
@@ -266,7 +266,7 @@ if (existsSync(distIndex)) {
 			fail('dist/sitemap.xml must not list /guides/ — hub is noindex; cheats guides live on /blog/');
 		}
 		const blogUrls = sitemapXml.match(/\/blog\/[^<]+/g) ?? [];
-		if (blogUrls.length > 0 && blogUrls.some((u) => /enlisted-new-player-guide|enlisted-mission-types-guide|enlisted-factions-explained|enlisted-open-world-farming|enlisted-steel-path-guide|enlisted-patch-notes-guide/.test(u))) {
+		if (blogUrls.length > 0 && blogUrls.some((u) => /enlisted-new-player-progression-guide|enlisted-mission-types-explained|enlisted-factions-infantry|enlisted-battlefield-farming|enlisted-steel-path-beginners|enlisted-patch-notes-guide|steel-path\/|new-player\//.test(u))) {
 			fail('dist/sitemap.xml must not list game guide blog posts — cheats posts only');
 		}
 	}

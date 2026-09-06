@@ -16,9 +16,6 @@
 
 /sitemap-0.xml /sitemap.xml 301
 
-/blog/enlisted-cheats-2026-whats-new/ /blog/enlisted-cheats-complete-guide-2026/ 301
-/blog/enlisted-cheats-2026-whats-new /blog/enlisted-cheats-complete-guide-2026/ 301
-
 /guides/other-games/ /guides/#other-games-guides 301
 /guides/other-games /guides/#other-games-guides 301
 
@@ -113,9 +110,6 @@
 /enlisted-esp-hack/ /enlisted-esp/ 301
 /enlisted-unlock-all /features/ 301
 /enlisted-unlock-all/ /features/ 301
-
-/blog/elitefn-vs-enlisted-cheats-two-week-test /blog/voidcheats-vs-enlisted-cheats-two-week-test/ 301
-/blog/elitefn-vs-enlisted-cheats-two-week-test/ /blog/voidcheats-vs-enlisted-cheats-two-week-test/ 301
 
 /warframe-cheats /enlisted-cheats/ 301
 /warframe-cheats/ /enlisted-cheats/ 301
@@ -344,3 +338,38 @@
 /guides/guide-valohacks-com-https/ /guides/valohacks-com/ 301
 /guides/guide-valohacks-com-https /guides/valohacks-com/ 301
 # END AUTO-GENERATED guide slug redirects
+
+# BEGIN AUTO-GENERATED blog slug redirects
+/blog/enlisted-cheats-complete-guide-2026/ /blog/cheats-2026/ 301
+/blog/enlisted-cheats-complete-guide-2026 /blog/cheats-2026/ 301
+/blog/enlisted-cheats-buyers-guide/ /blog/buyers-guide/ 301
+/blog/enlisted-cheats-buyers-guide /blog/buyers-guide/ 301
+/blog/enlisted-aimbot-settings-guide/ /blog/aimbot-settings/ 301
+/blog/enlisted-aimbot-settings-guide /blog/aimbot-settings/ 301
+/blog/enlisted-esp-wallhack-explained/ /blog/esp-wallhack/ 301
+/blog/enlisted-esp-wallhack-explained /blog/esp-wallhack/ 301
+/blog/undetected-enlisted-cheats-eac/ /blog/undetected-eac/ 301
+/blog/undetected-enlisted-cheats-eac /blog/undetected-eac/ 301
+/blog/enlisted-cheats-vs-cheatvault-comparison/ /blog/vs-cheatvault/ 301
+/blog/enlisted-cheats-vs-cheatvault-comparison /blog/vs-cheatvault/ 301
+/blog/voidcheats-vs-enlisted-cheats-two-week-test/ /blog/vs-voidcheats/ 301
+/blog/voidcheats-vs-enlisted-cheats-two-week-test /blog/vs-voidcheats/ 301
+/blog/enlisted-cheats-vs-ghostware-features-pricing/ /blog/vs-ghostware/ 301
+/blog/enlisted-cheats-vs-ghostware-features-pricing /blog/vs-ghostware/ 301
+/blog/enlisted-steel-path-beginners-guide/ /blog/steel-path/ 301
+/blog/enlisted-steel-path-beginners-guide /blog/steel-path/ 301
+/blog/enlisted-battlefield-farming-guide/ /blog/battlefield/ 301
+/blog/enlisted-battlefield-farming-guide /blog/battlefield/ 301
+/blog/enlisted-factions-infantry-tanks-artillery-guide/ /blog/factions/ 301
+/blog/enlisted-factions-infantry-tanks-artillery-guide /blog/factions/ 301
+/blog/enlisted-mission-types-explained/ /blog/missions/ 301
+/blog/enlisted-mission-types-explained /blog/missions/ 301
+/blog/enlisted-patch-notes-guide/ /blog/patch-notes/ 301
+/blog/enlisted-patch-notes-guide /blog/patch-notes/ 301
+/blog/enlisted-new-player-progression-guide/ /blog/new-player/ 301
+/blog/enlisted-new-player-progression-guide /blog/new-player/ 301
+/blog/enlisted-cheats-2026-whats-new/ /blog/cheats-2026/ 301
+/blog/enlisted-cheats-2026-whats-new /blog/cheats-2026/ 301
+/blog/elitefn-vs-enlisted-cheats-two-week-test/ /blog/vs-voidcheats/ 301
+/blog/elitefn-vs-enlisted-cheats-two-week-test /blog/vs-voidcheats/ 301
+# END AUTO-GENERATED blog slug redirects

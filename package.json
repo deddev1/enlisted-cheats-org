@@ -22,7 +22,7 @@
 		"preview": "astro preview --host 0.0.0.0 --port 3000",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs",
 		"generate:i18n": "node scripts/i18n-data/build-home-ui.mjs && node scripts/generate-i18n-content.mjs && node scripts/generate-locale-path-redirects.mjs",
-		"generate:blog": "node scripts/generate-blog-posts.mjs",
+		"generate:blog": "node scripts/generate-blog-posts.mjs && node scripts/generate-blog-slug-redirects.mjs",
 		"generate:guides": "node scripts/generate-external-guides.mjs && node scripts/generate-guide-slug-redirects.mjs",
 		"fetch:guide-images": "node scripts/fetch-guide-ign-images.mjs",
 		"deploy": "npm run build && wrangler deploy",
