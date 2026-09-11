@@ -1,5 +1,5 @@
 ---
-import { gameplayPreviewScreenshots } from '../data/deadside';
+import { pricingShopImage } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
@@ -22,12 +22,8 @@ const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? p
 const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
 const defaultPlan = monthlyPlan;
 
-const pricingSlides = gameplayPreviewScreenshots.map((shot) => ({
-	src: contentSrc(shot.src),
-	srcSet: contentSrcSet(shot.src),
-	alt: shot.alt,
-	title: shot.title,
-}));
+const pricingImageSrc = contentSrc(pricingShopImage.src);
+const pricingImageSrcSet = contentSrcSet(pricingShopImage.src);
 
 const featurePills = [
 	{ icon: 'bolt', label: ui.trust.delivery },
@@ -44,57 +40,19 @@ const featurePills = [
 	aria-label={ui.nav.pricing}
 >
 	<div class="pricing-showcase__media">
-		<div class="pricing-showcase__gallery" data-pricing-gallery tabindex="0">
-			<button
-				type="button"
-				class="pricing-showcase__nav pricing-showcase__nav--prev"
-				data-pricing-prev
-				aria-label="Previous gameplay screenshot"
-			>
-				<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M14.5 6.5 9 12l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-				</svg>
-			</button>
-
-			<figure class="pricing-showcase__figure media-frame">
-				{
-					pricingSlides.map((slide, index) => (
-						<img
-							src={slide.src}
-							{...(slide.srcSet ? { srcset: slide.srcSet } : {})}
-							sizes={productMainSizes}
-							alt={slide.alt}
-							title={slide.title}
-							width="1280"
-							height="720"
-							class:list={['pricing-showcase__image', { 'is-active': index === 0 }]}
-							data-pricing-slide
-							loading={index === 0 ? 'eager' : 'lazy'}
-							decoding="async"
-							hidden={index !== 0}
-						/>
-					))
-				}
-			</figure>
-
-			<button
-				type="button"
-				class="pricing-showcase__nav pricing-showcase__nav--next"
-				data-pricing-next
-				aria-label="Next gameplay screenshot"
-			>
-				<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M9.5 6.5 15 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-				</svg>
-			</button>
-
-			<p class="pricing-showcase__slide-label" data-pricing-label>
-				{pricingSlides[0]?.title}
-			</p>
-			<p class="pricing-showcase__slide-count" data-pricing-count aria-live="polite">
-				1 / {pricingSlides.length}
-			</p>
-		</div>
+		<figure class="pricing-showcase__figure media-frame">
+			<img
+				src={pricingImageSrc}
+				{...(pricingImageSrcSet ? { srcset: pricingImageSrcSet } : {})}
+				sizes={productMainSizes}
+				alt={pricingShopImage.alt}
+				width="1280"
+				height="720"
+				class="pricing-showcase__image"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
 	</div>
 
 	<div
@@ -104,10 +62,14 @@ const featurePills = [
 		data-buy-prefix={ui.product.addToCart}
 		data-buy-show-price="false"
 	>
-		<div
-			class:list={['pricing-showcase__header', !showPageTitle && 'pricing-showcase__header--solo-status']}
-		>
-			{showPageTitle ? <h1 class="pricing-showcase__title">{productInfo.name}</h1> : null}
+		<div class="pricing-showcase__header">
+			{
+				showPageTitle ? (
+					<h1 class="pricing-showcase__title">{productInfo.name}</h1>
+				) : (
+					<h2 class="pricing-showcase__title">{ui.nav.pricing}</h2>
+				)
+			}
 			<span class="pricing-showcase__status">
 				<span class="pricing-showcase__status-dot" aria-hidden="true"></span>
 				Undetected
@@ -227,71 +189,7 @@ const featurePills = [
 
 <script>
 	import { initPlanSelectors } from '../lib/plan-selector';
-
-	function initPricingGalleries() {
-		for (const root of document.querySelectorAll('[data-pricing-gallery]')) {
-			if (!(root instanceof HTMLElement)) continue;
-			if (root.dataset.pricingGalleryReady === 'true') continue;
-
-			const slides = [...root.querySelectorAll('[data-pricing-slide]')].filter(
-				(node): node is HTMLImageElement => node instanceof HTMLImageElement,
-			);
-			if (!slides.length) continue;
-
-			const label = root.querySelector('[data-pricing-label]');
-			const count = root.querySelector('[data-pricing-count]');
-			const prev = root.querySelector('[data-pricing-prev]');
-			const next = root.querySelector('[data-pricing-next]');
-
-			let index = slides.findIndex((slide) => slide.classList.contains('is-active'));
-			if (index < 0) index = 0;
-
-			const render = () => {
-				slides.forEach((slide, i) => {
-					const active = i === index;
-					slide.classList.toggle('is-active', active);
-					slide.toggleAttribute('hidden', !active);
-				});
-				const active = slides[index];
-				if (label instanceof HTMLElement) {
-					label.textContent = active?.title ?? active?.alt ?? '';
-				}
-				if (count instanceof HTMLElement) {
-					count.textContent = `${index + 1} / ${slides.length}`;
-				}
-			};
-
-			const step = (delta: number) => {
-				index = (index + delta + slides.length) % slides.length;
-				render();
-			};
-
-			prev?.addEventListener('click', () => step(-1));
-			next?.addEventListener('click', () => step(1));
-
-			root.addEventListener('keydown', (event) => {
-				if (event.key === 'ArrowLeft') {
-					event.preventDefault();
-					step(-1);
-				}
-				if (event.key === 'ArrowRight') {
-					event.preventDefault();
-					step(1);
-				}
-			});
-
-			root.dataset.pricingGalleryReady = 'true';
-			render();
-		}
-	}
-
-	function initPricingSection() {
-		initPlanSelectors();
-		initPricingGalleries();
-	}
-
-	initPricingSection();
-	document.addEventListener('astro:page-load', initPricingSection);
+	initPlanSelectors();
 </script>
 
 <style>
@@ -317,22 +215,6 @@ const featurePills = [
 		min-width: 0;
 	}
 
-	.pricing-showcase__gallery {
-		position: relative;
-		display: grid;
-		grid-template-columns: auto minmax(0, 1fr) auto;
-		align-items: center;
-		gap: 0.45rem;
-		width: 100%;
-		min-width: 0;
-	}
-
-	.pricing-showcase__gallery:focus-visible {
-		outline: 2px solid rgba(111, 143, 58, 0.55);
-		outline-offset: 4px;
-		border-radius: var(--radius-media);
-	}
-
 	.pricing-showcase__figure {
 		margin: 0;
 		width: 100%;
@@ -341,8 +223,6 @@ const featurePills = [
 		border-radius: var(--radius-media);
 		overflow: hidden;
 		background: rgba(0, 0, 0, 0.28);
-		grid-column: 1 / -1;
-		grid-row: 1;
 	}
 
 	.pricing-showcase__figure.media-frame img {
@@ -355,95 +235,8 @@ const featurePills = [
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center center;
+		object-position: center 8%;
 		transform: none;
-		opacity: 0;
-		transition: opacity 0.28s ease;
-	}
-
-	.pricing-showcase__image.is-active {
-		opacity: 1;
-	}
-
-	.pricing-showcase__image[hidden] {
-		display: none;
-	}
-
-	.pricing-showcase__nav {
-		position: relative;
-		z-index: 3;
-		grid-row: 1;
-		display: grid;
-		place-items: center;
-		width: 2.35rem;
-		height: 2.35rem;
-		margin: 0;
-		padding: 0;
-		border: 1px solid rgba(255, 255, 255, 0.14);
-		border-radius: 999px;
-		background: rgba(10, 13, 11, 0.72);
-		color: #fff;
-		cursor: pointer;
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-		transition:
-			background 0.2s ease,
-			border-color 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.pricing-showcase__nav svg {
-		width: 1.15rem;
-		height: 1.15rem;
-	}
-
-	.pricing-showcase__nav:hover,
-	.pricing-showcase__nav:focus-visible {
-		background: rgba(17, 22, 18, 0.92);
-		border-color: rgba(111, 143, 58, 0.45);
-		transform: scale(1.04);
-	}
-
-	.pricing-showcase__nav--prev {
-		grid-column: 1;
-		justify-self: start;
-		margin-left: 0.55rem;
-	}
-
-	.pricing-showcase__nav--next {
-		grid-column: 3;
-		justify-self: end;
-		margin-right: 0.55rem;
-	}
-
-	.pricing-showcase__slide-label {
-		grid-column: 1 / -1;
-		margin: 0.55rem 0 0;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		color: var(--color-muted);
-		text-align: center;
-		line-height: 1.35;
-	}
-
-	.pricing-showcase__slide-count {
-		position: absolute;
-		top: 0.55rem;
-		right: 0.65rem;
-		z-index: 2;
-		margin: 0;
-		padding: 0.2rem 0.5rem;
-		border-radius: 999px;
-		background: rgba(10, 13, 11, 0.72);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		color: rgba(255, 255, 255, 0.82);
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		pointer-events: none;
 	}
 
 	.pricing-showcase__checkout {
@@ -460,10 +253,6 @@ const featurePills = [
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.65rem;
-	}
-
-	.pricing-showcase__header--solo-status {
-		justify-content: flex-end;
 	}
 
 	.pricing-showcase__title {
@@ -719,19 +508,6 @@ const featurePills = [
 		.pricing-showcase {
 			grid-template-columns: 1fr;
 			align-items: stretch;
-		}
-
-		.pricing-showcase__nav {
-			width: 2.15rem;
-			height: 2.15rem;
-		}
-
-		.pricing-showcase__nav--prev {
-			margin-left: 0.4rem;
-		}
-
-		.pricing-showcase__nav--next {
-			margin-right: 0.4rem;
 		}
 
 		.pricing-showcase__plans {

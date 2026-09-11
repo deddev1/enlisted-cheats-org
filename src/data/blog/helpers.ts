@@ -1,5 +1,5 @@
 import { siteConfig } from '../site';
-import { deadsideImages } from '../deadside';
+import { enlistedImages } from '../enlisted';
 import {
 	defaultLocale,
 	localeCodes,
@@ -10,16 +10,16 @@ import type { BlogImageKey, BlogPostDefinition, BlogTranslation, ResolvedBlogPos
 import { blogPosts as rawBlogPosts } from './posts.generated';
 
 const imageMap: Record<BlogImageKey, string> = {
-	hero: deadsideImages.hero,
-	espWallhack: deadsideImages.espWallhack,
-	aimbotCombat: deadsideImages.aimbotCombat,
-	squadFight: deadsideImages.squadFight,
-	headerArt: deadsideImages.headerArt,
-	cheatsPackage: deadsideImages.cheatsPackage,
-	playerEsp: deadsideImages.playerEsp,
-	rebootFight: deadsideImages.rebootFight,
-	battleRoyaleCombat: deadsideImages.battleRoyaleCombat,
-	battleRoyaleIslandMap: deadsideImages.battleRoyaleIsland,
+	hero: enlistedImages.hero,
+	espWallhack: enlistedImages.espWallhack,
+	aimbotCombat: enlistedImages.aimbotCombat,
+	squadFight: enlistedImages.squadFight,
+	headerArt: enlistedImages.headerArt,
+	cheatsPackage: enlistedImages.cheatsPackage,
+	playerEsp: enlistedImages.playerEsp,
+	rebootFight: enlistedImages.rebootFight,
+	battleRoyaleCombat: enlistedImages.battleRoyaleCombat,
+	battleRoyaleIslandMap: enlistedImages.battleRoyaleIsland,
 };
 
 function expandTranslations(
@@ -38,8 +38,8 @@ export const blogPosts: BlogPostDefinition[] = rawBlogPosts.map((post) => ({
 	translations: expandTranslations(post.translations as Partial<Record<LocaleCode, BlogTranslation>> & { en: BlogTranslation }),
 }));
 
-/** Native Deadside game guides on /blog/* — indexable; partner guides stay on /guides/ (noindex). */
-export const GAME_GUIDES_CATEGORY = 'Deadside Game Guides';
+/** Game progression posts — noindex at /blog/*; not shown on indexable hubs. */
+export const GAME_GUIDES_CATEGORY = 'Enlisted Game Guides';
 
 export function isGameGuidePost(post: Pick<BlogPostDefinition, 'category'>): boolean {
 	return post.category === GAME_GUIDES_CATEGORY;
@@ -55,8 +55,8 @@ export function getBlogImageSrc(key: BlogImageKey): string {
 
 export function blogCardHeading(title: string): string {
 	const stripped = title
-		.replace(/^Deadside Cheats:?\s*/i, '')
-		.replace(/^Deadside\s+/i, '')
+		.replace(/^Enlisted Cheats:?\s*/i, '')
+		.replace(/^Enlisted\s+/i, '')
 		.replace(/:\s*.+$/, '')
 		.trim();
 	if (stripped.length <= 34) return stripped;
@@ -112,10 +112,6 @@ export function getFeaturedPosts(locale: LocaleCode, limit = 3): ResolvedBlogPos
 
 export function getCheatsBlogPosts(locale: LocaleCode): ResolvedBlogPost[] {
 	return getAllPostsForLocale(locale).filter(isCheatsBlogPost);
-}
-
-export function getGameGuideBlogPosts(locale: LocaleCode): ResolvedBlogPost[] {
-	return getAllPostsForLocale(locale).filter(isGameGuidePost);
 }
 
 export function getProductBlogPosts(locale: LocaleCode, limit = 3): ResolvedBlogPost[] {
@@ -188,10 +184,7 @@ export function getAllBlogStaticPaths(): { params: { lang?: string; slug: string
 	return paths;
 }
 
-/**
- * English blog routes only (locale blog pages ship later).
- * Priority stays below product pages (see sitemap-meta.ts) so /blog/ supports — not competes with — pillars.
- */
+/** English blog routes only (locale blog pages ship later). */
 export function getBlogSitemapEntries() {
 	const locale = defaultLocale;
 
@@ -212,27 +205,27 @@ export function getBlogSitemapEntries() {
 		{
 			path: getBlogBasePath(locale),
 			lastmod: indexLastmod,
-			priority: 0.52,
-			changefreq: 'weekly',
+			priority: 0.92,
+			changefreq: 'daily',
 			images: [
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-					title: 'Deadside cheats guides',
-					caption: 'Deadside cheats guides covering ESP, aimbot, undetected status, and vendor comparisons',
+					title: 'Enlisted cheats guides',
+					caption: 'Enlisted cheats guides covering ESP, aimbot, undetected status, and vendor comparisons',
 				},
 			],
 		},
 	];
 
 	for (const post of blogPosts) {
+		if (isGameGuidePost(post)) continue;
 		const t = post.translations[locale];
 		const imageSrc = getBlogImageSrc(post.imageKey);
-		const isGameGuide = isGameGuidePost(post);
 		entries.push({
 			path: getBlogPostPath(locale, t.slug),
 			lastmod: post.updated,
-			priority: isGameGuide ? 0.46 : 0.48,
-			changefreq: 'monthly',
+			priority: 0.9,
+			changefreq: 'weekly',
 			images: [
 				{
 					url: new URL(imageSrc, siteConfig.url).href,

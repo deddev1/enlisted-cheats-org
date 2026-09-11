@@ -48,10 +48,10 @@ export const guideIgnImages: Record<string, { src: string; alt: string; ignSourc
 		alt: 'Marathon sci-fi extraction shooter on hostile alien world',
 		ignSource: 'https://assets-prd.ignimgs.com/2024/12/07/marathon-button.jpg',
 	},
-	'open world': {
-		src: '/images/guides/open world.webp',
+	'battlefield': {
+		src: '/images/guides/battlefield.webp',
 		alt: 'Battlefield large-scale modern military warfare combat',
-		ignSource: 'https://assets-prd.ignimgs.com/2021/06/09/open world-2042-button.jpg',
+		ignSource: 'https://assets-prd.ignimgs.com/2021/06/09/battlefield-2042-button.jpg',
 	},
 	'league-of-legends': {
 		src: '/images/guides/league-of-legends.webp',
@@ -200,7 +200,7 @@ export const guideIgnImages: Record<string, { src: string; alt: string; ignSourc
 	},
 	'warframe': {
 		src: '/images/guides/warframe.webp',
-		alt: 'Deadside sci-fi ninja action looter shooter mission',
+		alt: 'Enlisted sci-fi ninja action looter shooter mission',
 		ignSource: 'https://assets-prd.ignimgs.com/2013/03/25/warframe-button.jpg',
 	},
 	'raft': {

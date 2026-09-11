@@ -27,27 +27,27 @@ const STEAM_SHOTS = [
 
 /** Map existing SEO filenames → Steam screenshot index */
 const TARGETS = [
-	{ file: 'deadside-cheats-hero.webp', shot: 0 },
-	{ file: 'deadside-esp-overlay.webp', shot: 1 },
-	{ file: 'deadside-esp-enemies.webp', shot: 2 },
-	{ file: 'deadside-esp-modules.webp', shot: 3 },
-	{ file: 'deadside-aimbot-menu.webp', shot: 4 },
+	{ file: 'enlisted-cheats-hero.webp', shot: 0 },
+	{ file: 'enlisted-esp-overlay.webp', shot: 1 },
+	{ file: 'enlisted-esp-enemies.webp', shot: 2 },
+	{ file: 'enlisted-esp-modules.webp', shot: 3 },
+	{ file: 'enlisted-aimbot-menu.webp', shot: 4 },
 	{ file: 'rust-recoil-trainer.webp', shot: 5 },
-	{ file: 'deadside-aimbot-ui.webp', shot: 6 },
-	{ file: 'deadside-wallhack-ui.webp', shot: 7 },
-	{ file: 'deadside-cheats-menu.webp', shot: 8 },
-	{ file: 'deadside-cheats-dashboard.webp', shot: 8 },
-	{ file: 'deadside-cheats-cover.webp', shot: 9 },
-	{ file: 'deadside-cheats-panel.webp', shot: 10 },
-	{ file: 'deadside-cheats-status.webp', shot: 11 },
-	{ file: 'deadside-radar-ui.webp', shot: 2 },
-	{ file: 'deadside-soft-aim-ui.webp', shot: 4 },
-	{ file: 'deadside-cheats-dashboard.webp', shot: 1 },
+	{ file: 'enlisted-aimbot-ui.webp', shot: 6 },
+	{ file: 'enlisted-wallhack-ui.webp', shot: 7 },
+	{ file: 'enlisted-cheats-menu.webp', shot: 8 },
+	{ file: 'enlisted-cheats-dashboard.webp', shot: 8 },
+	{ file: 'enlisted-cheats-cover.webp', shot: 9 },
+	{ file: 'enlisted-cheats-panel.webp', shot: 10 },
+	{ file: 'enlisted-cheats-status.webp', shot: 11 },
+	{ file: 'enlisted-radar-ui.webp', shot: 2 },
+	{ file: 'enlisted-soft-aim-ui.webp', shot: 4 },
+	{ file: 'enlisted-cheats-dashboard.webp', shot: 1 },
 ];
 
 async function fetchBuffer(url) {
 	const res = await fetch(url, {
-		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Deadside CheatsSite/1.0)' },
+		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Enlisted CheatsSite/1.0)' },
 	});
 	if (!res.ok) throw new Error(`Failed ${url}: ${res.status}`);
 	return Buffer.from(await res.arrayBuffer());

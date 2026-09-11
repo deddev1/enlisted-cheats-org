@@ -65,8 +65,8 @@ console.log(`[cloudflare-build] Project root: ${projectRoot}`);
 console.log('[cloudflare-build] Installing dependencies...');
 execSync('npm install', { stdio: 'inherit' });
 
-console.log('[cloudflare-build] Building site (with sitemap + SEO audit)...');
-execSync('npm run build:validate', { stdio: 'inherit' });
+console.log('[cloudflare-build] Building site...');
+execSync('npm run build', { stdio: 'inherit' });
 
 if (!existsSync('dist/index.html')) {
 	console.error('[cloudflare-build] dist/index.html was not created. Build failed.');
@@ -108,7 +108,7 @@ writeFileSync(
 		{
 			builtAt: new Date().toISOString(),
 			commit: buildId,
-			site: 'https://deadsidecheats.org',
+			site: 'https://enlistedcheats.org',
 		},
 		null,
 		2,

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Mirror deadside.com marketing screenshots to local responsive WebP.
- * Run: node scripts/fetch-deadside-official-images.mjs
+ * Mirror enlisted.net marketing screenshots to local responsive WebP.
+ * Run: node scripts/fetch-enlisted-official-images.mjs
  */
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -12,18 +12,18 @@ const WIDTHS = [480, 640, 960, 1400];
 
 const SOURCES = [
 	{
-		url: 'https://deadside.com/i/scr/10.jpg?v=20251222',
-		base: 'deadside-official-panorama',
+		url: 'https://enlisted.net/i/scr/10.jpg?v=20251222',
+		base: 'enlisted-official-panorama',
 		quality: { master: 82, 480: 68, 640: 74, 960: 78, 1400: 82 },
 	},
 	{
-		url: 'https://deadside.com/i/scr/3.jpg?v=20251222',
-		base: 'deadside-official-squad-combat',
+		url: 'https://enlisted.net/i/scr/3.jpg?v=20251222',
+		base: 'enlisted-official-squad-combat',
 		quality: { master: 76, 480: 62, 640: 68, 960: 72, 1400: 76 },
 	},
 	{
-		url: 'https://deadside.com/i/scr/thumb-6.webp?v=20251222',
-		base: 'deadside-official-squad-thumb',
+		url: 'https://enlisted.net/i/scr/thumb-6.webp?v=20251222',
+		base: 'enlisted-official-squad-thumb',
 		quality: { master: 80 },
 	},
 ];

@@ -1,6 +1,6 @@
-# Deadside Cheats — Marketing Site
+# Enlisted Cheats — Marketing Site
 
-Static Astro 7 site for [deadsidecheats.org](https://deadsidecheats.org). Primary SEO focus: **Deadside Cheats** (supporting: Deadside cheats, deadside esp, deadside aimbot).
+Static Astro 7 site for [enlistedcheats.org](https://enlistedcheats.org). Primary SEO focus: **Enlisted Cheats** (supporting: Enlisted cheats, enlisted esp, enlisted aimbot).
 
 ## Stack
 
@@ -22,7 +22,7 @@ Build and validate sitemaps:
 npm run build:validate
 ```
 
-Refresh Deadside atmosphere images (optional):
+Refresh Enlisted atmosphere images (optional):
 
 ```bash
 npm run fetch:images
@@ -31,11 +31,11 @@ npm run optimize:images
 
 ## Deploy (Cloudflare Pages)
 
-1. Create a Cloudflare Pages project named **deadsidecheats**
+1. Create a Cloudflare Pages project named **enlistedcheats**
 2. Connect this repo or upload `dist/` after `npm run build`
 3. Build command: `npm run build`
 4. Output directory: `dist`
-5. Custom domain **deadsidecheats.org** (apex) and redirect **www** → apex
+5. Custom domain **enlistedcheats.org** (apex) and redirect **www** → apex
 6. Enable SSL **Always Use HTTPS**
 
 CLI deploy:
@@ -48,8 +48,8 @@ npm run pages:deploy
 
 - Node.js >= 22.12.0
 - Checkout URL in `src/data/site.ts` (`siteConfig.checkoutUrl`)
-- Canonical site URL: `https://deadsidecheats.org`
+- Canonical site URL: `https://enlistedcheats.org`
 
 ## License
 
-Private — for deadsidecheats.org deployment only.
+Private — for enlistedcheats.org deployment only.

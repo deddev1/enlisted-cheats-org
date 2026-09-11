@@ -6,41 +6,41 @@ export const LOCALES = [
 ];
 
 export const PAGE_IDS = [
-	'home', 'deadside-esp', 'deadside-aimbot', 'features', 'pricing', 'setup',
+	'home', 'enlisted-esp', 'enlisted-aimbot', 'features', 'pricing', 'setup',
 	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',
 	'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 	'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
 ];
 
 /**
- * Banner image per page — thematic Deadside screenshots (see public/images/deadside-*).
+ * Banner image per page — thematic Enlisted screenshots (see public/images/enlisted-*).
  */
 export const HERO_IMAGES = {
-	home: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/deadside/index-new-bg-5.webp',
-	'deadside-esp': '/images/deadside-esp-wallhack-overlay.webp',
-	'deadside-aimbot': '/images/deadside-squad-aimbot-combat.webp',
-	features: '/images/deadside-cheats-main-menu.webp',
-	pricing: '/images/deadside-cheats-main-menu.webp',
-	setup: '/images/deadside-cheats-settings-panel.webp',
-	updates: '/images/deadside-loot-run-esp.webp',
-	faq: '/images/deadside-cheats-settings-panel.webp',
-	support: '/images/deadside-cheats-main-menu.webp',
-	undetected: '/images/deadside-cheats-combat-esp.webp',
-	wallhack: '/images/deadside-esp-enemy-boxes.webp',
-	radar: '/images/deadside-radar-hack-minimap.webp',
-	'eac-bypass': '/images/deadside-loot-run-esp.webp',
-	'cheats-2026': 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/deadside/index-new-bg-5.webp',
-	hacks: '/images/deadside-cheats-combat-esp.webp',
-	'cheat-download': '/images/deadside-cheats-main-menu.webp',
-	'mod-menu': '/images/deadside-cheats-main-menu.webp',
-	'soft-aim': '/images/deadside-squad-aimbot-combat.webp',
-	'best-cheats': '/images/deadside-loot-run-esp.webp',
-	'aimbot-hack': '/images/deadside-aimbot-targeting-menu.webp',
-	'esp-hack': '/images/deadside-esp-wallhack-overlay.webp',
-	'unlock-all': '/images/deadside-loot-esp.webp',
-	privacy: '/images/deadside-raid.webp',
-	refund: '/images/deadside-raid.webp',
-	terms: '/images/deadside-raid.webp',
+	home: 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/index-new-bg-5.webp',
+	'enlisted-esp': '/images/enlisted-esp-wallhack-overlay.webp',
+	'enlisted-aimbot': '/images/enlisted-squad-aimbot-combat.webp',
+	features: '/images/enlisted-cheats-main-menu.webp',
+	pricing: '/images/enlisted-cheats-main-menu.webp',
+	setup: '/images/enlisted-cheats-settings-panel.webp',
+	updates: '/images/enlisted-campaign-mission-esp.webp',
+	faq: '/images/enlisted-cheats-settings-panel.webp',
+	support: '/images/enlisted-cheats-main-menu.webp',
+	undetected: '/images/enlisted-cheats-combat-esp.webp',
+	wallhack: '/images/enlisted-esp-enemy-boxes.webp',
+	radar: '/images/enlisted-radar-hack-minimap.webp',
+	'eac-bypass': '/images/enlisted-campaign-mission-esp.webp',
+	'cheats-2026': 'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted/index-new-bg-5.webp',
+	hacks: '/images/enlisted-cheats-combat-esp.webp',
+	'cheat-download': '/images/enlisted-cheats-main-menu.webp',
+	'mod-menu': '/images/enlisted-cheats-main-menu.webp',
+	'soft-aim': '/images/enlisted-squad-aimbot-combat.webp',
+	'best-cheats': '/images/enlisted-campaign-mission-esp.webp',
+	'aimbot-hack': '/images/enlisted-aimbot-targeting-menu.webp',
+	'esp-hack': '/images/enlisted-esp-wallhack-overlay.webp',
+	'unlock-all': '/images/enlisted-supply-esp.webp',
+	privacy: '/images/enlisted-mission.webp',
+	refund: '/images/enlisted-mission.webp',
+	terms: '/images/enlisted-mission.webp',
 };
 
 export const TS_HEADER = `import type { LocaleCode } from './locales';
@@ -80,7 +80,7 @@ export type LocaleUi = {
 \t\titems: { category: string; question: string; answer: string }[];
 \t};
 };
-export type PageId = 'home' | 'deadside-esp' | 'deadside-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
+export type PageId = 'home' | 'enlisted-esp' | 'enlisted-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;
 
 /** Clamp meta strings to SEO limits without ugly ellipsis. */
@@ -111,7 +111,7 @@ export function stripZadeyoFromMeta(text) {
 		.replace(/\s*Zadeyo delivery\.?/gi, ' instant digital delivery.')
 		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
 		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy Deadside Cheats/g, 'Buy Deadside Cheats')
+		.replace(/Buy Enlisted Cheats/g, 'Buy Enlisted Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -133,8 +133,8 @@ export function section(h2, ...args) {
 
 /** Authoritative external citation helpers (open in new tab). */
 export const EXT = {
-	epic: '<a href="https://www.digitalextremes.com/" target="_blank" rel="noopener noreferrer">Bad Pixel</a>',
-	rust: '<a href="https://deadside.com/" target="_blank" rel="noopener noreferrer">official Deadside patch notes</a>',
-	status: '<a href="https://store.steampowered.com/news/?appids=895400" target="_blank" rel="noopener noreferrer">Deadside PC update notes</a>',
-	eac: '<a href="https://deadside.com/" target="_blank" rel="noopener noreferrer">Deadside anti-cheat</a>',
+	epic: '<a href="https://www.digitalextremes.com/" target="_blank" rel="noopener noreferrer">Gaijin</a>',
+	rust: '<a href="https://enlisted.net/" target="_blank" rel="noopener noreferrer">official Enlisted patch notes</a>',
+	status: '<a href="https://enlisted.net/en/news/" target="_blank" rel="noopener noreferrer">Enlisted PC update notes</a>',
+	eac: '<a href="https://enlisted.net/" target="_blank" rel="noopener noreferrer">Enlisted anti-cheat</a>',
 };

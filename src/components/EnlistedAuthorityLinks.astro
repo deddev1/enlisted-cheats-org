@@ -1,5 +1,5 @@
 ---
-import { deadsideAuthorityLinks } from '../data/guides/helpers';
+import { enlistedAuthorityLinks } from '../data/guides/helpers';
 
 interface Props {
 	headingLevel?: 'h2' | 'h3';
@@ -9,8 +9,8 @@ const { headingLevel = 'h3' } = Astro.props;
 const HeadingTag = headingLevel;
 ---
 
-<section class="authority-links" aria-labelledby="deadside-authority-title">
-	<HeadingTag id="deadside-authority-title" class="authority-links__title">
+<section class="authority-links" aria-labelledby="enlisted-authority-title">
+	<HeadingTag id="enlisted-authority-title" class="authority-links__title">
 		Official game guides &amp; resources
 	</HeadingTag>
 	<p class="authority-links__intro">
@@ -19,7 +19,7 @@ const HeadingTag = headingLevel;
 	</p>
 	<ul class="authority-links__list">
 		{
-			deadsideAuthorityLinks.map((link) => (
+			enlistedAuthorityLinks.map((link) => (
 				<li>
 					<a
 						class="authority-links__item"

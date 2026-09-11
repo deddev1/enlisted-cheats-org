@@ -1,13 +1,16 @@
 ---
 import BlogPostPage from '../../../components/BlogPostPage.astro';
-import { getAllPostsForLocale, getPostBySlug } from '../../../data/blog/helpers';
+import { blogPosts, getPostBySlug, resolvePost } from '../../../data/blog/helpers';
 import { defaultLocale } from '../../../data/i18n/locales';
 
 export function getStaticPaths() {
-	return getAllPostsForLocale(defaultLocale).map((post) => ({
-		params: { slug: post.translation.slug },
-		props: { post },
-	}));
+	return blogPosts.map((post) => {
+		const resolved = resolvePost(post, defaultLocale);
+		return {
+			params: { slug: resolved.translation.slug },
+			props: { post: resolved },
+		};
+	});
 }
 
 const { post } = Astro.props;

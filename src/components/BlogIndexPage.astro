@@ -11,7 +11,6 @@ import {
 	getBlogBasePath,
 	getCheatsBlogPosts,
 	getFeaturedPosts,
-	getGameGuideBlogPosts,
 } from '../data/blog/helpers';
 import { siteConfig } from '../data/site';
 import { getLocalizedPath } from '../data/i18n/routing';
@@ -23,7 +22,6 @@ interface Props {
 const { locale } = Astro.props;
 const ui = blogUi[locale];
 const cheatsPosts = getCheatsBlogPosts(locale);
-const gameGuidePosts = getGameGuideBlogPosts(locale);
 const featured = getFeaturedPosts(locale, 3);
 const canonicalPath = getBlogBasePath(locale);
 const canonicalURL = absoluteBlogUrl(locale);
@@ -60,13 +58,10 @@ const articleListSchema = {
 	<Navbar locale={locale} />
 	<main class="blog">
 		<header class="blog__hero">
-			<p class="blog__eyebrow">Deadside Cheats guides</p>
+			<p class="blog__eyebrow">Enlisted Cheats guides</p>
 			<h1>{ui.blogH1}</h1>
 			<p class="blog__intro">{ui.blogIntro}</p>
-			<p class="blog__note">
-				Cheats and Deadside game guides on this hub are indexable. Partner guides for other games live on
-				<a href="/guides/">/guides/</a> and are not indexed.
-			</p>
+			<p class="blog__note">Cheats guides are published in English and are the only indexed guide content on this site.</p>
 		</header>
 
 		{
@@ -83,27 +78,6 @@ const articleListSchema = {
 								description={blogCardExcerpt(post.translation.intro)}
 								loading={index === 0 ? 'eager' : 'lazy'}
 								fetchpriority={index === 0 ? 'high' : undefined}
-							/>
-						))}
-					</div>
-				</section>
-			)
-		}
-
-		{
-			gameGuidePosts.length > 0 && (
-				<section class="blog__section" aria-labelledby="blog-game-guides">
-					<h2 id="blog-game-guides" class="blog__section-title blog__section-title--center">
-						Deadside game guides
-					</h2>
-					<div class="blog__grid" aria-label="Deadside game guides">
-						{gameGuidePosts.map((post) => (
-							<BlogCinematicCard
-								href={post.canonicalPath}
-								imageSrc={post.imageSrc}
-								imageAlt={post.translation.imageAlt}
-								title={blogCardHeading(post.translation.title)}
-								description={blogCardExcerpt(post.translation.intro)}
 							/>
 						))}
 					</div>

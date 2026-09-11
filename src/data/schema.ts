@@ -4,87 +4,87 @@ export const pageFaqClusters: Partial<
 > = {
 	hacks: [
 		{
-			question: 'What are Deadside cheats?',
+			question: 'What are Enlisted cheats?',
 			answer:
-				'Deadside cheats are Windows PC tools for Deadside with ESP, wallhack, and aimbot controls. Deadside Cheats licenses include anti-cheat maintenance updates and setup support.',
+				'Enlisted cheats are Windows PC tools for Enlisted with ESP, wallhack, and aimbot controls. Enlisted Cheats licenses include anti-cheat maintenance updates and setup support.',
 		},
 		{
-			question: 'Are Deadside cheats permanently undetected?',
+			question: 'Are Enlisted cheats permanently undetected?',
 			answer:
 				'No package can promise that. We rebuild after anti-cheat and game patches and post status on Updates. Check there before you load in.',
 		},
 		{
-			question: 'What is included in the Deadside Cheats package?',
+			question: 'What is included in the Enlisted Cheats package?',
 			answer:
 				'Enemy ESP, medkit markers, radar cues, and configurable aimbot in one license. See Features, ESP, and Aimbot for control detail.',
 		},
 	],
-	'deadside-esp': [
+	'enlisted-esp': [
 		{
-			question: 'What is a Deadside wallhack?',
+			question: 'What is a Enlisted wallhack?',
 			answer:
-				'A Deadside wallhack is an ESP overlay that shows enemy units and enemy vehicles, heavy attacks, and loot through cover. Deadside Cheats wallhack includes distance readouts, team colours, and toggleable categories for loot runs and open-world firefights.',
+				'A Enlisted wallhack is an ESP overlay that shows enemy units and enemy vehicles, heavy attacks, and loot through cover. Enlisted Cheats wallhack includes distance readouts, team colours, and toggleable categories for campaign missions and large-scale battles.',
 		},
 		{
-			question: 'Does Deadside Cheats include a radar hack?',
+			question: 'Does Enlisted Cheats include a radar hack?',
 			answer:
-				'Yes. Deadside Cheats includes 2D radar-style overlays that highlight nearby threats outside your direct view — useful for reading flanks during team pushes.',
+				'Yes. Enlisted Cheats includes 2D radar-style overlays that highlight nearby threats outside your direct view — useful for reading flanks during team pushes.',
 		},
 		{
-			question: 'Does this fit loot runs and open-world firefights runs?',
+			question: 'Does this fit campaign missions and large-scale battles runs?',
 			answer:
 				'Yes. ESP and radar help you read nearby enemies and loot; aimbot covers the firefight. Tuned for solo and team push play.',
 		},
 	],
-	'deadside-aimbot': [
+	'enlisted-aimbot': [
 		{
-			question: 'What is Deadside aimbot?',
+			question: 'What is Enlisted aimbot?',
 			answer:
-				'Deadside aimbot is configurable aim assist with smoothness, FOV, and bone priority controls. It ships bundled with ESP and radar in the Deadside Cheats license for Windows PC.',
+				'Enlisted aimbot is configurable aim assist with smoothness, FOV, and bone priority controls. It ships bundled with ESP and radar in the Enlisted Cheats license for Windows PC.',
 		},
 		{
-			question: 'Can I use Deadside aimbot with a controller?',
+			question: 'Can I use Enlisted aimbot with a controller?',
 			answer:
-				'Yes. Deadside Cheats supports controller play on Windows PC. Tune FOV and smoothness per weapon profile after setup.',
+				'Yes. Enlisted Cheats supports controller play on Windows PC. Tune FOV and smoothness per weapon profile after setup.',
 		},
 		{
-			question: 'Are Deadside cheats permanently undetected?',
+			question: 'Are Enlisted cheats permanently undetected?',
 			answer:
 				'No package can promise that. We rebuild after anti-cheat and game patches and post status on Updates. Check there before you load in.',
 		},
 	],
 	pricing: [
 		{
-			question: 'How are Deadside Cheats licenses delivered?',
+			question: 'How are Enlisted Cheats licenses delivered?',
 			answer:
 				'Digitally after payment confirmation. Timing can vary by payment method — keep your order confirmation if you contact support.',
 		},
 		{
 			question: 'What does the $35/month plan include?',
 			answer:
-				'The monthly license includes ESP, wallhack overlays, radar, and aimbot controls with anti-cheat maintenance updates for Deadside on Windows PC.',
+				'The monthly license includes ESP, wallhack overlays, radar, and aimbot controls with anti-cheat maintenance updates for Enlisted on Windows PC.',
 		},
 		{
 			question: 'Is the $150 lifetime license worth it?',
 			answer:
-				'Lifetime pays off if you play Deadside across multiple seasons. It includes the same feature stack as monthly with long-term maintenance after patches.',
+				'Lifetime pays off if you play Enlisted across multiple seasons. It includes the same feature stack as monthly with long-term maintenance after patches.',
 		},
 	],
 	features: [
 		{
-			question: 'What is included in Deadside Cheats?',
+			question: 'What is included in Enlisted Cheats?',
 			answer:
 				'Enemy ESP, medkit markers, radar cues, and configurable aimbot in one license. See Features, ESP, and Aimbot for control detail.',
 		},
 		{
-			question: 'Does Deadside Cheats work on Windows PC?',
+			question: 'Does Enlisted Cheats work on Windows PC?',
 			answer:
-				'Yes — Deadside Cheats is built for Deadside on Windows 10 and 11 with in-client toggles for ESP, radar, and aimbot.',
+				'Yes — Enlisted Cheats is built for Enlisted on Windows 10 and 11 with in-client toggles for ESP, radar, and aimbot.',
 		},
 		{
-			question: 'How does anti-cheat affect Deadside Cheats?',
+			question: 'How does anti-cheat affect Enlisted Cheats?',
 			answer:
-				'Anti-cheat monitors Deadside on Windows PC. Deadside Cheats publishes maintenance notes after patches that may require a rebuild. Read the maintenance guide page for how updates are handled.',
+				'Anti-cheat monitors Enlisted on Windows PC. Enlisted Cheats publishes maintenance notes after patches that may require a rebuild. Read the maintenance guide page for how updates are handled.',
 		},
 	],
 };
@@ -153,8 +153,8 @@ export function buildFaqSchemaNode(
 
 const schemaRichPages = new Set<PageId>([
 	'hacks',
-	'deadside-esp',
-	'deadside-aimbot',
+	'enlisted-esp',
+	'enlisted-aimbot',
 	'pricing',
 	'features',
 	'faq',
@@ -164,16 +164,16 @@ function buildSetupHowToSchema(canonicalURL: string) {
 	return {
 		'@type': 'HowTo',
 		'@id': `${canonicalURL}#howto`,
-		name: 'Install Deadside Cheats on Windows PC',
+		name: 'Install Enlisted Cheats on Windows PC',
 		description:
-			'Activate your Deadside Cheats license, configure ESP and aimbot profiles, and verify anti-cheat maintenance status before queueing.',
+			'Activate your Enlisted Cheats license, configure ESP and aimbot profiles, and verify anti-cheat maintenance status before queueing.',
 		inLanguage: 'en',
 		step: [
 			{
 				'@type': 'HowToStep',
 				position: 1,
 				name: 'Check updates before you install',
-				text: 'Confirm your order email and license details. Check the Updates page for the latest anti-cheat maintenance build before launching Deadside. Close conflicting overlay software on Windows 10 or 11.',
+				text: 'Confirm your order email and license details. Check the Updates page for the latest anti-cheat maintenance build before launching Enlisted. Close conflicting overlay software on Windows 10 or 11.',
 			},
 			{
 				'@type': 'HowToStep',
@@ -184,8 +184,8 @@ function buildSetupHowToSchema(canonicalURL: string) {
 			{
 				'@type': 'HowToStep',
 				position: 3,
-				name: 'Verify status after Deadside patches',
-				text: 'When Bad Pixel ships a major Deadside update or anti-cheat patch, revisit the Updates page before queueing and download maintenance rebuilds when posted.',
+				name: 'Verify status after Enlisted patches',
+				text: 'When Gaijin ships a major Enlisted update or anti-cheat patch, revisit the Updates page before queueing and download maintenance rebuilds when posted.',
 			},
 		],
 	};

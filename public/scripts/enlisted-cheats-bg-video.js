@@ -1,5 +1,5 @@
 /**
- * Plays muted Deadside Cheats background clips without blocking interaction.
+ * Plays muted Enlisted Cheats background clips without blocking interaction.
  * - hero: eager muted autoplay (real src in HTML; poster is first paint)
  * - product / lazy: hydrate data-src only when near the viewport
  */
@@ -118,7 +118,7 @@
 		if (reduceMq.matches) return;
 
 		var heroes = Array.prototype.slice.call(
-			document.querySelectorAll('[data-deadside-cheats-video="hero"]'),
+			document.querySelectorAll('[data-enlisted-cheats-video="hero"]'),
 		);
 		if (!heroes.length) return;
 
@@ -140,7 +140,7 @@
 	observeLazy(
 		Array.prototype.slice.call(
 			document.querySelectorAll(
-				'[data-deadside-cheats-video="product"], [data-deadside-cheats-video="lazy"]',
+				'[data-enlisted-cheats-video="product"], [data-enlisted-cheats-video="lazy"]',
 			),
 		),
 	);

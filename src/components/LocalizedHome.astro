@@ -17,12 +17,12 @@ import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { homeFaqs, productInfo, siteConfig, customerReviewStats } from '../data/site';
 import {
-	deadsideImages,
+	enlistedImages,
 	faqSectionBg,
 	featuresSectionBg,
 	pricingShopImage,
 	reviewsSectionBg,
-} from '../data/deadside';
+} from '../data/enlisted';
 import {
 	buildAggregateOffer,
 	buildFaqSchemaNode,
@@ -43,7 +43,7 @@ const description = home.description;
 /** SEO consolidates to English; locale routes remain for UX. */
 const canonicalPath = getCanonicalPath('home', locale);
 const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
-const heroImage = new URL(deadsideImages.hero, siteConfig.url).href;
+const heroImage = new URL(enlistedImages.hero, siteConfig.url).href;
 
 const extraGraph: Record<string, unknown>[] =
 	locale === defaultLocale
@@ -150,11 +150,6 @@ const extraGraph: Record<string, unknown>[] =
 		position: relative;
 	}
 
-	.hero-stage + :global(.cheat-showcase) {
-		position: relative;
-		z-index: 2;
-	}
-
 	.site__section--reviews,
 	.site__section--faq,
 	.site__section--blog,
@@ -236,8 +231,8 @@ const extraGraph: Record<string, unknown>[] =
 				rgba(13, 17, 18, 0.52) 62%,
 				rgba(13, 17, 18, 0.96) 100%
 			),
-			var(--store-bg) center 42% / cover no-repeat;
-		filter: saturate(0.82) brightness(0.44);
+			var(--store-bg) center 18% / cover no-repeat;
+		filter: saturate(0.8) brightness(0.46);
 	}
 
 	.site__section--store::after {
@@ -245,7 +240,7 @@ const extraGraph: Record<string, unknown>[] =
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(111, 143, 58, 0.06), transparent 68%);
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.07), transparent 68%);
 		pointer-events: none;
 	}
 
@@ -293,8 +288,8 @@ const extraGraph: Record<string, unknown>[] =
 				rgba(13, 17, 18, 0.54) 62%,
 				rgba(13, 17, 18, 0.96) 100%
 			),
-			var(--reviews-bg) center 38% / cover no-repeat;
-		filter: saturate(0.85) brightness(0.46);
+			var(--reviews-bg) center / cover no-repeat;
+		filter: saturate(0.8) brightness(0.44);
 	}
 
 	.site__section--reviews::after {
@@ -302,7 +297,7 @@ const extraGraph: Record<string, unknown>[] =
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(111, 143, 58, 0.07), transparent 68%);
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.06), transparent 68%);
 		pointer-events: none;
 	}
 
@@ -327,8 +322,8 @@ const extraGraph: Record<string, unknown>[] =
 				rgba(13, 17, 18, 0.54) 62%,
 				rgba(13, 17, 18, 0.96) 100%
 			),
-			var(--faq-bg) center 42% / cover no-repeat;
-		filter: saturate(0.85) brightness(0.42);
+			var(--faq-bg) center / cover no-repeat;
+		filter: saturate(0.8) brightness(0.44);
 	}
 
 	.site__section--faq::after {
@@ -336,7 +331,7 @@ const extraGraph: Record<string, unknown>[] =
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(111, 143, 58, 0.07), transparent 68%);
+		background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.06), transparent 68%);
 		pointer-events: none;
 	}
 

@@ -4,10 +4,9 @@ import Navbar from '../components/Navbar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
-import { deadsideImages } from '../data/deadside';
+import { enlistedImages } from '../data/enlisted';
 import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal, contentSrc, contentSrcSet, galleryTileSizes, isExternalImage } from '../lib/responsive-images';
 import { englishPaths, pageIds, type PageId } from '../data/i18n/routing';
-import { getPageBreadcrumbLabel } from '../lib/page-breadcrumb';
 import { defaultLocale } from '../data/i18n/locales';
 import { siteConfig } from '../data/site';
 
@@ -18,8 +17,6 @@ interface Props {
 	description: string;
 	canonicalPath?: string;
 	heading: string;
-	/** Short crumb label (defaults to heading). */
-	breadcrumbLabel?: string;
 	intro: string;
 	eyebrow?: string;
 	heroImage?: string;
@@ -41,13 +38,12 @@ const {
 	description,
 	canonicalPath = '/',
 	heading,
-	breadcrumbLabel,
 	intro,
 	eyebrow,
-	heroImage = deadsideImages.hero,
-	heroAlt = 'Deadside cheats product preview',
-	gallery = deadsideImages.product.slice(0, 3),
-	galleryTitle = 'Deadside cheats UI reference',
+	heroImage = enlistedImages.hero,
+	heroAlt = 'Enlisted cheats product preview',
+	gallery = enlistedImages.product.slice(0, 3),
+	galleryTitle = 'Enlisted cheats UI reference',
 	ctaPrimary,
 	ctaSecondary,
 	showGallery = true,
@@ -69,14 +65,7 @@ const pageId = pageIdProp ?? resolvePageId(canonicalPath);
 
 const ui = getUi(locale);
 const homeHref = getLocalizedPath('home', locale);
-const resolvedEyebrow = eyebrow?.trim() ?? '';
-const crumbCurrent =
-	breadcrumbLabel ??
-	(pageId ? getPageBreadcrumbLabel(pageId, ui.nav, heading, ui.product.title) : heading);
-const showBannerEyebrow =
-	Boolean(resolvedEyebrow) &&
-	!heading.toLowerCase().startsWith(resolvedEyebrow.toLowerCase()) &&
-	crumbCurrent.toLowerCase() !== resolvedEyebrow.toLowerCase();
+const resolvedEyebrow = eyebrow ?? ui.product.title;
 
 const normalizedGallery = gallery
 	.map((item) => {
@@ -88,7 +77,7 @@ const normalizedGallery = gallery
 			};
 		}
 
-		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'deadside-cheats';
+		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'enlisted-cheats';
 		const keywordAlt = file
 			.split('-')
 			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -104,7 +93,7 @@ const normalizedGallery = gallery
 
 const breadcrumbs = [
 	{ label: ui.nav.home, href: homeHref },
-	{ label: crumbCurrent },
+	{ label: heading },
 ];
 
 function isCheckoutHref(href: string): boolean {
@@ -115,7 +104,7 @@ function externalLinkRel(href: string): string | undefined {
 	return href.startsWith('http') ? 'noopener noreferrer' : undefined;
 }
 
-const isHeroLcp = heroImage === deadsideImages.hero;
+const isHeroLcp = heroImage === enlistedImages.hero;
 const lcpImage = isHeroLcp ? heroPreloadSrc : undefined;
 const lcpImageSrcSet = isHeroLcp ? heroSrcSet : undefined;
 const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
@@ -216,9 +205,9 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 				<nav class="banner__crumbs" aria-label="Breadcrumb">
 					<a href={homeHref}>{ui.nav.home}</a>
 					<span aria-hidden="true">/</span>
-					<span aria-current="page">{crumbCurrent}</span>
+					<span aria-current="page">{heading}</span>
 				</nav>
-				{showBannerEyebrow && <p class="banner__eyebrow">{resolvedEyebrow}</p>}
+				<p class="banner__eyebrow">{resolvedEyebrow}</p>
 				<h1 class="banner__title">{heading}</h1>
 				<p class="banner__intro">{intro}</p>
 				{
@@ -449,7 +438,7 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 		display: grid;
 		gap: 1rem;
 		text-align: left;
-		color: #ffffff;
+		color: #d8cee9;
 		line-height: 1.7;
 	}
 
@@ -477,7 +466,6 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 
 	.article :global(h3) {
 		margin: 0;
-		font-family: var(--font-page-heading);
 		font-size: 1rem;
 		font-weight: 700;
 		color: var(--color-ink);
@@ -485,7 +473,7 @@ const lcpImageSizes = isHeroLcp ? heroSizes : undefined;
 
 	.article :global(p) {
 		margin: 0;
-		color: #ffffff;
+		color: var(--color-muted);
 	}
 
 	.article :global(.card-panel ul) {

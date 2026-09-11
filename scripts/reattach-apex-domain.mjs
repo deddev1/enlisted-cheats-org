@@ -51,7 +51,7 @@ async function main() {
 	r = await api(`/accounts/${ACCOUNT_ID}/workers/domains`, {
 		method: 'PUT',
 		body: {
-			hostname: 'deadsidecheats.org',
+			hostname: 'enlistedcheats.org',
 			service: SCRIPT,
 			environment: 'production',
 			zone_id: ZONE_ID,
@@ -77,7 +77,7 @@ async function main() {
 		method: 'POST',
 		body: {
 			type: 'CNAME',
-			name: 'deadsidecheats.org',
+			name: 'enlistedcheats.org',
 			content: TARGET,
 			proxied: true,
 			ttl: 1,

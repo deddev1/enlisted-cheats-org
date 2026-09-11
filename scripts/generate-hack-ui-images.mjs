@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate dark tactical cheat-UI mockups (ESP / aimbot / menu / status).
- * Not combat stock photos — product/HUD visuals for Deadside Cheats SEO filenames.
+ * Not combat stock photos — product/HUD visuals for Enlisted Cheats SEO filenames.
  */
 import { mkdir, readdir, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -15,18 +15,18 @@ const H = 900;
 
 /** Simple SEO filenames — hacks/cheats only. */
 const ASSETS = {
-	'deadside-cheats-hero.webp': heroSvg,
-	'deadside-cheats-cover.webp': coverSvg,
-	'deadside-esp-overlay.webp': espSvg,
-	'deadside-aimbot-ui.webp': aimbotSvg,
-	'deadside-wallhack-ui.webp': wallhackSvg,
-	'deadside-cheats-menu.webp': menuSvg,
-	'deadside-cheats-status.webp': statusSvg,
-	'deadside-radar-ui.webp': radarSvg,
-	'deadside-soft-aim-ui.webp': softAimSvg,
-	'deadside-cheats-panel.webp': panelSvg,
-	'deadside-cheats-dashboard.webp': dashboardSvg,
-	'deadside-cheats-logo.webp': null, // derived from hero
+	'enlisted-cheats-hero.webp': heroSvg,
+	'enlisted-cheats-cover.webp': coverSvg,
+	'enlisted-esp-overlay.webp': espSvg,
+	'enlisted-aimbot-ui.webp': aimbotSvg,
+	'enlisted-wallhack-ui.webp': wallhackSvg,
+	'enlisted-cheats-menu.webp': menuSvg,
+	'enlisted-cheats-status.webp': statusSvg,
+	'enlisted-radar-ui.webp': radarSvg,
+	'enlisted-soft-aim-ui.webp': softAimSvg,
+	'enlisted-cheats-panel.webp': panelSvg,
+	'enlisted-cheats-dashboard.webp': dashboardSvg,
+	'enlisted-cheats-logo.webp': null, // derived from hero
 };
 
 function esc(s) {
@@ -60,13 +60,13 @@ function frame(title, body) {
 
 function heroSvg() {
 	return frame(
-		'Deadside Cheats',
+		'Enlisted Cheats',
 		`
   <rect x="48" y="100" width="720" height="720" rx="12" fill="url(#panel)" stroke="#c4784033" stroke-width="2"/>
   <text x="80" y="160" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="800">ESP · AIMBOT · WALLHACK</text>
   <text x="80" y="210" fill="#b8aea2" font-family="Segoe UI, Arial, sans-serif" font-size="24">Undetected package UI for Windows PC</text>
   <rect x="80" y="260" width="280" height="48" rx="8" fill="#c47840"/>
-  <text x="120" y="292" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">BUY Deadside Cheats</text>
+  <text x="120" y="292" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">BUY Enlisted Cheats</text>
   <g transform="translate(860,140)">
     <rect width="680" height="620" rx="14" fill="#0f1317" stroke="#c4784044" stroke-width="2"/>
     <text x="28" y="44" fill="#e08c48" font-family="Consolas, monospace" font-size="18">overlay.esp</text>
@@ -85,10 +85,10 @@ function heroSvg() {
 
 function coverSvg() {
 	return frame(
-		'Deadside Cheats PACKAGE',
+		'Enlisted Cheats PACKAGE',
 		`
   <rect x="200" y="180" width="1200" height="520" rx="16" fill="url(#panel)" stroke="#c4784055" stroke-width="2"/>
-  <text x="260" y="300" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="800">Deadside Cheats</text>
+  <text x="260" y="300" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="800">Enlisted Cheats</text>
   <text x="260" y="370" fill="#d4a574" font-family="Segoe UI, Arial, sans-serif" font-size="32">ESP · Aimbot · Wallhack · Radar</text>
   <rect x="260" y="420" width="180" height="36" rx="6" fill="#243028"/>
   <text x="285" y="444" fill="#7a9e8a" font-family="Consolas, monospace" font-size="16">STATUS: ONLINE</text>
@@ -177,7 +177,7 @@ function menuSvg() {
 
 function statusSvg() {
 	return frame(
-		'Deadside Cheats STATUS',
+		'Enlisted Cheats STATUS',
 		`
   <rect x="360" y="220" width="880" height="420" rx="16" fill="url(#panel)" stroke="#7a9e8a66" stroke-width="2"/>
   <circle cx="480" cy="360" r="48" fill="#1a2a22" stroke="#7a9e8a" stroke-width="3"/>
@@ -185,7 +185,7 @@ function statusSvg() {
   <text x="560" y="340" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="800">MAINTAINED</text>
   <text x="560" y="390" fill="#b8aea2" font-family="Segoe UI, Arial, sans-serif" font-size="22">EAC rebuild posted · check Updates</text>
   <text x="560" y="460" fill="#8f8578" font-family="Consolas, monospace" font-size="16">No permanent undetected guarantee</text>
-  <text x="560" y="520" fill="#d4a574" font-family="Consolas, monospace" font-size="16">Deadside Cheats · status panel</text>`,
+  <text x="560" y="520" fill="#d4a574" font-family="Consolas, monospace" font-size="16">Enlisted Cheats · status panel</text>`,
 	);
 }
 
@@ -220,7 +220,7 @@ function softAimSvg() {
 
 function panelSvg() {
 	return frame(
-		'Deadside Cheats PANEL',
+		'Enlisted Cheats PANEL',
 		`
   <rect x="120" y="160" width="420" height="560" rx="12" fill="url(#panel)" stroke="#c4784044"/>
   <rect x="580" y="160" width="420" height="560" rx="12" fill="url(#panel)" stroke="#c4784044"/>
@@ -239,7 +239,7 @@ function dashboardSvg() {
 		'RUST CHEATS DASHBOARD',
 		`
   <rect x="80" y="120" width="1440" height="120" rx="10" fill="url(#panel)" stroke="#c4784033"/>
-  <text x="120" y="190" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Deadside Cheats dashboard</text>
+  <text x="120" y="190" fill="#f2ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Enlisted Cheats dashboard</text>
   <text x="1100" y="190" fill="#7a9e8a" font-family="Consolas, monospace" font-size="18">ONLINE</text>
   <rect x="80" y="280" width="460" height="480" rx="12" fill="url(#panel)" stroke="#c4784033"/>
   <rect x="580" y="280" width="460" height="480" rx="12" fill="url(#panel)" stroke="#c4784033"/>
@@ -294,12 +294,12 @@ let heroBuf = null;
 for (const [file, factory] of Object.entries(ASSETS)) {
 	if (!factory) continue;
 	const buf = await writeWebp(file, factory);
-	if (file === 'deadside-cheats-hero.webp') heroBuf = buf;
+	if (file === 'enlisted-cheats-hero.webp') heroBuf = buf;
 }
 
 if (heroBuf) {
 	const logo = await sharp(heroBuf).extract({ left: 860, top: 140, width: 512, height: 512 }).resize(512, 512).webp({ quality: 88 }).toBuffer();
-	await writeFile(path.join(imagesDir, 'deadside-cheats-logo.webp'), logo);
+	await writeFile(path.join(imagesDir, 'enlisted-cheats-logo.webp'), logo);
 
 	for (const { name, size } of [
 		{ name: 'favicon-16x16.png', size: 16 },
@@ -310,7 +310,7 @@ if (heroBuf) {
 		await writeFile(path.join(publicDir, name), await sharp(logo).resize(size, size).png().toBuffer());
 	}
 	await writeFile(path.join(publicDir, 'favicon.ico'), await sharp(logo).resize(32, 32).png().toBuffer());
-	console.log('Wrote deadside-cheats-logo.webp + favicons');
+	console.log('Wrote enlisted-cheats-logo.webp + favicons');
 }
 
 console.log('Done — cheat UI assets with simple hacks filenames.');

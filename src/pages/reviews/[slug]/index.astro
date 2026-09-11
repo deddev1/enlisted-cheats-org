@@ -4,7 +4,7 @@ import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import AtmosphericBanner from '../../../components/AtmosphericBanner.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
-import { reviewDetailHeroAlt, reviewDetailHeroImage } from '../../../data/deadside';
+import { reviewDetailHeroAlt, reviewDetailHeroImage } from '../../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../../data/reviews';
 import RelatedPages from '../../../components/RelatedPages.astro';
 import type { CustomerReview } from '../../../data/site';
@@ -76,7 +76,7 @@ const extraGraph: Record<string, unknown>[] = [
 	description={review.seoDescription}
 	canonicalPath={canonicalPath}
 	ogImage={reviewDetailHeroImage}
-	ogImageAlt={`Deadside Cheats review by @${review.handle}`}
+	ogImageAlt={`Enlisted Cheats review by @${review.handle}`}
 	type="article"
 	locale="en"
 	englishOnlyAlternates={true}
@@ -127,18 +127,18 @@ const extraGraph: Record<string, unknown>[] = [
 
 				<div class="review-detail__ctas">
 					<a href={siteConfig.checkoutUrl} class="review-detail__buy" rel="noopener noreferrer">
-						Buy Deadside Cheats — ${productInfo.plans[0].price}
+						Buy Enlisted Cheats — ${productInfo.plans[0].price}
 					</a>
 					<a href="/pricing/" class="review-detail__link-btn">Compare pricing</a>
 					<a href="/features/" class="review-detail__link-btn">See features</a>
-					<a href="/deadside-esp/" class="review-detail__link-btn">ESP guide</a>
-					<a href="/deadside-aimbot/" class="review-detail__link-btn">Aimbot guide</a>
-					<a href="/" class="review-detail__link-btn">Deadside Cheats home</a>
+					<a href="/enlisted-esp/" class="review-detail__link-btn">ESP guide</a>
+					<a href="/enlisted-aimbot/" class="review-detail__link-btn">Aimbot guide</a>
+					<a href="/" class="review-detail__link-btn">Enlisted Cheats home</a>
 				</div>
 			</article>
 
 			<section class="review-detail__more" aria-labelledby="more-reviews-title">
-				<h2 id="more-reviews-title">More Deadside Cheats reviews</h2>
+				<h2 id="more-reviews-title">More Enlisted Cheats reviews</h2>
 				<div class="review-detail__more-grid">
 					{
 						moreReviews.map((other) => (

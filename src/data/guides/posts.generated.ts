@@ -3,8 +3,8 @@ import type { ExternalGuidePost } from './types';
 
 export const externalGuidePosts: ExternalGuidePost[] = [
 		{
-			id: "deadside-net",
-			slug: "deadside-net",
+			id: "guide-deadsidecheats-net-https",
+			slug: "guide-deadsidecheats-net-https",
 			gameId: "deadside",
 			gameName: "Deadside",
 			externalUrl: "https://deadsidecheats.net/",
@@ -66,8 +66,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "arcraiders-net",
-			slug: "arcraiders-net",
+			id: "guide-arcraiderscheat-net-https",
+			slug: "guide-arcraiderscheat-net-https",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheat.net/",
@@ -97,7 +97,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
-						"Learn one extraction route per map and practice silent movement before chasing rare loot.",
+						"Learn one supply route per map and practice silent movement before chasing rare loot.",
 						"Focus on map knowledge during your first sessions instead of copying streamer builds. ARC Raiders punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
@@ -129,8 +129,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "genshin-net",
-			slug: "genshin-net",
+			id: "guide-genshincheats-net-https",
+			slug: "guide-genshincheats-net-https",
 			gameId: "genshin-impact",
 			gameName: "Genshin Impact",
 			externalUrl: "https://genshincheats.net/",
@@ -192,8 +192,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "dbd-net",
-			slug: "dbd-net",
+			id: "guide-dbdcheats-net-https",
+			slug: "guide-dbdcheats-net-https",
 			gameId: "dead-by-daylight",
 			gameName: "Dead by Daylight",
 			externalUrl: "https://dbdcheats.net/",
@@ -255,8 +255,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-net",
-			slug: "tarkov-net",
+			id: "guide-tarkovcheats-net-https",
+			slug: "guide-tarkovcheats-net-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheats.net/",
@@ -318,8 +318,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "unturned-net",
-			slug: "unturned-net",
+			id: "guide-unturnedcheats-net-https",
+			slug: "guide-unturnedcheats-net-https",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedcheats.net/",
@@ -381,8 +381,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "unturned-com",
-			slug: "unturned-com",
+			id: "guide-unturnedcheats-com-https",
+			slug: "guide-unturnedcheats-com-https",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedcheats.com/",
@@ -444,8 +444,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warthunder-com",
-			slug: "warthunder-com",
+			id: "guide-warthundercheats-com-https",
+			slug: "guide-warthundercheats-com-https",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthundercheats.com/",
@@ -507,8 +507,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "fortnite-com",
-			slug: "fortnite-com",
+			id: "guide-fortniteaimbot-com-https",
+			slug: "guide-fortniteaimbot-com-https",
 			gameId: "fortnite",
 			gameName: "Fortnite",
 			externalUrl: "https://fortniteaimbot.com/",
@@ -570,8 +570,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marathon-org",
-			slug: "marathon-org",
+			id: "guide-marathoncheats-org-https",
+			slug: "guide-marathoncheats-org-https",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathoncheats.org/",
@@ -633,22 +633,22 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "openworld-org",
-			slug: "openworld-org",
-			gameId: "open world",
+			id: "guide-battlefieldcheats-org-https",
+			slug: "guide-battlefieldcheats-org-https",
+			gameId: "battlefield",
 			gameName: "Battlefield",
-			externalUrl: "https://openworldcheats.org/",
+			externalUrl: "https://battlefieldcheats.org/",
 			anchorText: "additional guides",
 			published: "2026-11-11",
 			updated: "2026-11-11",
-			title: "Battlefield Guide: Early-Game Fundamentals & Core Gameplay",
-			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for early-game fundamentals, progression, and smarter in-game decisions.",
+			title: "Battlefield Guide: Map Knowledge & Core Gameplay",
+			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for map knowledge, progression, and smarter in-game decisions.",
 			h1: "Battlefield gameplay guide",
-			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your early-game fundamentals, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your map knowledge, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Battlefield",
 				"Battlefield guide",
-				"early-game fundamentals",
+				"map knowledge",
 				"large-scale combined arms warfare",
 				"gameplay tips"
 			],
@@ -657,7 +657,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Understanding the Battlefield core loop",
 					paragraphs: [
 						"At its heart, Battlefield rewards players who respect the core loop: capture sectors, support teammates with class gadgets, and win through map control. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
-						"New players often chase highlight plays before they understand early-game fundamentals. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
+						"New players often chase highlight plays before they understand map knowledge. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Full squads with a dedicated medic and recon spotter flip sectors faster than solo heroes."
 					]
 				},
@@ -665,7 +665,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
 						"Play support or engineer first to learn spawn flow and resupply timing.",
-						"Focus on early-game fundamentals during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
+						"Focus on map knowledge during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
 				},
@@ -682,7 +682,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Coordinate smoke and revives during final sector flips; ticket bleed wins tight matches.",
 						"High-skill play in Battlefield is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
-						"Review early-game fundamentals after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
+						"Review map knowledge after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
 					]
 				},
 				{
@@ -690,14 +690,14 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Battlefield evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
 						"Follow official patch notes and trusted community breakdowns, then validate changes in low-stakes matches before taking new builds into ranked or high-loot zones.",
-						"For more game updates, guides, and related resources, you can also explore <a href=\"https://openworldcheats.org/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
+						"When you are ready for more game information and community guides, you can also explore <a href=\"https://battlefieldcheats.org/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
 					]
 				}
 			]
 		},
 		{
-			id: "lol-org",
-			slug: "lol-org",
+			id: "guide-lolcheats-org-https",
+			slug: "guide-lolcheats-org-https",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheats.org/",
@@ -759,8 +759,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warzone-org",
-			slug: "warzone-org",
+			id: "guide-warzonecheats-org-https",
+			slug: "guide-warzonecheats-org-https",
 			gameId: "call-of-duty-warzone",
 			gameName: "Call of Duty: Warzone",
 			externalUrl: "https://warzonecheats.org/",
@@ -822,8 +822,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "valo-com",
-			slug: "valo-com",
+			id: "guide-valocheats-com-https",
+			slug: "guide-valocheats-com-https",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valocheats.com/",
@@ -885,8 +885,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "grayzone-com",
-			slug: "grayzone-com",
+			id: "guide-grayzonecheats-com-https",
+			slug: "guide-grayzonecheats-com-https",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "https://grayzonecheats.com/",
@@ -948,8 +948,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "arcraiders-org",
-			slug: "arcraiders-org",
+			id: "guide-arcraiderscheats-org-https",
+			slug: "guide-arcraiderscheats-org-https",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheats.org/",
@@ -979,7 +979,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
-						"Learn one extraction route per map and practice silent movement before chasing rare loot.",
+						"Learn one supply route per map and practice silent movement before chasing rare loot.",
 						"Focus on early-game fundamentals during your first sessions instead of copying streamer builds. ARC Raiders punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
@@ -1011,8 +1011,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-org",
-			slug: "tarkov-org",
+			id: "guide-tarkovcheats-org-https",
+			slug: "guide-tarkovcheats-org-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheats.org/",
@@ -1074,8 +1074,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "overwatch-com",
-			slug: "overwatch-com",
+			id: "guide-overwatchhacks-com-https",
+			slug: "guide-overwatchhacks-com-https",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatchhacks.com/",
@@ -1137,8 +1137,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "dbd-org",
-			slug: "dbd-org",
+			id: "guide-dbdcheats-org-https",
+			slug: "guide-dbdcheats-org-https",
 			gameId: "dead-by-daylight",
 			gameName: "Dead by Daylight",
 			externalUrl: "https://dbdcheats.org/",
@@ -1200,8 +1200,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "theisle-org",
-			slug: "theisle-org",
+			id: "guide-theislehacks-org-https",
+			slug: "guide-theislehacks-org-https",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislehacks.org/",
@@ -1263,8 +1263,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "isle-net",
-			slug: "isle-net",
+			id: "guide-islecheats-net-https",
+			slug: "guide-islecheats-net-https",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://islecheats.net/",
@@ -1326,8 +1326,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warthunder-com-2",
-			slug: "warthunder-com-2",
+			id: "guide-warthunderhacks-com-https",
+			slug: "guide-warthunderhacks-com-https",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthunderhacks.com/",
@@ -1389,8 +1389,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marathon-cc",
-			slug: "marathon-cc",
+			id: "guide-marathoncheats-cc-https",
+			slug: "guide-marathoncheats-cc-https",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathoncheats.cc/",
@@ -1452,8 +1452,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "besttarkov-com",
-			slug: "besttarkov-com",
+			id: "guide-besttarkovcheats-com-https",
+			slug: "guide-besttarkovcheats-com-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://besttarkovcheats.com/",
@@ -1515,8 +1515,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "thefinals-org",
-			slug: "thefinals-org",
+			id: "guide-thefinalscheats-org-https",
+			slug: "guide-thefinalscheats-org-https",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalscheats.org/",
@@ -1578,8 +1578,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "dayz-net",
-			slug: "dayz-net",
+			id: "guide-dayzcheat-net-https",
+			slug: "guide-dayzcheat-net-https",
 			gameId: "dayz",
 			gameName: "DayZ",
 			externalUrl: "https://dayzcheat.net/",
@@ -1641,8 +1641,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "fn-net",
-			slug: "fn-net",
+			id: "guide-fncheats-net-https",
+			slug: "guide-fncheats-net-https",
 			gameId: "fortnite",
 			gameName: "Fortnite",
 			externalUrl: "https://fncheats.net/",
@@ -1704,8 +1704,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "isle-com",
-			slug: "isle-com",
+			id: "guide-islecheat-com-http",
+			slug: "guide-islecheat-com-http",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "http://islecheat.com",
@@ -1767,8 +1767,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "deadside-com",
-			slug: "deadside-com",
+			id: "guide-deadsidecheats-com-https",
+			slug: "guide-deadsidecheats-com-https",
 			gameId: "deadside",
 			gameName: "Deadside",
 			externalUrl: "https://deadsidecheats.com/",
@@ -1830,8 +1830,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marvelrivals-net",
-			slug: "marvelrivals-net",
+			id: "guide-marvelrivalscheat-net-http",
+			slug: "guide-marvelrivalscheat-net-http",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "http://marvelrivalscheat.net/",
@@ -1893,8 +1893,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "mecca-com",
-			slug: "mecca-com",
+			id: "guide-meccacheats-com-http",
+			slug: "guide-meccacheats-com-http",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "http://meccacheats.com/",
@@ -1902,9 +1902,9 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			published: "2026-07-04",
 			updated: "2026-07-04",
 			title: "Mecha BREAK Guide: Economy And Crafting & Core Gameplay",
-			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, healing timers, and arena positioning, with tips for economy and crafting, progression, and smarter in-game decisions.",
+			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, reload timers, and arena positioning, with tips for economy and crafting, progression, and smarter in-game decisions.",
 			h1: "Mecha BREAK gameplay guide",
-			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, healing timers, and arena positioning. Whether you are learning the basics or refining your economy and crafting, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, reload timers, and arena positioning. Whether you are learning the basics or refining your economy and crafting, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Mecha BREAK",
 				"Mecha BREAK guide",
@@ -1956,8 +1956,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "rust-net",
-			slug: "rust-net",
+			id: "guide-rusthack-net-http",
+			slug: "guide-rusthack-net-http",
 			gameId: "rust",
 			gameName: "Rust",
 			externalUrl: "http://rusthack.net",
@@ -2019,8 +2019,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "grayzone-net",
-			slug: "grayzone-net",
+			id: "guide-grayzonecheats-net-http",
+			slug: "guide-grayzonecheats-net-http",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "http://grayzonecheats.net/",
@@ -2082,8 +2082,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "unturned-com-2",
-			slug: "unturned-com-2",
+			id: "guide-unturnedhacks-com-https",
+			slug: "guide-unturnedhacks-com-https",
 			gameId: "unturned",
 			gameName: "Unturned",
 			externalUrl: "https://unturnedhacks.com/",
@@ -2145,8 +2145,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "palworld-net",
-			slug: "palworld-net",
+			id: "guide-palworldhack-net-http",
+			slug: "guide-palworldhack-net-http",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "http://palworldhack.net/",
@@ -2208,8 +2208,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "r6siege-net",
-			slug: "r6siege-net",
+			id: "guide-r6siegecheats-net-http",
+			slug: "guide-r6siegecheats-net-http",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "http://r6siegecheats.net/",
@@ -2271,8 +2271,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "eft-net",
-			slug: "eft-net",
+			id: "guide-eftcheat-net-http",
+			slug: "guide-eftcheat-net-http",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "http://eftcheat.net/",
@@ -2334,8 +2334,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "caliber-com",
-			slug: "caliber-com",
+			id: "guide-calibercheats-com-https",
+			slug: "guide-calibercheats-com-https",
 			gameId: "caliber",
 			gameName: "Caliber",
 			externalUrl: "https://calibercheats.com/",
@@ -2397,8 +2397,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "cod-net",
-			slug: "cod-net",
+			id: "guide-codcheats-net-https",
+			slug: "guide-codcheats-net-https",
 			gameId: "call-of-duty",
 			gameName: "Call of Duty",
 			externalUrl: "https://codcheats.net/",
@@ -2460,8 +2460,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "hunt-com",
-			slug: "hunt-com",
+			id: "guide-huntcheats-com-https",
+			slug: "guide-huntcheats-com-https",
 			gameId: "hunt-showdown",
 			gameName: "Hunt: Showdown",
 			externalUrl: "https://huntcheats.com/",
@@ -2523,8 +2523,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "lol-net",
-			slug: "lol-net",
+			id: "guide-lolcheat-net-https",
+			slug: "guide-lolcheat-net-https",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheat.net/",
@@ -2586,8 +2586,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marathon-net",
-			slug: "marathon-net",
+			id: "guide-marathonhacks-net-https",
+			slug: "guide-marathonhacks-net-https",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathonhacks.net/",
@@ -2649,8 +2649,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "meccha-com",
-			slug: "meccha-com",
+			id: "guide-mecchahacks-com-https",
+			slug: "guide-mecchahacks-com-https",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchahacks.com/",
@@ -2658,9 +2658,9 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			published: "2026-07-16",
 			updated: "2026-07-16",
 			title: "Mecha BREAK Guide: Endgame Efficiency & Core Gameplay",
-			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, healing timers, and arena positioning, with tips for endgame efficiency, progression, and smarter in-game decisions.",
+			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, reload timers, and arena positioning, with tips for endgame efficiency, progression, and smarter in-game decisions.",
 			h1: "Mecha BREAK gameplay guide",
-			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, healing timers, and arena positioning. Whether you are learning the basics or refining your endgame efficiency, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, reload timers, and arena positioning. Whether you are learning the basics or refining your endgame efficiency, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Mecha BREAK",
 				"Mecha BREAK guide",
@@ -2712,8 +2712,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "palworld-com",
-			slug: "palworld-com",
+			id: "guide-palworldhack-com-https",
+			slug: "guide-palworldhack-com-https",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhack.com/",
@@ -2775,8 +2775,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-net-2",
-			slug: "tarkov-net-2",
+			id: "guide-tarkovhack-net-https",
+			slug: "guide-tarkovhack-net-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovhack.net/",
@@ -2838,8 +2838,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warthunder-net",
-			slug: "warthunder-net",
+			id: "guide-warthundercheats-net-https",
+			slug: "guide-warthundercheats-net-https",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthundercheats.net/",
@@ -2901,8 +2901,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "huntshowdown-com",
-			slug: "huntshowdown-com",
+			id: "guide-huntshowdowncheats-com-https",
+			slug: "guide-huntshowdowncheats-com-https",
 			gameId: "hunt-showdown",
 			gameName: "Hunt: Showdown",
 			externalUrl: "https://huntshowdowncheats.com/",
@@ -2964,8 +2964,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "destiny2-com",
-			slug: "destiny2-com",
+			id: "guide-destiny2cheats-com-https",
+			slug: "guide-destiny2cheats-com-https",
 			gameId: "destiny-2",
 			gameName: "Destiny 2",
 			externalUrl: "https://destiny2cheats.com/",
@@ -3027,8 +3027,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-net-3",
-			slug: "tarkov-net-3",
+			id: "guide-tarkovhacks-net-https",
+			slug: "guide-tarkovhacks-net-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovhacks.net/",
@@ -3090,8 +3090,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "r6siege-com",
-			slug: "r6siege-com",
+			id: "guide-r6siegecheats-com-https",
+			slug: "guide-r6siegecheats-com-https",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "https://r6siegecheats.com/",
@@ -3153,8 +3153,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "sandraiders-com",
-			slug: "sandraiders-com",
+			id: "guide-sandraiderscheat-com-https",
+			slug: "guide-sandraiderscheat-com-https",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraiderscheat.com/",
@@ -3216,8 +3216,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "palworld-com-2",
-			slug: "palworld-com-2",
+			id: "guide-palworldhacks-com-https",
+			slug: "guide-palworldhacks-com-https",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhacks.com/",
@@ -3279,8 +3279,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "squad-com",
-			slug: "squad-com",
+			id: "guide-squadhacks-com-https",
+			slug: "guide-squadhacks-com-https",
 			gameId: "squad",
 			gameName: "Squad",
 			externalUrl: "https://squadhacks.com/",
@@ -3302,7 +3302,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Understanding the Squad core loop",
 					paragraphs: [
-						"At its heart, Squad rewards players who respect the core loop: communicate with your squad, loot objectives, and support armor and logi chains. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
+						"At its heart, Squad rewards players who respect the core loop: communicate with your squad, capture objectives, and support armor and logi chains. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
 						"New players often chase highlight plays before they understand economy and crafting. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Full squads with dedicated SL and medic revive chains dominate public servers."
 					]
@@ -3342,8 +3342,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "eft-net-2",
-			slug: "eft-net-2",
+			id: "guide-eftcheats-net-https",
+			slug: "guide-eftcheats-net-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://eftcheats.net/",
@@ -3405,8 +3405,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marathon-net-2",
-			slug: "marathon-net-2",
+			id: "guide-marathonhack-net-https",
+			slug: "guide-marathonhack-net-https",
 			gameId: "marathon",
 			gameName: "Marathon",
 			externalUrl: "https://marathonhack.net/",
@@ -3468,8 +3468,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "abi-com",
-			slug: "abi-com",
+			id: "guide-abicheats-com-https",
+			slug: "guide-abicheats-com-https",
 			gameId: "arena-breakout-infinite",
 			gameName: "Arena Breakout: Infinite",
 			externalUrl: "https://abicheats.com/",
@@ -3531,8 +3531,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "bodycam-com",
-			slug: "bodycam-com",
+			id: "guide-bodycamcheats-com-https",
+			slug: "guide-bodycamcheats-com-https",
 			gameId: "bodycam",
 			gameName: "Bodycam",
 			externalUrl: "https://bodycamcheats.com/",
@@ -3594,8 +3594,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "grayzone-com-2",
-			slug: "grayzone-com-2",
+			id: "guide-grayzonehacks-com-https",
+			slug: "guide-grayzonehacks-com-https",
 			gameId: "gray-zone-warfare",
 			gameName: "Gray Zone Warfare",
 			externalUrl: "https://grayzonehacks.com/",
@@ -3657,8 +3657,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "lol-net-2",
-			slug: "lol-net-2",
+			id: "guide-lolcheats-net-https",
+			slug: "guide-lolcheats-net-https",
 			gameId: "league-of-legends",
 			gameName: "League of Legends",
 			externalUrl: "https://lolcheats.net/",
@@ -3720,8 +3720,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "oncehuman-com",
-			slug: "oncehuman-com",
+			id: "guide-oncehumanhacks-com-https",
+			slug: "guide-oncehumanhacks-com-https",
 			gameId: "once-human",
 			gameName: "Once Human",
 			externalUrl: "https://oncehumanhacks.com/",
@@ -3783,8 +3783,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "palworld-net-2",
-			slug: "palworld-net-2",
+			id: "guide-palworldhacks-net-https",
+			slug: "guide-palworldhacks-net-https",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldhacks.net/",
@@ -3846,8 +3846,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "reforger-com",
-			slug: "reforger-com",
+			id: "guide-reforgercheats-com-https",
+			slug: "guide-reforgercheats-com-https",
 			gameId: "arma-reforger",
 			gameName: "Arma Reforger",
 			externalUrl: "https://reforgercheats.com/",
@@ -3909,8 +3909,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "rivals-com",
-			slug: "rivals-com",
+			id: "guide-rivalshacks-com-https",
+			slug: "guide-rivalshacks-com-https",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://rivalshacks.com/",
@@ -3972,8 +3972,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "oncehuman-net",
-			slug: "oncehuman-net",
+			id: "guide-oncehumancheats-net-https",
+			slug: "guide-oncehumancheats-net-https",
 			gameId: "once-human",
 			gameName: "Once Human",
 			externalUrl: "https://oncehumancheats.net/",
@@ -4035,8 +4035,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "overwatch-net",
-			slug: "overwatch-net",
+			id: "guide-overwatchcheat-net-https",
+			slug: "guide-overwatchcheat-net-https",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatchcheat.net/",
@@ -4098,8 +4098,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "dayz-net-2",
-			slug: "dayz-net-2",
+			id: "guide-dayzhack-net-https",
+			slug: "guide-dayzhack-net-https",
 			gameId: "dayz",
 			gameName: "DayZ",
 			externalUrl: "https://dayzhack.net/",
@@ -4161,22 +4161,22 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "openworld-com",
-			slug: "openworld-com",
-			gameId: "open world",
+			id: "guide-battlefieldcheat-com-https",
+			slug: "guide-battlefieldcheat-com-https",
+			gameId: "battlefield",
 			gameName: "Battlefield",
-			externalUrl: "https://openworldcheat.com/",
+			externalUrl: "https://battlefieldcheat.com/",
 			anchorText: "additional guides",
 			published: "2026-07-13",
 			updated: "2026-07-13",
-			title: "Battlefield Guide: Endgame Efficiency & Core Gameplay",
-			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for endgame efficiency, progression, and smarter in-game decisions.",
+			title: "Battlefield Guide: Co-Op Coordination & Core Gameplay",
+			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for co-op coordination, progression, and smarter in-game decisions.",
 			h1: "Battlefield gameplay guide",
-			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your endgame efficiency, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your co-op coordination, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Battlefield",
 				"Battlefield guide",
-				"endgame efficiency",
+				"co-op coordination",
 				"large-scale combined arms warfare",
 				"gameplay tips"
 			],
@@ -4185,7 +4185,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Understanding the Battlefield core loop",
 					paragraphs: [
 						"At its heart, Battlefield rewards players who respect the core loop: capture sectors, support teammates with class gadgets, and win through map control. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
-						"New players often chase highlight plays before they understand endgame efficiency. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
+						"New players often chase highlight plays before they understand co-op coordination. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Full squads with a dedicated medic and recon spotter flip sectors faster than solo heroes."
 					]
 				},
@@ -4193,7 +4193,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
 						"Play support or engineer first to learn spawn flow and resupply timing.",
-						"Focus on endgame efficiency during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
+						"Focus on co-op coordination during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
 				},
@@ -4210,7 +4210,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Coordinate smoke and revives during final sector flips; ticket bleed wins tight matches.",
 						"High-skill play in Battlefield is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
-						"Review endgame efficiency after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
+						"Review co-op coordination after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
 					]
 				},
 				{
@@ -4218,14 +4218,14 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Battlefield evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
 						"Follow official patch notes and trusted community breakdowns, then validate changes in low-stakes matches before taking new builds into ranked or high-loot zones.",
-						"When you are ready for more game information and community guides, you can also explore <a href=\"https://openworldcheat.com/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
+						"For more game updates, guides, and related resources, you can also explore <a href=\"https://battlefieldcheat.com/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
 					]
 				}
 			]
 		},
 		{
-			id: "abi-com-2",
-			slug: "abi-com-2",
+			id: "guide-abihacks-com-https",
+			slug: "guide-abihacks-com-https",
 			gameId: "arena-breakout-infinite",
 			gameName: "Arena Breakout: Infinite",
 			externalUrl: "https://abihacks.com/",
@@ -4287,8 +4287,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "arcraiders-com",
-			slug: "arcraiders-com",
+			id: "guide-arcraidershack-com-https",
+			slug: "guide-arcraidershack-com-https",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraidershack.com/",
@@ -4318,7 +4318,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
-						"Learn one extraction route per map and practice silent movement before chasing rare loot.",
+						"Learn one supply route per map and practice silent movement before chasing rare loot.",
 						"Focus on endgame efficiency during your first sessions instead of copying streamer builds. ARC Raiders punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
@@ -4350,8 +4350,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "backrooms-com",
-			slug: "backrooms-com",
+			id: "guide-backroomscheats-com-https",
+			slug: "guide-backroomscheats-com-https",
 			gameId: "backrooms",
 			gameName: "Backrooms",
 			externalUrl: "https://backroomscheats.com/",
@@ -4413,8 +4413,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "marvelrivals-net-2",
-			slug: "marvelrivals-net-2",
+			id: "guide-marvelrivalshacks-net-https",
+			slug: "guide-marvelrivalshacks-net-https",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://marvelrivalshacks.net/",
@@ -4476,8 +4476,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "mecchachameleon-com",
-			slug: "mecchachameleon-com",
+			id: "guide-mecchachameleonhacks-com-https",
+			slug: "guide-mecchachameleonhacks-com-https",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchachameleonhacks.com/",
@@ -4485,9 +4485,9 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			published: "2026-12-18",
 			updated: "2026-12-18",
 			title: "Mecha BREAK Guide: Map Knowledge & Core Gameplay",
-			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, healing timers, and arena positioning, with tips for map knowledge, progression, and smarter in-game decisions.",
+			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, reload timers, and arena positioning, with tips for map knowledge, progression, and smarter in-game decisions.",
 			h1: "Mecha BREAK gameplay guide",
-			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, healing timers, and arena positioning. Whether you are learning the basics or refining your map knowledge, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, reload timers, and arena positioning. Whether you are learning the basics or refining your map knowledge, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Mecha BREAK",
 				"Mecha BREAK guide",
@@ -4539,8 +4539,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "mecchachameleon-net",
-			slug: "mecchachameleon-net",
+			id: "guide-mecchachameleonhacks-net-https",
+			slug: "guide-mecchachameleonhacks-net-https",
 			gameId: "mecha-break",
 			gameName: "Mecha BREAK",
 			externalUrl: "https://mecchachameleonhacks.net/",
@@ -4548,9 +4548,9 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			published: "2026-01-19",
 			updated: "2026-01-19",
 			title: "Mecha BREAK Guide: Endgame Efficiency & Core Gameplay",
-			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, healing timers, and arena positioning, with tips for endgame efficiency, progression, and smarter in-game decisions.",
+			metaDescription: "A practical Mecha BREAK guide covering mech loadouts, reload timers, and arena positioning, with tips for endgame efficiency, progression, and smarter in-game decisions.",
 			h1: "Mecha BREAK gameplay guide",
-			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, healing timers, and arena positioning. Whether you are learning the basics or refining your endgame efficiency, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Mecha BREAK is a mech-based competitive shooter built around mech loadouts, reload timers, and arena positioning. Whether you are learning the basics or refining your endgame efficiency, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Mecha BREAK",
 				"Mecha BREAK guide",
@@ -4602,8 +4602,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "overwatch2-com",
-			slug: "overwatch2-com",
+			id: "guide-overwatch2cheats-com-https",
+			slug: "guide-overwatch2cheats-com-https",
 			gameId: "overwatch-2",
 			gameName: "Overwatch 2",
 			externalUrl: "https://overwatch2cheats.com/",
@@ -4665,8 +4665,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "sandraiders-com-2",
-			slug: "sandraiders-com-2",
+			id: "guide-sandraiderscheats-com-https",
+			slug: "guide-sandraiderscheats-com-https",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraiderscheats.com/",
@@ -4728,8 +4728,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "rivals-net",
-			slug: "rivals-net",
+			id: "guide-rivalscheats-net-https",
+			slug: "guide-rivalscheats-net-https",
 			gameId: "marvel-rivals",
 			gameName: "Marvel Rivals",
 			externalUrl: "https://rivalscheats.net/",
@@ -4791,8 +4791,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "squad-com-2",
-			slug: "squad-com-2",
+			id: "guide-squadcheat-com-https",
+			slug: "guide-squadcheat-com-https",
 			gameId: "squad",
 			gameName: "Squad",
 			externalUrl: "https://squadcheat.com/",
@@ -4814,7 +4814,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Understanding the Squad core loop",
 					paragraphs: [
-						"At its heart, Squad rewards players who respect the core loop: communicate with your squad, loot objectives, and support armor and logi chains. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
+						"At its heart, Squad rewards players who respect the core loop: communicate with your squad, capture objectives, and support armor and logi chains. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
 						"New players often chase highlight plays before they understand co-op coordination. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Full squads with dedicated SL and medic revive chains dominate public servers."
 					]
@@ -4854,8 +4854,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "sandraidersofsophie-net",
-			slug: "sandraidersofsophie-net",
+			id: "guide-sandraidersofsophiecheats-net-https",
+			slug: "guide-sandraidersofsophiecheats-net-https",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandraidersofsophiecheats.net/",
@@ -4917,8 +4917,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-net-4",
-			slug: "tarkov-net-4",
+			id: "guide-tarkovcheat-net-https",
+			slug: "guide-tarkovcheat-net-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheat.net/",
@@ -4980,8 +4980,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "thefinals-net",
-			slug: "thefinals-net",
+			id: "guide-thefinalscheats-net-https",
+			slug: "guide-thefinalscheats-net-https",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalscheats.net/",
@@ -5043,8 +5043,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "theisle-net",
-			slug: "theisle-net",
+			id: "guide-theislehacks-net-https",
+			slug: "guide-theislehacks-net-https",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislehacks.net/",
@@ -5106,8 +5106,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "valorant-net",
-			slug: "valorant-net",
+			id: "guide-valoranthack-net-https",
+			slug: "guide-valoranthack-net-https",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valoranthack.net/",
@@ -5169,8 +5169,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warzone-net",
-			slug: "warzone-net",
+			id: "guide-warzonehacks-net-https",
+			slug: "guide-warzonehacks-net-https",
 			gameId: "call-of-duty-warzone",
 			gameName: "Call of Duty: Warzone",
 			externalUrl: "https://warzonehacks.net/",
@@ -5232,8 +5232,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "thefront-com",
-			slug: "thefront-com",
+			id: "guide-thefrontcheats-com-https",
+			slug: "guide-thefrontcheats-com-https",
 			gameId: "the-front",
 			gameName: "The Front",
 			externalUrl: "https://thefrontcheats.com/",
@@ -5295,8 +5295,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "lostark-net",
-			slug: "lostark-net",
+			id: "guide-lostarkcheats-net-https",
+			slug: "guide-lostarkcheats-net-https",
 			gameId: "lost-ark",
 			gameName: "Lost Ark",
 			externalUrl: "https://lostarkcheats.net/",
@@ -5358,8 +5358,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "valorant-org",
-			slug: "valorant-org",
+			id: "guide-valoranthacks-org-https",
+			slug: "guide-valoranthacks-org-https",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valoranthacks.org/",
@@ -5421,8 +5421,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "siege-com",
-			slug: "siege-com",
+			id: "guide-siegehacks-com-https",
+			slug: "guide-siegehacks-com-https",
 			gameId: "rainbow-six-siege",
 			gameName: "Rainbow Six Siege",
 			externalUrl: "https://siegehacks.com/",
@@ -5484,30 +5484,30 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warframe-com",
-			slug: "warframe-com",
+			id: "guide-warframehacks-com-https",
+			slug: "guide-warframehacks-com-https",
 			gameId: "warframe",
-			gameName: "Deadside",
+			gameName: "Enlisted",
 			externalUrl: "https://warframehacks.com/",
 			anchorText: "related resources",
 			published: "2026-04-07",
 			updated: "2026-04-07",
-			title: "Deadside Guide: Map Knowledge & Core Gameplay",
-			metaDescription: "A practical Deadside guide covering modding, void fissures, and steel path, with tips for map knowledge, progression, and smarter in-game decisions.",
-			h1: "Deadside gameplay guide",
-			intro: "Deadside is a sci-fi action looter shooter built around modding, void fissures, and steel path. Whether you are learning the basics or refining your map knowledge, this guide breaks down how the core loop works and where most players lose momentum.",
+			title: "Enlisted Guide: Map Knowledge & Core Gameplay",
+			metaDescription: "A practical Enlisted guide covering modding, void fissures, and steel path, with tips for map knowledge, progression, and smarter in-game decisions.",
+			h1: "Enlisted gameplay guide",
+			intro: "Enlisted is a sci-fi action looter shooter built around modding, void fissures, and steel path. Whether you are learning the basics or refining your map knowledge, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
-				"Deadside",
-				"Deadside guide",
+				"Enlisted",
+				"Enlisted guide",
 				"map knowledge",
 				"sci-fi action looter shooter",
 				"gameplay tips"
 			],
 			sections: [
 				{
-					h2: "Understanding the Deadside core loop",
+					h2: "Understanding the Enlisted core loop",
 					paragraphs: [
-						"At its heart, Deadside rewards players who respect the core loop: complete missions, collect mods and parts, craft warframes, and scale into endgame. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
+						"At its heart, Enlisted rewards players who respect the core loop: complete missions, collect mods and parts, craft warframes, and scale into endgame. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
 						"New players often chase highlight plays before they understand map knowledge. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Squads assign crowd control and damage roles for fissure and arbitration runs."
 					]
@@ -5516,7 +5516,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
 						"Clear the star chart and unlock operators before chasing prime farming.",
-						"Focus on map knowledge during your first sessions instead of copying streamer builds. Deadside punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
+						"Focus on map knowledge during your first sessions instead of copying streamer builds. Enlisted punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
 				},
@@ -5524,7 +5524,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Mid-game habits that separate average from consistent",
 					paragraphs: [
 						"Build ability strength or range based on your frame role — hybrid builds often underperform.",
-						"Mid-game is where Deadside players either stabilize or stall. Invest in repeatable habits: check your inventory before pushing, communicate intent with teammates, and rotate before you are forced to.",
+						"Mid-game is where Enlisted players either stabilize or stall. Invest in repeatable habits: check your inventory before pushing, communicate intent with teammates, and rotate before you are forced to.",
 						"Ability uptime and enemy strip mechanics define steel path viability."
 					]
 				},
@@ -5532,14 +5532,14 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Advanced decisions under pressure",
 					paragraphs: [
 						"Farm relics efficiently in groups and target vaulted primes during events.",
-						"High-skill play in Deadside is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
+						"High-skill play in Enlisted is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
 						"Review map knowledge after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
 					]
 				},
 				{
 					h2: "Staying current with updates and meta shifts",
 					paragraphs: [
-						"Deadside evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
+						"Enlisted evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
 						"Follow official patch notes and trusted community breakdowns, then validate changes in low-stakes matches before taking new builds into ranked or high-loot zones.",
 						"When you are ready for more game information and community guides, you can also explore <a href=\"https://warframehacks.com/\" target=\"_blank\" rel=\"noopener noreferrer\">related resources</a>."
 					]
@@ -5547,30 +5547,30 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warframe-com-2",
-			slug: "warframe-com-2",
+			id: "guide-warframecheat-com-https",
+			slug: "guide-warframecheat-com-https",
 			gameId: "warframe",
-			gameName: "Deadside",
+			gameName: "Enlisted",
 			externalUrl: "https://warframecheat.com/",
 			anchorText: "this resource",
 			published: "2026-05-08",
 			updated: "2026-05-08",
-			title: "Deadside Guide: Economy And Crafting & Core Gameplay",
-			metaDescription: "A practical Deadside guide covering modding, void fissures, and steel path, with tips for economy and crafting, progression, and smarter in-game decisions.",
-			h1: "Deadside gameplay guide",
-			intro: "Deadside is a sci-fi action looter shooter built around modding, void fissures, and steel path. Whether you are learning the basics or refining your economy and crafting, this guide breaks down how the core loop works and where most players lose momentum.",
+			title: "Enlisted Guide: Economy And Crafting & Core Gameplay",
+			metaDescription: "A practical Enlisted guide covering modding, void fissures, and steel path, with tips for economy and crafting, progression, and smarter in-game decisions.",
+			h1: "Enlisted gameplay guide",
+			intro: "Enlisted is a sci-fi action looter shooter built around modding, void fissures, and steel path. Whether you are learning the basics or refining your economy and crafting, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
-				"Deadside",
-				"Deadside guide",
+				"Enlisted",
+				"Enlisted guide",
 				"economy and crafting",
 				"sci-fi action looter shooter",
 				"gameplay tips"
 			],
 			sections: [
 				{
-					h2: "Understanding the Deadside core loop",
+					h2: "Understanding the Enlisted core loop",
 					paragraphs: [
-						"At its heart, Deadside rewards players who respect the core loop: complete missions, collect mods and parts, craft warframes, and scale into endgame. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
+						"At its heart, Enlisted rewards players who respect the core loop: complete missions, collect mods and parts, craft warframes, and scale into endgame. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
 						"New players often chase highlight plays before they understand economy and crafting. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Squads assign crowd control and damage roles for fissure and arbitration runs."
 					]
@@ -5579,7 +5579,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
 						"Clear the star chart and unlock operators before chasing prime farming.",
-						"Focus on economy and crafting during your first sessions instead of copying streamer builds. Deadside punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
+						"Focus on economy and crafting during your first sessions instead of copying streamer builds. Enlisted punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
 				},
@@ -5587,7 +5587,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Mid-game habits that separate average from consistent",
 					paragraphs: [
 						"Build ability strength or range based on your frame role — hybrid builds often underperform.",
-						"Mid-game is where Deadside players either stabilize or stall. Invest in repeatable habits: check your inventory before pushing, communicate intent with teammates, and rotate before you are forced to.",
+						"Mid-game is where Enlisted players either stabilize or stall. Invest in repeatable habits: check your inventory before pushing, communicate intent with teammates, and rotate before you are forced to.",
 						"Ability uptime and enemy strip mechanics define steel path viability."
 					]
 				},
@@ -5595,14 +5595,14 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Advanced decisions under pressure",
 					paragraphs: [
 						"Farm relics efficiently in groups and target vaulted primes during events.",
-						"High-skill play in Deadside is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
+						"High-skill play in Enlisted is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
 						"Review economy and crafting after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
 					]
 				},
 				{
 					h2: "Staying current with updates and meta shifts",
 					paragraphs: [
-						"Deadside evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
+						"Enlisted evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
 						"Follow official patch notes and trusted community breakdowns, then validate changes in low-stakes matches before taking new builds into ranked or high-loot zones.",
 						"If you want deeper game updates, walkthroughs, and related resources, you can also explore <a href=\"https://warframecheat.com/\" target=\"_blank\" rel=\"noopener noreferrer\">this resource</a>."
 					]
@@ -5610,8 +5610,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "naraka-org",
-			slug: "naraka-org",
+			id: "guide-narakacheats-org-https",
+			slug: "guide-narakacheats-org-https",
 			gameId: "naraka-bladepoint",
 			gameName: "Naraka: Bladepoint",
 			externalUrl: "https://narakacheats.org/",
@@ -5673,8 +5673,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "minecraft-com",
-			slug: "minecraft-com",
+			id: "guide-minecraftcheat-com-https",
+			slug: "guide-minecraftcheat-com-https",
 			gameId: "minecraft",
 			gameName: "Minecraft",
 			externalUrl: "https://minecraftcheat.com/",
@@ -5736,8 +5736,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "destiny2-com-2",
-			slug: "destiny2-com-2",
+			id: "guide-destiny2hack-com-https",
+			slug: "guide-destiny2hack-com-https",
 			gameId: "destiny-2",
 			gameName: "Destiny 2",
 			externalUrl: "https://destiny2hack.com/",
@@ -5799,8 +5799,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "poe-com",
-			slug: "poe-com",
+			id: "guide-poecheats-com-https",
+			slug: "guide-poecheats-com-https",
 			gameId: "path-of-exile",
 			gameName: "Path of Exile",
 			externalUrl: "https://poecheats.com/",
@@ -5862,8 +5862,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "genshin-com",
-			slug: "genshin-com",
+			id: "guide-genshinhacks-com-https",
+			slug: "guide-genshinhacks-com-https",
 			gameId: "genshin-impact",
 			gameName: "Genshin Impact",
 			externalUrl: "https://genshinhacks.com/",
@@ -5925,8 +5925,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "arcraiders-org-2",
-			slug: "arcraiders-org-2",
+			id: "guide-arcraiderscheat-org-https",
+			slug: "guide-arcraiderscheat-org-https",
 			gameId: "arc-raiders",
 			gameName: "ARC Raiders",
 			externalUrl: "https://arcraiderscheat.org/",
@@ -5956,7 +5956,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 				{
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
-						"Learn one extraction route per map and practice silent movement before chasing rare loot.",
+						"Learn one supply route per map and practice silent movement before chasing rare loot.",
 						"Focus on loadout planning during your first sessions instead of copying streamer builds. ARC Raiders punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
@@ -5988,8 +5988,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "palworld-org",
-			slug: "palworld-org",
+			id: "guide-palworldcheats-org-https",
+			slug: "guide-palworldcheats-org-https",
 			gameId: "palworld",
 			gameName: "Palworld",
 			externalUrl: "https://palworldcheats.org/",
@@ -6051,8 +6051,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "theisle-net-2",
-			slug: "theisle-net-2",
+			id: "guide-theislecheat-net-https",
+			slug: "guide-theislecheat-net-https",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislecheat.net/",
@@ -6114,8 +6114,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "tarkov-org-2",
-			slug: "tarkov-org-2",
+			id: "guide-tarkovcheat-org-https",
+			slug: "guide-tarkovcheat-org-https",
 			gameId: "escape-from-tarkov",
 			gameName: "Escape from Tarkov",
 			externalUrl: "https://tarkovcheat.org/",
@@ -6177,8 +6177,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "theisle-org-2",
-			slug: "theisle-org-2",
+			id: "guide-theislecheats-org-https",
+			slug: "guide-theislecheats-org-https",
 			gameId: "the-isle",
 			gameName: "The Isle",
 			externalUrl: "https://theislecheats.org/",
@@ -6240,8 +6240,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "raft-com",
-			slug: "raft-com",
+			id: "guide-raftcheats-com-https",
+			slug: "guide-raftcheats-com-https",
 			gameId: "raft",
 			gameName: "Raft",
 			externalUrl: "https://raftcheats.com/",
@@ -6303,8 +6303,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "sand-com",
-			slug: "sand-com",
+			id: "guide-sandhacks-com-https",
+			slug: "guide-sandhacks-com-https",
 			gameId: "sand",
 			gameName: "SAND",
 			externalUrl: "https://sandhacks.com/",
@@ -6366,8 +6366,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "seaofthieves-net",
-			slug: "seaofthieves-net",
+			id: "guide-seaofthievescheats-net-https",
+			slug: "guide-seaofthievescheats-net-https",
 			gameId: "sea-of-thieves",
 			gameName: "Sea of Thieves",
 			externalUrl: "https://seaofthievescheats.net/",
@@ -6429,22 +6429,22 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "openworld-net",
-			slug: "openworld-net",
-			gameId: "open world",
+			id: "guide-battlefieldhacks-net-https",
+			slug: "guide-battlefieldhacks-net-https",
+			gameId: "battlefield",
 			gameName: "Battlefield",
-			externalUrl: "https://openworldhacks.net/",
+			externalUrl: "https://battlefieldhacks.net/",
 			anchorText: "additional guides",
 			published: "2026-07-22",
 			updated: "2026-07-22",
-			title: "Battlefield Guide: Loadout Planning & Core Gameplay",
-			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for loadout planning, progression, and smarter in-game decisions.",
+			title: "Battlefield Guide: Mid-Game Optimization & Core Gameplay",
+			metaDescription: "A practical Battlefield guide covering sector control, vehicle pushes, and squad specialization, with tips for mid-game optimization, progression, and smarter in-game decisions.",
 			h1: "Battlefield gameplay guide",
-			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your loadout planning, this guide breaks down how the core loop works and where most players lose momentum.",
+			intro: "Battlefield is a large-scale combined arms warfare built around sector control, vehicle pushes, and squad specialization. Whether you are learning the basics or refining your mid-game optimization, this guide breaks down how the core loop works and where most players lose momentum.",
 			keywords: [
 				"Battlefield",
 				"Battlefield guide",
-				"loadout planning",
+				"mid-game optimization",
 				"large-scale combined arms warfare",
 				"gameplay tips"
 			],
@@ -6453,7 +6453,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Understanding the Battlefield core loop",
 					paragraphs: [
 						"At its heart, Battlefield rewards players who respect the core loop: capture sectors, support teammates with class gadgets, and win through map control. Matches unfold quickly when you understand these rhythms, and painfully when you treat every engagement the same.",
-						"New players often chase highlight plays before they understand loadout planning. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
+						"New players often chase highlight plays before they understand mid-game optimization. Slow down, learn one reliable strategy, and let muscle memory build around map flow and resource timing.",
 						"Full squads with a dedicated medic and recon spotter flip sectors faster than solo heroes."
 					]
 				},
@@ -6461,7 +6461,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					h2: "Beginner foundations that actually stick",
 					paragraphs: [
 						"Play support or engineer first to learn spawn flow and resupply timing.",
-						"Focus on loadout planning during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
+						"Focus on mid-game optimization during your first sessions instead of copying streamer builds. Battlefield punishes rushed decisions — especially when you have not learned safe rotations, healing windows, or extraction timing.",
 						"Keep notes after each session: what killed you, what loot you skipped, and where traffic felt heavy. Patterns emerge fast once you review mistakes instead of queueing instantly."
 					]
 				},
@@ -6478,7 +6478,7 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Coordinate smoke and revives during final sector flips; ticket bleed wins tight matches.",
 						"High-skill play in Battlefield is mostly decision-making. The best players win fights they choose, disengage fights they did not initiate, and extract before greed flips a winning run.",
-						"Review loadout planning after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
+						"Review mid-game optimization after tough losses. Was the mistake positioning, timing, or resource management? Fixing one layer per week compounds faster than chasing new gear alone."
 					]
 				},
 				{
@@ -6486,14 +6486,14 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 					paragraphs: [
 						"Battlefield evolves with balance patches, seasonal events, and community discoveries. Re-test your loadouts after major updates instead of assuming last month’s strategies still dominate.",
 						"Follow official patch notes and trusted community breakdowns, then validate changes in low-stakes matches before taking new builds into ranked or high-loot zones.",
-						"For additional perspectives on updates, builds, and related resources, you can also explore <a href=\"https://openworldhacks.net/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
+						"If you want deeper game updates, walkthroughs, and related resources, you can also explore <a href=\"https://battlefieldhacks.net/\" target=\"_blank\" rel=\"noopener noreferrer\">additional guides</a>."
 					]
 				}
 			]
 		},
 		{
-			id: "thefinals-com",
-			slug: "thefinals-com",
+			id: "guide-thefinalshacks-com-https",
+			slug: "guide-thefinalshacks-com-https",
 			gameId: "the-finals",
 			gameName: "The Finals",
 			externalUrl: "https://thefinalshacks.com/",
@@ -6555,8 +6555,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "deltaforce-org",
-			slug: "deltaforce-org",
+			id: "guide-deltaforcecheats-org-https",
+			slug: "guide-deltaforcecheats-org-https",
 			gameId: "delta-force",
 			gameName: "Delta Force",
 			externalUrl: "https://deltaforcecheats.org/",
@@ -6618,8 +6618,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "warthunder-net-2",
-			slug: "warthunder-net-2",
+			id: "guide-warthunderhacks-net-https",
+			slug: "guide-warthunderhacks-net-https",
 			gameId: "war-thunder",
 			gameName: "War Thunder",
 			externalUrl: "https://warthunderhacks.net/",
@@ -6681,8 +6681,8 @@ export const externalGuidePosts: ExternalGuidePost[] = [
 			]
 		},
 		{
-			id: "valo-com-2",
-			slug: "valo-com-2",
+			id: "guide-valohacks-com-https",
+			slug: "guide-valohacks-com-https",
 			gameId: "valorant",
 			gameName: "Valorant",
 			externalUrl: "https://valohacks.com/",

@@ -1,5 +1,5 @@
 /**
- * Inspect deadsidecheats.org zone DNS and Pages domain status.
+ * Inspect enlistedcheats.org zone DNS and Pages domain status.
  */
 import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -38,7 +38,7 @@ async function api(path, { method = 'GET', body } = {}) {
 }
 
 async function main() {
-  const zones = await api('/zones?name=deadsidecheats.org');
+  const zones = await api('/zones?name=enlistedcheats.org');
   console.log('Zone:', zones[0]?.id, zones[0]?.name, zones[0]?.status);
 
   if (zones[0]?.id) {

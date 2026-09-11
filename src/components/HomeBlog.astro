@@ -8,7 +8,7 @@ import {
 	heroSrcSet,
 } from '../lib/responsive-images';
 import BlogCinematicCard from './BlogCinematicCard.astro';
-import { deadsideHeroAlt } from '../data/deadside';
+import { enlistedHeroAlt } from '../data/enlisted';
 
 interface Props {
 	locale?: LocaleCode;
@@ -17,7 +17,7 @@ interface Props {
 const locale = Astro.props.locale ?? defaultLocale;
 const posts = getProductBlogPosts(locale, 3);
 /** Decorative section backdrop — marked presentation so AT skips it; alt satisfies SEO audit. */
-const blogSectionBgAlt = `Decorative background: ${deadsideHeroAlt}`;
+const blogSectionBgAlt = `Decorative background: ${enlistedHeroAlt}`;
 ---
 
 {
@@ -60,7 +60,7 @@ const blogSectionBgAlt = `Decorative background: ${deadsideHeroAlt}`;
 
 			<div class="shell home-blog__inner">
 				<h2 id="home-blog-title" class="home-blog__title">
-					Deadside cheats guides
+					Enlisted cheats guides
 				</h2>
 
 				<div class="home-blog__grid">
@@ -139,7 +139,7 @@ const blogSectionBgAlt = `Decorative background: ${deadsideHeroAlt}`;
 				rgba(13, 17, 18, 0.52) 42%,
 				rgba(13, 17, 18, 0.96) 100%
 			),
-			radial-gradient(ellipse 90% 70% at 50% 42%, rgba(111, 143, 58, 0.05), transparent 68%);
+			radial-gradient(ellipse 90% 70% at 50% 42%, rgba(197, 138, 69, 0.05), transparent 68%);
 	}
 
 	.home-blog__inner {
@@ -150,11 +150,11 @@ const blogSectionBgAlt = `Decorative background: ${deadsideHeroAlt}`;
 	.home-blog__title {
 		margin: 0 0 1rem;
 		color: #fff;
-		font-family: var(--font-sans);
+		font-family: var(--font-display);
 		font-size: clamp(1.35rem, 2.8vw, 1.85rem);
 		font-weight: 800;
 		line-height: 1.05;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.14em;
 		text-align: center;
 		text-transform: uppercase;
 	}

@@ -1,14 +1,8 @@
 ---
-import {
-	deadsideHeroAlt,
-	deadsideHeroVideo,
-	deadsideHeroVideoPoster,
-	deadsideHeroVideoPosterMobile,
-} from '../data/deadside';
+import { enlistedHeroAlt } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
-import InspiraShimmerButton from './InspiraShimmerButton.astro';
 import { siteConfig } from '../data/site';
 import { heroPreloadSrc, heroSizes, heroSrcSet, heroIsExternal } from '../lib/responsive-images';
 
@@ -24,16 +18,31 @@ const ui = getUi(locale);
 
 const {
 	accent = ui.hero.accent,
-	imageAlt = ui.images.hero || deadsideHeroAlt,
+	imageAlt = ui.images.hero || enlistedHeroAlt,
 } = Astro.props;
 
 const buyUrl = siteConfig.checkoutUrl;
+const featuresUrl = getLocalizedPath('features', locale);
+const pricingUrl = getLocalizedPath('pricing', locale);
 const setupUrl = getLocalizedPath('setup', locale);
+const espUrl = getLocalizedPath('enlisted-esp', locale);
+const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
+const wallhackUrl = getLocalizedPath('wallhack', locale);
+const radarUrl = getLocalizedPath('radar', locale);
 const reviewsUrl = '/reviews/';
 
+const gameFeatures = ui.hero.gameFeatures ?? ui.hero.seeFeatures;
 const buyLabel = ui.hero.buy ?? ui.hero.buyNow;
+const viewPricing = ui.hero.viewPricing ?? ui.nav.pricing;
 const seeReviews = ui.nav.reviews ?? 'See Reviews';
 const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
+
+const featurePills = [
+	{ label: ui.nav.esp, href: espUrl },
+	{ label: ui.nav.aimbot, href: aimbotUrl },
+	{ label: 'Wallhack', href: wallhackUrl },
+	{ label: 'Radar', href: radarUrl },
+];
 ---
 
 <section class="hero" aria-label={ui.images.hero}>
@@ -52,15 +61,15 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 					/>
 				) : (
 					<>
-						<source media="(max-width: 760px)" srcset={deadsideHeroVideoPosterMobile} type="image/webp" />
+						<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
 						<source
 							media="(min-width: 761px)"
-							srcset={heroSrcSet ?? deadsideHeroVideoPoster}
+							srcset={heroSrcSet}
 							sizes={heroSizes}
 							type="image/webp"
 						/>
 						<img
-							src={deadsideHeroVideoPosterMobile}
+							src={heroPreloadSrc}
 							alt={imageAlt}
 							width="1920"
 							height="1080"
@@ -72,47 +81,45 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 				)
 			}
 		</picture>
-		<video
-			class="hero__video"
-			data-deadside-cheats-video="hero"
-			poster={deadsideHeroVideoPoster}
-			src={deadsideHeroVideo}
-			muted
-			autoplay
-			loop
-			playsinline
-			preload="metadata"
-			aria-hidden="true"
-			tabindex="-1"
-		></video>
 		<div class="hero__veil" aria-hidden="true"></div>
 	</div>
 
 	<div class="hero__inner">
 		<div class="hero__content">
 			<h1 class="hero__logo">
-				<span class="hero__logo-main">Deadside</span>
+				<span class="hero__logo-main">Enlisted</span>
 				<span class="hero__logo-sub">Cheats</span>
 			</h1>
 
 			<p class="hero__tagline">{accent}</p>
 
+			<ul class="hero__features" aria-label="Included modules">
+				{
+					featurePills.map((pill) => (
+						<li>
+							<a href={pill.href} class="hero__feature-pill">
+								{pill.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
 			<div class="hero__actions">
-				<InspiraShimmerButton
-					href={buyUrl}
-					class="hero__btn hero__btn--buy"
-					borderRadius="0.35rem"
-					shimmerColor="rgba(142, 173, 74, 0.9)"
-					background="var(--color-button)"
-					rel="noopener noreferrer"
-				>
+				<a href={featuresUrl} class="hero__btn hero__btn--ghost">
+					{gameFeatures}
+				</a>
+				<a href={buyUrl} class="hero__btn hero__btn--buy" rel="noopener noreferrer">
 					<svg class="hero__btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 						<path
 							d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 6h14.6l-1.4 7H8.1L6.2 6zm-.8-2 2.2 11h11.2l2-11H5.4z"
 							fill="currentColor"></path>
 					</svg>
 					{buyLabel}
-				</InspiraShimmerButton>
+				</a>
+				<a href={pricingUrl} class="hero__btn hero__btn--ghost">
+					{viewPricing}
+				</a>
 			</div>
 
 			<div class="hero__meta">
@@ -148,14 +155,12 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 	</div>
 </section>
 
-<script src="/scripts/deadside-cheats-bg-video.js" defer></script>
-
 <style>
 	.hero {
 		position: relative;
 		overflow: hidden;
 		isolation: isolate;
-		min-height: min(92vh, 920px);
+		min-height: min(78vh, 780px);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -166,7 +171,7 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		background: #0a0d0b;
+		background: #0D1112;
 		overflow: hidden;
 	}
 
@@ -191,39 +196,6 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 		object-fit: cover;
 		object-position: center 35%;
 		filter: saturate(1.08) contrast(1.05) brightness(0.92);
-		transition: opacity 0.5s ease;
-	}
-
-	.hero__video {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: auto;
-		height: auto;
-		min-width: 100%;
-		min-height: 100%;
-		max-width: none;
-		transform: translate(-50%, -50%);
-		object-fit: cover;
-		object-position: center 35%;
-		filter: saturate(1.08) contrast(1.05) brightness(0.88);
-		opacity: 0;
-		transition: opacity 0.6s ease;
-		pointer-events: none;
-	}
-
-	.hero__video.is-ready {
-		opacity: 1;
-	}
-
-	.hero__media:has(.hero__video.is-ready) .hero__poster-img {
-		opacity: 0;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.hero__video {
-			display: none;
-		}
 	}
 
 	.hero__veil {
@@ -273,22 +245,18 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		padding-inline-start: 0.08em;
-		background: linear-gradient(180deg, #ffffff 0%, #a7aea5 42%, #6f8f3a 100%);
+		background: linear-gradient(180deg, #f1eee5 0%, #c58a45 48%, #58604b 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
 	}
 
 	.hero__logo-sub {
-		font-size: clamp(1rem, 2.2vw, 1.35rem);
-		font-weight: 800;
-		letter-spacing: 0.32em;
-		padding-inline-start: 0.32em;
-		color: #a8c85a;
-		text-shadow:
-			0 0 24px rgba(142, 173, 74, 0.35),
-			0 2px 12px rgba(0, 0, 0, 0.55);
-		-webkit-font-smoothing: antialiased;
+		font-size: clamp(0.85rem, 1.8vw, 1.12rem);
+		font-weight: 700;
+		letter-spacing: 0.35em;
+		padding-inline-start: 0.35em;
+		color: var(--color-gold);
 	}
 
 	.hero__tagline {
@@ -301,18 +269,58 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 		color: rgba(255, 236, 196, 0.88);
 	}
 
-	.hero__actions {
+	.hero__features {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
-		width: 100%;
-		max-width: 20rem;
-		margin-top: 1.35rem;
-		margin-inline: auto;
+		align-items: center;
+		gap: 0.3rem;
+		width: auto;
+		max-width: 100%;
+		margin: 1.1rem 0 0;
+		padding: 0;
+		list-style: none;
 	}
 
-	.hero__actions .hero__btn--buy {
+	.hero__features li {
+		display: flex;
+	}
+
+	.hero__feature-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		padding: 0.28rem 0.55rem;
+		border-radius: 999px;
+		border: 1px solid var(--color-border-gold-soft);
+		background: rgba(0, 0, 0, 0.35);
+		color: rgba(255, 244, 220, 0.92);
+		font-size: 0.62rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		text-decoration: none;
+		white-space: nowrap;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.hero__feature-pill:hover {
+		border-color: var(--color-border-gold-hover);
+		background: rgba(197, 138, 69, 0.12);
+		color: #fff;
+	}
+
+	.hero__actions {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.65rem;
 		width: 100%;
-		max-width: 18rem;
+		max-width: 32rem;
+		margin-top: 1.65rem;
 	}
 
 	.hero__btn {
@@ -353,26 +361,79 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 	}
 
 	.hero__btn--buy {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
 		padding-inline: 0.85rem;
-		border-color: rgba(111, 143, 58, 0.45);
+		background: linear-gradient(135deg, #e8b066 0%, #c58a45 46%, #a86f2f 100%);
+		border-color: rgba(255, 228, 170, 0.55);
+		color: #140c04;
 		box-shadow:
-			0 0 0 1px rgba(111, 143, 58, 0.2),
-			0 0 22px rgba(111, 143, 58, 0.22),
+			0 1px 0 rgba(255, 255, 255, 0.35) inset,
+			0 0 0 1px rgba(197, 138, 69, 0.2),
+			0 0 26px rgba(197, 138, 69, 0.34),
 			0 14px 30px rgba(0, 0, 0, 0.36);
 	}
 
-	.hero__btn--buy:hover,
-	.hero__btn--buy:focus-visible {
+	.hero__btn--buy::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.hero__btn--buy::after {
+		content: '';
+		position: absolute;
+		top: -10%;
+		left: 0;
+		width: 42%;
+		height: 120%;
+		background: linear-gradient(
+			105deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.12) 42%,
+			rgba(255, 255, 255, 0.28) 50%,
+			rgba(255, 255, 255, 0.12) 58%,
+			transparent 100%
+		);
+		transform: translateX(-170%) skewX(-18deg);
+		pointer-events: none;
+	}
+
+	.hero__btn--buy:hover {
+		filter: brightness(1.05);
 		transform: translateY(-2px);
+		color: #140c04;
 		box-shadow:
-			0 0 0 1px rgba(142, 173, 74, 0.4),
-			0 0 28px rgba(111, 143, 58, 0.32),
+			0 1px 0 rgba(255, 255, 255, 0.4) inset,
+			0 0 0 1px rgba(255, 228, 170, 0.4),
+			0 0 32px rgba(197, 138, 69, 0.45),
 			0 16px 34px rgba(0, 0, 0, 0.38);
 	}
 
+	@media (hover: hover) and (pointer: fine) {
+		.hero__btn--buy:hover::after {
+			animation: hero-buy-shine 2.2s ease-in-out infinite;
+		}
+	}
+
+	@keyframes hero-buy-shine {
+		0% {
+			transform: translateX(-170%) skewX(-18deg);
+		}
+		100% {
+			transform: translateX(320%) skewX(-18deg);
+		}
+	}
+
 	.hero__btn--buy .hero__btn-icon {
+		position: relative;
+		z-index: 2;
 		width: 1.1rem;
 		height: 1.1rem;
+		flex-shrink: 0;
 	}
 
 	.hero__meta {
@@ -448,7 +509,7 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 
 	@media (max-width: 760px) {
 		.hero {
-			min-height: min(88svh, 820px);
+			min-height: min(76svh, 680px);
 		}
 
 		.hero__inner {
@@ -461,12 +522,17 @@ const systemRequirements = ui.hero.systemRequirements ?? ui.nav.setup;
 		}
 
 		.hero__actions {
-			max-width: 100%;
+			grid-template-columns: 1fr;
+			max-width: 18rem;
 		}
 
 		.hero__btn {
 			font-size: 0.82rem;
 			padding-inline: 1.25rem;
+		}
+
+		.hero__btn--buy {
+			order: -1;
 		}
 	}
 

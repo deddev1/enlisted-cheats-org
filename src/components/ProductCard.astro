@@ -1,5 +1,5 @@
 ---
-import { pricingGallery, deadsideImages } from '../data/deadside';
+import { pricingGallery, enlistedImages } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -21,7 +21,7 @@ const priority = Astro.props.priority ?? false;
 
 const { name = ui.product.title } = Astro.props;
 
-/** Localized alts aligned 1:1 with deadsideImages.product; undefined falls back to data alt. */
+/** Localized alts aligned 1:1 with enlistedImages.product; undefined falls back to data alt. */
 const productAlts = [
 	ui.images.battleRoyale,
 	ui.images.playerEsp,
@@ -30,15 +30,15 @@ const productAlts = [
 	ui.images.rebootFight,
 ] as const;
 
-/** Hero still + five unique product thumbs — six Deadside images, no repeats. */
+/** Hero still + five unique product thumbs — six Enlisted images, no repeats. */
 const heroPreview = {
 	src: pricingGallery[0].src,
 	fullSrc: pricingGallery[0].src,
 	alt: pricingGallery[0].alt,
 };
 
-/** Screenshot thumbs only — each unique Deadside still. */
-const images = deadsideImages.product.map((image, index) => ({
+/** Screenshot thumbs only — each unique Enlisted still. */
+const images = enlistedImages.product.map((image, index) => ({
 	src: image.src,
 	fullSrc: image.src,
 	alt: productAlts[index] ?? image.alt,
@@ -61,7 +61,7 @@ const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
 				fetchpriority={priority ? 'high' : 'auto'}
 				decoding="async"
 			/>
-			<span class="product__credit" aria-hidden="true">Deadside</span>
+			<span class="product__credit" aria-hidden="true">Enlisted</span>
 		</figure>
 		<div class="product__thumbs" role="group" aria-label="Product preview images">
 			{
@@ -181,8 +181,8 @@ const lifetimePlan = productInfo.plans.find((plan) => plan.id === 'lifetime');
 		<div class="buy-also">
 			<p class="buy-also__label">{ui.common.relatedPages}</p>
 			<div class="buy-also__row">
-				<a href={getLocalizedPath('deadside-esp', locale)} class="alt-link">{ui.nav.esp}</a>
-				<a href={getLocalizedPath('deadside-aimbot', locale)} class="alt-link">{ui.nav.aimbot}</a>
+				<a href={getLocalizedPath('enlisted-esp', locale)} class="alt-link">{ui.nav.esp}</a>
+				<a href={getLocalizedPath('enlisted-aimbot', locale)} class="alt-link">{ui.nav.aimbot}</a>
 				<a href={getLocalizedPath('features', locale)} class="alt-link">{ui.nav.features}</a>
 				<a href={getLocalizedPath('setup', locale)} class="alt-link">{ui.nav.setup}</a>
 				<a href={getLocalizedPath('pricing', locale)} class="alt-link">{ui.nav.pricing}</a>

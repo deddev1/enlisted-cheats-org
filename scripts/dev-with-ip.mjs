@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { networkInterfaces } from 'node:os';
 
-const PORT = 4321;
+const PORT = 3000;
 
 function getLanIp() {
 	for (const entries of Object.values(networkInterfaces())) {
@@ -16,7 +16,7 @@ function getLanIp() {
 
 const ip = getLanIp();
 console.log('');
-console.log('  Deadside Cheats dev server');
+console.log('  Enlisted Cheats dev server');
 console.log('  --------------------');
 console.log(`  Local:   http://localhost:${PORT}/`);
 console.log(`  Network: http://${ip}:${PORT}/`);

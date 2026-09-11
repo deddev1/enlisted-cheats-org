@@ -1,5 +1,5 @@
 ---
-import { gameplayPreviewScreenshots } from '../data/deadside';
+import { showcaseGameplay } from '../data/enlisted';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { contentSrc, contentSrcSet } from '../lib/responsive-images';
@@ -10,14 +10,53 @@ interface Props {
 
 const locale = Astro.props.locale ?? defaultLocale;
 
-const showcaseCards = gameplayPreviewScreenshots.map((shot) => ({
-	badge: shot.badge,
-	badgeTone: shot.badgeTone,
-	title: shot.title,
-	description: shot.description,
-	image: shot,
-	href: getLocalizedPath(shot.pageId, locale),
-}));
+const showcaseCards = [
+	{
+		badge: 'Wallhack',
+		badgeTone: 'green',
+		title: 'Enemy ESP through cover',
+		description:
+			'Green wallhack highlights soldiers behind wooden walls and trench fortifications before they peek.',
+		image: showcaseGameplay[0],
+		href: getLocalizedPath('wallhack', locale),
+	},
+	{
+		badge: 'ESP',
+		badgeTone: 'green',
+		title: 'Red soldier silhouettes',
+		description:
+			'Bright red ESP outlines on open ground so you spot pushes, flanks, and exposed infantry early.',
+		image: showcaseGameplay[1],
+		href: getLocalizedPath('enlisted-esp', locale),
+	},
+	{
+		badge: 'Aimbot',
+		badgeTone: 'gold',
+		title: 'Scoped enemy highlight',
+		description:
+			'Purple chams and mark-enemy cues through optics for faster long-range weak-spot shots.',
+		image: showcaseGameplay[2],
+		href: getLocalizedPath('enlisted-aimbot', locale),
+	},
+	{
+		badge: 'Radar',
+		badgeTone: 'gold',
+		title: 'Skeleton ESP and snaplines',
+		description:
+			'2D radar, skeleton boxes, snaplines, and soldier distance tags during heavy firefights.',
+		image: showcaseGameplay[3],
+		href: getLocalizedPath('radar', locale),
+	},
+	{
+		badge: 'Radar',
+		badgeTone: 'gold',
+		title: 'Soldiers visible through terrain',
+		description:
+			'Top-down radar plus soldier icons that stay readable through hills, smoke, and hard cover.',
+		image: showcaseGameplay[4],
+		href: getLocalizedPath('radar', locale),
+	},
+] as const;
 
 const scrollCards = [...showcaseCards, ...showcaseCards];
 ---
@@ -33,8 +72,7 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 					Cheat showcase
 				</h2>
 				<p class="cheat-showcase__lead">
-					Live Deadside gameplay previews — ESP, wallhack, aimbot, radar, and menu shots from the Windows PC
-					package.
+					Live Enlisted Cheats screenshots — wallhack, ESP, aimbot, and radar from the Windows PC package.
 				</p>
 			</div>
 		</header>
@@ -57,7 +95,6 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 												{...(imageSrcSet ? { srcset: imageSrcSet } : {})}
 												sizes="(max-width: 560px) 78vw, 320px"
 												alt={card.image.alt}
-												title={card.image.title}
 												width="530"
 												height="320"
 												loading="lazy"
@@ -85,150 +122,168 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 </section>
 
 <script>
-	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const viewport = document.querySelector('[data-cheat-scroll-viewport]');
+	const track = document.querySelector('[data-cheat-scroll-track]');
 
-	for (const viewport of document.querySelectorAll('[data-cheat-scroll-viewport]')) {
-		if (!(viewport instanceof HTMLElement)) continue;
-		const track = viewport.querySelector('[data-cheat-scroll-track]');
-		if (!(track instanceof HTMLElement)) continue;
-
-		const speedNormal = reduceMotion ? 0 : 1.22;
-		const speedHover = reduceMotion ? 0 : 0.14;
-		let targetSpeed = speedNormal;
-		let currentSpeed = speedNormal;
-		let raf = 0;
-
-		const tick = () => {
-			currentSpeed += (targetSpeed - currentSpeed) * 0.09;
-			if (currentSpeed > 0.001) {
-				viewport.scrollLeft += currentSpeed;
-				const half = track.scrollWidth / 2;
-				if (half > 0 && viewport.scrollLeft >= half) {
-					viewport.scrollLeft -= half;
-				}
+	if (viewport instanceof HTMLElement && track instanceof HTMLElement) {
+		const pause = () => {
+			track.style.animationPlayState = 'paused';
+		};
+		const resume = () => {
+			if (!viewport.matches(':hover') && !viewport.matches(':focus-within')) {
+				track.style.animationPlayState = 'running';
 			}
-			raf = requestAnimationFrame(tick);
 		};
 
-		viewport.addEventListener('pointerenter', () => {
-			targetSpeed = speedHover;
-		});
-		viewport.addEventListener('pointerleave', () => {
-			targetSpeed = speedNormal;
-		});
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry?.isIntersecting) resume();
+				else pause();
+			},
+			{ rootMargin: '120px 0px' },
+		);
 
-		raf = requestAnimationFrame(tick);
+		observer.observe(viewport);
 	}
 </script>
 
 <style>
 	.cheat-showcase {
 		position: relative;
-		padding: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(2rem, 4vw, 3rem);
-		overflow: hidden;
-		background: linear-gradient(180deg, rgba(8, 10, 12, 0.2) 0%, rgba(4, 5, 7, 0.95) 100%);
+		margin-top: -3rem;
+		padding: 0 0 1rem;
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0) 0%,
+			rgba(13, 17, 18, 0.72) 8%,
+			var(--color-bg) 18%,
+			var(--color-bg-secondary) 100%
+		);
+		isolation: isolate;
 	}
 
 	.cheat-showcase__fade {
-		pointer-events: none;
 		position: absolute;
-		inset: 0;
-		background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(111, 143, 58, 0.08), transparent 70%);
+		inset: 0 0 auto;
+		height: 6rem;
+		background: linear-gradient(
+			180deg,
+			rgba(13, 17, 18, 0) 0%,
+			rgba(13, 17, 18, 0.55) 55%,
+			rgba(13, 17, 18, 0.92) 100%
+		);
+		pointer-events: none;
+		z-index: 0;
 	}
 
 	.cheat-showcase__inner {
 		position: relative;
 		z-index: 1;
+		padding-top: 3rem;
+		padding-bottom: 0.85rem;
 	}
 
 	.cheat-showcase__head {
-		margin-bottom: 1.25rem;
-		text-align: center;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.cheat-showcase__head-copy {
+		display: grid;
+		gap: 0.45rem;
+		min-width: 0;
 	}
 
 	.cheat-showcase__title {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 		gap: 0.65rem;
 		margin: 0;
-		font-family: var(--font-sans);
-		font-size: clamp(1.35rem, 3vw, 1.85rem);
+		color: var(--color-ink);
+		font-family: var(--font-display);
+		font-size: var(--heading-section);
 		font-weight: 800;
-		letter-spacing: -0.02em;
-		text-transform: uppercase;
-		color: #f5e6c8;
+		line-height: 1.15;
 	}
 
 	.cheat-showcase__accent {
 		display: inline-block;
-		width: 0.35rem;
+		width: 0.22rem;
 		height: 1.35rem;
-		border-radius: 2px;
-		background: linear-gradient(180deg, #e8b96a, #9a6a2e);
+		border-radius: 999px;
+		background: linear-gradient(180deg, #b47a3c, #343b31);
+		flex-shrink: 0;
 	}
 
 	.cheat-showcase__lead {
-		margin: 0.65rem auto 0;
+		margin: 0;
 		max-width: 42rem;
-		font-size: 0.95rem;
+		color: var(--color-faint);
+		font-size: 0.92rem;
 		line-height: 1.55;
-		color: rgba(235, 220, 190, 0.78);
 	}
 
 	.cheat-showcase__stage {
-		position: relative;
-		z-index: 1;
+		width: 100%;
+		overflow: hidden;
+		content-visibility: auto;
+		contain-intrinsic-size: 1px 320px;
 	}
 
 	.cheat-showcase__viewport {
-		overflow-x: auto;
-		overflow-y: hidden;
-		scrollbar-width: none;
-		mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-	}
-
-	.cheat-showcase__viewport::-webkit-scrollbar {
-		display: none;
+		width: 100%;
+		overflow: hidden;
 	}
 
 	.cheat-showcase__track {
 		display: flex;
-		gap: 1rem;
+		flex-direction: row;
+		align-items: stretch;
+		gap: 0.75rem;
 		width: max-content;
-		padding: 0.25rem clamp(1rem, 4vw, 2rem) 0.5rem;
+		padding-block: 0.35rem 0.5rem;
+		padding-inline: var(--shell-inset);
+		will-change: transform;
+		animation: cheat-showcase-scroll 18s linear infinite;
+	}
+
+	.cheat-showcase__viewport:hover .cheat-showcase__track,
+	.cheat-showcase__viewport:focus-within .cheat-showcase__track {
+		animation-play-state: paused;
 	}
 
 	.cheat-showcase__card {
-		flex: 0 0 auto;
-		width: min(320px, 78vw);
+		display: flex;
+		flex: 0 0 clamp(14rem, 21vw, 17rem);
+		width: clamp(14rem, 21vw, 17rem);
 	}
 
 	.cheat-showcase__card-link {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		height: 100%;
-		border-radius: 0.5rem;
-		border: 1px solid rgba(111, 143, 58, 0.22);
-		background: rgba(12, 14, 18, 0.92);
-		text-decoration: none;
-		color: inherit;
 		overflow: hidden;
+		border: 1px solid var(--color-border-panel);
+		background: rgba(0, 0, 0, 0.42);
+		color: inherit;
+		text-decoration: none;
 		transition:
 			border-color 0.2s ease,
-			transform 0.2s ease,
-			box-shadow 0.2s ease;
+			background 0.2s ease;
 	}
 
 	.cheat-showcase__card-link:hover {
-		border-color: rgba(232, 185, 106, 0.45);
-		transform: translateY(-2px);
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+		border-color: var(--color-border-panel-strong);
+		background: rgba(0, 0, 0, 0.52);
 	}
 
 	.cheat-showcase__media {
-		aspect-ratio: 530 / 320;
+		aspect-ratio: 16 / 9;
 		overflow: hidden;
-		background: #0a0c0f;
+		background: rgba(255, 255, 255, 0.04);
 	}
 
 	.cheat-showcase__media img {
@@ -236,27 +291,28 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center top;
 	}
 
 	.cheat-showcase__body {
 		display: flex;
+		flex: 1;
 		flex-direction: column;
-		gap: 0.45rem;
-		padding: 0.85rem 0.95rem 1rem;
+		padding: 0.7rem 0.8rem 0.85rem;
+		min-height: 7.5rem;
 	}
 
 	.cheat-showcase__meta {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		justify-content: space-between;
-		gap: 0.5rem;
+		gap: 0.55rem;
+		margin-bottom: 0.55rem;
 	}
 
 	.cheat-showcase__badge {
 		display: inline-flex;
-		padding: 0.2rem 0.45rem;
-		border-radius: 999px;
+		align-items: center;
+		padding: 0.18rem 0.45rem;
 		font-size: 0.62rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
@@ -264,37 +320,95 @@ const scrollCards = [...showcaseCards, ...showcaseCards];
 	}
 
 	.cheat-showcase__badge--green {
-		background: rgba(72, 160, 96, 0.18);
-		color: #8fd9a0;
-		border: 1px solid rgba(120, 200, 140, 0.35);
+		background: var(--color-green);
+		color: #f1eee5;
 	}
 
 	.cheat-showcase__badge--gold {
-		background: rgba(111, 143, 58, 0.14);
-		color: #b8d080;
-		border: 1px solid rgba(111, 143, 58, 0.35);
+		background: var(--color-accent);
+		color: #0d1112;
 	}
 
 	.cheat-showcase__label {
-		font-size: 0.62rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: rgba(200, 190, 170, 0.55);
+		color: var(--color-faint);
+		font-size: 0.72rem;
+		font-weight: 600;
 	}
 
 	.cheat-showcase__card-title {
 		margin: 0;
-		font-size: 0.92rem;
+		color: #fff;
+		font-family: var(--font-display);
+		font-size: clamp(0.84rem, 1.05vw, 0.92rem);
 		font-weight: 800;
-		line-height: 1.3;
-		color: #f2e4c6;
+		letter-spacing: -0.01em;
+		line-height: 1.35;
+		text-transform: none;
+		text-wrap: balance;
+		min-height: 2.5em;
 	}
 
 	.cheat-showcase__card-desc {
-		margin: 0;
-		font-size: 0.78rem;
-		line-height: 1.45;
-		color: rgba(220, 205, 180, 0.72);
+		margin: 0.45rem 0 0;
+		color: rgba(229, 238, 238, 0.88);
+		font-size: 0.82rem;
+		line-height: 1.55;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+	}
+
+	@keyframes cheat-showcase-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (max-width: 560px) {
+		.cheat-showcase {
+			margin-top: -2.5rem;
+			padding-bottom: 1rem;
+		}
+
+		.cheat-showcase__inner {
+			padding-top: 2.5rem;
+			padding-bottom: 0.75rem;
+		}
+
+		.cheat-showcase__card {
+			flex-basis: min(78vw, 16rem);
+			width: min(78vw, 16rem);
+		}
+
+		.cheat-showcase__body {
+			min-height: 7rem;
+		}
+
+		.cheat-showcase__card-title {
+			font-size: 0.92rem;
+			min-height: 2.6em;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cheat-showcase__track {
+			animation: none;
+			flex-wrap: wrap;
+			width: 100%;
+		}
+
+		.cheat-showcase__viewport {
+			overflow: visible;
+			mask-image: none;
+		}
+
+		.cheat-showcase__card {
+			flex: 1 1 min(100%, 17.5rem);
+			width: auto;
+		}
 	}
 </style>

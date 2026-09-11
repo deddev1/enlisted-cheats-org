@@ -171,7 +171,7 @@ export function getLocaleRedirectTarget(
 	if (preferred === currentLocale) return null;
 
 	const targetPath = getLocalizedPath(pageId, preferred);
-	const target = new URL(targetPath, 'https://deadsidecheats.org');
+	const target = new URL(targetPath, 'https://enlistedcheats.org');
 	target.search = search;
 	return target.pathname + target.search;
 }

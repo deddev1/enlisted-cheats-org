@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /*
  * Display font: desktop only. Mobile uses the system stack so Syne never
@@ -22,55 +22,53 @@
 	--font-display: ui-rounded, "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 	--font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-	/* Deadside tactical palette — green as accent, not fill */
-	--color-bg: #0a0d0b;
-	--color-bg-secondary: #111612;
-	--color-card: #171d18;
-	--color-card-hover: #202920;
-	--color-accent: #6f8f3a;
-	--color-gold: #6f8f3a;
-	--color-gold-hover: #8ead4a;
-	--color-green: #6f8f3a;
-	--color-olive: #202920;
+	/* Enlisted military palette */
+	--color-bg: #0d1112;
+	--color-bg-secondary: #151a1a;
+	--color-card: #1d2423;
+	--color-card-hover: #252d2b;
+	--color-accent: #b47a3c;
+	--color-gold: #c58a45;
+	--color-gold-hover: #d39a50;
+	--color-green: #58604b;
+	--color-olive: #343b31;
 
-	--color-midnight: #0a0d0b;
-	--color-surface: #111612;
-	--color-surface-raised: #171d18;
-	--color-surface-muted: #171d18;
-	--color-surface-hover: #202920;
-	--color-border: #293129;
-	--color-border-subtle: rgba(41, 49, 41, 0.65);
-	--color-border-panel: #293129;
-	--color-border-panel-strong: rgba(41, 49, 41, 0.95);
-	--color-border-gold: rgba(111, 143, 58, 0.35);
-	--color-border-gold-soft: rgba(41, 49, 41, 0.9);
-	--color-border-gold-hover: rgba(142, 173, 74, 0.45);
-	--color-border-strong: rgba(111, 143, 58, 0.55);
-	--panel-bg: rgba(23, 29, 24, 0.92);
-	--panel-bg-deep: rgba(10, 13, 11, 0.94);
+	--color-midnight: #0d1112;
+	--color-surface: #151a1a;
+	--color-surface-raised: #1d2423;
+	--color-surface-muted: #1d2423;
+	--color-surface-hover: #252d2b;
+	--color-border: rgba(255, 255, 255, 0.12);
+	--color-border-subtle: rgba(255, 255, 255, 0.08);
+	--color-border-panel: rgba(255, 255, 255, 0.09);
+	--color-border-panel-strong: rgba(255, 255, 255, 0.14);
+	--color-border-gold: rgba(197, 138, 69, 0.22);
+	--color-border-gold-soft: rgba(197, 138, 69, 0.16);
+	--color-border-gold-hover: rgba(197, 138, 69, 0.34);
+	--color-border-strong: rgba(197, 138, 69, 0.42);
+	--panel-bg: rgba(8, 10, 11, 0.62);
+	--panel-bg-deep: rgba(6, 8, 9, 0.78);
 
-	--color-cyan: #6f8f3a;
-	--color-teal: #202920;
-	--color-violet: #6f8f3a;
-	--color-fuchsia: #202920;
-	--color-orchid: #8ead4a;
-	--color-plum: #171d18;
-	--color-mint: #8ead4a;
-	--color-bright: #8ead4a;
-	--color-sale: #d58a32;
-	--color-error: #c94a45;
+	--color-cyan: #b47a3c;
+	--color-teal: #343b31;
+	--color-violet: #58604b;
+	--color-fuchsia: #343b31;
+	--color-orchid: #b47a3c;
+	--color-plum: #343b31;
+	--color-mint: #d39a50;
+	--color-bright: #d39a50;
 
-	--color-ink: #ffffff;
-	--color-body: #ffffff;
-	--color-muted: rgba(255, 255, 255, 0.9);
-	--color-faint: rgba(255, 255, 255, 0.72);
+	--color-ink: #f1eee5;
+	--color-body: #b5b4aa;
+	--color-muted: #b5b4aa;
+	--color-faint: #777a73;
 
-	--color-button: #6f8f3a;
-	--color-button-hover: #8ead4a;
+	--color-button: #c58a45;
+	--color-button-hover: #d39a50;
 
-	--shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.42);
-	--gradient-brand: linear-gradient(135deg, #111612 0%, #171d18 55%, #6f8f3a 100%);
-	--gradient-brand-x: linear-gradient(90deg, #6f8f3a 0%, #8ead4a 100%);
+	--shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.36);
+	--gradient-brand: linear-gradient(135deg, #343b31 0%, #58604b 45%, #b47a3c 100%);
+	--gradient-brand-x: linear-gradient(90deg, #c58a45 0%, #d39a50 100%);
 
 	--page-max: 1040px;
 	--page-gutter: 1.25rem;
@@ -80,8 +78,6 @@
 	--layout-gap: clamp(0.85rem, 1.6vw, 1.15rem);
 	--heading-section: clamp(1.2rem, 2.2vw, 1.55rem);
 	--heading-display: clamp(1.45rem, 3vw, 2rem);
-	/* Inner/content pages: headings match body stack (home keeps Syne via main.site) */
-	--font-page-heading: var(--font-sans);
 	--radius-media: 0.25rem;
 	--radius-card: 0.35rem;
 	--touch-min: 2.75rem;
@@ -167,33 +163,9 @@
 		color: var(--color-ink);
 	}
 
-	/* Non-home routes: sans headings for readability (components use var(--font-display)) */
-	main.page,
-	main.post-page,
-	main.blog,
-	main.guide-post,
-	main.guides,
-	main.review-page,
-	main.reviews-index,
-	main.missing {
-		--font-display: var(--font-page-heading);
-	}
-
-	main.page :where(h1, h2, h3, h4, h5, h6),
-	main.post-page :where(h1, h2, h3, h4, h5, h6),
-	main.blog :where(h1, h2, h3, h4, h5, h6),
-	main.guide-post :where(h1, h2, h3, h4, h5, h6),
-	main.guides :where(h1, h2, h3, h4, h5, h6),
-	main.review-page :where(h1, h2, h3, h4, h5, h6),
-	main.reviews-index :where(h1, h2, h3, h4, h5, h6),
-	main.missing :where(h1, h2, h3, h4, h5, h6) {
-		font-family: var(--font-page-heading);
-		letter-spacing: -0.02em;
-	}
-
 	::selection {
-		background: rgba(111, 143, 58, 0.45);
-		color: #0a0d0b;
+		background: rgba(197, 138, 69, 0.35);
+		color: #0d1112;
 	}
 
 	img {
@@ -279,17 +251,18 @@
 		min-height: var(--touch-min);
 		padding: 0.85rem 1.85rem;
 		border-radius: 0.95rem;
-		border: 1px solid rgba(111, 143, 58, 0.45);
-		background: var(--color-button);
-		color: #ffffff;
+		border: 1px solid rgba(255, 228, 170, 0.55);
+		background: linear-gradient(135deg, #e8b066 0%, #c58a45 46%, #a86f2f 100%);
+		color: #140c04;
 		font-size: 1rem;
 		font-weight: 800;
 		letter-spacing: 0.05em;
 		text-shadow: none;
 		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.12) inset,
-			0 0 0 1px rgba(111, 143, 58, 0.2),
-			0 8px 22px rgba(0, 0, 0, 0.35);
+			0 1px 0 rgba(255, 255, 255, 0.32) inset,
+			0 0 0 1px rgba(197, 138, 69, 0.18),
+			0 0 24px rgba(197, 138, 69, 0.28),
+			0 10px 24px rgba(0, 0, 0, 0.3);
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease,
@@ -311,7 +284,7 @@
 	.btn-buy:hover,
 	.btn-buy:focus-visible,
 	.btn-buy:visited {
-		color: #ffffff;
+		color: #140c04;
 	}
 
 	.btn-buy,
@@ -352,9 +325,9 @@
 		background: linear-gradient(
 			105deg,
 			transparent 0%,
-			rgba(111, 143, 58, 0.12) 42%,
-			rgba(142, 173, 74, 0.22) 50%,
-			rgba(111, 143, 58, 0.12) 58%,
+			rgba(197, 138, 69, 0.14) 42%,
+			rgba(197, 138, 69, 0.28) 50%,
+			rgba(197, 138, 69, 0.14) 58%,
 			transparent 100%
 		);
 		transform: translateX(-170%) skewX(-18deg);
@@ -412,9 +385,9 @@
 		.pricing-showcase__cart:hover,
 		.pricing-showcase__cart:focus-visible {
 			box-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.16) inset,
-				0 0 0 1px rgba(142, 173, 74, 0.4),
-				0 0 20px rgba(111, 143, 58, 0.28),
+				0 1px 0 rgba(255, 255, 255, 0.38) inset,
+				0 0 0 1px rgba(255, 228, 170, 0.35),
+				0 0 28px rgba(197, 138, 69, 0.42),
 				0 14px 28px rgba(0, 0, 0, 0.34);
 		}
 	}
@@ -451,10 +424,10 @@
 	}
 
 	.btn-buy:hover {
-		color: #ffffff;
-		background: var(--color-button-hover);
+		color: #140c04;
+		background: linear-gradient(135deg, #f0bc72 0%, #d39a50 46%, #b47a3c 100%);
 		transform: translateY(-2px);
-		filter: brightness(1.03);
+		filter: brightness(1.04);
 	}
 
 	.btn-buy:active {
@@ -515,9 +488,9 @@
 		pointer-events: none;
 		background: linear-gradient(
 			180deg,
-			rgba(111, 143, 58, 0.05) 0%,
+			rgba(197, 138, 69, 0.06) 0%,
 			transparent 36%,
-			rgba(10, 13, 11, 0.28) 100%
+			rgba(13, 17, 18, 0.22) 100%
 		);
 		mix-blend-mode: soft-light;
 	}

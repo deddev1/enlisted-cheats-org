@@ -3,34 +3,37 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const supabaseBase =
-	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/deadside';
+	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/enlisted';
 
 const imagesDir = path.resolve('public/images');
 const CONTENT_WIDTHS = [480, 640, 960];
 
 /** Remote Supabase assets mapped to local responsive basenames. */
-const PREVIEW_FILES = [
-	'Screenshot%202026-09-01%20084206.png',
-	'Screenshot%202026-09-01%20084218.png',
-	'Screenshot%202026-09-01%20084240.png',
-	'Screenshot%202026-09-01%20084248.png',
-	'Screenshot%202026-09-01%20084255.png',
-	'Screenshot%202026-09-01%20084304.png',
-	'Screenshot%202026-09-01%20084313.png',
-	'Screenshot%202026-09-01%20084335.png',
-	'Screenshot%202026-09-01%20084342.png',
-	'Screenshot%202026-09-01%20084428.png',
-	'Screenshot%202026-09-01%20084612.png',
-	'Screenshot%202026-09-01%20084621.png',
-	'Screenshot%202026-09-01%20084629.png',
-	'Screenshot%202026-09-01%20084636.png',
-];
-
 const ASSETS = [
-	...PREVIEW_FILES.map((file, index) => ({
-		url: `${supabaseBase}/${file}`,
-		base: `deadside-gameplay-preview-${String(index + 1).padStart(2, '0')}`,
-	})),
+	{
+		url: `${supabaseBase}/Screenshot%202026-09-04%20161627.png`,
+		base: 'enlisted-gameplay-wallhack',
+	},
+	{
+		url: `${supabaseBase}/Screenshot%202026-09-04%20161636.png`,
+		base: 'enlisted-gameplay-esp',
+	},
+	{
+		url: `${supabaseBase}/Screenshot%202026-09-04%20161643.png`,
+		base: 'enlisted-gameplay-aimbot',
+	},
+	{
+		url: `${supabaseBase}/Screenshot%202026-09-04%20161704.png`,
+		base: 'enlisted-gameplay-radar-combat',
+	},
+	{
+		url: `${supabaseBase}/Screenshot%202026-09-04%20161712.png`,
+		base: 'enlisted-gameplay-radar-map',
+	},
+	{
+		url: `${supabaseBase}/bottom-shop-bg.webp`,
+		base: 'enlisted-pricing-shop-bg',
+	},
 ];
 
 async function fetchBuffer(url) {

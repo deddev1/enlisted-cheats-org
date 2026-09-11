@@ -3,56 +3,56 @@ import type { BlogPostDefinition } from './types';
 
 export const blogPosts: BlogPostDefinition[] = [
 	{
-		id: "deadside-cheats-complete-guide",
+		id: "enlisted-cheats-complete-guide",
 		imageKey: "battleRoyaleCombat",
 		published: "2026-07-31",
 		updated: "2026-08-01",
-		category: "Deadside Cheats",
+		category: "Enlisted Cheats",
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-cheats-complete-guide-2026",
-		title: "Deadside Cheats 2026: Complete Undetected Guide",
-		metaDescription: "Complete Deadside Cheats guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and anti-cheat maintenance in 2026. Compare the full package and buy.",
-		h1: "Deadside Cheats 2026: The Complete Undetected Guide",
-		intro: "Searching for Deadside Cheats in 2026? This guide covers ESP wallhack, Aimbot, radar, undetected maintenance, and how Deadside cheats searchers map to the same Windows PC package.",
-		keywords: ["Deadside Cheats","undetected Deadside Cheats","Deadside cheats","esp","aimbot","eac"],
-		imageAlt: "Deadside Cheats complete guide showing ESP wallhack and Aimbot for 2026",
+		slug: "enlisted-cheats-complete-guide-2026",
+		title: "Enlisted Cheats 2026: Complete Undetected Guide",
+		metaDescription: "Complete Enlisted Cheats guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and anti-cheat maintenance in 2026. Compare the full package and buy.",
+		h1: "Enlisted Cheats 2026: The Complete Undetected Guide",
+		intro: "Searching for Enlisted Cheats in 2026? This guide covers ESP wallhack, Aimbot, radar, undetected maintenance, and how Enlisted cheats searchers map to the same Windows PC package.",
+		keywords: ["Enlisted Cheats","undetected Enlisted Cheats","Enlisted cheats","esp","aimbot","eac"],
+		imageAlt: "Enlisted Cheats complete guide showing ESP wallhack and Aimbot for 2026",
 		sections: [
 			{
-				h2: "What Deadside Cheats actually include",
+				h2: "What Enlisted Cheats actually include",
 				paragraphs: [
-					"Deadside Cheats usually mean visibility plus combat assist: enemy ESP wallhack, medkit markers, 2D radar threat cues, and configurable Aimbot. Buyers who type Deadside cheats are looking for the same stack — different wording, same mission loop.",
-					"Official seasons and client updates publish through <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a> and <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside patch notes</a>. Anti-cheat context lives on Bad Pixel anti-cheat. Our <a href=\"/deadside-cheats/\">Deadside Cheats pillar</a> is the commercial landing; this post is the long-form explainer.",
+					"Enlisted Cheats usually mean visibility plus combat assist: enemy ESP wallhack, medkit markers, 2D radar threat cues, and configurable Aimbot. Buyers who type Enlisted cheats are looking for the same stack — different wording, same mission loop.",
+					"Official seasons and client updates publish through <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> and <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted patch notes</a>. Anti-cheat context lives on Gaijin anti-cheat. Our <a href=\"/enlisted-cheats/\">Enlisted Cheats pillar</a> is the commercial landing; this post is the long-form explainer.",
 					"Pro Tip — One license, full loop: Prefer a maintained package over stacking single-feature downloads that break on every patch.",
 				],
 			},
 			{
 				h2: "ESP, wallhack, Aimbot, and radar roles",
 				paragraphs: [
-					"ESP/wallhack answers where squads and loot sit. Radar covers flanks outside FOV. Aimbot covers firefight consistency once you commit. Soft aim profiles help when you want smoother tracking — see <a href=\"/deadside-aimbot/\">soft aim</a> and <a href=\"/deadside-aimbot/\">Aimbot controls</a>.",
-					"Deep pages: <a href=\"/deadside-esp/\">Deadside ESP</a>, <a href=\"/deadside-wallhack/\">wallhack</a>, <a href=\"/deadside-radar/\">radar hack</a>, <a href=\"/deadside-aimbot/\">aimbot hack</a>, and <a href=\"/deadside-esp/\">ESP hack</a>.",
+					"ESP/wallhack answers where squads and loot sit. Radar covers flanks outside FOV. Aimbot covers firefight consistency once you commit. Soft aim profiles help when you want smoother tracking — see <a href=\"/enlisted-aimbot/\">soft aim</a> and <a href=\"/enlisted-aimbot/\">Aimbot controls</a>.",
+					"Deep pages: <a href=\"/enlisted-esp/\">Enlisted ESP</a>, <a href=\"/enlisted-wallhack/\">wallhack</a>, <a href=\"/enlisted-radar/\">radar hack</a>, <a href=\"/enlisted-aimbot/\">aimbot hack</a>, and <a href=\"/enlisted-esp/\">ESP hack</a>.",
 				],
 			},
 			{
-				h2: "Undetected Deadside Cheats and anti-cheat patches",
+				h2: "Undetected Enlisted Cheats and anti-cheat patches",
 				paragraphs: [
-					"Undetected Deadside Cheats require rebuilds after Bad Pixel anti-cheat and major Deadside updates. No vendor can promise permanent undetected status — check <a href=\"/updates/\">Updates</a> before you queue.",
-					"On patch mornings confirm <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside PC update notes</a>, then read our <a href=\"/deadside-cheats/\">anti-cheat bypass guide</a> and <a href=\"/blog/undetected-deadside-cheats-eac/\">undetected anti-cheat notes</a>.",
-					"Try This Today: Open the hacks pillar, skim Features, compare Pricing ($35 monthly / $150 lifetime), and bookmark Updates for the next Deadside patch.",
+					"Undetected Enlisted Cheats require rebuilds after Gaijin anti-cheat and major Enlisted updates. No vendor can promise permanent undetected status — check <a href=\"/updates/\">Updates</a> before you queue.",
+					"On patch mornings confirm <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted PC update notes</a>, then read our <a href=\"/enlisted-cheats/\">anti-cheat bypass guide</a> and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
+					"Try This Today: Open the hacks pillar, skim Features, compare Pricing ($35 monthly / $150 lifetime), and bookmark Updates for the next Enlisted patch.",
 				],
 			},
 			{
-				h2: "What changed for Deadside cheats in 2026",
+				h2: "What changed for Enlisted cheats in 2026",
 				paragraphs: [
 					"Tileset updates, weapons, and anti-cheat patches still break stale builds. A 2026-ready package publishes rebuild notes on Updates — not a frozen prior-year loader.",
-					"Track official messaging on <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside patch notes</a>, then confirm product status on <a href=\"/updates/\">Updates</a> and the <a href=\"/deadside-cheats/\">Deadside Cheats pillar</a>. Deadside cheats and Deadside Cheats searches both map to the same ESP + Aimbot + radar stack.",
+					"Track official messaging on <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted patch notes</a>, then confirm product status on <a href=\"/updates/\">Updates</a> and the <a href=\"/enlisted-cheats/\">Enlisted Cheats pillar</a>. Enlisted cheats and Enlisted Cheats searches both map to the same ESP + Aimbot + radar stack.",
 				],
 			},
 			{
 				h2: "Next steps — pricing, setup, and cheats pages",
 				paragraphs: [
-					"Ready to buy? Start at the <a href=\"/deadside-cheats/\">Deadside Cheats pillar page</a>, then <a href=\"/pricing/\">Pricing</a> and <a href=\"/setup/\">Setup</a>. Prefer cheats wording? Read <a href=\"/deadside-cheats/\">Deadside cheats 2026</a> and <a href=\"/blog/deadside-cheats-buyers-guide/\">cheats buyers guide</a>.",
+					"Ready to buy? Start at the <a href=\"/enlisted-cheats/\">Enlisted Cheats pillar page</a>, then <a href=\"/pricing/\">Pricing</a> and <a href=\"/setup/\">Setup</a>. Prefer cheats wording? Read <a href=\"/enlisted-cheats/\">Enlisted cheats 2026</a> and <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>.",
 					"Support: include your order ID on the <a href=\"/support/\">Support</a> page after checkout.",
 				],
 			}
@@ -61,41 +61,41 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-cheats-buyers-guide",
+		id: "enlisted-cheats-buyers-guide",
 		imageKey: "cheatsPackage",
 		published: "2026-07-30",
 		updated: "2026-08-01",
-		category: "Deadside Cheats",
+		category: "Enlisted Cheats",
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-cheats-buyers-guide",
-		title: "Deadside Cheats Buyers Guide: What to Check",
-		metaDescription: "Deadside cheats buyers guide for PC and controllers — ESP boxes, soft aim, cloud DMA, pricing, and anti-cheat status. Compare before checkout.",
-		h1: "Deadside Cheats Buyers Guide: What Matters in 2026",
-		intro: "Shopping for Deadside cheats? Use this checklist for ESP wallhack, Aimbot, radar, anti-cheat maintenance, and license length — then cross-check the Deadside Cheats pillar before checkout.",
-		keywords: ["Deadside cheats","best Deadside cheats","Deadside Cheats","buyers guide","undetected"],
-		imageAlt: "Deadside cheats buyers guide checklist for ESP Aimbot and pricing",
+		slug: "enlisted-cheats-buyers-guide",
+		title: "Enlisted Cheats Buyers Guide: What to Check",
+		metaDescription: "Enlisted cheats buyers guide for PC and controllers — ESP boxes, soft aim, cloud DMA, pricing, and anti-cheat status. Compare before checkout.",
+		h1: "Enlisted Cheats Buyers Guide: What Matters in 2026",
+		intro: "Shopping for Enlisted cheats? Use this checklist for ESP wallhack, Aimbot, radar, anti-cheat maintenance, and license length — then cross-check the Enlisted Cheats pillar before checkout.",
+		keywords: ["Enlisted cheats","best Enlisted cheats","Enlisted Cheats","buyers guide","undetected"],
+		imageAlt: "Enlisted cheats buyers guide checklist for ESP Aimbot and pricing",
 		sections: [
 			{
 				h2: "Buyer checklist before you pay",
 				paragraphs: [
 					"Confirm Windows PC support, anti-cheat maintenance cadence, ESP + Aimbot + radar in one license, clear pricing, and a live Updates log. Skip tools that only ship a wallhack with no rebuild notes.",
-					"Primary commercial pages: <a href=\"/deadside-cheats/\">best Deadside cheats</a>, <a href=\"/deadside-cheats/\">cheats 2026</a>, and <a href=\"/deadside-cheats/\">Deadside Cheats</a> (hacks is the main brand keyword).",
+					"Primary commercial pages: <a href=\"/enlisted-cheats/\">best Enlisted cheats</a>, <a href=\"/enlisted-cheats/\">cheats 2026</a>, and <a href=\"/enlisted-cheats/\">Enlisted Cheats</a> (hacks is the main brand keyword).",
 				],
 			},
 			{
 				h2: "Hacks vs cheats wording",
 				paragraphs: [
-					"Deadside Cheats and Deadside cheats describe the same product category for most searchers. We lead with hacks on deadsidecheats.org while keeping cheats pages for buyers who use that query.",
-					"Balance and anti-cheat reality still come from <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a>. Product rebuild timing is on our <a href=\"/updates/\">Updates</a> page.",
+					"Enlisted Cheats and Enlisted cheats describe the same product category for most searchers. We lead with hacks on enlistedcheats.org while keeping cheats pages for buyers who use that query.",
+					"Balance and anti-cheat reality still come from <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a>. Product rebuild timing is on our <a href=\"/updates/\">Updates</a> page.",
 				],
 			},
 			{
 				h2: "Feature pages worth opening",
 				paragraphs: [
-					"Open <a href=\"/deadside-esp/\">ESP</a>, <a href=\"/deadside-aimbot/\">Aimbot</a>, <a href=\"/features/\">Features</a>, and <a href=\"/pricing/\">Pricing</a> before you buy. Delivery and activation steps live on <a href=\"/setup/\">Setup</a>.",
-					"Related reading: <a href=\"/blog/deadside-cheats-complete-guide-2026/\">complete 2026 guide</a> and <a href=\"/blog/undetected-deadside-cheats-eac/\">undetected anti-cheat notes</a>.",
+					"Open <a href=\"/enlisted-esp/\">ESP</a>, <a href=\"/enlisted-aimbot/\">Aimbot</a>, <a href=\"/features/\">Features</a>, and <a href=\"/pricing/\">Pricing</a> before you buy. Delivery and activation steps live on <a href=\"/setup/\">Setup</a>.",
+					"Related reading: <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">complete 2026 guide</a> and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
 					"Try This Today: Write your must-have list (ESP categories, Aimbot smoothness, lifetime vs monthly), then compare against Features once.",
 				],
 			}
@@ -104,7 +104,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-aimbot-settings-guide",
+		id: "enlisted-aimbot-settings-guide",
 		imageKey: "aimbotCombat",
 		published: "2026-07-26",
 		updated: "2026-08-01",
@@ -112,32 +112,32 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-aimbot-settings-guide",
-		title: "Deadside Aimbot Settings: Smooth FOV Guide",
-		metaDescription: "Deadside aimbot settings for PC and controllers — soft aim, FOV, bone priority, and per-weapon profiles. Tune assist, then review the hacks pages.",
-		h1: "Deadside Aimbot Settings: Smoothness, FOV & Soft Aim",
-		intro: "Configure Deadside Aimbot without snapping every fight. This guide covers smoothness, FOV, bone priority, per-weapon profiles, and how Aimbot fits into Deadside Cheats packages.",
-		keywords: ["deadside aimbot","aimbot settings","soft aim","Deadside Cheats","fov"],
-		imageAlt: "Deadside Aimbot settings guide for smoothness FOV and bone priority",
+		slug: "enlisted-aimbot-settings-guide",
+		title: "Enlisted Aimbot Settings: Smooth FOV Guide",
+		metaDescription: "Enlisted aimbot settings for PC and controllers — soft aim, FOV, bone priority, and per-weapon profiles. Tune assist, then review the hacks pages.",
+		h1: "Enlisted Aimbot Settings: Smoothness, FOV & Soft Aim",
+		intro: "Configure Enlisted Aimbot without snapping every fight. This guide covers smoothness, FOV, bone priority, per-weapon profiles, and how Aimbot fits into Enlisted Cheats packages.",
+		keywords: ["enlisted aimbot","aimbot settings","soft aim","Enlisted Cheats","fov"],
+		imageAlt: "Enlisted Aimbot settings guide for smoothness FOV and bone priority",
 		sections: [
 			{
 				h2: "Start conservative, then tune",
 				paragraphs: [
 					"Begin with moderate FOV and higher smoothness. Instant-snap configs look unnatural and are harder to control in co-op missions peeks. Hotkeys let you disable Aimbot mid-mission.",
-					"Full control list: <a href=\"/deadside-aimbot/\">Deadside Aimbot</a>, <a href=\"/deadside-aimbot/\">aimbot hack</a>, and <a href=\"/deadside-aimbot/\">soft aim</a>.",
+					"Full control list: <a href=\"/enlisted-aimbot/\">Enlisted Aimbot</a>, <a href=\"/enlisted-aimbot/\">aimbot hack</a>, and <a href=\"/enlisted-aimbot/\">soft aim</a>.",
 				],
 			},
 			{
 				h2: "Pair Aimbot with ESP and radar",
 				paragraphs: [
-					"Aimbot alone does not solve rotations. Pair with <a href=\"/deadside-esp/\">ESP</a> and <a href=\"/deadside-radar/\">radar</a> inside the <a href=\"/deadside-cheats/\">Deadside Cheats</a> package.",
-					"Weapon balance shifts on <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside patch notes</a> — revisit FOV after combat patches.",
+					"Aimbot alone does not solve rotations. Pair with <a href=\"/enlisted-esp/\">ESP</a> and <a href=\"/enlisted-radar/\">radar</a> inside the <a href=\"/enlisted-cheats/\">Enlisted Cheats</a> package.",
+					"Weapon balance shifts on <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted patch notes</a> — revisit FOV after combat patches.",
 				],
 			},
 			{
 				h2: "anti-cheat notes and next steps",
 				paragraphs: [
-					"After Bad Pixel anti-cheat patches, confirm Aimbot modules on <a href=\"/updates/\">Updates</a>. Background: <a href=\"/deadside-cheats/\">anti-cheat guide</a>.",
+					"After Gaijin anti-cheat patches, confirm Aimbot modules on <a href=\"/updates/\">Updates</a>. Background: <a href=\"/enlisted-cheats/\">anti-cheat guide</a>.",
 					"Try This Today: Create separate rifle and shotgun profiles, play five games, then adjust only one slider per session.",
 				],
 			}
@@ -146,7 +146,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-esp-wallhack-explained",
+		id: "enlisted-esp-wallhack-explained",
 		imageKey: "espWallhack",
 		published: "2026-07-24",
 		updated: "2026-08-01",
@@ -154,32 +154,32 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-esp-wallhack-explained",
-		title: "Deadside ESP & Wallhack Explained Clearly",
-		metaDescription: "Deadside ESP and wallhack explained — enemy boxes, medkit markers, and distance readouts for PC and controllers. Learn overlays on the hacks pages.",
-		h1: "Deadside ESP and Wallhack Explained",
-		intro: "Deadside ESP (wallhack) shows enemies, loot, and threats through terrain. Here is how overlays work, what to toggle, and how ESP fits into Deadside Cheats and Deadside cheats packages.",
-		keywords: ["deadside esp","deadside wallhack","esp hack","Deadside Cheats","resource esp"],
-		imageAlt: "Deadside ESP wallhack explained with player and loot overlays",
+		slug: "enlisted-esp-wallhack-explained",
+		title: "Enlisted ESP & Wallhack Explained Clearly",
+		metaDescription: "Enlisted ESP and wallhack explained — enemy boxes, medkit markers, and distance readouts for PC and controllers. Learn overlays on the hacks pages.",
+		h1: "Enlisted ESP and Wallhack Explained",
+		intro: "Enlisted ESP (wallhack) shows enemies, loot, and threats through terrain. Here is how overlays work, what to toggle, and how ESP fits into Enlisted Cheats and Enlisted cheats packages.",
+		keywords: ["enlisted esp","enlisted wallhack","esp hack","Enlisted Cheats","resource esp"],
+		imageAlt: "Enlisted ESP wallhack explained with player and loot overlays",
 		sections: [
 			{
 				h2: "ESP categories that matter in missions",
 				paragraphs: [
-					"Toggle enemy outlines, loot/chest pins, vehicle or patrol unit cues, and distance readouts. Too many overlays create noise — keep mission-critical categories on during rotations.",
-					"Landings: <a href=\"/deadside-esp/\">Deadside ESP</a>, <a href=\"/deadside-wallhack/\">wallhack</a>, <a href=\"/deadside-esp/\">ESP hack</a>.",
+					"Toggle enemy outlines, loot/chest pins, tank or artillery unit cues, and distance readouts. Too many overlays create noise — keep mission-critical categories on during rotations.",
+					"Landings: <a href=\"/enlisted-esp/\">Enlisted ESP</a>, <a href=\"/enlisted-wallhack/\">wallhack</a>, <a href=\"/enlisted-esp/\">ESP hack</a>.",
 				],
 			},
 			{
 				h2: "Wallhack vs radar vs Aimbot",
 				paragraphs: [
-					"Wallhack/ESP is line-of-sight information through walls. Radar covers off-screen flanks. Aimbot is combat assist. The <a href=\"/deadside-cheats/\">hacks pillar</a> bundles all three.",
-					"Map and loot systems evolve with <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a> seasons — toggleable categories stay useful when tileset areas rotate.",
+					"Wallhack/ESP is line-of-sight information through walls. Radar covers off-screen flanks. Aimbot is combat assist. The <a href=\"/enlisted-cheats/\">hacks pillar</a> bundles all three.",
+					"Map and loot systems evolve with <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> seasons — toggleable categories stay useful when tileset areas rotate.",
 				],
 			},
 			{
 				h2: "Undetected ESP maintenance",
 				paragraphs: [
-					"ESP modules rebuild with the package after anti-cheat patches. Check <a href=\"/updates/\">Updates</a> and <a href=\"/deadside-cheats/\">undetected status</a> before mission sessions.",
+					"ESP modules rebuild with the package after anti-cheat patches. Check <a href=\"/updates/\">Updates</a> and <a href=\"/enlisted-cheats/\">undetected status</a> before mission sessions.",
 					"Try This Today: Enable player + squad ESP only for ten games, then add radar range once your eyes adjust.",
 				],
 			}
@@ -188,7 +188,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "undetected-deadside-cheats-eac",
+		id: "undetected-enlisted-cheats-eac",
 		imageKey: "rebootFight",
 		published: "2026-07-22",
 		updated: "2026-08-01",
@@ -196,33 +196,33 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "undetected-deadside-cheats-eac",
-		title: "Undetected Deadside Cheats & anti-cheat Reality",
-		metaDescription: "Undetected Deadside Cheats and anti-cheat reality — ESP, soft aim, and cloud DMA rebuilds for PC. Check Updates before queueing post-patch.",
-		h1: "Undetected Deadside Cheats and Bad Pixel anti-cheat Reality",
-		intro: "Undetected Deadside Cheats mean active anti-cheat maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.",
-		keywords: ["undetected Deadside Cheats","eac","Deadside Cheats","Deadside cheats","maintenance"],
-		imageAlt: "Undetected Deadside Cheats and Bad Pixel anti-cheat maintenance workflow",
+		slug: "undetected-enlisted-cheats-eac",
+		title: "Undetected Enlisted Cheats & anti-cheat Reality",
+		metaDescription: "Undetected Enlisted Cheats and anti-cheat reality — ESP, soft aim, and cloud DMA rebuilds for PC. Check Updates before queueing post-patch.",
+		h1: "Undetected Enlisted Cheats and Gaijin anti-cheat Reality",
+		intro: "Undetected Enlisted Cheats mean active anti-cheat maintenance — not a forever guarantee. Learn the patch-day workflow, where to check status, and how hacks/cheats pages fit together.",
+		keywords: ["undetected Enlisted Cheats","eac","Enlisted Cheats","Enlisted cheats","maintenance"],
+		imageAlt: "Undetected Enlisted Cheats and Gaijin anti-cheat maintenance workflow",
 		sections: [
 			{
 				h2: "What undetected really means",
 				paragraphs: [
-					"Undetected Deadside Cheats are rebuilt when Bad Pixel anti-cheat or Deadside client patches change detection surface. Permanent undetected claims are marketing fiction.",
-					"Status pages: <a href=\"/updates/\">Updates</a>, <a href=\"/deadside-cheats/\">undetected guide</a>, <a href=\"/deadside-cheats/\">anti-cheat bypass</a>.",
+					"Undetected Enlisted Cheats are rebuilt when Gaijin anti-cheat or Enlisted client patches change detection surface. Permanent undetected claims are marketing fiction.",
+					"Status pages: <a href=\"/updates/\">Updates</a>, <a href=\"/enlisted-cheats/\">undetected guide</a>, <a href=\"/enlisted-cheats/\">anti-cheat bypass</a>.",
 				],
 			},
 			{
 				h2: "Patch-day workflow",
 				paragraphs: [
-					"Check <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside PC update notes</a> for server status, wait for our Updates note, then launch. If services are degraded, do not assume the hack failed.",
-					"Commercial entry points: <a href=\"/deadside-cheats/\">Deadside Cheats</a> and <a href=\"/deadside-cheats/\">Deadside cheats 2026</a>.",
+					"Check <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted PC update notes</a> for server status, wait for our Updates note, then launch. If services are degraded, do not assume the hack failed.",
+					"Commercial entry points: <a href=\"/enlisted-cheats/\">Enlisted Cheats</a> and <a href=\"/enlisted-cheats/\">Enlisted cheats 2026</a>.",
 				],
 			},
 			{
 				h2: "Responsible use and support",
 				paragraphs: [
-					"Using hacks/cheats can violate Bad Pixel terms — you assume ban risk. For license or delivery issues, contact <a href=\"/support/\">Support</a> with your order ID.",
-					"Try This Today: Bookmark Updates and the hacks pillar. Before your next loot runs session after a patch, verify build status first.",
+					"Using hacks/cheats can violate Gaijin terms — you assume ban risk. For license or delivery issues, contact <a href=\"/support/\">Support</a> with your order ID.",
+					"Try This Today: Bookmark Updates and the hacks pillar. Before your next campaign missions session after a patch, verify build status first.",
 				],
 			}
 		],
@@ -230,7 +230,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-cheats-vs-cheatvault",
+		id: "enlisted-cheats-vs-cheatvault",
 		imageKey: "cheatsPackage",
 		published: "2026-07-15",
 		updated: "2026-08-01",
@@ -238,36 +238,36 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-cheats-vs-cheatvault-comparison",
-		title: "Deadside Cheats vs CheatVault: Honest 2026 Comparison",
-		metaDescription: "Deadside Cheats vs CheatVault — pricing, ESP, soft aim, cloud DMA, detection history, and which package fits loot runs players in 2026.",
-		h1: "Deadside Cheats vs CheatVault: Honest Comparison",
-		intro: "I ran both CheatVault and Deadside Cheats through the same mission session last season. Here is the straight comparison — price, features, patch-day behavior, and where each one actually wins.",
-		keywords: ["Deadside Cheats vs cheatvault","cheatvault comparison","Deadside cheats","esp","eac","pricing"],
-		imageAlt: "Deadside Cheats vs CheatVault feature and pricing comparison for 2026",
+		slug: "enlisted-cheats-vs-cheatvault-comparison",
+		title: "Enlisted Cheats vs CheatVault: Honest 2026 Comparison",
+		metaDescription: "Enlisted Cheats vs CheatVault — pricing, ESP, soft aim, cloud DMA, detection history, and which package fits campaign missions players in 2026.",
+		h1: "Enlisted Cheats vs CheatVault: Honest Comparison",
+		intro: "I ran both CheatVault and Enlisted Cheats through the same mission session last season. Here is the straight comparison — price, features, patch-day behavior, and where each one actually wins.",
+		keywords: ["Enlisted Cheats vs cheatvault","cheatvault comparison","Enlisted cheats","esp","eac","pricing"],
+		imageAlt: "Enlisted Cheats vs CheatVault feature and pricing comparison for 2026",
 		sections: [
 			{
 				h2: "Why I compared these two in the first place",
 				paragraphs: [
-					"CheatVault shows up in almost every Deadside cheat thread alongside Deadside Cheats. Both promise ESP, aim assist, and undetected status. Both list monthly and lifetime tiers. On paper they look identical — which is exactly why buyers get burned picking the wrong one.",
-					"I kept CheatVault for about six weeks in major update Season 2, then switched to Deadside Cheats for the back half of the season. Same PC, same sens, mostly co-op missions and some loot runs squads. This is not a sponsored post — just what I noticed when I stopped reading feature bullets and started tracking patch days.",
-					"Fair warning: neither tool makes you invincible. Bad Pixel anti-cheat still updates. Your account still carries ban risk. This comparison is about which package maintained better and which features I actually used in co-op — not which one guarantees wins.",
+					"CheatVault shows up in almost every Enlisted cheat thread alongside Enlisted Cheats. Both promise ESP, aim assist, and undetected status. Both list monthly and lifetime tiers. On paper they look identical — which is exactly why buyers get burned picking the wrong one.",
+					"I kept CheatVault for about six weeks in major update Season 2, then switched to Enlisted Cheats for the back half of the season. Same PC, same sens, mostly co-op missions and some campaign missions squads. This is not a sponsored post — just what I noticed when I stopped reading feature bullets and started tracking patch days.",
+					"Fair warning: neither tool makes you invincible. Gaijin anti-cheat still updates. Your account still carries ban risk. This comparison is about which package maintained better and which features I actually used in co-op — not which one guarantees wins.",
 				],
 			},
 			{
 				h2: "Price breakdown — monthly, lifetime, and hidden costs",
 				paragraphs: [
-					"Deadside Cheats lists $35/month and $150 lifetime on the <a href=\"/pricing/\">pricing page</a>. CheatVault was $42/month and $189 lifetime when I subscribed — prices shift, but CheatVault has consistently sat 15–20% higher in the tiers I saw.",
-					"CheatVault's lifetime looks cheaper than three years of monthly until you factor downtime. I lost nine days total waiting on CheatVault rebuilds after two anti-cheat patches. Deadside Cheats had two patch windows where I waited roughly 24–36 hours each. If you play daily, downtime has a real cost even if the sub fee is lower.",
-					"Both deliver digitally. Neither includes hardware. If you want cloud DMA on Deadside Cheats, you already own or plan to buy compatible hardware — same story for CheatVault's DMA tier, which is a separate upsell above their standard sub.",
+					"Enlisted Cheats lists $35/month and $150 lifetime on the <a href=\"/pricing/\">pricing page</a>. CheatVault was $42/month and $189 lifetime when I subscribed — prices shift, but CheatVault has consistently sat 15–20% higher in the tiers I saw.",
+					"CheatVault's lifetime looks cheaper than three years of monthly until you factor downtime. I lost nine days total waiting on CheatVault rebuilds after two anti-cheat patches. Enlisted Cheats had two patch windows where I waited roughly 24–36 hours each. If you play daily, downtime has a real cost even if the sub fee is lower.",
+					"Both deliver digitally. Neither includes hardware. If you want cloud DMA on Enlisted Cheats, you already own or plan to buy compatible hardware — same story for CheatVault's DMA tier, which is a separate upsell above their standard sub.",
 				],
 			},
 			{
 				h2: "Feature table — ESP, soft aim, radar, and cloud DMA",
 				paragraphs: [
-					"<table><thead><tr><th>Feature</th><th>Deadside Cheats</th><th>CheatVault</th></tr></thead><tbody><tr><td>Enemy ESP boxes</td><td>Yes, toggleable categories</td><td>Yes, fewer colour options</td></tr><tr><td>Loot / chest markers</td><td>Yes + distance readouts</td><td>Yes, no distance on loot</td></tr><tr><td>2D radar</td><td>Yes, configurable range</td><td>Yes, fixed size</td></tr><tr><td>Soft aim / Aimbot profiles</td><td>Per-weapon slots</td><td>Global + one profile</td></tr><tr><td>Controller support</td><td>Supported</td><td>Listed, awkward menu UX</td></tr><tr><td>Cloud DMA option</td><td>Included path in package</td><td>Premium tier add-on</td></tr><tr><td>In-client mod menu</td><td>Yes</td><td>Yes, heavier overlay</td></tr></tbody></table>",
-					"Deadside Cheats wins on toggles and profile flexibility. I run ESP boxes + medkit markers in early game, then drop loot categories after first rifle. CheatVault's overlay felt busier — fine if you want everything on, noisy if you play loot runs and need clean screen space.",
-					"Soft aim mattered more than I expected in co-op missions. Deadside Cheats let me run a low-FOV Soma Prime profile and a separate shotgun profile for close-quarters fights. CheatVault's single-profile setup worked, but I was constantly retuning mid-session.",
+					"<table><thead><tr><th>Feature</th><th>Enlisted Cheats</th><th>CheatVault</th></tr></thead><tbody><tr><td>Enemy ESP boxes</td><td>Yes, toggleable categories</td><td>Yes, fewer colour options</td></tr><tr><td>Loot / chest markers</td><td>Yes + distance readouts</td><td>Yes, no distance on loot</td></tr><tr><td>2D radar</td><td>Yes, configurable range</td><td>Yes, fixed size</td></tr><tr><td>Soft aim / Aimbot profiles</td><td>Per-weapon slots</td><td>Global + one profile</td></tr><tr><td>Controller support</td><td>Supported</td><td>Listed, awkward menu UX</td></tr><tr><td>Cloud DMA option</td><td>Included path in package</td><td>Premium tier add-on</td></tr><tr><td>In-client mod menu</td><td>Yes</td><td>Yes, heavier overlay</td></tr></tbody></table>",
+					"Enlisted Cheats wins on toggles and profile flexibility. I run ESP boxes + medkit markers in early game, then drop loot categories after first rifle. CheatVault's overlay felt busier — fine if you want everything on, noisy if you play campaign missions and need clean screen space.",
+					"Soft aim mattered more than I expected in co-op missions. Enlisted Cheats let me run a low-FOV Soma Prime profile and a separate shotgun profile for close-quarters fights. CheatVault's single-profile setup worked, but I was constantly retuning mid-session.",
 				],
 			},
 			{
@@ -275,13 +275,13 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"Both brands had public downtime after major anti-cheat updates in 2026 — anyone claiming zero detection events is lying. The difference is communication and rebuild speed.",
 					"CheatVault's Discord would go quiet for 48–72 hours after big patches. No ETA, just \"working on it.\" I know two players in my stack who got flagged during a CheatVault lag window between patch and rebuild — could've been coincidence, but it shook my confidence.",
-					"Deadside Cheats posts on the <a href=\"/updates/\">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href=\"/blog/undetected-deadside-cheats-eac/\">anti-cheat reality guide</a> for the workflow I use before queueing.",
+					"Enlisted Cheats posts on the <a href=\"/updates/\">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href=\"/blog/undetected-enlisted-cheats-eac/\">anti-cheat reality guide</a> for the workflow I use before queueing.",
 				],
 			},
 			{
 				h2: "Where CheatVault still wins",
 				paragraphs: [
-					"Credit where it's due: CheatVault's Discord community is larger. More clip sharing, more config screenshots. If you learn best from crowd-sourced settings, that social layer helps — Deadside Cheats support answered faster for me, but the community volume is smaller.",
+					"Credit where it's due: CheatVault's Discord community is larger. More clip sharing, more config screenshots. If you learn best from crowd-sourced settings, that social layer helps — Enlisted Cheats support answered faster for me, but the community volume is smaller.",
 					"CheatVault also bundles a standalone replay-style overlay tool in their premium tier. I did not use it much, but content creators might value the extra capture layer.",
 					"If you only play once or twice a week and just want basic ESP without caring about patch ETAs, CheatVault's feature floor is fine. Casual cadence hides downtime pain.",
 				],
@@ -289,9 +289,9 @@ export const blogPosts: BlogPostDefinition[] = [
 			{
 				h2: "Verdict — who should pick which",
 				paragraphs: [
-					"Pick Deadside Cheats if you play loot runs or co-op missions multiple times a week, want per-weapon soft aim profiles, care about cloud DMA without a second upsell, and want a public Updates log before you launch after patches.",
+					"Pick Enlisted Cheats if you play campaign missions or co-op missions multiple times a week, want per-weapon soft aim profiles, care about cloud DMA without a second upsell, and want a public Updates log before you launch after patches.",
 					"Pick CheatVault if community size matters more than rebuild transparency, you want the premium capture extras, and you do not mind paying slightly more for a similar core stack.",
-					"Try This Today: Write down your must-haves (ESP categories, radar size, controller, DMA). Open <a href=\"/features/\">Features</a> and CheatVault's list side by side, then check both Updates channels before the next Deadside patch. For the full Deadside Cheats stack overview, start at <a href=\"/deadside-cheats/\">Deadside Cheats</a>.",
+					"Try This Today: Write down your must-haves (ESP categories, radar size, controller, DMA). Open <a href=\"/features/\">Features</a> and CheatVault's list side by side, then check both Updates channels before the next Enlisted patch. For the full Enlisted Cheats stack overview, start at <a href=\"/enlisted-cheats/\">Enlisted Cheats</a>.",
 				],
 			}
 		],
@@ -307,18 +307,18 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "voidcheats-vs-deadside-cheats-two-week-test",
+		slug: "voidcheats-vs-enlisted-cheats-two-week-test",
 		title: "I Tried VoidCheats for 2 Weeks Before Switching",
-		metaDescription: "VoidCheats vs Deadside Cheats — a two-week test of ESP, soft aim, controller support, anti-cheat downtime, and pricing before switching packages in 2026.",
-		h1: "I Tried VoidCheats for 2 Weeks Before Switching to Deadside Cheats",
-		intro: "VoidCheats was the popular pick in my squad's Discord. I gave it fourteen days — same hardware, same mission types — then moved to Deadside Cheats. This is what actually differed.",
-		keywords: ["voidcheats vs Deadside Cheats","voidcheats review","Deadside cheats comparison","soft aim","esp boxes"],
-		imageAlt: "VoidCheats vs Deadside Cheats two week comparison test for Deadside cheats",
+		metaDescription: "VoidCheats vs Enlisted Cheats — a two-week test of ESP, soft aim, controller support, anti-cheat downtime, and pricing before switching packages in 2026.",
+		h1: "I Tried VoidCheats for 2 Weeks Before Switching to Enlisted Cheats",
+		intro: "VoidCheats was the popular pick in my squad's Discord. I gave it fourteen days — same hardware, same mission types — then moved to Enlisted Cheats. This is what actually differed.",
+		keywords: ["voidcheats vs Enlisted Cheats","voidcheats review","Enlisted cheats comparison","soft aim","esp boxes"],
+		imageAlt: "VoidCheats vs Enlisted Cheats two week comparison test for Enlisted cheats",
 		sections: [
 			{
 				h2: "Week one — setup, first impressions, and the menu learning curve",
 				paragraphs: [
-					"VoidCheats delivery was fast — key in email within twenty minutes. Loader install was standard: disable conflicting overlays, run as admin, paste license. Took about twenty-five minutes my first time, same ballpark as Deadside Cheats later.",
+					"VoidCheats delivery was fast — key in email within twenty minutes. Loader install was standard: disable conflicting overlays, run as admin, paste license. Took about twenty-five minutes my first time, same ballpark as Enlisted Cheats later.",
 					"VoidCheats's menu looked cleaner on screenshots. In game, I spent two evenings just mapping toggles. ESP categories are nested one level deeper than I liked. Soft aim settings made sense once configured, but the docs assume you already know FOV vs smoothness tradeoffs.",
 					"First three nights I ran squads with ESP boxes and radar only — no aim assist. VoidCheats visibility was good. Enemy outlines readable at mid range. Squad ESP existed but felt an afterthought compared to enemy ESP. I died plenty; the tool did its info job fine.",
 				],
@@ -327,40 +327,40 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Soft aim, weapons, and controller testing",
 				paragraphs: [
 					"Week one weekend I enabled soft aim with a conservative FOV. Worked on rifle and shotgun in co-op missions. Sniping felt off — VoidCheats uses one bone-priority stack unless you manually swap configs between matches. Doable, not great for my play style.",
-					"I play controller two nights a week. VoidCheats lists controller support; menu navigation with a pad was clunky. Deadside Cheats later felt similar on pad menus honestly — neither is perfect — but VoidCheats had no suggested controller baseline in docs. I wasted time guessing.",
+					"I play controller two nights a week. VoidCheats lists controller support; menu navigation with a pad was clunky. Enlisted Cheats later felt similar on pad menus honestly — neither is perfect — but VoidCheats had no suggested controller baseline in docs. I wasted time guessing.",
 					"Soma Prime tracking at 40–50m was the benchmark test. VoidCheats smooth aim was slightly snappier out of box. Snappier sounds good until you watch replay clips and notice the robotic corrections. I tuned smoothness up; kills stabilized but so did obviousness in Simulacrum testing with friends.",
 				],
 			},
 			{
 				h2: "The patch that ended my VoidCheats trial",
 				paragraphs: [
-					"Day eleven hit a Deadside + anti-cheat patch. Standard for any cheat user. VoidCheats status channel said \"investigating.\" No ETA. I skipped loot runs for two days waiting — squad moved on without me.",
-					"Day thirteen a rebuild dropped. Loaded in, played two public servers, crashed once, relaunched fine. Day fourteen another mate said his alt caught a ban on VoidCheats after that rebuild. Unverified story, but combined with downtime it was my cue to bail.",
-					"I switched to Deadside Cheats lifetime partly because of the <a href=\"/updates/\">Updates</a> cadence — I wanted patch notes in writing, not Discord rumor. Not saying VoidCheats is a scam; plenty of players still run it. It just did not match my tolerance for silent patch windows.",
+					"Day eleven hit a Enlisted + anti-cheat patch. Standard for any cheat user. VoidCheats status channel said \"investigating.\" No ETA. I skipped campaign missions for two days waiting — squad moved on without me.",
+					"Day thirteen a rebuild dropped. Loaded in, played two public matches, crashed once, relaunched fine. Day fourteen another mate said his alt caught a ban on VoidCheats after that rebuild. Unverified story, but combined with downtime it was my cue to bail.",
+					"I switched to Enlisted Cheats lifetime partly because of the <a href=\"/updates/\">Updates</a> cadence — I wanted patch notes in writing, not Discord rumor. Not saying VoidCheats is a scam; plenty of players still run it. It just did not match my tolerance for silent patch windows.",
 				],
 			},
 			{
 				h2: "Side-by-side after switching — what improved",
 				paragraphs: [
-					"Deadside Cheats ESP let me toggle pickups and lockers markers independently — huge for off-rotation routes without cluttering endgame. Radar range slider fixed my \"radar too small on 1080p\" complaint from VoidCheats's fixed widget.",
+					"Enlisted Cheats ESP let me toggle pickups and lockers markers independently — huge for off-flank routes without cluttering endgame. Radar range slider fixed my \"radar too small on 1080p\" complaint from VoidCheats's fixed widget.",
 					"Per-weapon soft aim profiles meant I stopped retuning between rifle and shotgun fights. Cloud DMA path was optional for my setup; I stayed on standard loader, but having DMA documented in one package beat VoidCheats's \"ask sales\" flow.",
-					"Support reply time: VoidCheats ticket answered in ~5 hours once. Deadside Cheats support replied in ~2 hours when I asked about controller baseline settings. Small sample, but matched what I needed during setup week.",
+					"Support reply time: VoidCheats ticket answered in ~5 hours once. Enlisted Cheats support replied in ~2 hours when I asked about controller baseline settings. Small sample, but matched what I needed during setup week.",
 				],
 			},
 			{
 				h2: "Price and value snapshot",
 				paragraphs: [
-					"VoidCheats cost me $39 for the two-week trial window (weekly sub + a few extra days). Deadside Cheats monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.",
-					"Feature-per-dollar favors Deadside Cheats for my use: combined ESP + radar + soft aim + rebuild notes in one license. VoidCheats's brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.",
-					"Compare plans yourself on <a href=\"/pricing/\">Pricing</a> and read the <a href=\"/blog/deadside-cheats-vs-cheatvault-comparison/\">CheatVault comparison</a> if you are still shopping three-wide.",
+					"VoidCheats cost me $39 for the two-week trial window (weekly sub + a few extra days). Enlisted Cheats monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.",
+					"Feature-per-dollar favors Enlisted Cheats for my use: combined ESP + radar + soft aim + rebuild notes in one license. VoidCheats's brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.",
+					"Compare plans yourself on <a href=\"/pricing/\">Pricing</a> and read the <a href=\"/blog/enlisted-cheats-vs-cheatvault-comparison/\">CheatVault comparison</a> if you are still shopping three-wide.",
 				],
 			},
 			{
 				h2: "Would I recommend VoidCheats to anyone?",
 				paragraphs: [
 					"Yes, with caveats. If you already have friends on VoidCheats configs and you play casually, staying is fine — social alignment matters for shared settings.",
-					"If you are patch-sensitive, play loot runs daily, or want granular ESP and weapon profiles, Deadside Cheats fit me better after the two-week test. Your mileage varies; run your own patch-day checklist.",
-					"Try This Today: Before buying either, list your last three patch days and how many hours you skipped queueing. If downtime frustrates you, prioritize vendors with public Updates pages — then open <a href=\"/deadside-cheats/\">Deadside Cheats</a> and <a href=\"/setup/\">Setup</a> before checkout.",
+					"If you are patch-sensitive, play campaign missions daily, or want granular ESP and weapon profiles, Enlisted Cheats fit me better after the two-week test. Your mileage varies; run your own patch-day checklist.",
+					"Try This Today: Before buying either, list your last three patch days and how many hours you skipped queueing. If downtime frustrates you, prioritize vendors with public Updates pages — then open <a href=\"/enlisted-cheats/\">Enlisted Cheats</a> and <a href=\"/setup/\">Setup</a> before checkout.",
 				],
 			}
 		],
@@ -368,7 +368,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-cheats-vs-ghostware",
+		id: "enlisted-cheats-vs-ghostware",
 		imageKey: "espWallhack",
 		published: "2026-07-05",
 		updated: "2026-08-01",
@@ -376,60 +376,60 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-cheats-vs-ghostware-features-pricing",
-		title: "Deadside Cheats vs GhostWare: Features & Pricing",
-		metaDescription: "Deadside Cheats vs GhostWare — feature tables, soft aim, ESP boxes, cloud DMA, controller support, anti-cheat history, and honest pros/cons for 2026 buyers.",
-		h1: "Deadside Cheats vs GhostWare: Features, Pricing, and Detection Notes",
-		intro: "GhostWare markets hard on \"stealth\" branding. Deadside Cheats markets on the full full cheat stack. I stacked them feature-by-feature — here is the honest read without the logo wars.",
-		keywords: ["ghostware vs Deadside Cheats","ghostware deadside","cheat comparison","esp boxes","cloud dma"],
-		imageAlt: "Deadside Cheats vs GhostWare features pricing and anti-cheat comparison",
+		slug: "enlisted-cheats-vs-ghostware-features-pricing",
+		title: "Enlisted Cheats vs GhostWare: Features & Pricing",
+		metaDescription: "Enlisted Cheats vs GhostWare — feature tables, soft aim, ESP boxes, cloud DMA, controller support, anti-cheat history, and honest pros/cons for 2026 buyers.",
+		h1: "Enlisted Cheats vs GhostWare: Features, Pricing, and Detection Notes",
+		intro: "GhostWare markets hard on \"stealth\" branding. Enlisted Cheats markets on the full full cheat stack. I stacked them feature-by-feature — here is the honest read without the logo wars.",
+		keywords: ["ghostware vs Enlisted Cheats","ghostware enlisted","cheat comparison","esp boxes","cloud dma"],
+		imageAlt: "Enlisted Cheats vs GhostWare features pricing and anti-cheat comparison",
 		sections: [
 			{
 				h2: "Two different philosophies — minimal vs full-stack",
 				paragraphs: [
-					"GhostWare sells a slimmer Deadside module: ESP-focused with light aim assist, fewer toggles, lower price entry. Deadside Cheats bundles ESP wallhack, radar, soft aim profiles, controller paths, and cloud DMA documentation in one undetected license.",
-					"Neither approach is wrong. Minimal tools break less surface area in theory. Full-stack tools win when you want one menu for loot runs nights — visibility, flanks, and firefight assist without swapping executables.",
-					"I used GhostWare for ten days on an alt account while keeping Deadside Cheats on main. Same monitor, same sens, different mission types to spread risk. Take ban risk seriously on any tool.",
+					"GhostWare sells a slimmer Enlisted module: ESP-focused with light aim assist, fewer toggles, lower price entry. Enlisted Cheats bundles ESP wallhack, radar, soft aim profiles, controller paths, and cloud DMA documentation in one undetected license.",
+					"Neither approach is wrong. Minimal tools break less surface area in theory. Full-stack tools win when you want one menu for campaign missions nights — visibility, flanks, and firefight assist without swapping executables.",
+					"I used GhostWare for ten days on an alt account while keeping Enlisted Cheats on main. Same monitor, same sens, different mission types to spread risk. Take ban risk seriously on any tool.",
 				],
 			},
 			{
 				h2: "Feature and pricing comparison table",
 				paragraphs: [
-					"<table><thead><tr><th></th><th>Deadside Cheats</th><th>GhostWare</th></tr></thead><tbody><tr><td>Monthly price</td><td>$35</td><td>$28</td></tr><tr><td>Lifetime price</td><td>$150</td><td>$120</td></tr><tr><td>Enemy ESP boxes</td><td>Yes</td><td>Yes</td></tr><tr><td>Loot / chest ESP</td><td>Yes</td><td>Limited</td></tr><tr><td>2D radar</td><td>Yes</td><td>No</td></tr><tr><td>Soft aim profiles</td><td>Multiple weapon slots</td><td>Basic assist</td></tr><tr><td>Controller support</td><td>Yes</td><td>Partial</td></tr><tr><td>Cloud DMA path</td><td>Documented</td><td>Not offered</td></tr><tr><td>Public Updates log</td><td><a href=\"/updates/\">Yes — public updates log</a></td><td>Discord only</td></tr></tbody></table>",
-					"GhostWare is cheaper on sticker price. Deadside Cheats includes radar and richer squad ESP — features I use every session. If you only want enemy boxes in public servers, GhostWare's entry tier covers that.",
-					"Lifetime math: GhostWare $120 vs Deadside Cheats $150. The $30 gap closes if you value radar and rebuild transparency. I kept dying to off-angle flanks on GhostWare until I realized there was no radar equivalent — personal play style thing.",
+					"<table><thead><tr><th></th><th>Enlisted Cheats</th><th>GhostWare</th></tr></thead><tbody><tr><td>Monthly price</td><td>$35</td><td>$28</td></tr><tr><td>Lifetime price</td><td>$150</td><td>$120</td></tr><tr><td>Enemy ESP boxes</td><td>Yes</td><td>Yes</td></tr><tr><td>Loot / chest ESP</td><td>Yes</td><td>Limited</td></tr><tr><td>2D radar</td><td>Yes</td><td>No</td></tr><tr><td>Soft aim profiles</td><td>Multiple weapon slots</td><td>Basic assist</td></tr><tr><td>Controller support</td><td>Yes</td><td>Partial</td></tr><tr><td>Cloud DMA path</td><td>Documented</td><td>Not offered</td></tr><tr><td>Public Updates log</td><td><a href=\"/updates/\">Yes — public updates log</a></td><td>Discord only</td></tr></tbody></table>",
+					"GhostWare is cheaper on sticker price. Enlisted Cheats includes radar and richer squad ESP — features I use every session. If you only want enemy boxes in public matches, GhostWare's entry tier covers that.",
+					"Lifetime math: GhostWare $120 vs Enlisted Cheats $150. The $30 gap closes if you value radar and rebuild transparency. I kept dying to off-angle flanks on GhostWare until I realized there was no radar equivalent — personal play style thing.",
 				],
 			},
 			{
 				h2: "Detection history — what public signals exist",
 				paragraphs: [
-					"GhostWare fans cite fewer \"mass ban\" posts in community threads. That is anecdotal — smaller user bases generate fewer posts by default. Deadside Cheats had a visible rebuild cycle after the last major anti-cheat push; GhostWare's Discord announced an update two days later.",
+					"GhostWare fans cite fewer \"mass ban\" posts in community threads. That is anecdotal — smaller user bases generate fewer posts by default. Enlisted Cheats had a visible rebuild cycle after the last major anti-cheat push; GhostWare's Discord announced an update two days later.",
 					"No vendor publishes audited detection rates. Treat claims as marketing. My rule: if Updates or Discord status is silent 24h after an anti-cheat patch, I do not queue on that tool.",
-					"Deadside Cheats documents maintenance on <a href=\"/deadside-cheats/\">anti-cheat bypass workflow</a> and the <a href=\"/deadside-cheats/\">undetected guide</a>. GhostWare relies on pinned messages — fine if you live in Discord, easy to miss if you do not.",
+					"Enlisted Cheats documents maintenance on <a href=\"/enlisted-cheats/\">anti-cheat bypass workflow</a> and the <a href=\"/enlisted-cheats/\">undetected guide</a>. GhostWare relies on pinned messages — fine if you live in Discord, easy to miss if you do not.",
 				],
 			},
 			{
-				h2: "Gameplay feel — co-op missions and loot runs squads",
+				h2: "Gameplay feel — co-op missions and campaign missions squads",
 				paragraphs: [
-					"GhostWare ESP boxes were crisp — arguably cleaner outline rendering on low settings PCs. Deadside Cheats boxes offer more colour and distance data; busier but more informative in squad comms (\"220m west\" calls).",
-					"Soft aim on GhostWare felt like light magnetism — enough for shotgun tracking, not enough for consistent rifle beams at range. Deadside Cheats soft aim took tuning time but held Soma Prime fights better once profiles were set.",
-					"Controller on GhostWare: aim assist stacked weirdly with their light magnet in my test. Deadside Cheats suggested baseline FOV values in support docs; less guesswork.",
+					"GhostWare ESP boxes were crisp — arguably cleaner outline rendering on low settings PCs. Enlisted Cheats boxes offer more colour and distance data; busier but more informative in squad comms (\"220m west\" calls).",
+					"Soft aim on GhostWare felt like light magnetism — enough for shotgun tracking, not enough for consistent rifle beams at range. Enlisted Cheats soft aim took tuning time but held Soma Prime fights better once profiles were set.",
+					"Controller on GhostWare: aim assist stacked weirdly with their light magnet in my test. Enlisted Cheats suggested baseline FOV values in support docs; less guesswork.",
 				],
 			},
 			{
 				h2: "Pros and cons summary",
 				paragraphs: [
-					"<strong>Deadside Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.",
+					"<strong>Enlisted Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.",
 					"<strong>GhostWare pros:</strong> lower entry price, clean minimal ESP, quick to launch, smaller feature surface. <strong>Cons:</strong> no radar, limited squad ESP, patch status mostly in Discord, no DMA option, lighter aim tools.",
-					"Neither replaces game sense. Pair either with fundamentals — see our <a href=\"/blog/deadside-cheats-complete-guide-2026/\">complete Deadside cheats guide</a> and <a href=\"/blog/deadside-cheats-buyers-guide/\">cheats buyers guide</a>.",
+					"Neither replaces game sense. Pair either with fundamentals — see our <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">complete Enlisted cheats guide</a> and <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>.",
 				],
 			},
 			{
 				h2: "Which one should you buy?",
 				paragraphs: [
-					"Choose GhostWare if budget is tight, you only need Enemy ESP in casual public servers, and you are comfortable tracking patch status in Discord.",
-					"Choose Deadside Cheats if you want radar for flanks, medkit markers for faster spawns, configurable soft aim, optional cloud DMA, and a single Updates URL to check after every Deadside patch.",
-					"Try This Today: Decide whether radar and squad ESP are must-haves or nice-to-haves. If must-have, open <a href=\"/deadside-esp/\">ESP</a>, <a href=\"/deadside-radar/\">radar</a>, and <a href=\"/pricing/\">Pricing</a>. If skipping radar saves you money and matches your style, GhostWare stays in the conversation — just do not skip patch-day checks on either tool.",
+					"Choose GhostWare if budget is tight, you only need Enemy ESP in casual public matches, and you are comfortable tracking patch status in Discord.",
+					"Choose Enlisted Cheats if you want radar for flanks, medkit markers for faster spawns, configurable soft aim, optional cloud DMA, and a single Updates URL to check after every Enlisted patch.",
+					"Try This Today: Decide whether radar and squad ESP are must-haves or nice-to-haves. If must-have, open <a href=\"/enlisted-esp/\">ESP</a>, <a href=\"/enlisted-radar/\">radar</a>, and <a href=\"/pricing/\">Pricing</a>. If skipping radar saves you money and matches your style, GhostWare stays in the conversation — just do not skip patch-day checks on either tool.",
 				],
 			}
 		],
@@ -437,49 +437,49 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-steel-path-guide",
+		id: "enlisted-steel-path-guide",
 		imageKey: "battleRoyaleCombat",
 		published: "2026-06-18",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-steel-path-beginners-guide",
-		title: "Deadside loot runs Guide for Beginners",
-		metaDescription: "Deadside loot runs explained — what changes, how enemies scale, and mission tips for solo and squad play. Official sources and practical checklist.",
-		h1: "Deadside loot runs: A Practical Beginner Guide",
-		intro: "loot runs is Deadside's endgame difficulty layer. This guide explains what actually changes, how to prepare, and where to verify details with official sources.",
-		keywords: ["Deadside loot runs","loot runs guide","Deadside endgame","Deadside missions"],
-		imageAlt: "Deadside loot runs beginner guide for harder missions and enemy scaling",
+		slug: "enlisted-steel-path-beginners-guide",
+		title: "Enlisted campaign missions Guide for Beginners",
+		metaDescription: "Enlisted campaign missions explained — what changes, how enemies scale, and mission tips for solo and squad play. Official sources and practical checklist.",
+		h1: "Enlisted campaign missions: A Practical Beginner Guide",
+		intro: "campaign missions is Enlisted's endgame difficulty layer. This guide explains what actually changes, how to prepare, and where to verify details with official sources.",
+		keywords: ["Enlisted campaign missions","campaign missions guide","Enlisted endgame","Enlisted missions"],
+		imageAlt: "Enlisted campaign missions beginner guide for harder missions and enemy scaling",
 		sections: [
 			{
-				h2: "What loot runs changes in Deadside",
+				h2: "What campaign missions changes in Enlisted",
 				paragraphs: [
-					"<a href=\"https://deadside.fandom.com/wiki/Steel_Path\" target=\"_blank\" rel=\"noopener noreferrer\">loot runs</a> is a harder mission tier unlocked after you complete the open world map. Enemies gain more health and damage, which changes how long fights last and how punishing positioning mistakes become.",
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a> maintains balance through regular patches. Cross-check mechanics on the <a href=\"https://deadside.fandom.com/wiki/Deadside_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside Wiki</a> and <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside game guide</a> before you assume a farm route still works the same way.",
-					"Pro Tip — Read the modifier: loot runs is not just “harder numbers.” Some tilesets feel different because spawn density and pathing punish slow rotations.",
+					"<a href=\"https://enlisted.fandom.com/wiki/Steel_Path\" target=\"_blank\" rel=\"noopener noreferrer\">campaign missions</a> is a harder mission tier unlocked after you complete the campaign map. Enemies gain more health and damage, which changes how long fights last and how punishing positioning mistakes become.",
+					"<a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> maintains balance through regular patches. Cross-check mechanics on the <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> and <a href=\"https://enlisted.net/en/game/about/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted game guide</a> before you assume a farm route still works the same way.",
+					"Pro Tip — Read the modifier: campaign missions is not just “harder numbers.” Some tilesets feel different because spawn density and pathing punish slow rotations.",
 				],
 			},
 			{
-				h2: "Good early loot run types",
+				h2: "Good early campaign mission types",
 				paragraphs: [
 					"Defense and survival are popular because spawn flow is predictable once you learn the map. Exterminate and sabotage can be faster for resource runs if your build clears rooms quickly.",
-					"If you are learning spawn timing, open world is a lower-pressure place to practice radar reads — see our <a href=\"/blog/deadside-loot-farming-guide/\">open world farming guide</a>.",
+					"If you are learning spawn timing, battlefield is a lower-pressure place to practice radar reads — see our <a href=\"/blog/enlisted-battlefield-farming-guide/\">battlefield farming guide</a>.",
 				],
 			},
 			{
 				h2: "Build and loadout basics",
 				paragraphs: [
-					"loot runs rewards sustained damage, armor strip or crowd control, and reliable survivability. Modding depth is huge — the Wiki pages for <a href=\"https://deadside.fandom.com/wiki/Mod\" target=\"_blank\" rel=\"noopener noreferrer\">mods</a> and <a href=\"https://deadside.fandom.com/wiki/Arcane_Enhancement\" target=\"_blank\" rel=\"noopener noreferrer\">arcanes</a> are worth bookmarking.",
-					"For visibility-heavy playstyles, our <a href=\"/deadside-esp/\">ESP guide</a> and <a href=\"/deadside-radar/\">radar page</a> explain how extra map information helps in longer loot runs waves.",
+					"campaign missions rewards sustained damage, armor strip or crowd control, and reliable survivability. Modding depth is huge — the Wiki pages for <a href=\"https://enlisted.fandom.com/wiki/Mod\" target=\"_blank\" rel=\"noopener noreferrer\">mods</a> and <a href=\"https://enlisted.fandom.com/wiki/Arcane_Enhancement\" target=\"_blank\" rel=\"noopener noreferrer\">arcanes</a> are worth bookmarking.",
+					"For visibility-heavy playstyles, our <a href=\"/enlisted-esp/\">ESP guide</a> and <a href=\"/enlisted-radar/\">radar page</a> explain how extra map information helps in longer campaign missions waves.",
 				],
 			},
 			{
 				h2: "Checklist before you queue",
 				paragraphs: [
-					"Confirm the latest <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> if a hotfix dropped. Test one familiar mission first. Note which enemy factions appear — players, vehicles, and patrols fights play differently.",
-					"Try This Today: Pick one loot runs node you already know in normal mode. Run it once on loot runs and write down where you lost time — damage, survivability, or navigation.",
+					"Confirm the latest <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> if a hotfix dropped. Test one familiar mission first. Note which enemy factions appear — infantry, tanks, and artillery fights play differently.",
+					"Try This Today: Pick one campaign missions node you already know in normal mode. Run it once on campaign missions and write down where you lost time — damage, survivability, or navigation.",
 				],
 			}
 		],
@@ -487,47 +487,47 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-open-world-farming",
+		id: "enlisted-open-world-farming",
 		imageKey: "playerEsp",
 		published: "2026-06-12",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-loot-farming-guide",
-		title: "Deadside Open World Farming Guide",
-		metaDescription: "Deadside open world farming on military compounds, towns, and highway routes — resources, bounties, and route planning with official wiki links.",
-		h1: "Deadside Open World Farming: Plains, Vallis, and abandoned towns",
+		slug: "enlisted-battlefield-farming-guide",
+		title: "Enlisted Open World Farming Guide",
+		metaDescription: "Enlisted battlefield farming on Eastern Front, Western Front, and urban combat maps — resources, bounties, and route planning with official wiki links.",
+		h1: "Enlisted Open World Farming: Plains, Vallis, and urban combat maps",
 		intro: "Open world zones are where many players farm resources, standing, and mod parts. Here is how the three main landscapes differ and how to plan routes efficiently.",
-		keywords: ["Deadside open world","northern map sectors","southern map sectors","abandoned towns farming"],
-		imageAlt: "Deadside open world farming guide for Plains southern map sectors and abandoned towns",
+		keywords: ["Enlisted battlefield","Eastern Front maps","Western Front maps","urban combat maps farming"],
+		imageAlt: "Enlisted battlefield farming guide for Plains Western Front maps and urban combat maps",
 		sections: [
 			{
-				h2: "The three open world landscapes",
+				h2: "The three battlefield landscapes",
 				paragraphs: [
-					"Deadside's <a href=\"https://deadside.fandom.com/wiki/Open_World\" target=\"_blank\" rel=\"noopener noreferrer\">open world</a> areas — northern map sectors, southern map sectors, and Cambion Drift on abandoned towns — each have different factions, resources, and bounty systems. The <a href=\"https://deadside.fandom.com/wiki/Deadside_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside Wiki</a> pages for each landscape list fish, mining, and resource tables.",
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside game guide</a> is the best starting point if you are new. Official patch notes can shift drop tables or bounty rewards, so verify big changes on <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a>.",
+					"Enlisted's <a href=\"https://enlisted.fandom.com/wiki/Open_World\" target=\"_blank\" rel=\"noopener noreferrer\">battlefield</a> areas — Eastern Front maps, Western Front maps, and Cambion Drift on urban combat maps — each have different factions, resources, and bounty systems. The <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> pages for each landscape list fish, mining, and resource tables.",
+					"<a href=\"https://enlisted.net/en/game/about/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted game guide</a> is the best starting point if you are new. Official patch notes can shift drop tables or bounty rewards, so verify big changes on <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a>.",
 				],
 			},
 			{
 				h2: "Bounties vs free roam farming",
 				paragraphs: [
 					"Bounties give structured rewards and faction standing. Free roam farming — mining, fishing, and resource pickups — is better when you need specific crafting materials.",
-					"Route planning matters: mark resource nodes, check day/night cycles on the Plains, and learn where armored vehicles and turrets patrol on ridges before you commit to a camp spot.",
+					"Route planning matters: mark resource nodes, check day/night cycles on the Plains, and learn where tanks and artillery patrol on ridges before you commit to a camp spot.",
 				],
 			},
 			{
-				h2: "Why visibility helps in open world",
+				h2: "Why visibility helps in battlefield",
 				paragraphs: [
-					"Open world maps are large. Knowing where enemies and objectives sit saves time whether you are solo or in a public squad. Our <a href=\"/deadside-esp/\">ESP overview</a> explains how wallhack-style overlays help on wide terrain.",
-					"Pair that with the <a href=\"/deadside-radar/\">radar guide</a> for flank awareness during vault runs and bounty defense phases.",
+					"Open world maps are large. Knowing where enemies and objectives sit saves time whether you are solo or in a public squad. Our <a href=\"/enlisted-esp/\">ESP overview</a> explains how wallhack-style overlays help on wide terrain.",
+					"Pair that with the <a href=\"/enlisted-radar/\">radar guide</a> for flank awareness during vault runs and bounty defense phases.",
 				],
 			},
 			{
 				h2: "Practical farming session",
 				paragraphs: [
-					"Pick one resource goal per session. Run two bounties, then one free roam lap, then reassess inventory. Check <a href=\"https://forums.deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside forums</a> if a community thread reports a broken farm route after a patch.",
+					"Pick one resource goal per session. Run two bounties, then one free roam lap, then reassess inventory. Check <a href=\"https://forums.enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted forums</a> if a community thread reports a broken farm route after a patch.",
 					"Try This Today: Open the Wiki page for one resource you need. Plan a 20-minute route on paper before you load in.",
 				],
 			}
@@ -536,47 +536,47 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-factions-explained",
+		id: "enlisted-factions-explained",
 		imageKey: "squadFight",
 		published: "2026-05-28",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-factions-infantry-tanks-artillery-guide",
-		title: "Deadside Factions Explained: Grineer, Corpus, Infested",
-		metaDescription: "Deadside enemy factions explained — players, vehicles, patrols, and drones behavior, weaknesses, and where to learn more from the official Wiki.",
-		h1: "Deadside Factions: players, vehicles, patrols, and drones",
-		intro: "Every Deadside mission features one or more enemy factions. Understanding how they fight helps you pick mods, elements, and positioning — whether you are new or returning after a break.",
-		keywords: ["Deadside factions","Grineer","Corpus","Infested","vehicle"],
-		imageAlt: "Deadside factions guide for Grineer Corpus Infested and vehicle enemies",
+		slug: "enlisted-factions-infantry-tanks-artillery-guide",
+		title: "Enlisted Factions Explained: Grineer, Corpus, Infested",
+		metaDescription: "Enlisted enemy factions explained — infantry, tanks, artillery, and vehicles behavior, weaknesses, and where to learn more from the official Wiki.",
+		h1: "Enlisted Factions: infantry, tanks, artillery, and vehicles",
+		intro: "Every Enlisted mission features one or more enemy factions. Understanding how they fight helps you pick mods, elements, and positioning — whether you are new or returning after a break.",
+		keywords: ["Enlisted factions","Grineer","Corpus","Infested","vehicle"],
+		imageAlt: "Enlisted factions guide for Grineer Corpus Infested and vehicle enemies",
 		sections: [
 			{
-				h2: "Grineer — armor, density, and armored vehicles and turrets",
+				h2: "Grineer — armor, density, and tanks and artillery",
 				paragraphs: [
-					"Grineer missions feature armored units and heavy enemies that punish slow clears. Corrosive and armor-strip setups are common. Read faction detail on the <a href=\"https://deadside.fandom.com/wiki/Grineer\" target=\"_blank\" rel=\"noopener noreferrer\">Grineer Wiki page</a>.",
-					"loot runs infantry defenses are a classic choke-point test — see our <a href=\"/blog/deadside-steel-path-beginners-guide/\">loot runs guide</a>.",
+					"Grineer missions feature armored units and heavy enemies that punish slow clears. Corrosive and armor-strip setups are common. Read faction detail on the <a href=\"https://enlisted.fandom.com/wiki/Grineer\" target=\"_blank\" rel=\"noopener noreferrer\">Grineer Wiki page</a>.",
+					"campaign missions infantry defenses are a classic choke-point test — see our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a>.",
 				],
 			},
 			{
 				h2: "Corpus — shields, proxies, and robotics",
 				paragraphs: [
-					"Corpus enemies rely on shields and robotic proxies. Magnetic, toxin, and shield-break tools matter more here. The <a href=\"https://deadside.fandom.com/wiki/Corpus\" target=\"_blank\" rel=\"noopener noreferrer\">Corpus Wiki page</a> lists unit types you will see in void and ice tilesets.",
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a> occasionally rebalances proxy spawns — watch <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> when a Corpus-heavy update ships.",
+					"Corpus enemies rely on shields and robotic proxies. Magnetic, toxin, and shield-break tools matter more here. The <a href=\"https://enlisted.fandom.com/wiki/Corpus\" target=\"_blank\" rel=\"noopener noreferrer\">Corpus Wiki page</a> lists unit types you will see in void and ice tilesets.",
+					"<a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> occasionally rebalances proxy spawns — watch <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> when a Corpus-heavy update ships.",
 				],
 			},
 			{
 				h2: "Infested and vehicle — special mechanics",
 				paragraphs: [
-					"Infested missions emphasize swarm pressure and constant spawns. enemy vehicles appear in later content and adapt to damage types — the <a href=\"https://deadside.fandom.com/wiki/vehicle\" target=\"_blank\" rel=\"noopener noreferrer\">vehicle Wiki page</a> is essential before Eidolon or Circuit-style content.",
-					"Knowing faction spawns also helps you filter ESP categories — covered on our <a href=\"/deadside-wallhack/\">wallhack page</a>.",
+					"Infested missions emphasize swarm pressure and constant spawns. enemy vehicles appear in later content and adapt to damage types — the <a href=\"https://enlisted.fandom.com/wiki/vehicle\" target=\"_blank\" rel=\"noopener noreferrer\">vehicle Wiki page</a> is essential before Eidolon or Circuit-style content.",
+					"Knowing faction spawns also helps you filter ESP categories — covered on our <a href=\"/enlisted-wallhack/\">wallhack page</a>.",
 				],
 			},
 			{
 				h2: "Use official references first",
 				paragraphs: [
-					"For lore and faction history, <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside</a> and <a href=\"https://deadside.fandom.com/wiki/Deadside_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside Wiki</a> beat random summaries. For balance changes, trust <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> and developer streams from <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a>.",
+					"For lore and faction history, <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted</a> and <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> beat random summaries. For balance changes, trust <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> and developer streams from <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a>.",
 					"Try This Today: Pick your most-played faction and read their Wiki resistances page. Adjust one mod slot before your next session.",
 				],
 			}
@@ -585,41 +585,41 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-mission-types-guide",
+		id: "enlisted-mission-types-guide",
 		imageKey: "rebootFight",
 		published: "2026-05-14",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-mission-types-explained",
-		title: "Deadside Mission Types Explained",
-		metaDescription: "Deadside raid types explained — squad extractions, Arbitration, Sanctuary, defense, survival, and more. Links to official Wiki and game guide resources.",
-		h1: "Deadside Mission Types: squad extractions, Arbitration, and More",
-		intro: "Deadside has dozens of mission modes. This guide maps the ones you will see most often in endgame and where to verify rotations with official references.",
-		keywords: ["Deadside missions","squad extraction","Arbitration","Sanctuary Onslaught","Deadside modes"],
-		imageAlt: "Deadside raid types guide for squad extractions Arbitration and endgame modes",
+		slug: "enlisted-mission-types-explained",
+		title: "Enlisted Mission Types Explained",
+		metaDescription: "Enlisted mission types explained — squad assaults, Arbitration, Sanctuary, defense, survival, and more. Links to official Wiki and game guide resources.",
+		h1: "Enlisted Mission Types: squad assaults, Arbitration, and More",
+		intro: "Enlisted has dozens of mission modes. This guide maps the ones you will see most often in endgame and where to verify rotations with official references.",
+		keywords: ["Enlisted missions","squad assault","Arbitration","Sanctuary Onslaught","Enlisted modes"],
+		imageAlt: "Enlisted mission types guide for squad assaults Arbitration and endgame modes",
 		sections: [
 			{
-				h2: "Core mission modes on the open world map",
+				h2: "Core mission modes on the campaign map",
 				paragraphs: [
-					"Exterminate, survival, defense, interception, sabotage, and mobile defense form the backbone of the open world map. The <a href=\"https://deadside.fandom.com/wiki/Mission\" target=\"_blank\" rel=\"noopener noreferrer\">Mission Wiki hub</a> defines win conditions and common modifiers.",
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside game guide</a> walks new players through early progression before these modes split into faction-specific tilesets.",
+					"Exterminate, survival, defense, interception, sabotage, and mobile defense form the backbone of the campaign map. The <a href=\"https://enlisted.fandom.com/wiki/Mission\" target=\"_blank\" rel=\"noopener noreferrer\">Mission Wiki hub</a> defines win conditions and common modifiers.",
+					"<a href=\"https://enlisted.net/en/game/about/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted game guide</a> walks new players through early progression before these modes split into faction-specific tilesets.",
 				],
 			},
 			{
-				h2: "squad extractions and daily challenge content",
+				h2: "squad assaults and daily challenge content",
 				paragraphs: [
-					"squad extractions are daily three-mission chains with special modifiers. They are a staple for players with mature builds. Check the <a href=\"https://deadside.fandom.com/wiki/squad extraction\" target=\"_blank\" rel=\"noopener noreferrer\">squad extraction Wiki page</a> for reward tables and modifier lists.",
-					"Radar and ESP are especially useful when modifiers restrict ability use or increase enemy accuracy — see <a href=\"/deadside-radar/\">radar</a> and <a href=\"/deadside-esp/\">ESP</a>.",
+					"squad assaults are daily three-mission chains with special modifiers. They are a staple for players with mature builds. Check the <a href=\"https://enlisted.fandom.com/wiki/squad assault\" target=\"_blank\" rel=\"noopener noreferrer\">squad assault Wiki page</a> for reward tables and modifier lists.",
+					"Radar and ESP are especially useful when modifiers restrict ability use or increase enemy accuracy — see <a href=\"/enlisted-radar/\">radar</a> and <a href=\"/enlisted-esp/\">ESP</a>.",
 				],
 			},
 			{
 				h2: "Arbitration, Sanctuary, and long-run modes",
 				paragraphs: [
-					"Arbitration and Sanctuary Onslaught reward players who can sustain long fights. Read <a href=\"https://deadside.fandom.com/wiki/Arbitration\" target=\"_blank\" rel=\"noopener noreferrer\">Arbitration</a> and <a href=\"https://deadside.fandom.com/wiki/Sanctuary_Onslaught\" target=\"_blank\" rel=\"noopener noreferrer\">Sanctuary Onslaught</a> on the Wiki before you invest grind time.",
-					"For squad callouts and spawn timing, our <a href=\"/blog/deadside-steel-path-beginners-guide/\">loot runs guide</a> overlaps with several long-run strategies.",
+					"Arbitration and Sanctuary Onslaught reward players who can sustain long fights. Read <a href=\"https://enlisted.fandom.com/wiki/Arbitration\" target=\"_blank\" rel=\"noopener noreferrer\">Arbitration</a> and <a href=\"https://enlisted.fandom.com/wiki/Sanctuary_Onslaught\" target=\"_blank\" rel=\"noopener noreferrer\">Sanctuary Onslaught</a> on the Wiki before you invest grind time.",
+					"For squad callouts and spawn timing, our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a> overlaps with several long-run strategies.",
 				],
 			},
 			{
@@ -634,33 +634,33 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-patch-notes-guide",
+		id: "enlisted-patch-notes-guide",
 		imageKey: "headerArt",
 		published: "2026-04-30",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: false,
 		translations: {
 		en: {
-		slug: "deadside-patch-notes-guide",
-		title: "How to Read Deadside Patch Notes",
-		metaDescription: "How to read Deadside patch notes from Bad Pixel — official sources, what to scan first, and how updates affect your loadout and tools.",
-		h1: "How to Read Deadside Patch Notes Like a Player",
-		intro: "Patch day changes more than balance tweets suggest. Here is how to read official Deadside update notes quickly and decide what actually matters for your account.",
-		keywords: ["Deadside patch notes","Deadside updates","Bad Pixel","PC update notes"],
-		imageAlt: "How to read Deadside patch notes from official PC update notes",
+		slug: "enlisted-patch-notes-guide",
+		title: "How to Read Enlisted Patch Notes",
+		metaDescription: "How to read Enlisted patch notes from Gaijin — official sources, what to scan first, and how updates affect your loadout and tools.",
+		h1: "How to Read Enlisted Patch Notes Like a Player",
+		intro: "Patch day changes more than balance tweets suggest. Here is how to read official Enlisted update notes quickly and decide what actually matters for your account.",
+		keywords: ["Enlisted patch notes","Enlisted updates","Gaijin","PC update notes"],
+		imageAlt: "How to read Enlisted patch notes from official PC update notes",
 		sections: [
 			{
 				h2: "Official sources to bookmark",
 				paragraphs: [
-					"Start with <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> on the <a href=\"https://forums.deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside forums</a>. Developer news also flows through <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Bad Pixel</a> and the main <a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside</a> site.",
+					"Start with <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a> on the <a href=\"https://forums.enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted forums</a>. Developer news also flows through <a href=\"https://www.digitalextremes.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Gaijin</a> and the main <a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted</a> site.",
 					"Community summaries are fine for speed, but always verify numbers and reworks against the primary post before you sell mods or change builds.",
 				],
 			},
 			{
 				h2: "What to scan first on patch day",
 				paragraphs: [
-					"Read hotfix lines for crash fixes and known issues first. Then scan weapon and Deadside changes, mission rewards, and drop table tweaks. Finally check UI and QoL notes.",
+					"Read hotfix lines for crash fixes and known issues first. Then scan weapon and Enlisted changes, mission rewards, and drop table tweaks. Finally check UI and QoL notes.",
 					"If you use third-party tools, check our <a href=\"/updates/\">Updates page</a> after reading official notes — maintenance windows do not always match patch publish time.",
 				],
 			},
@@ -668,13 +668,13 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Translate notes into loadout decisions",
 				paragraphs: [
 					"Ask: Did my main weapon class change? Did a mod or arcane get touched? Did a farm route’s drop pool move? If all three are no, you can queue sooner.",
-					"Our <a href=\"/blog/undetected-deadside-cheats-eac/\">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.",
+					"Our <a href=\"/blog/undetected-enlisted-cheats-eac/\">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.",
 				],
 			},
 			{
 				h2: "Patch-day routine",
 				paragraphs: [
-					"Open <a href=\"https://store.steampowered.com/news/?appids=895400\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a>, skim hotfixes, test one familiar mission, then revisit Wiki pages for anything flagged as reworked.",
+					"Open <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">official PC update notes</a>, skim hotfixes, test one familiar mission, then revisit Wiki pages for anything flagged as reworked.",
 					"Try This Today: Save the official update notes URL in your browser. After the next patch, highlight only the lines that mention gear you actually use.",
 				],
 			}
@@ -683,48 +683,48 @@ export const blogPosts: BlogPostDefinition[] = [
 		},
 	},
 	{
-		id: "deadside-new-player-guide",
+		id: "enlisted-new-player-guide",
 		imageKey: "cheatsPackage",
 		published: "2026-04-16",
 		updated: "2026-08-01",
-		category: "Deadside Game Guides",
+		category: "Enlisted Game Guides",
 		featured: true,
 		translations: {
 		en: {
-		slug: "deadside-new-player-progression-guide",
-		title: "Deadside New Player Progression Guide",
-		metaDescription: "Deadside new player guide for open world map progression, quests, mods, and early goals — with links to the official game guide and Deadside Wiki.",
-		h1: "Deadside New Player Progression: Where to Go First",
-		intro: "Deadside has a steep learning curve. This progression guide points new Tenno toward official resources and sensible early goals without drowning in systems.",
-		keywords: ["Deadside new player","Deadside beginner guide","open world map","Deadside progression"],
-		imageAlt: "Deadside new player progression guide for open world map and early quests",
+		slug: "enlisted-new-player-progression-guide",
+		title: "Enlisted New Player Progression Guide",
+		metaDescription: "Enlisted new player guide for campaign map progression, quests, mods, and early goals — with links to the official game guide and Enlisted Wiki.",
+		h1: "Enlisted New Player Progression: Where to Go First",
+		intro: "Enlisted has a steep learning curve. This progression guide points new Tenno toward official resources and sensible early goals without drowning in systems.",
+		keywords: ["Enlisted new player","Enlisted beginner guide","campaign map","Enlisted progression"],
+		imageAlt: "Enlisted new player progression guide for campaign map and early quests",
 		sections: [
 			{
 				h2: "Start with the official tutorial path",
 				paragraphs: [
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">official Deadside game guide</a> and the in-game Voruna quest chain teach movement, modding, and mission flow. The <a href=\"https://deadside.fandom.com/wiki/Deadside_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside Wiki</a> <a href=\"https://deadside.fandom.com/wiki/Voruna%27s_Guide\" target=\"_blank\" rel=\"noopener noreferrer\">new player hub</a> is the best community-maintained supplement.",
-					"<a href=\"https://deadside.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Deadside</a> is free to play and updated often — expect systems to unlock gradually rather than all at once.",
+					"<a href=\"https://enlisted.net/en/game/about/\" target=\"_blank\" rel=\"noopener noreferrer\">official Enlisted game guide</a> and the in-game Voruna quest chain teach movement, modding, and mission flow. The <a href=\"https://enlisted.fandom.com/wiki/Enlisted_Wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted Wiki</a> <a href=\"https://enlisted.fandom.com/wiki/Voruna%27s_Guide\" target=\"_blank\" rel=\"noopener noreferrer\">new player hub</a> is the best community-maintained supplement.",
+					"<a href=\"https://enlisted.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted</a> is free to play and updated often — expect systems to unlock gradually rather than all at once.",
 				],
 			},
 			{
-				h2: "open world map and junction milestones",
+				h2: "campaign map and junction milestones",
 				paragraphs: [
-					"Clear the open world map methodically. Junctions gate planets and key quest lines. The <a href=\"https://deadside.fandom.com/wiki/Star_Chart\" target=\"_blank\" rel=\"noopener noreferrer\">open world map Wiki page</a> shows what each node rewards.",
-					"Do not rush loot runs on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href=\"/blog/deadside-steel-path-beginners-guide/\">loot runs guide</a> is for when you are ready.",
+					"Clear the campaign map methodically. Junctions gate planets and key quest lines. The <a href=\"https://enlisted.fandom.com/wiki/Star_Chart\" target=\"_blank\" rel=\"noopener noreferrer\">campaign map Wiki page</a> shows what each node rewards.",
+					"Do not rush campaign missions on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a> is for when you are ready.",
 				],
 			},
 			{
 				h2: "Mods, mods, mods",
 				paragraphs: [
-					"Power in Deadside comes from mods and mod capacity. Early goals: damage, health, shields, and ability strength or duration depending on your operator.",
-					"The <a href=\"https://deadside.fandom.com/wiki/Mod\" target=\"_blank\" rel=\"noopener noreferrer\">Mod Wiki page</a> explains polarity and fusion. Farm low-level missions for credits and mod drops before chasing rare relics.",
+					"Power in Enlisted comes from mods and mod capacity. Early goals: damage, health, shields, and ability strength or duration depending on your soldier.",
+					"The <a href=\"https://enlisted.fandom.com/wiki/Mod\" target=\"_blank\" rel=\"noopener noreferrer\">Mod Wiki page</a> explains polarity and fusion. Farm low-level missions for credits and mod drops before chasing rare relics.",
 				],
 			},
 			{
 				h2: "When you are ready for more",
 				paragraphs: [
-					"Explore open world after Mars/Jupiter comfort. Read our <a href=\"/blog/deadside-loot-farming-guide/\">open world guide</a> and <a href=\"/blog/deadside-mission-types-explained/\">mission types explainer</a> when those nodes unlock.",
-					"Try This Today: Complete one quest, one new open world map node, and one mod upgrade session — three small wins beat grinding random missions.",
+					"Explore battlefield after Mars/Jupiter comfort. Read our <a href=\"/blog/enlisted-battlefield-farming-guide/\">battlefield guide</a> and <a href=\"/blog/enlisted-mission-types-explained/\">mission types explainer</a> when those nodes unlock.",
+					"Try This Today: Complete one quest, one new campaign map node, and one mod upgrade session — three small wins beat grinding random missions.",
 				],
 			}
 		],

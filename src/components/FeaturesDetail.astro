@@ -1,5 +1,5 @@
 ---
-import { featureGallery, featureSectionImages } from '../data/deadside';
+import { featureGallery, featureSectionImages } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productFeatureDetails, productInfo, siteConfig } from '../data/site';
@@ -58,12 +58,12 @@ const responsiveImage = (src: string) => ({
 		})
 	}
 
-	<section class="features-detail__gallery" aria-label="Deadside cheats screenshots">
+	<section class="features-detail__gallery" aria-label="Enlisted cheats screenshots">
 		<header class="features-detail__gallery-head">
 			<h2>In-game screenshots</h2>
-			<p>Menu, ESP, aimbot, and radar from live Deadside sessions.</p>
+			<p>Menu, ESP, aimbot, and radar from live Enlisted sessions.</p>
 		</header>
-		<div class="features-detail__gallery-scroller" tabindex="0" aria-label="Scroll through Deadside screenshots">
+		<div class="features-detail__gallery-scroller" tabindex="0" aria-label="Scroll through Enlisted screenshots">
 			<div class="features-detail__gallery-track">
 				{
 				featureGallery.map((image) => {

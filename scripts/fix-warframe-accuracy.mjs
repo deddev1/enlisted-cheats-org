@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Normalize copy for Deadside — removes Fortnite/Rust/Epic/EAC leftovers.
+ * Normalize copy for Enlisted — removes Fortnite/Rust/Epic/EAC leftovers.
  * Run: node scripts/fix-warframe-accuracy.mjs
  */
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -11,13 +11,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 /** @type {[string | RegExp, string][]} */
 const RULES = [
-	[/Epic services/gi, 'Deadside servers'],
-	[/Epic platform/gi, 'Deadside launcher'],
-	[/Epic's rules/gi, "Bad Pixel' Terms of Service"],
-	[/Epic terms/gi, 'Bad Pixel terms'],
-	[/If Epic services/gi, 'If Deadside servers'],
-	[/Embark' anti-cheat/gi, 'Bad Pixel anti-cheat'],
-	[/Deadside or EAC patch/gi, 'Deadside or anti-cheat patch'],
+	[/Epic services/gi, 'Enlisted servers'],
+	[/Epic platform/gi, 'Enlisted launcher'],
+	[/Epic's rules/gi, "Gaijin' Terms of Service"],
+	[/Epic terms/gi, 'Gaijin terms'],
+	[/If Epic services/gi, 'If Enlisted servers'],
+	[/Embark' anti-cheat/gi, 'Gaijin anti-cheat'],
+	[/Enlisted or EAC patch/gi, 'Enlisted or anti-cheat patch'],
 	[/and EAC questions/gi, 'and anti-cheat questions'],
 	[/EAC patch/gi, 'anti-cheat patch'],
 	[/EAC history/gi, 'anti-cheat history'],
@@ -25,17 +25,17 @@ const RULES = [
 	[/Battle royale fights happen in three dimensions — rooftops, windows, and flanks\./gi,
 		'Multi-floor tilesets stack vertical fights — catwalks, doorways, and side spawns.'],
 	[/extraction loop/gi, 'mission loop'],
-	[/extraction phase rounds/gi, 'hot zones and squad extraction modifiers'],
-	[/extraction phase/gi, 'hot zones'],
-	[/extraction route/gi, 'squad extraction route'],
-	[/endgame circles/gi, 'hot zones'],
-	[/ranked squad firefight/gi, 'campaign squad firefight'],
-	[/ranked objective fight/gi, 'loot runs objective fight'],
+	[/extraction phase rounds/gi, 'defense sectors and squad assault modifiers'],
+	[/extraction phase/gi, 'defense sectors'],
+	[/supply route/gi, 'squad assault route'],
+	[/endgame circles/gi, 'defense sectors'],
+	[/ranked squad fight/gi, 'campaign squad fight'],
+	[/ranked objective fight/gi, 'campaign missions objective fight'],
 	[/ranked-critical/gi, 'mission-critical'],
 	[/ranked lobbies/gi, 'co-op squads'],
 	[/ranked block/gi, 'mission session'],
-	[/before ranked/gi, 'before loot runs'],
-	[/Built for ranked pressure/gi, 'Built for loot runs pressure'],
+	[/before ranked/gi, 'before campaign missions'],
+	[/Built for ranked pressure/gi, 'Built for campaign missions pressure'],
 	[/before a third party/gi, 'before a flank wave'],
 	[/third parties/gi, 'flank waves'],
 	[/third-party flanks/gi, 'flank waves'],
@@ -58,33 +58,33 @@ const RULES = [
 	[/track players and containers/gi, 'track enemies and containers'],
 	[/track players/gi, 'track enemies'],
 	[/player threats/gi, 'enemy threats'],
-	[/enemy players/gi, 'enemy units'],
-	[/enemy player/gi, 'enemy unit'],
-	[/Deadside' live seasons/gi, "Deadside's live updates"],
+	[/enemy soldiers/gi, 'enemy units'],
+	[/enemy soldier/gi, 'enemy unit'],
+	[/Enlisted' live seasons/gi, "Enlisted's live updates"],
 	[/season updates from/gi, 'game updates from'],
 	[/season calendars/gi, 'update calendars'],
 	[/season notes from/gi, 'patch notes from'],
 	[/season messaging/gi, 'official patch messaging'],
 	[/season maps/gi, 'tileset updates'],
-	[/for ranked/gi, 'for loot runs'],
-	[/in ranked/gi, 'in loot runs'],
+	[/for ranked/gi, 'for campaign missions'],
+	[/in ranked/gi, 'in campaign missions'],
 	[/ranked loadout/gi, 'mission loadout'],
-	[/ranked climb/gi, 'loot runs progression'],
-	[/ranked grinders/gi, 'loot runs players'],
-	[/ranked/gi, 'loot runs'],
-	[/FNCS/gi, 'squad extraction'],
+	[/ranked climb/gi, 'campaign missions progression'],
+	[/ranked grinders/gi, 'campaign missions players'],
+	[/ranked/gi, 'campaign missions'],
+	[/FNCS/gi, 'squad assault'],
 	[/vbucks/gi, 'Platinum'],
 	[/V-Bucks/gi, 'Platinum'],
 	[/Bugha/gi, 'pro Tenno'],
 	[/zero-build/gi, 'ability-only'],
 	[/Battle Pass/gi, 'Prime Access'],
-	[/Embark/gi, 'Bad Pixel'],
-	[/Epic patch/gi, 'Deadside patch'],
-	[/every Epic patch/gi, 'every Deadside patch'],
+	[/Embark/gi, 'Gaijin'],
+	[/Epic patch/gi, 'Enlisted patch'],
+	[/every Epic patch/gi, 'every Enlisted patch'],
 	[/Epic health/gi, 'server status'],
 	[/Cheats are flanking tools/gi, 'Cheats are third-party tools'],
 	[/for Embark bans/gi, 'for game bans'],
-	[/notice vehicles before/gi, 'spot armored vehicles and turrets before'],
+	[/notice vehicles before/gi, 'spot tanks and artillery before'],
 	[/mark chests worth/gi, 'mark lockers and caches worth'],
 	[/players, loot, and vehicles/gi, 'enemies, pickups, and lockers'],
 	[/loot, chests, and vehicles/gi, 'pickups, lockers, and caches'],
@@ -92,20 +92,20 @@ const RULES = [
 	[/live matches/gi, 'live missions'],
 	[/in BR —/gi, 'in co-op —'],
 	[/\bBR loop\b/gi, 'mission loop'],
-	[/\bBR players\b/gi, 'loot runs players'],
+	[/\bBR players\b/gi, 'campaign missions players'],
 	[/\bBR stack\b/gi, 'full cheat stack'],
 	[/\bin BR\b/gi, 'in missions'],
-	[/in BR and/gi, 'in squad extractions and'],
+	[/in BR and/gi, 'in squad assaults and'],
 	[/ghostware rust/gi, 'ghostware warframe'],
-	[/rust wallhack/gi, 'deadside wallhack'],
+	[/rust wallhack/gi, 'enlisted wallhack'],
 	[/loot esp/gi, 'resource esp'],
 	[/wipe-to-raid/gi, 'mission-to-rewards'],
-	[/OW2/gi, 'Deadside'],
+	[/OW2/gi, 'Enlisted'],
 	[/payload corners/gi, 'objective corners'],
-	[/payload escorts/gi, 'hot zones'],
+	[/payload escorts/gi, 'defense sectors'],
 	[/per-hero/gi, 'per-weapon'],
 	[/hitscan and projectile/gi, 'primaries and secondaries'],
-	[/AK, SMG, and bolt/gi, 'assault rifles, SMGs, and DMRs'],
+	[/AK, SMG, and bolt/gi, 'rifles, SMGs, and sniper rifles'],
 	[/AK, SMG ve bolt/gi, 'rifle, shotgun ve sniper'],
 	[/Hammer AR/gi, 'Soma Prime'],
 	[/hammer ar/gi, 'soma prime'],
@@ -116,18 +116,18 @@ const RULES = [
 	[/island codes/gi, 'training scenarios'],
 	[/Reboot Van/gi, 'defense objective'],
 	[/control point/gi, 'defense objective'],
-	[/battle royale/gi, 'loot runs'],
-	[/loot objectives/gi, 'co-op missions'],
-	[/Player, vehicle, and ability/gi, 'Enemy, vehicle or patrol unit, and ability'],
-	[/vehicle threat cues/gi, 'vehicle or patrol unit threat cues'],
-	[/vehicle cues/gi, 'vehicle or patrol unit cues'],
-	[/vehicle pushes/gi, 'vehicle or patrol unit pushes'],
-	[/vehicle ESP/gi, 'vehicle or patrol unit ESP'],
-	[/vehicle and pickup/gi, 'vehicle or patrol unit and pickup'],
-	[/vehicle positions/gi, 'vehicle or patrol unit positions'],
+	[/battle royale/gi, 'campaign missions'],
+	[/capture objectives/gi, 'co-op missions'],
+	[/Player, vehicle, and ability/gi, 'Enemy, tank or artillery unit, and ability'],
+	[/vehicle threat cues/gi, 'tank or artillery unit threat cues'],
+	[/vehicle cues/gi, 'tank or artillery unit cues'],
+	[/vehicle pushes/gi, 'tank or artillery unit pushes'],
+	[/vehicle ESP/gi, 'tank or artillery unit ESP'],
+	[/vehicle and pickup/gi, 'tank or artillery unit and pickup'],
+	[/vehicle positions/gi, 'tank or artillery unit positions'],
 	[/building clears/gi, 'tileset clears'],
-	[/pub lobbies/gi, 'public servers'],
-	[/pubs\b/gi, 'public servers'],
+	[/pub lobbies/gi, 'public matches'],
+	[/pubs\b/gi, 'public matches'],
 	[/playlists/gi, 'mission types'],
 	[/assault rifles/gi, 'rifles'],
 	[/long-range AR /gi, 'long-range rifle '],
@@ -143,9 +143,9 @@ const RULES = [
 	[/SMG pushes/gi, 'shotgun pushes'],
 	[/SMG in/gi, 'shotgun in'],
 	[/first AR/gi, 'first rifle'],
-	[/Deadside itself is published by/gi, 'Deadside is developed and published by'],
-	[/loot runs lobbies/gi, 'loot runs'],
-	[/large-scale battles and loot runs play/gi, 'open world and loot runs'],
+	[/Enlisted itself is published by/gi, 'Enlisted is developed and published by'],
+	[/campaign missions lobbies/gi, 'campaign missions'],
+	[/large-scale battles and campaign missions play/gi, 'battlefield and campaign missions'],
 	[/shows players, loot/gi, 'shows enemies, loot'],
 	[/player ESP wallhack/gi, 'enemy ESP wallhack'],
 	[/Player ESP/gi, 'Enemy ESP'],
@@ -157,7 +157,7 @@ const RULES = [
 	[/player ESP in/gi, 'enemy ESP in'],
 	[/only need player ESP/gi, 'only need enemy ESP'],
 	[/player ESP —/gi, 'enemy ESP —'],
-	[/ability-only-meta-broken-aggressive-strategies/gi, 'deadside-cheats-complete-guide-2026'],
+	[/ability-only-meta-broken-aggressive-strategies/gi, 'enlisted-cheats-complete-guide-2026'],
 ];
 
 const FILES = [
@@ -190,36 +190,36 @@ for (const rel of FILES) {
 	console.log('✓', rel);
 }
 
-// English UI image alts — canonical Deadside terminology
+// English UI image alts — canonical Enlisted terminology
 const uiPath = join(ROOT, 'scripts/i18n-data/ui-strings-part1.mjs');
 let ui = readFileSync(uiPath, 'utf8');
 ui = ui.replace(
 	/aimbotCombat: '[^']+'/,
-	"aimbotCombat: 'Deadside aimbot targeting a armored vehicle during a loot run'",
+	"aimbotCombat: 'Enlisted aimbot targeting a enemy tank during a campaign mission'",
 );
 ui = ui.replace(
 	/squadFight: '[^']+'/,
-	"squadFight: 'Deadside squad co-op fight with ESP and aimbot active in a squad extraction'",
+	"squadFight: 'Enlisted squad co-op fight with ESP and aimbot active in a squad assault'",
 );
 ui = ui.replace(
 	/battleRoyale: '[^']+'/,
-	"battleRoyale: 'Deadside loot runs fight with undetected ESP overlays'",
+	"battleRoyale: 'Enlisted campaign missions fight with undetected ESP overlays'",
 );
 ui = ui.replace(
 	/battleRoyaleIsland: '[^']+'/,
-	"battleRoyaleIsland: 'Deadside cheats menu with per-weapon aimbot profiles'",
+	"battleRoyaleIsland: 'Enlisted cheats menu with per-weapon aimbot profiles'",
 );
 ui = ui.replace(
 	/espWallhack: '[^']+'/,
-	"espWallhack: 'Deadside ESP overlay highlighting enemy players and vehicles units through walls'",
+	"espWallhack: 'Enlisted ESP overlay highlighting enemy infantry and tanks units through walls'",
 );
 ui = ui.replace(
 	/playerEsp: '[^']+'/,
-	"playerEsp: 'Deadside wallhack ESP boxes on Grineer, Corpus, and enemy vehicles in loot runs'",
+	"playerEsp: 'Enlisted wallhack ESP boxes on Grineer, Corpus, and enemy vehicles in campaign missions'",
 );
 ui = ui.replace(
 	/rebootFight: '[^']+'/,
-	"rebootFight: 'Deadside radar hack 2D minimap showing rotation routes in a squad extraction'",
+	"rebootFight: 'Enlisted radar hack 2D minimap showing flank routes in a squad assault'",
 );
 writeFileSync(uiPath, ui);
 console.log('✓ scripts/i18n-data/ui-strings-part1.mjs (en image alts)');
@@ -228,7 +228,7 @@ console.log('✓ scripts/i18n-data/ui-strings-part1.mjs (en image alts)');
 for (const part of ['ui-strings-part1.mjs', 'ui-strings-part2.mjs']) {
 	const partPath = join(ROOT, 'scripts/i18n-data', part);
 	let partUi = readFileSync(partPath, 'utf8');
-	partUi = partUi.replace(/rebootFight: '[^']*'/g, "rebootFight: 'Deadside squad extraction defense fight with aimbot cheats active'");
+	partUi = partUi.replace(/rebootFight: '[^']*'/g, "rebootFight: 'Enlisted squad assault defense fight with aimbot cheats active'");
 	writeFileSync(partPath, partUi);
 	console.log('✓ scripts/i18n-data/' + part);
 }

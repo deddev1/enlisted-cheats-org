@@ -22,7 +22,7 @@ const IGN_GAME_SLUGS = {
 	'war-thunder': 'war-thunder',
 	'fortnite': 'fortnite',
 	'marathon': 'marathon',
-	'open world': 'open world-2042',
+	'battlefield': 'battlefield-2042',
 	'league-of-legends': 'league-of-legends',
 	'call-of-duty-warzone': 'call-of-duty-warzone',
 	'valorant': 'valorant',
@@ -66,7 +66,7 @@ mkdirSync(OUT_DIR, { recursive: true });
 async function fetchIgnImageUrl(ignSlug) {
 	const pageUrl = `https://www.ign.com/games/${ignSlug}`;
 	const res = await fetch(pageUrl, {
-		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DeadsideCheatsGuideBot/1.0)' },
+		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; EnlistedCheatsGuideBot/1.0)' },
 	});
 	if (!res.ok) throw new Error(`Page HTTP ${res.status} for ${pageUrl}`);
 	const html = await res.text();
@@ -99,7 +99,7 @@ for (const [gameId, ignSlug] of Object.entries(IGN_GAME_SLUGS)) {
 		const imageUrl = await fetchIgnImageUrl(ignSlug);
 		resolvedSources[gameId] = imageUrl;
 		const imgRes = await fetch(`${imageUrl}?width=1200&format=jpg&auto=webp&quality=85`, {
-			headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DeadsideCheatsGuideBot/1.0)' },
+			headers: { 'User-Agent': 'Mozilla/5.0 (compatible; EnlistedCheatsGuideBot/1.0)' },
 		});
 		if (!imgRes.ok) throw new Error(`Image HTTP ${imgRes.status}`);
 		const buf = Buffer.from(await imgRes.arrayBuffer());

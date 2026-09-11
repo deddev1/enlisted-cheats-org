@@ -1,5 +1,5 @@
 ---
-import { deadsideImages } from '../data/deadside';
+import { enlistedImages } from '../data/enlisted';
 import { getGalleryUi } from '../data/i18n/gallery-ui';
 import { localizeInternalHref } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
@@ -13,7 +13,7 @@ interface Props {
 const locale = Astro.props.locale ?? defaultLocale;
 const gallery = getGalleryUi(locale);
 
-const slides = deadsideImages.gallery.map((image) => ({
+const slides = enlistedImages.gallery.map((image) => ({
 	src: contentSrc(image.src),
 	srcset: contentSrcSet(image.src),
 	alt: image.alt,
@@ -25,13 +25,13 @@ const marqueeSlides = [...slides, ...slides];
 function galleryLinkLabel(href: string, src: string): string {
 	const file = src.match(/\/([^/]+?)(?:-\d+w)?\.webp$/)?.[1] ?? '';
 	const labels: Record<string, string> = {
-		'deadside-cheats-main-menu': 'Main menu shot',
-		'deadside-esp-wallhack-overlay': 'ESP overlay shot',
-		'deadside-esp-enemy-boxes': 'ESP boxes shot',
-		'deadside-squad-aimbot-combat': 'Aimbot combat shot',
-		'deadside-cheats-settings-panel': 'Settings panel shot',
-		'deadside-radar-hack-minimap': 'Radar minimap shot',
-		'deadside-cheats-combat-esp': 'Combat ESP shot',
+		'enlisted-cheats-main-menu': 'Main menu shot',
+		'enlisted-esp-wallhack-overlay': 'ESP overlay shot',
+		'enlisted-esp-enemy-boxes': 'ESP boxes shot',
+		'enlisted-squad-aimbot-combat': 'Aimbot combat shot',
+		'enlisted-cheats-settings-panel': 'Settings panel shot',
+		'enlisted-radar-hack-minimap': 'Radar minimap shot',
+		'enlisted-cheats-combat-esp': 'Combat ESP shot',
 	};
 	if (labels[file]) return labels[file];
 	const slug = href.replace(/^\/|\/$/g, '').split('/').pop() ?? 'page';
@@ -47,7 +47,7 @@ function galleryLinkLabel(href: string, src: string): string {
 	</header>
 
 	<div class="gallery__layout">
-		<div class="gallery__marquee" aria-label="Deadside cheats image gallery">
+		<div class="gallery__marquee" aria-label="Enlisted cheats image gallery">
 			<div class="gallery__marquee-track">
 				{
 					marqueeSlides.map((slide, index) => (
@@ -116,7 +116,7 @@ function galleryLinkLabel(href: string, src: string): string {
 	.gallery__layout {
 		display: grid;
 		gap: 0.65rem;
-		border: 1px solid rgba(111, 143, 58, 0.12);
+		border: 1px solid rgba(197, 138, 69, 0.12);
 		border-radius: 1rem;
 		background: rgba(29, 36, 35, 0.46);
 		overflow: hidden;
@@ -151,12 +151,12 @@ function galleryLinkLabel(href: string, src: string): string {
 		aspect-ratio: 16 / 10;
 		object-fit: cover;
 		border-radius: 0.75rem;
-		border: 1px solid rgba(111, 143, 58, 0.24);
-		background: #0a0d0b;
+		border: 1px solid rgba(197, 138, 69, 0.24);
+		background: #0D1112;
 	}
 
 	.gallery__marquee-slide:hover img {
-		border-color: rgba(111, 143, 58, 0.45);
+		border-color: rgba(197, 138, 69, 0.45);
 	}
 
 	@keyframes gallery-marquee {

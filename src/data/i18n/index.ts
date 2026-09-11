@@ -1,6 +1,6 @@
 import type { LocaleCode } from './locales';
 import { i18nContent, type PageId } from './content.generated';
-import { resolvePageHeroAlt, resolvePageHeroImage } from '../deadside';
+import { resolvePageHeroAlt, resolvePageHeroImage } from '../enlisted';
 
 export { i18nContent };
 export type { PageId, PageContent, PageSection, LocaleUi } from './content.generated';

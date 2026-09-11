@@ -53,7 +53,7 @@ function buildI18nContent() {
 
 		// Validate required page keys
 		const requiredPages = [
-			'home', 'deadside-esp', 'deadside-aimbot', 'features', 'pricing', 'setup',
+			'home', 'enlisted-esp', 'enlisted-aimbot', 'features', 'pricing', 'setup',
 			'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',
 			'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 			'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
@@ -64,7 +64,7 @@ function buildI18nContent() {
 			if (p.title.length > 60) console.warn(`WARN [${locale}/${pageId}] title ${p.title.length} chars: ${p.title}`);
 			if (p.description.length > 160) console.warn(`WARN [${locale}/${pageId}] desc ${p.description.length} chars`);
 			if (
-				!p.heroImage?.startsWith('/images/deadside') &&
+				!p.heroImage?.startsWith('/images/enlisted') &&
 				!p.heroImage?.startsWith('https://')
 			) {
 				throw new Error(`Invalid heroImage for ${locale}/${pageId}: ${p.heroImage}`);

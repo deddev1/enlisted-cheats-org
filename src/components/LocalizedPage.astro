@@ -5,7 +5,7 @@ import { getCanonicalPath, getLocalizedPath, localizeInternalHref } from '../dat
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { seoFaqs, siteConfig } from '../data/site';
-import { deadsideImages } from '../data/deadside';
+import { enlistedImages } from '../data/enlisted';
 import { buildPageExtraGraph, pageFaqClusters } from '../data/schema';
 import SeoFaqPanel from '../components/SeoFaqPanel.astro';
 import RelatedPages from '../components/RelatedPages.astro';
@@ -13,7 +13,6 @@ import PricingPlans from '../components/PricingPlans.astro';
 import PricingFeatureList from '../components/PricingFeatureList.astro';
 import FeaturesDetail from '../components/FeaturesDetail.astro';
 import { getPageRelatedLinks } from '../lib/internal-links';
-import { getPageBreadcrumbLabel } from '../lib/page-breadcrumb';
 
 interface Props {
 	locale: LocaleCode;
@@ -23,8 +22,6 @@ interface Props {
 const { locale, pageId } = Astro.props;
 const page = getPageContent(locale, pageId);
 const ui = getUi(locale);
-const breadcrumbLabel = getPageBreadcrumbLabel(pageId, ui.nav, page.h1, ui.product.title);
-
 const relatedLinks = getPageRelatedLinks(pageId, locale, {
 	esp: ui.nav.esp,
 	aimbot: ui.nav.aimbot,
@@ -50,14 +47,14 @@ function resolveCtaPrimaryHref(label: string): string {
 }
 
 const galleryPool = [
-	deadsideImages.product[0],
-	deadsideImages.product[1],
-	deadsideImages.product[2],
+	enlistedImages.product[0],
+	enlistedImages.product[1],
+	enlistedImages.product[2],
 ];
 
 const canonicalPath = getCanonicalPath(pageId, locale);
 const canonicalURL = new URL(canonicalPath, siteConfig.url).href;
-const heroImageUrl = new URL(page.heroImage ?? deadsideImages.hero, siteConfig.url).href;
+const heroImageUrl = new URL(page.heroImage ?? enlistedImages.hero, siteConfig.url).href;
 
 const extraGraph = buildPageExtraGraph(pageId, canonicalURL, heroImageUrl, seoFaqs);
 
@@ -69,8 +66,8 @@ const ctaSecondaryHref = page.ctaSecondaryHref
 
 const productGalleryPages: PageId[] = [
 	'hacks',
-	'deadside-esp',
-	'deadside-aimbot',
+	'enlisted-esp',
+	'enlisted-aimbot',
 	'wallhack',
 	'radar',
 	'undetected',
@@ -82,7 +79,6 @@ const productGalleryPages: PageId[] = [
 	description={page.description}
 	canonicalPath={canonicalPath}
 	heading={page.h1}
-	breadcrumbLabel={breadcrumbLabel}
 	intro={page.intro}
 	heroImage={page.heroImage}
 	heroAlt={page.imageAlt}

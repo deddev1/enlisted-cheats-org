@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 // Do not add @astrojs/cloudflare; sitemaps and HTML must emit to dist/ root.
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://deadsidecheats.org',
+	site: 'https://enlistedcheats.org',
 	// Dev: accept /pricing and /pricing/ so local browsing matches how users type URLs.
 	// Production build: enforce trailing slashes (directory format + Cloudflare _redirects).
 	trailingSlash: isDev ? 'ignore' : 'always',
@@ -19,14 +19,13 @@ export default defineConfig({
 		defaultStrategy: 'viewport',
 	},
 	server: {
-		// Listen on all local interfaces so http://localhost:4321 works (IPv4 + IPv6 on Windows).
 		host: true,
-		port: 4321,
+		port: 3000,
 		strictPort: true,
 	},
 	preview: {
 		host: true,
-		port: 4321,
+		port: 3000,
 		strictPort: true,
 	},
 	build: {

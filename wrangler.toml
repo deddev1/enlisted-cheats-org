@@ -1,4 +1,4 @@
-name = "deadside-cheats-net"
+name = "enlisted-cheats-net"
 compatibility_date = "2026-01-01"
 main = "worker.js"
 

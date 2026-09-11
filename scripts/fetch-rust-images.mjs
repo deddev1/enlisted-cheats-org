@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Download royalty-free Deadside-atmosphere imagery (Unsplash) into public/images
+ * Download royalty-free Enlisted-atmosphere imagery (Unsplash) into public/images
  * with SEO keyword filenames. Run: node scripts/fetch-rust-images.mjs
  */
 import { mkdir, readdir, unlink, writeFile } from 'node:fs/promises';
@@ -12,13 +12,13 @@ const publicDir = path.resolve('public');
 
 /** Unsplash photos — industrial / wilderness / rusty metal atmosphere (not game IP). */
 const KEYWORD_ASSETS = [
-	{ file: 'deadside-cheats-hero.webp', url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80' },
-	{ file: 'deadside-cheats-cover.webp', url: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80' },
+	{ file: 'enlisted-cheats-hero.webp', url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80' },
+	{ file: 'enlisted-cheats-cover.webp', url: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80' },
 	{ file: 'rust-loadout-builder.webp', url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80' },
-	{ file: 'deadside-cheats-aimbot-combat.webp', url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80' },
+	{ file: 'enlisted-cheats-aimbot-combat.webp', url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80' },
 	{ file: 'rust-squad-fight.webp', url: 'https://images.unsplash.com/photo-1516937941344-00b4d548a9a4?auto=format&fit=crop&w=1920&q=80' },
-	{ file: 'deadside-cheats-esp-wallhack.webp', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80' },
-	{ file: 'deadside-cheats-package.webp', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80' },
+	{ file: 'enlisted-cheats-esp-wallhack.webp', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80' },
+	{ file: 'enlisted-cheats-package.webp', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80' },
 	{ file: 'rust-header-art.webp', url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80' },
 	{ file: 'rust-battle-royale-combat.webp', url: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1920&q=80' },
 	{ file: 'rust-reboot-van-fight.webp', url: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=1920&q=80' },
@@ -32,7 +32,7 @@ const LEGACY_PATTERNS = [/^fortnite-/i];
 
 async function fetchWebp(url) {
 	const res = await fetch(url, {
-		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DeadsideHacksSite/1.0)' },
+		headers: { 'User-Agent': 'Mozilla/5.0 (compatible; EnlistedHacksSite/1.0)' },
 	});
 	if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
 	const input = Buffer.from(await res.arrayBuffer());
@@ -55,7 +55,7 @@ async function generateBrandAssets(heroBuffer) {
 		.webp({ quality: 88 })
 		.toBuffer();
 
-	await writeFile(path.join(imagesDir, 'deadside-cheats-logo.webp'), logoBuffer);
+	await writeFile(path.join(imagesDir, 'enlisted-cheats-logo.webp'), logoBuffer);
 
 	const iconSizes = [
 		{ name: 'favicon-16x16.png', size: 16 },
@@ -83,7 +83,7 @@ for (const asset of KEYWORD_ASSETS) {
 		const webp = await fetchWebp(asset.url);
 		await writeFile(path.join(imagesDir, asset.file), webp);
 		console.log(`Saved ${asset.file} (${webp.length} bytes)`);
-		if (asset.file === 'deadside-cheats-hero.webp') heroBuffer = webp;
+		if (asset.file === 'enlisted-cheats-hero.webp') heroBuffer = webp;
 	} catch (err) {
 		console.warn(`Skip ${asset.file}: ${err.message}`);
 	}
@@ -94,4 +94,4 @@ if (heroBuffer) {
 	console.log('Generated keyword logo + favicons from hero art.');
 }
 
-console.log(`Done — attempted ${KEYWORD_ASSETS.length} Deadside atmosphere images.`);
+console.log(`Done — attempted ${KEYWORD_ASSETS.length} Enlisted atmosphere images.`);

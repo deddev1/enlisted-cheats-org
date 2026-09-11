@@ -4,13 +4,13 @@ import Navbar from '../../components/Navbar.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import AtmosphericBanner from '../../components/AtmosphericBanner.astro';
 import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../data/site';
-import { reviewsHeroAlt, reviewsHeroImage } from '../../data/deadside';
+import { reviewsHeroAlt, reviewsHeroImage } from '../../data/enlisted';
 import { getReviewPath, reviewsBasePath } from '../../data/reviews';
 import RelatedPages from '../../components/RelatedPages.astro';
 
-const title = 'Deadside Cheats Reviews | ESP Soft Aim Feedback';
+const title = 'Enlisted Cheats Reviews | ESP Soft Aim Feedback';
 const description =
-	'Real Deadside Cheats reviews from buyers — ESP boxes, soft aim, radar, controllers, and cloud DMA. Read verified Deadside cheats feedback before checkout.';
+	'Real Enlisted Cheats reviews from buyers — ESP boxes, soft aim, radar, controllers, and cloud DMA. Read verified Enlisted cheats feedback before checkout.';
 
 function stars(rating: number): string {
 	return '★'.repeat(rating) + '☆'.repeat(5 - rating);
@@ -93,8 +93,8 @@ const extraGraph: Record<string, unknown>[] = [
 		image={reviewsHeroImage}
 		alt={reviewsHeroAlt}
 		eyebrow="Buyer feedback"
-		title="Deadside Cheats reviews"
-		intro="Unedited feedback from people who bought Deadside Cheats — setup, features, support, and day-to-day use."
+		title="Enlisted Cheats reviews"
+		intro="Unedited feedback from people who bought Enlisted Cheats — setup, features, support, and day-to-day use."
 		objectPosition="center 42%"
 	>
 		<nav class="reviews-index__crumbs" aria-label="Breadcrumb">
@@ -140,8 +140,8 @@ const extraGraph: Record<string, unknown>[] = [
 				}
 			</div>
 
-			<section class="reviews-index__cta" aria-label="Buy Deadside Cheats">
-				<h2>Ready to try Deadside Cheats?</h2>
+			<section class="reviews-index__cta" aria-label="Buy Enlisted Cheats">
+				<h2>Ready to try Enlisted Cheats?</h2>
 				<p>
 					ESP wallhack, soft aim, radar, and cloud DMA in one undetected package for Windows PC and
 					controllers — with anti-cheat maintenance after patches.
@@ -152,8 +152,8 @@ const extraGraph: Record<string, unknown>[] = [
 					</a>
 					<a href="/pricing/" class="reviews-index__link-btn">Compare pricing</a>
 					<a href="/features/" class="reviews-index__link-btn">See features</a>
-					<a href="/deadside-esp/" class="reviews-index__link-btn">ESP guide</a>
-					<a href="/deadside-aimbot/" class="reviews-index__link-btn">Aimbot guide</a>
+					<a href="/enlisted-esp/" class="reviews-index__link-btn">ESP guide</a>
+					<a href="/enlisted-aimbot/" class="reviews-index__link-btn">Aimbot guide</a>
 				</div>
 			</section>
 

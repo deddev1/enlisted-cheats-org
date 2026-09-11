@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SEO audit for deadsidecheats.org — Deadside Cheats keyword focus.
+ * SEO audit for enlistedcheats.org — Enlisted Cheats keyword focus.
  * Run: node scripts/seo-audit.mjs
  * Exit 1 on critical failures.
  */
@@ -10,10 +10,10 @@ import { fileURLToPath } from 'node:url';
 import { englishPagesFinal } from './i18n-data/pages-en.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DOMAIN = 'deadsidecheats.org';
+const DOMAIN = 'enlistedcheats.org';
 const ORIGIN = `https://${DOMAIN}`;
-const PRIMARY_KW = 'deadside cheats';
-const BRAND_KW = 'deadside';
+const PRIMARY_KW = 'enlisted cheats';
+const BRAND_KW = 'enlisted';
 
 const BANNED = [
 	/islecheat/i,
@@ -79,19 +79,19 @@ for (const id of pageIds) {
 	if (p.description.length < 100) warn(`${label}: description short (${p.description.length})`);
 
 	if (!hasKeyword(p.title, BRAND_KW)) {
-		fail(`${label}: title missing "deadside" → ${p.title}`);
+		fail(`${label}: title missing "enlisted" → ${p.title}`);
 	}
 	if (!hasKeyword(p.description, BRAND_KW)) {
-		fail(`${label}: description missing "deadside" → ${p.description.slice(0, 80)}`);
+		fail(`${label}: description missing "enlisted" → ${p.description.slice(0, 80)}`);
 	}
 	if (!hasKeyword(p.h1, BRAND_KW) && !['privacy', 'refund', 'terms'].includes(id)) {
-		fail(`${label}: h1 missing "deadside" → ${p.h1}`);
+		fail(`${label}: h1 missing "enlisted" → ${p.h1}`);
 	}
 
 	// Primary keyword in money pages
-	if (['home', 'hacks', 'deadside-esp', 'deadside-aimbot', 'pricing'].includes(id)) {
-		if (!hasKeyword(p.description, PRIMARY_KW) && !hasKeyword(p.description, 'deadside cheats')) {
-			warn(`${label}: description should include primary keyword "deadside cheats"`);
+	if (['home', 'hacks', 'enlisted-esp', 'enlisted-aimbot', 'pricing'].includes(id)) {
+		if (!hasKeyword(p.description, PRIMARY_KW) && !hasKeyword(p.description, 'enlisted cheats')) {
+			warn(`${label}: description should include primary keyword "enlisted cheats"`);
 		}
 	}
 }
@@ -111,8 +111,8 @@ checkBanned('robots.txt', robots);
 
 const middleware = readFileSync(join(root, 'functions/_middleware.js'), 'utf8');
 if (!middleware.includes(ORIGIN)) fail(`_middleware.js missing ${ORIGIN}`);
-if (/['"]deadsidecheats\.org['"]/.test(middleware.match(/LEGACY_HOSTS[\s\S]*?];/)?.[0] ?? '')) {
-	fail('_middleware.js: LEGACY_HOSTS must not include apex deadsidecheats.org (causes redirect loops)');
+if (/['"]enlistedcheats\.org['"]/.test(middleware.match(/LEGACY_HOSTS[\s\S]*?];/)?.[0] ?? '')) {
+	fail('_middleware.js: LEGACY_HOSTS must not include apex enlistedcheats.org (causes redirect loops)');
 }
 checkBanned('_middleware.js (content)', middleware.replace(/LEGACY_HOSTS[\s\S]*?;/, ''));
 
@@ -147,16 +147,8 @@ if (!/noindex=\{true\}/.test(externalGuidePage)) {
 }
 
 const blogHelpers = readFileSync(join(root, 'src/data/blog/helpers.ts'), 'utf8');
-if (/if \(isGameGuidePost\(post\)\) continue/.test(blogHelpers)) {
-	fail('blog/helpers.ts: native Deadside game guides must be included in the blog sitemap');
-}
-if (!/priority: 0\.52/.test(blogHelpers) || !/0\.46 : 0\.48/.test(blogHelpers)) {
-	fail('blog/helpers.ts: blog sitemap priority must stay below product pages (0.52 index / 0.48 cheats / 0.46 game guides)');
-}
-
-const robotsTxt = readFileSync(join(root, 'public/robots.txt'), 'utf8');
-if (!/Disallow:\s*\/guides\//.test(robotsTxt)) {
-	fail('public/robots.txt must Disallow: /guides/ (partner directory is noindex)');
+if (!/if \(isGameGuidePost\(post\)\) continue/.test(blogHelpers)) {
+	fail('blog/helpers.ts: game guide posts must be excluded from blog sitemap');
 }
 
 const guidesHelpers = readFileSync(join(root, 'src/data/guides/helpers.ts'), 'utf8');
@@ -188,8 +180,8 @@ const distIndex = join(root, 'dist/index.html');
 if (existsSync(distIndex)) {
 	const html = readFileSync(distIndex, 'utf8');
 	if (!html.includes(`href="${ORIGIN}/"`)) fail('dist/index.html canonical missing apex URL');
-	if (!html.includes('Deadside') && !html.includes('Deadside Cheats')) {
-		fail('dist/index.html missing Deadside in title/meta');
+	if (!html.includes('Enlisted') && !html.includes('Enlisted Cheats')) {
+		fail('dist/index.html missing Enlisted in title/meta');
 	}
 	checkBanned('dist/index.html', html);
 
@@ -226,12 +218,12 @@ if (existsSync(distIndex)) {
 		if (blogIndexHtml.includes('noindex')) {
 			fail('dist/blog/index.html cheats hub must remain indexable');
 		}
-		if (/Deadside game guides hub/i.test(blogIndexHtml)) {
+		if (/Enlisted game guides hub/i.test(blogIndexHtml)) {
 			fail('dist/blog/index.html must not promote game guides hub — cheats-only SEO');
 		}
 	}
 
-	const distCheatsPost = join(root, 'dist/blog/cheats-guide-2026/index.html');
+	const distCheatsPost = join(root, 'dist/blog/enlisted-cheats-complete-guide-2026/index.html');
 	if (existsSync(distCheatsPost)) {
 		const cheatsHtml = readFileSync(distCheatsPost, 'utf8');
 		if (cheatsHtml.includes('noindex')) {
@@ -239,11 +231,11 @@ if (existsSync(distIndex)) {
 		}
 	}
 
-	const distGamePost = join(root, 'dist/blog/deadside-new-player-progression-guide/index.html');
+	const distGamePost = join(root, 'dist/blog/enlisted-new-player-guide/index.html');
 	if (existsSync(distGamePost)) {
 		const gameHtml = readFileSync(distGamePost, 'utf8');
-		if (hasRobotsNoindex(gameHtml)) {
-			fail('dist native game guide blog post must remain indexable (no noindex)');
+		if (!gameHtml.includes('noindex')) {
+			fail('dist game guide blog post must be noindex');
 		}
 	}
 
@@ -255,7 +247,7 @@ if (existsSync(distIndex)) {
 		}
 	}
 
-	const distExternalGuide = join(root, 'dist/guides/fortnite-com/index.html');
+	const distExternalGuide = join(root, 'dist/guides/guide-fortniteaimbot-com-https/index.html');
 	if (existsSync(distExternalGuide)) {
 		const guideHtml = readFileSync(distExternalGuide, 'utf8');
 		if (!hasRobotsNoindex(guideHtml)) {
@@ -274,19 +266,8 @@ if (existsSync(distIndex)) {
 			fail('dist/sitemap.xml must not list /guides/ — hub is noindex; cheats guides live on /blog/');
 		}
 		const blogUrls = sitemapXml.match(/\/blog\/[^<]+/g) ?? [];
-		const gameGuideSlugs = [
-			'deadside-new-player-progression-guide',
-			'deadside-mission-types-explained',
-			'deadside-factions-infantry-tanks-artillery-guide',
-			'deadside-loot-farming-guide',
-			'deadside-steel-path-beginners-guide',
-			'deadside-patch-notes-guide',
-		];
-		const missingGameGuides = gameGuideSlugs.filter(
-			(slug) => !blogUrls.some((u) => u.includes(`/blog/${slug}/`) || u.includes(`/blog/${slug}`)),
-		);
-		if (missingGameGuides.length > 0) {
-			fail(`dist/sitemap.xml must list native game guide posts — missing: ${missingGameGuides.join(', ')}`);
+		if (blogUrls.length > 0 && blogUrls.some((u) => /enlisted-new-player-guide|enlisted-mission-types-guide|enlisted-factions-explained|enlisted-open-world-farming|enlisted-steel-path-guide|enlisted-patch-notes-guide/.test(u))) {
+			fail('dist/sitemap.xml must not list game guide blog posts — cheats posts only');
 		}
 	}
 }
@@ -295,15 +276,15 @@ if (existsSync(distIndex)) {
 for (const file of ['src/pages/reviews/index.astro', 'src/pages/reviews/[slug]/index.astro']) {
 	const src = readFileSync(join(root, file), 'utf8');
 	checkBanned(file, src);
-	if (!/deadside cheats/i.test(src)) warn(`${file}: consider adding "Deadside Cheats" keyword`);
+	if (!/enlisted cheats/i.test(src)) warn(`${file}: consider adding "Enlisted Cheats" keyword`);
 }
 
 // --- image alts ---
-const deadsideTs = join(root, 'src/data/deadside.ts');
-if (!existsSync(deadsideTs)) fail('src/data/deadside.ts missing');
-const deadsideSrc = readFileSync(deadsideTs, 'utf8');
-if (!/Deadside/i.test(deadsideSrc)) fail('deadside.ts image alts missing Deadside keyword');
-checkBanned('deadside.ts', deadsideSrc);
+const enlistedTs = join(root, 'src/data/enlisted.ts');
+if (!existsSync(enlistedTs)) fail('src/data/enlisted.ts missing');
+const enlistedSrc = readFileSync(enlistedTs, 'utf8');
+if (!/Enlisted/i.test(enlistedSrc)) fail('enlisted.ts image alts missing Enlisted keyword');
+checkBanned('enlisted.ts', enlistedSrc);
 
 const heroAstro = readFileSync(join(root, 'src/components/Hero.astro'), 'utf8');
 if (/alt=""/.test(heroAstro)) fail('Hero.astro must not use empty alt on hero images');
@@ -325,7 +306,7 @@ if (existsSync(distIndex)) {
 }
 
 // --- report ---
-console.log('\n=== SEO Audit: deadsidecheats.org ===\n');
+console.log('\n=== SEO Audit: enlistedcheats.org ===\n');
 console.log(`Pages checked: ${pageIds.length} EN landing pages`);
 console.log(`Primary keyword: "${PRIMARY_KW}"`);
 console.log(`Canonical: ${ORIGIN}\n`);

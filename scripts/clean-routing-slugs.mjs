@@ -18,7 +18,7 @@ for (const id of REMOVE) {
 	content = content.replace(re, '');
 }
 // Fix eac-bypass slugs that got double-replaced
-content = content.replace(/eac-bypass-bypass/g, 'eac-bypass-deadside');
-content = content.replace(/eac-bypass-deadside-trucos-deadside/g, 'eac-bypass-deadside-trucos-deadside');
+content = content.replace(/eac-bypass-bypass/g, 'eac-bypass-enlisted');
+content = content.replace(/eac-bypass-enlisted-trucos-enlisted/g, 'eac-bypass-enlisted-trucos-enlisted');
 await writeFile(file, content);
 console.log('Cleaned routing.ts localizedSlugs');

@@ -30,11 +30,11 @@ async function resolveDistRoot() {
 		'Could not find sitemap.xml in dist/ or dist/client/. Run `astro build` first.',
 	);
 }
-const SITE = 'https://deadsidecheats.org';
+const SITE = 'https://enlistedcheats.org';
 
 const MARKETING_SITEMAP_PAGES = 15;
 const BUILT_MARKETING_PAGES = 25; // thin landings still built; 301 to canonical URLs
-const BLOG_SITEMAP_PAGES = 15; // /blog/ index + 8 cheats posts + 6 native Deadside game guides
+const BLOG_SITEMAP_PAGES = 9; // /blog/ index + 8 cheats posts (game guides at /blog/* are noindex)
 const BLOG_HTML_PAGES = 15; // /blog/ index + all 14 posts still built as HTML
 const REVIEW_PAGES = 14; // /reviews/ index + 13 review detail pages
 const GUIDES_HUB_BUILT = 1; // /guides/ partner directory — built but noindex, not in sitemap
@@ -51,15 +51,15 @@ const TOTAL_HTML_PAGES =
 const HREFLANG_PER_URL = 23; // 22 locales + x-default
 const SITEMAP_INDEX_ENTRIES = 23; // English + 21 locales + images
 const I18N_SITEMAP_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
-const IMAGE_SITEMAP_ENTRIES = 14; // marketing showcase + blog/review host URLs with images
+const IMAGE_SITEMAP_ENTRIES = 5; // enlistedImages.sitemap (showcaseGameplay)
 
 const ENGLISH_PATHS = [
 	'/',
-	'/deadside-cheats/',
-	'/deadside-esp/',
-	'/deadside-aimbot/',
-	'/deadside-wallhack/',
-	'/deadside-radar/',
+	'/enlisted-cheats/',
+	'/enlisted-esp/',
+	'/enlisted-aimbot/',
+	'/enlisted-wallhack/',
+	'/enlisted-radar/',
 	'/features/',
 	'/pricing/',
 	'/setup/',
@@ -323,17 +323,17 @@ async function main() {
 		bump();
 	}
 
-	const warframeCheats = path.join(DIST, 'deadside-cheats', 'index.html');
+	const warframeCheats = path.join(DIST, 'enlisted-cheats', 'index.html');
 	try {
 		const cheatsStat = await stat(warframeCheats);
 		if (cheatsStat.size < 2000) {
-			fail(`/deadside-cheats/ built as redirect stub (${cheatsStat.size} bytes)`);
+			fail(`/enlisted-cheats/ built as redirect stub (${cheatsStat.size} bytes)`);
 			bump();
 		} else {
-			ok(`/deadside-cheats/ builds as live pillar page (${cheatsStat.size} bytes)`);
+			ok(`/enlisted-cheats/ builds as live pillar page (${cheatsStat.size} bytes)`);
 		}
 	} catch {
-		fail('Missing /deadside-cheats/index.html — pillar page not built');
+		fail('Missing /enlisted-cheats/index.html — pillar page not built');
 		bump();
 	}
 

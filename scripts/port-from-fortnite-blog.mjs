@@ -14,8 +14,8 @@ const SOURCE_DIR = join(ROOT, '..', 'rust-blog', 'src', 'content', 'posts');
 const OUT = join(ROOT, 'src', 'data', 'blog', 'posts.generated.ts');
 
 const CATEGORY_NAMES = {
-	'battle-royale-meta': 'loot runs Meta',
-	'zero-build-strategies': 'loot objectives',
+	'battle-royale-meta': 'campaign missions Meta',
+	'zero-build-strategies': 'capture objectives',
 	'skin-leaks-cosmetics': 'Skin Leaks & Cosmetics',
 	'weapon-tier-lists': 'Weapon Tier Lists',
 	'pro-player-setups': 'Pro Player Setups',
@@ -192,7 +192,7 @@ for (const file of POST_FILES) {
 		metaDescription: post.description,
 		h1: shortH1(post.title),
 		intro: post.excerpt,
-		keywords: [...post.tags, 'deadside intel'],
+		keywords: [...post.tags, 'enlisted intel'],
 		imageAlt: post.thumbnailAlt,
 		sections: contentToSections(post),
 	});

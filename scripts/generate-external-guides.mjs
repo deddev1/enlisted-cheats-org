@@ -3,10 +3,10 @@
  * Generates src/data/guides/posts.generated.ts — one dedicated article per external URL.
  * Run: node scripts/generate-external-guides.mjs
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildManifest, legacyGuideSlug } from './external-guides-manifest.mjs';
+import { buildManifest } from './external-guides-manifest.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'src', 'data', 'guides', 'posts.generated.ts');
@@ -29,7 +29,7 @@ const GAME_PROFILES = {
 		genre: 'cooperative extraction shooter set on a ruined Earth',
 		hook: 'ARC machine patrols, shared risk, and high-value tech extractions',
 		coreLoop: 'drop in with your squad, complete objectives under machine pressure, and extract before reinforcements overrun your position',
-		beginnerTip: 'Learn one extraction route per map and practice silent movement before chasing rare loot.',
+		beginnerTip: 'Learn one supply route per map and practice silent movement before chasing rare loot.',
 		midgameTip: 'Designate a carrier for heavy loot and a scout who reads patrol audio cues — rotation wins more fights than aim alone.',
 		advancedTip: 'Chain short extractions during peak machine activity windows when other players are distracted.',
 		metaNote: 'Sound discipline separates successful extractions from total wipes.',
@@ -114,176 +114,6 @@ const GAME_PROFILES = {
 		advancedTip: 'Coordinate smoke and revives during final sector flips; ticket bleed wins tight matches.',
 		metaNote: 'Map knowledge beats K/D in most Conquest and Breakthrough scenarios.',
 		communityAngle: 'Full squads with a dedicated medic and recon spotter flip sectors faster than solo heroes.',
-	},
-	'ark-survival-ascended': {
-		genre: 'open-world dinosaur survival on Unreal Engine 5',
-		hook: 'tribe progression, taming routes, and base defense',
-		coreLoop: 'gather resources, tame creatures, build bases, and raid or defend against rival tribes',
-		beginnerTip: 'Pick a coastal starter zone, learn bola and tranq timing on low-level dinos, and hide your first base off main paths.',
-		midgameTip: 'Specialize tribe roles — one breeder, one builder, one scout — so progression does not stall on a single bottleneck.',
-		advancedTip: 'Scout enemy metal spawns and transmitter timings before committing to an offline raid window.',
-		metaNote: 'Breeding lines and saddle quality matter more than raw player levels in late-game PvP.',
-		communityAngle: 'Tribes win with alarm traps, staggered sleepers, and clear comms during base sieges.',
-	},
-	'ark-survival-evolved': {
-		genre: 'classic open-world dinosaur survival',
-		hook: 'legacy maps, modded servers, and long-term tribe metas',
-		coreLoop: 'survive the wilderness, tame powerful creatures, and control key resources on your server',
-		beginnerTip: 'Learn spawn zones and safe first-night shelter before chasing high-level carnivores.',
-		midgameTip: 'Upgrade to metal bases in phases — air gaps and plant species X slow flyers more than thick walls alone.',
-		advancedTip: 'Track server wipe schedules and alpha tribe habits; hit weak points during peak offline hours only when intel is solid.',
-		metaNote: 'Movement speed and weight on fliers define how fast your tribe can respond to counters.',
-		communityAngle: 'Alliances share taming cooldowns and raid slots; betrayals are costly, so document agreements.',
-	},
-	'wuthering-waves': {
-		genre: 'open-world action RPG with resonator combat',
-		hook: 'echo builds, exploration rewards, and reaction chains',
-		coreLoop: 'explore Huanglong, upgrade resonators, and clear bosses with elemental synergies',
-		beginnerTip: 'Focus on one main DPS and one healer before spreading upgrade materials across every character.',
-		midgameTip: 'Farm echo sets that match your carry’s scaling stat — crit, HP%, or energy regen — instead of mixing rarities.',
-		advancedTip: 'Learn boss parry and dodge windows; many encounters punish greedy combos more than low gear score.',
-		metaNote: 'Sonata effects and weapon passives often beat raw level differences in endgame content.',
-		communityAngle: 'Co-op bosses are smoother when one player runs break and another focuses burst windows.',
-	},
-	'combat-master': {
-		genre: 'fast-paced mobile-style FPS on PC',
-		hook: 'quick matches, loadout perks, and movement tech',
-		coreLoop: 'queue into short TDM and objective modes, unlock weapons, and refine aim and movement',
-		beginnerTip: 'Lower sensitivity until you can track targets smoothly; burst fire wins early gunfights.',
-		midgameTip: 'Build loadouts around one primary range band — CQB SMG or mid-range AR — with a consistent secondary.',
-		advancedTip: 'Pre-aim common angles and slide-cancel into cover instead of wide-peeking every duel.',
-		metaNote: 'Spawn knowledge and flanking beat raw reaction time in higher-skill lobbies.',
-		communityAngle: 'Stack with friends who call out spawns; trading kills efficiently wins streak-based modes.',
-	},
-	'foxhole': {
-		genre: 'persistent world war MMO with player-driven logistics',
-		hook: 'front lines, supply lines, and faction-wide cooperation',
-		coreLoop: 'gather resources, manufacture gear, and push or defend regions as a faction',
-		beginnerTip: 'Start as a rifleman learning comms and respawn flow before touching complex vehicles.',
-		midgameTip: 'Run logistics trucks on safe routes at off-peak hours — one steady supplier wins wars.',
-		advancedTip: 'Coordinate artillery timing with infantry pushes; suppression creates windows for trench captures.',
-		metaNote: 'Player hours invested in building beats individual hero plays in territorial control.',
-		communityAngle: 'Regiments assign quartermasters and scouts; chaos at the refinery loses entire fronts.',
-	},
-	'exoborne': {
-		genre: 'extraction shooter with dynamic weather and verticality',
-		hook: 'storm cycles, gear risk, and squad extractions',
-		coreLoop: 'deploy into hostile zones, complete objectives, and extract before conditions turn lethal',
-		beginnerTip: 'Watch weather timers on the map and plan extractions before storms pin you in the open.',
-		midgameTip: 'Split loot weight across the squad and keep one player on overwatch during container opens.',
-		advancedTip: 'Third-party fights during extractions — hold angles instead of standing on the rope.',
-		metaNote: 'Sound and visibility shift with weather; adjust engagement range when storms roll in.',
-		communityAngle: 'Clear callouts for compass directions and storm ETA prevent panicked wipes.',
-	},
-	'nba-2k26': {
-		genre: 'basketball simulation with online competitive modes',
-		hook: 'badge builds, shot timing, and MyTeam economy',
-		coreLoop: 'build a player or roster, learn shooting rhythms, and climb online ranks',
-		beginnerTip: 'Practice shot timing in the gym before taking complex builds into ranked Park games.',
-		midgameTip: 'Match badge layout to your role — playmaker, lockdown, or stretch — instead of chasing every perk.',
-		advancedTip: 'Read opponent defensive settings; trigger dribble combos only when you know the switch timing.',
-		metaNote: 'Stamina and contest pressure affect make percentages more than raw release rating.',
-		communityAngle: 'Squads with defined positions and pick-and-roll timing beat iso-heavy random teams.',
-	},
-	'team-fortress-2': {
-		genre: 'class-based team shooter with distinct roles',
-		hook: 'class synergies, payload pushes, and air control',
-		coreLoop: 'pick a class, support objectives, and outplay through positioning and team combos',
-		beginnerTip: 'Play Medic or Heavy first to learn payload flow and when to commit versus heal.',
-		midgameTip: 'Coordinate Übercharges with demo spam on final points — timing wins stalemates.',
-		advancedTip: 'Off-class picks work only with comms; otherwise master one generalist like Soldier or Scout.',
-		metaNote: 'Spam and area denial define chokes more than flick aim in public servers.',
-		communityAngle: 'Teams with voice on pushes and retreat calls flip close payload games.',
-	},
-	'scum': {
-		genre: 'hardcore open-world survival with simulation depth',
-		hook: 'metabolism, vehicles, and brutal PvP zones',
-		coreLoop: 'survive hunger and injuries, loot military areas, and raid bases when geared',
-		beginnerTip: 'Learn nutrition and hydration UI early — starving mid-fight ends runs instantly.',
-		midgameTip: 'Secure a hidden stash before driving loud vehicles near airfields.',
-		advancedTip: 'Scout mech patrol timings and bunker traffic before committing to high-tier loot.',
-		metaNote: 'Stealth and sound discipline beat rushing bunkers with mediocre weapons.',
-		communityAngle: 'Groups assign drivers, overwatch, and looters for convoy runs.',
-	},
-	'grounded': {
-		genre: 'Honey, I Shrunk the Kids survival co-op adventure',
-		hook: 'base building, insect tiers, and story lab progression',
-		coreLoop: 'craft gear from backyard resources, explore labs, and defeat arachnid bosses',
-		beginnerTip: 'Build elevated bases early and learn block parry timing against spiders.',
-		midgameTip: 'Progress armor tiers in order — rushing the hedge lab without prep wipes groups.',
-		advancedTip: 'Carry status cures and tier-appropriate weapons before late-game mantis fights.',
-		metaNote: 'Prep stations and food buffs matter as much as raw weapon DPS.',
-		communityAngle: 'Co-op teams split gather, build, and combat roles during boss attempts.',
-	},
-	'enlisted': {
-		genre: 'WWII squad-based combined arms shooter',
-		hook: 'infantry squads, vehicles, and historical battlefields',
-		coreLoop: 'lead or join squads, capture points, and support armor and air pushes',
-		beginnerTip: 'Stay with your squad leader bonus and learn rally point placement on each map.',
-		midgameTip: 'Run anti-tank as a secondary role when enemy armor stacks a lane.',
-		advancedTip: 'Time artillery and smoke with infantry commits on contested cap zones.',
-		metaNote: 'Spawn tickets and cap pressure decide matches more than individual K/D.',
-		communityAngle: 'Squads with engineers and medics sustain pushes longer than lone wolf runs.',
-	},
-	'dota-2': {
-		genre: 'competitive MOBA with deep item and draft meta',
-		hook: 'lane equilibrium, Roshan timing, and teamfight execution',
-		coreLoop: 'draft heroes, farm lanes, take objectives, and destroy the Ancient',
-		beginnerTip: 'Play a limited hero pool and focus last hits plus map vision before ranked.',
-		midgameTip: 'Carry detection and disable items — stuns win fights more than raw damage spikes.',
-		advancedTip: 'Smoke timings and ward clears around Roshan define late-game swing plays.',
-		metaNote: 'Vision and buyback discipline separate throws from comeback wins.',
-		communityAngle: 'Stacks with voice on rotations and save item usage outperform silent pubs.',
-	},
-	'civilization-6': {
-		genre: 'turn-based 4X empire builder',
-		hook: 'district planning, civ abilities, and victory paths',
-		coreLoop: 'expand cities, research tech and civics, and pursue science, culture, domination, or religion wins',
-		beginnerTip: 'Settle on fresh water, build slingers for defense, and avoid over-expanding without amenities.',
-		midgameTip: 'Plan specialty districts with adjacency bonuses instead of scattering campuses randomly.',
-		advancedTip: 'Track AI victory progress and pivot win conditions before they clinch science or culture.',
-		metaNote: 'Map control and alliance diplomacy often decide multiplayer stalemates.',
-		communityAngle: 'Teams coordinate wonder rushes and joint wars in teamer lobbies.',
-	},
-	'frag-punk': {
-		genre: 'hero shooter with fast movement and ability combos',
-		hook: 'agent kits, shard cards, and round-based objectives',
-		coreLoop: 'draft shard effects, duel with unique agents, and win round-based modes',
-		beginnerTip: 'Learn one agent’s ability cadence before swapping every match.',
-		midgameTip: 'Pick shard cards that reinforce your role — entry, flank, or support — each round.',
-		advancedTip: 'Track enemy ultimate audio cues and disengage when multiple kits align against you.',
-		metaNote: 'Ability trading wins duels when raw aim is even.',
-		communityAngle: 'Trios call agent combos and rotate together on objective phases.',
-	},
-	'enshrouded': {
-		genre: 'survival action RPG in a corrupted open world',
-		hook: 'glider traversal, base building, and class skill trees',
-		coreLoop: 'explore shrouded zones, craft gear, and push story flame altars with co-op',
-		beginnerTip: 'Upgrade stamina and glider early to escape shroud timers safely.',
-		midgameTip: 'Build production chains at your base before chasing distant boss zones.',
-		advancedTip: 'Bring resistance consumables and backup weapons tuned for each shroud tier.',
-		metaNote: 'Co-op resurrections and role skills define tough flame boss attempts.',
-		communityAngle: 'Groups split builder, explorer, and fighter duties during base sieges.',
-	},
-	'pubg': {
-		genre: 'tactical battle royale on large maps',
-		hook: 'drop strategy, vehicle rotations, and final circle positioning',
-		coreLoop: 'loot weapons, survive the blue zone, and win the last firefight',
-		beginnerTip: 'Hot-drop less until you master recoil control on common ARs.',
-		midgameTip: 'Hold compound power positions with cover toward likely rotations, not open fields.',
-		advancedTip: 'Track kill feed and plane path to predict third-party timing on end circles.',
-		metaNote: 'Sound cues and prone discipline beat aggressive peeking in late game.',
-		communityAngle: 'Squads assign scout, driver, and anchor roles during vehicle rotations.',
-	},
-	'dune-awakening': {
-		genre: 'survival MMO set on Arrakis',
-		hook: 'spice economy, faction conflict, and desert survival',
-		coreLoop: 'gather resources, craft stillsuits and gear, and survive sandworm zones with your faction',
-		beginnerTip: 'Respect hydration and sandstorm timers before leaving protected settlements.',
-		midgameTip: 'Invest in vehicle and harvesting tools that match your faction’s contested zones.',
-		advancedTip: 'Scout worm sign and spice blows before committing squads to open desert crossings.',
-		metaNote: 'Faction coordination on harvesters beats solo spice runs in PvP areas.',
-		communityAngle: 'Alliances share water reserves and escort duty on spice convoys.',
 	},
 	'league-of-legends': {
 		genre: 'team-based MOBA',
@@ -408,7 +238,7 @@ const GAME_PROFILES = {
 	'squad': {
 		genre: 'large-scale military teamwork shooter',
 		hook: 'squad leadership, rally points, and combined arms',
-		coreLoop: 'communicate with your squad, loot objectives, and support armor and logi chains',
+		coreLoop: 'communicate with your squad, capture objectives, and support armor and logi chains',
 		beginnerTip: 'Play rifleman or medic first to learn rally mechanics and stamina management.',
 		midgameTip: 'Stay within voice range of your squad lead — lone wolves die without rally support.',
 		advancedTip: 'Coordinate armor, logi, and infantry pushes; ticket bleed rewards organized teams.',
@@ -437,7 +267,7 @@ const GAME_PROFILES = {
 	},
 	'mecha-break': {
 		genre: 'mech-based competitive shooter',
-		hook: 'mech loadouts, healing timers, and arena positioning',
+		hook: 'mech loadouts, reload timers, and arena positioning',
 		coreLoop: 'pilot distinct mechs, use abilities on cooldown cycles, and control objective zones',
 		beginnerTip: 'Master one balanced mech before experimenting with high-skill ceiling frames.',
 		midgameTip: 'Play around shield and dash cooldowns — overextending without mobility tools is punished.',
@@ -755,27 +585,3 @@ export const externalGuidePosts: ExternalGuidePost[] = ${serialize(articles)};
 
 writeFileSync(OUT, ts, 'utf8');
 console.log(`Generated ${articles.length} external guide posts → ${OUT}`);
-
-const REDIRECTS_FILE = join(__dirname, '..', 'public', '_redirects');
-const MARKER_START = '# Guide slug redirects (auto — generate-external-guides.mjs)';
-const MARKER_END = '# End guide slug redirects';
-
-const guideRedirectLines = [];
-for (const entry of manifest) {
-	const legacy = legacyGuideSlug(entry.url);
-	if (legacy === entry.slug) continue;
-	guideRedirectLines.push(`/guides/${legacy}/ /guides/${entry.slug}/ 301`);
-	guideRedirectLines.push(`/guides/${legacy} /guides/${entry.slug}/ 301`);
-}
-
-let redirectsBody = readFileSync(REDIRECTS_FILE, 'utf8');
-const startIdx = redirectsBody.indexOf(MARKER_START);
-const endIdx = redirectsBody.indexOf(MARKER_END);
-const block = `${MARKER_START}\n${guideRedirectLines.join('\n')}\n${MARKER_END}`;
-if (startIdx !== -1 && endIdx !== -1) {
-	redirectsBody = `${redirectsBody.slice(0, startIdx)}${block}${redirectsBody.slice(endIdx + MARKER_END.length)}`;
-} else {
-	redirectsBody = `${redirectsBody.trimEnd()}\n\n${block}\n`;
-}
-writeFileSync(REDIRECTS_FILE, redirectsBody, 'utf8');
-console.log(`Updated ${guideRedirectLines.length / 2} guide slug redirects in public/_redirects`);

@@ -89,7 +89,6 @@ const groups = groupItems(items);
 
 	.faq-list__category {
 		margin: 0;
-		font-family: var(--font-sans);
 		font-size: 0.72rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
@@ -139,7 +138,6 @@ const groups = groupItems(items);
 	}
 
 	.faq-list__question {
-		font-family: var(--font-sans);
 		font-weight: 700;
 		color: var(--color-ink);
 		line-height: 1.45;
@@ -165,18 +163,18 @@ const groups = groupItems(items);
 
 	.faq-list__answer p {
 		margin: 0.85rem 0 0;
-		color: #ffffff;
+		color: var(--color-muted);
 		line-height: 1.65;
 		font-size: 0.92rem;
 	}
 
 	.faq-list__answer :global(a) {
-		color: var(--color-gold-hover);
+		color: var(--color-orchid);
 		text-decoration: underline;
 		text-underline-offset: 0.15em;
 	}
 
 	.faq-list__answer :global(a:hover) {
-		color: #ffffff;
+		color: var(--color-ink);
 	}
 </style>

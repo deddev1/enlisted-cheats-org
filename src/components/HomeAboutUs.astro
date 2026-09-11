@@ -1,10 +1,17 @@
 ---
-import { homeAboutPremiumCard, homeAboutSectionBg } from '../data/deadside';
+import { enlistedHeroAlt, enlistedOfficialScreens } from '../data/enlisted';
 import { getUi } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { siteConfig } from '../data/site';
-import { contentSrc, contentSrcSet, isExternalImage } from '../lib/responsive-images';
+import {
+	contentSrc,
+	contentSrcSet,
+	heroIsExternal,
+	heroPreloadSrc,
+	heroSizes,
+	heroSrcSet,
+} from '../lib/responsive-images';
 
 interface Props {
 	locale?: LocaleCode;
@@ -17,9 +24,9 @@ const about = ui.homeAbout;
 const featuresUrl = getLocalizedPath('features', locale);
 const setupUrl = getLocalizedPath('setup', locale);
 const pricingUrl = getLocalizedPath('pricing', locale);
-const espUrl = getLocalizedPath('deadside-esp', locale);
+const espUrl = getLocalizedPath('enlisted-esp', locale);
 const wallhackUrl = getLocalizedPath('wallhack', locale);
-const aimbotUrl = getLocalizedPath('deadside-aimbot', locale);
+const aimbotUrl = getLocalizedPath('enlisted-aimbot', locale);
 const radarUrl = getLocalizedPath('radar', locale);
 
 const moduleLinks = [
@@ -29,26 +36,18 @@ const moduleLinks = [
 	{ label: about.radar, href: radarUrl },
 ] as const;
 
-const aboutPremiumSrc = contentSrc(homeAboutPremiumCard.src);
-const aboutPremiumSrcSet = contentSrcSet(homeAboutPremiumCard.src);
+const aboutPremiumSrc = contentSrc(enlistedOfficialScreens.squadCombat.src);
+const aboutPremiumSrcSet = contentSrcSet(enlistedOfficialScreens.squadCombat.src);
 const aboutPremiumSizes = '(max-width: 680px) 100vw, 640px';
-
-const aboutBgBase = homeAboutSectionBg.src;
-const aboutBgIsExternal = isExternalImage(aboutBgBase);
-const aboutBgSrc = contentSrc(aboutBgBase);
-const aboutBgSrcSet = contentSrcSet(aboutBgBase);
-const aboutBgMobileSrc = aboutBgBase.replace(/\.webp$/i, '-480w.webp');
-const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 ---
 
 <section class="home-about" id="about" aria-labelledby="home-about-title">
 	<div class="home-about__media" aria-hidden="true">
 		{
-			aboutBgIsExternal ? (
+			heroIsExternal ? (
 				<img
-					src={aboutBgSrc}
-					alt={aboutSectionBgAlt}
-					role="presentation"
+					src={heroPreloadSrc}
+					alt={enlistedHeroAlt}
 					width="1920"
 					height="1080"
 					class="home-about__bg"
@@ -58,17 +57,11 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 				/>
 			) : (
 				<picture>
-					<source media="(max-width: 760px)" srcset={aboutBgMobileSrc} type="image/webp" />
-					<source
-						media="(min-width: 761px)"
-						srcset={aboutBgSrcSet ?? aboutBgSrc}
-						sizes="100vw"
-						type="image/webp"
-					/>
+					<source media="(max-width: 760px)" srcset={heroPreloadSrc} type="image/webp" />
+					<source media="(min-width: 761px)" srcset={heroSrcSet} sizes={heroSizes} type="image/webp" />
 					<img
-						src={aboutBgSrc}
-						alt={aboutSectionBgAlt}
-						role="presentation"
+						src={heroPreloadSrc}
+						alt={enlistedHeroAlt}
 						width="1920"
 						height="1080"
 						class="home-about__bg"
@@ -140,8 +133,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 						src={aboutPremiumSrc}
 						{...(aboutPremiumSrcSet ? { srcset: aboutPremiumSrcSet } : {})}
 						sizes={aboutPremiumSizes}
-						alt={homeAboutPremiumCard.alt}
-						title={homeAboutPremiumCard.title}
+						alt={enlistedOfficialScreens.squadCombat.alt}
 						width="640"
 						height="360"
 						loading="lazy"
@@ -201,7 +193,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 		max-width: none;
 		transform: translate(-50%, -50%);
 		object-fit: cover;
-		object-position: center 42%;
+		object-position: center 38%;
 		filter: saturate(0.82) brightness(0.5);
 	}
 
@@ -222,7 +214,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 				rgba(13, 17, 18, 0.22) 46%,
 				rgba(13, 17, 18, 0.32) 100%
 			),
-			radial-gradient(ellipse 90% 70% at 50% 42%, rgba(111, 143, 58, 0.06), transparent 68%);
+			radial-gradient(ellipse 90% 70% at 50% 42%, rgba(197, 138, 69, 0.06), transparent 68%);
 	}
 
 	.home-about__inner {
@@ -247,41 +239,28 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 
 	.home-about__copy {
 		display: grid;
-		gap: 0.65rem;
+		gap: 0.55rem;
 		max-width: 38rem;
-		font-family: var(--font-sans);
-		font-feature-settings: "kern" 1, "liga" 1;
 	}
 
 	.home-about__title {
 		margin: 0;
 		max-width: 38rem;
 		color: #fff;
-		font-family: var(--font-sans);
+		font-family: var(--font-display);
 		font-size: var(--heading-section);
 		font-weight: 800;
 		line-height: 1.08;
-		letter-spacing: -0.02em;
-	}
-
-	.home-about__lead {
-		margin: 0;
-		color: rgba(255, 255, 255, 0.96);
-		font-size: clamp(0.95rem, 1.35vw, 1.05rem);
-		font-weight: 500;
-		line-height: 1.62;
 		letter-spacing: 0.01em;
-		text-wrap: pretty;
 	}
 
+	.home-about__lead,
 	.home-about__text,
 	.home-about__premium-copy {
 		margin: 0;
-		color: #ffffff;
-		font-size: clamp(0.9rem, 1.2vw, 0.98rem);
-		font-weight: 400;
-		line-height: 1.65;
-		letter-spacing: 0.015em;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: clamp(0.86rem, 1.2vw, 0.92rem);
+		line-height: 1.55;
 		text-wrap: pretty;
 	}
 
@@ -342,7 +321,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 
 	.home-about__btn--primary {
 		flex: 1 1 10.5rem;
-		background: linear-gradient(180deg, #ffffff 0%, var(--color-gold) 55%, #8ead4a 100%);
+		background: linear-gradient(180deg, #efb56a 0%, var(--color-gold) 48%, #a86f2f 100%);
 		border-color: rgba(255, 220, 150, 0.45);
 		color: #1a1006;
 		box-shadow:
@@ -415,7 +394,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 		min-width: 0;
 		overflow: hidden;
 		border-radius: 0.2rem;
-		border: 1px solid rgba(111, 143, 58, 0.32);
+		border: 1px solid rgba(197, 138, 69, 0.32);
 		background: rgba(0, 0, 0, 0.28);
 		backdrop-filter: blur(6px);
 		-webkit-backdrop-filter: blur(6px);
@@ -426,7 +405,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 		margin: 0;
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
-		border-bottom: 1px solid rgba(111, 143, 58, 0.22);
+		border-bottom: 1px solid rgba(197, 138, 69, 0.22);
 	}
 
 	.home-about__premium-media img {
@@ -457,15 +436,17 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 	}
 
 	.home-about__premium-copy {
+		margin: 0;
 		flex: 1;
-		font-family: var(--font-sans);
-		font-size: 0.82rem;
+		color: rgba(255, 255, 255, 0.82);
+		font-size: 0.76rem;
+		line-height: 1.5;
 	}
 
 	.home-about__btn--purchase {
 		width: 100%;
 		min-height: 2.45rem;
-		background: linear-gradient(180deg, #ffffff 0%, var(--color-gold) 55%, #8ead4a 100%);
+		background: linear-gradient(180deg, #efb56a 0%, var(--color-gold) 48%, #a86f2f 100%);
 		border-color: rgba(255, 220, 150, 0.45);
 		color: #1a1006;
 		box-shadow:
@@ -508,7 +489,7 @@ const aboutSectionBgAlt = `Decorative background: ${homeAboutSectionBg.alt}`;
 					rgba(13, 17, 18, 0.55) 42%,
 					rgba(13, 17, 18, 0.9) 100%
 				),
-				radial-gradient(ellipse 90% 70% at 50% 40%, rgba(111, 143, 58, 0.05), transparent 68%);
+				radial-gradient(ellipse 90% 70% at 50% 40%, rgba(197, 138, 69, 0.05), transparent 68%);
 		}
 	}
 
