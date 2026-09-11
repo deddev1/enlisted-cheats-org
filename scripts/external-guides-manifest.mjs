@@ -186,7 +186,13 @@ function classifyGame(url) {
 /**
  * @param {string} url
  */
-function urlToSlug(url) {
+export function urlToSlug(url) {
+	const parsed = new URL(url);
+	return parsed.hostname.replace(/^www\./, '').replace(/\./g, '-');
+}
+
+/** Previous long slug format — used for 301 redirects after shortening. */
+export function legacyUrlToSlug(url) {
 	const parsed = new URL(url);
 	const host = parsed.hostname.replace(/^www\./, '').replace(/\./g, '-');
 	const scheme = parsed.protocol === 'http:' ? 'http' : 'https';

@@ -1,4 +1,6 @@
 import { getHomeLocaleRedirect } from './locale-redirect.js';
+import { BLOG_SLUG_REDIRECTS } from './blog-slug-redirects.js';
+import { GUIDE_SLUG_REDIRECTS } from './guide-slug-redirects.js';
 import { LOCALE_PATH_REDIRECTS } from './locale-path-redirects.js';
 
 const CANONICAL_ORIGIN = 'https://enlistedcheats.org';
@@ -39,8 +41,6 @@ const PATH_REDIRECTS = {
 	'/warframe-cheats/': '/enlisted-cheats/',
 	'/warframe-cheats': '/enlisted-cheats/',
 	'/sitemap-0.xml': '/sitemap.xml',
-	'/blog/enlisted-cheats-2026-whats-new/': '/blog/enlisted-cheats-complete-guide-2026/',
-	'/blog/enlisted-cheats-2026-whats-new': '/blog/enlisted-cheats-complete-guide-2026/',
 	'/guides/other-games/': '/guides/#other-games-guides',
 	'/guides/other-games': '/guides/#other-games-guides',
 	'/fortnite-cheats': '/',
@@ -128,8 +128,7 @@ const PATH_REDIRECTS = {
 	'/enlisted-esp-hack/': '/enlisted-esp/',
 	'/enlisted-unlock-all': '/features/',
 	'/enlisted-unlock-all/': '/features/',
-	'/blog/elitefn-vs-enlisted-cheats-two-week-test': '/blog/voidcheats-vs-enlisted-cheats-two-week-test/',
-	'/blog/elitefn-vs-enlisted-cheats-two-week-test/': '/blog/voidcheats-vs-enlisted-cheats-two-week-test/',
+	'/blog/enlisted-cheats-vs-cheatvault/': '/blog/vs-cheatvault/',
 };
 
 const SECURITY_HEADERS = {
@@ -231,7 +230,8 @@ export async function onRequest(context) {
 		}
 	}
 
-	const pathRedirect = PATH_REDIRECTS[url.pathname];
+	const pathRedirect =
+		PATH_REDIRECTS[url.pathname] ?? GUIDE_SLUG_REDIRECTS[url.pathname] ?? BLOG_SLUG_REDIRECTS[url.pathname];
 	if (pathRedirect) {
 		const headers = new Headers({
 			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),

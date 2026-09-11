@@ -11,7 +11,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-cheats-complete-guide-2026",
+		slug: "cheats-2026",
 		title: "Enlisted Cheats 2026: Complete Undetected Guide",
 		metaDescription: "Complete Enlisted Cheats guide for PC and controllers — ESP boxes, soft aim, cloud DMA, and anti-cheat maintenance in 2026. Compare the full package and buy.",
 		h1: "Enlisted Cheats 2026: The Complete Undetected Guide",
@@ -38,7 +38,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Undetected Enlisted Cheats and anti-cheat patches",
 				paragraphs: [
 					"Undetected Enlisted Cheats require rebuilds after Gaijin anti-cheat and major Enlisted updates. No vendor can promise permanent undetected status — check <a href=\"/updates/\">Updates</a> before you queue.",
-					"On patch mornings confirm <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted PC update notes</a>, then read our <a href=\"/enlisted-cheats/\">anti-cheat bypass guide</a> and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
+					"On patch mornings confirm <a href=\"https://enlisted.net/en/news/\" target=\"_blank\" rel=\"noopener noreferrer\">Enlisted PC update notes</a>, then read our <a href=\"/enlisted-cheats/\">anti-cheat bypass guide</a> and <a href=\"/blog/undetected-eac/\">undetected anti-cheat notes</a>.",
 					"Try This Today: Open the hacks pillar, skim Features, compare Pricing ($35 monthly / $150 lifetime), and bookmark Updates for the next Enlisted patch.",
 				],
 			},
@@ -52,7 +52,7 @@ export const blogPosts: BlogPostDefinition[] = [
 			{
 				h2: "Next steps — pricing, setup, and cheats pages",
 				paragraphs: [
-					"Ready to buy? Start at the <a href=\"/enlisted-cheats/\">Enlisted Cheats pillar page</a>, then <a href=\"/pricing/\">Pricing</a> and <a href=\"/setup/\">Setup</a>. Prefer cheats wording? Read <a href=\"/enlisted-cheats/\">Enlisted cheats 2026</a> and <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>.",
+					"Ready to buy? Start at the <a href=\"/enlisted-cheats/\">Enlisted Cheats pillar page</a>, then <a href=\"/pricing/\">Pricing</a> and <a href=\"/setup/\">Setup</a>. Prefer cheats wording? Read <a href=\"/enlisted-cheats/\">Enlisted cheats 2026</a> and <a href=\"/blog/buyers-guide/\">cheats buyers guide</a>.",
 					"Support: include your order ID on the <a href=\"/support/\">Support</a> page after checkout.",
 				],
 			}
@@ -69,7 +69,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-cheats-buyers-guide",
+		slug: "buyers-guide",
 		title: "Enlisted Cheats Buyers Guide: What to Check",
 		metaDescription: "Enlisted cheats buyers guide for PC and controllers — ESP boxes, soft aim, cloud DMA, pricing, and anti-cheat status. Compare before checkout.",
 		h1: "Enlisted Cheats Buyers Guide: What Matters in 2026",
@@ -95,7 +95,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Feature pages worth opening",
 				paragraphs: [
 					"Open <a href=\"/enlisted-esp/\">ESP</a>, <a href=\"/enlisted-aimbot/\">Aimbot</a>, <a href=\"/features/\">Features</a>, and <a href=\"/pricing/\">Pricing</a> before you buy. Delivery and activation steps live on <a href=\"/setup/\">Setup</a>.",
-					"Related reading: <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">complete 2026 guide</a> and <a href=\"/blog/undetected-enlisted-cheats-eac/\">undetected anti-cheat notes</a>.",
+					"Related reading: <a href=\"/blog/cheats-2026/\">complete 2026 guide</a> and <a href=\"/blog/undetected-eac/\">undetected anti-cheat notes</a>.",
 					"Try This Today: Write your must-have list (ESP categories, Aimbot smoothness, lifetime vs monthly), then compare against Features once.",
 				],
 			}
@@ -112,7 +112,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-aimbot-settings-guide",
+		slug: "aimbot-settings",
 		title: "Enlisted Aimbot Settings: Smooth FOV Guide",
 		metaDescription: "Enlisted aimbot settings for PC and controllers — soft aim, FOV, bone priority, and per-weapon profiles. Tune assist, then review the hacks pages.",
 		h1: "Enlisted Aimbot Settings: Smoothness, FOV & Soft Aim",
@@ -154,7 +154,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-esp-wallhack-explained",
+		slug: "esp-wallhack",
 		title: "Enlisted ESP & Wallhack Explained Clearly",
 		metaDescription: "Enlisted ESP and wallhack explained — enemy boxes, medkit markers, and distance readouts for PC and controllers. Learn overlays on the hacks pages.",
 		h1: "Enlisted ESP and Wallhack Explained",
@@ -196,7 +196,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "undetected-enlisted-cheats-eac",
+		slug: "undetected-eac",
 		title: "Undetected Enlisted Cheats & anti-cheat Reality",
 		metaDescription: "Undetected Enlisted Cheats and anti-cheat reality — ESP, soft aim, and cloud DMA rebuilds for PC. Check Updates before queueing post-patch.",
 		h1: "Undetected Enlisted Cheats and Gaijin anti-cheat Reality",
@@ -238,7 +238,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-cheats-vs-cheatvault-comparison",
+		slug: "vs-cheatvault",
 		title: "Enlisted Cheats vs CheatVault: Honest 2026 Comparison",
 		metaDescription: "Enlisted Cheats vs CheatVault — pricing, ESP, soft aim, cloud DMA, detection history, and which package fits campaign missions players in 2026.",
 		h1: "Enlisted Cheats vs CheatVault: Honest Comparison",
@@ -275,7 +275,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"Both brands had public downtime after major anti-cheat updates in 2026 — anyone claiming zero detection events is lying. The difference is communication and rebuild speed.",
 					"CheatVault's Discord would go quiet for 48–72 hours after big patches. No ETA, just \"working on it.\" I know two players in my stack who got flagged during a CheatVault lag window between patch and rebuild — could've been coincidence, but it shook my confidence.",
-					"Enlisted Cheats posts on the <a href=\"/updates/\">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href=\"/blog/undetected-enlisted-cheats-eac/\">anti-cheat reality guide</a> for the workflow I use before queueing.",
+					"Enlisted Cheats posts on the <a href=\"/updates/\">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href=\"/blog/undetected-eac/\">anti-cheat reality guide</a> for the workflow I use before queueing.",
 				],
 			},
 			{
@@ -307,7 +307,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "voidcheats-vs-enlisted-cheats-two-week-test",
+		slug: "vs-voidcheats",
 		title: "I Tried VoidCheats for 2 Weeks Before Switching",
 		metaDescription: "VoidCheats vs Enlisted Cheats — a two-week test of ESP, soft aim, controller support, anti-cheat downtime, and pricing before switching packages in 2026.",
 		h1: "I Tried VoidCheats for 2 Weeks Before Switching to Enlisted Cheats",
@@ -352,7 +352,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"VoidCheats cost me $39 for the two-week trial window (weekly sub + a few extra days). Enlisted Cheats monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.",
 					"Feature-per-dollar favors Enlisted Cheats for my use: combined ESP + radar + soft aim + rebuild notes in one license. VoidCheats's brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.",
-					"Compare plans yourself on <a href=\"/pricing/\">Pricing</a> and read the <a href=\"/blog/enlisted-cheats-vs-cheatvault-comparison/\">CheatVault comparison</a> if you are still shopping three-wide.",
+					"Compare plans yourself on <a href=\"/pricing/\">Pricing</a> and read the <a href=\"/blog/vs-cheatvault/\">CheatVault comparison</a> if you are still shopping three-wide.",
 				],
 			},
 			{
@@ -376,7 +376,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-cheats-vs-ghostware-features-pricing",
+		slug: "vs-ghostware",
 		title: "Enlisted Cheats vs GhostWare: Features & Pricing",
 		metaDescription: "Enlisted Cheats vs GhostWare — feature tables, soft aim, ESP boxes, cloud DMA, controller support, anti-cheat history, and honest pros/cons for 2026 buyers.",
 		h1: "Enlisted Cheats vs GhostWare: Features, Pricing, and Detection Notes",
@@ -421,7 +421,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				paragraphs: [
 					"<strong>Enlisted Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.",
 					"<strong>GhostWare pros:</strong> lower entry price, clean minimal ESP, quick to launch, smaller feature surface. <strong>Cons:</strong> no radar, limited squad ESP, patch status mostly in Discord, no DMA option, lighter aim tools.",
-					"Neither replaces game sense. Pair either with fundamentals — see our <a href=\"/blog/enlisted-cheats-complete-guide-2026/\">complete Enlisted cheats guide</a> and <a href=\"/blog/enlisted-cheats-buyers-guide/\">cheats buyers guide</a>.",
+					"Neither replaces game sense. Pair either with fundamentals — see our <a href=\"/blog/cheats-2026/\">complete Enlisted cheats guide</a> and <a href=\"/blog/buyers-guide/\">cheats buyers guide</a>.",
 				],
 			},
 			{
@@ -445,7 +445,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-steel-path-beginners-guide",
+		slug: "steel-path",
 		title: "Enlisted campaign missions Guide for Beginners",
 		metaDescription: "Enlisted campaign missions explained — what changes, how enemies scale, and mission tips for solo and squad play. Official sources and practical checklist.",
 		h1: "Enlisted campaign missions: A Practical Beginner Guide",
@@ -465,7 +465,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Good early campaign mission types",
 				paragraphs: [
 					"Defense and survival are popular because spawn flow is predictable once you learn the map. Exterminate and sabotage can be faster for resource runs if your build clears rooms quickly.",
-					"If you are learning spawn timing, battlefield is a lower-pressure place to practice radar reads — see our <a href=\"/blog/enlisted-battlefield-farming-guide/\">battlefield farming guide</a>.",
+					"If you are learning spawn timing, battlefield is a lower-pressure place to practice radar reads — see our <a href=\"/blog/battlefield/\">battlefield farming guide</a>.",
 				],
 			},
 			{
@@ -495,7 +495,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-battlefield-farming-guide",
+		slug: "battlefield",
 		title: "Enlisted Open World Farming Guide",
 		metaDescription: "Enlisted battlefield farming on Eastern Front, Western Front, and urban combat maps — resources, bounties, and route planning with official wiki links.",
 		h1: "Enlisted Open World Farming: Plains, Vallis, and urban combat maps",
@@ -544,7 +544,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-factions-infantry-tanks-artillery-guide",
+		slug: "factions",
 		title: "Enlisted Factions Explained: Grineer, Corpus, Infested",
 		metaDescription: "Enlisted enemy factions explained — infantry, tanks, artillery, and vehicles behavior, weaknesses, and where to learn more from the official Wiki.",
 		h1: "Enlisted Factions: infantry, tanks, artillery, and vehicles",
@@ -556,7 +556,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Grineer — armor, density, and tanks and artillery",
 				paragraphs: [
 					"Grineer missions feature armored units and heavy enemies that punish slow clears. Corrosive and armor-strip setups are common. Read faction detail on the <a href=\"https://enlisted.fandom.com/wiki/Grineer\" target=\"_blank\" rel=\"noopener noreferrer\">Grineer Wiki page</a>.",
-					"campaign missions infantry defenses are a classic choke-point test — see our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a>.",
+					"campaign missions infantry defenses are a classic choke-point test — see our <a href=\"/blog/steel-path/\">campaign missions guide</a>.",
 				],
 			},
 			{
@@ -593,7 +593,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-mission-types-explained",
+		slug: "missions",
 		title: "Enlisted Mission Types Explained",
 		metaDescription: "Enlisted mission types explained — squad assaults, Arbitration, Sanctuary, defense, survival, and more. Links to official Wiki and game guide resources.",
 		h1: "Enlisted Mission Types: squad assaults, Arbitration, and More",
@@ -619,7 +619,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Arbitration, Sanctuary, and long-run modes",
 				paragraphs: [
 					"Arbitration and Sanctuary Onslaught reward players who can sustain long fights. Read <a href=\"https://enlisted.fandom.com/wiki/Arbitration\" target=\"_blank\" rel=\"noopener noreferrer\">Arbitration</a> and <a href=\"https://enlisted.fandom.com/wiki/Sanctuary_Onslaught\" target=\"_blank\" rel=\"noopener noreferrer\">Sanctuary Onslaught</a> on the Wiki before you invest grind time.",
-					"For squad callouts and spawn timing, our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a> overlaps with several long-run strategies.",
+					"For squad callouts and spawn timing, our <a href=\"/blog/steel-path/\">campaign missions guide</a> overlaps with several long-run strategies.",
 				],
 			},
 			{
@@ -642,7 +642,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: false,
 		translations: {
 		en: {
-		slug: "enlisted-patch-notes-guide",
+		slug: "patch-notes",
 		title: "How to Read Enlisted Patch Notes",
 		metaDescription: "How to read Enlisted patch notes from Gaijin — official sources, what to scan first, and how updates affect your loadout and tools.",
 		h1: "How to Read Enlisted Patch Notes Like a Player",
@@ -668,7 +668,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "Translate notes into loadout decisions",
 				paragraphs: [
 					"Ask: Did my main weapon class change? Did a mod or arcane get touched? Did a farm route’s drop pool move? If all three are no, you can queue sooner.",
-					"Our <a href=\"/blog/undetected-enlisted-cheats-eac/\">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.",
+					"Our <a href=\"/blog/undetected-eac/\">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.",
 				],
 			},
 			{
@@ -691,7 +691,7 @@ export const blogPosts: BlogPostDefinition[] = [
 		featured: true,
 		translations: {
 		en: {
-		slug: "enlisted-new-player-progression-guide",
+		slug: "new-player",
 		title: "Enlisted New Player Progression Guide",
 		metaDescription: "Enlisted new player guide for campaign map progression, quests, mods, and early goals — with links to the official game guide and Enlisted Wiki.",
 		h1: "Enlisted New Player Progression: Where to Go First",
@@ -710,7 +710,7 @@ export const blogPosts: BlogPostDefinition[] = [
 				h2: "campaign map and junction milestones",
 				paragraphs: [
 					"Clear the campaign map methodically. Junctions gate planets and key quest lines. The <a href=\"https://enlisted.fandom.com/wiki/Star_Chart\" target=\"_blank\" rel=\"noopener noreferrer\">campaign map Wiki page</a> shows what each node rewards.",
-					"Do not rush campaign missions on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href=\"/blog/enlisted-steel-path-beginners-guide/\">campaign missions guide</a> is for when you are ready.",
+					"Do not rush campaign missions on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href=\"/blog/steel-path/\">campaign missions guide</a> is for when you are ready.",
 				],
 			},
 			{
@@ -723,7 +723,7 @@ export const blogPosts: BlogPostDefinition[] = [
 			{
 				h2: "When you are ready for more",
 				paragraphs: [
-					"Explore battlefield after Mars/Jupiter comfort. Read our <a href=\"/blog/enlisted-battlefield-farming-guide/\">battlefield guide</a> and <a href=\"/blog/enlisted-mission-types-explained/\">mission types explainer</a> when those nodes unlock.",
+					"Explore battlefield after Mars/Jupiter comfort. Read our <a href=\"/blog/battlefield/\">battlefield guide</a> and <a href=\"/blog/missions/\">mission types explainer</a> when those nodes unlock.",
 					"Try This Today: Complete one quest, one new campaign map node, and one mod upgrade session — three small wins beat grinding random missions.",
 				],
 			}

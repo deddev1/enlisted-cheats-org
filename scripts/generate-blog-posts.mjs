@@ -6,6 +6,7 @@
 import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { BLOG_SHORT_SLUG_BY_ID } from './blog-slug-migrations.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'src', 'data', 'blog', 'posts.generated.ts');
@@ -66,7 +67,7 @@ const sources = [
 			{
 				h2: 'How notes reshuffle loadout priority',
 				paragraphs: [
-					'When mid-range ARs are strong, prioritize rarity on AR earlier in farm routes. When mobility is nerfed or vaulted, uncontested chains with shorter hops beat hot drops that require escapes. When heals are buffed, aggressive third-parties become safer — which powers strategies in our <a href="/blog/enlisted-cheats-complete-guide-2026/">co-op missions aggression guide</a>.',
+					'When mid-range ARs are strong, prioritize rarity on AR earlier in farm routes. When mobility is nerfed or vaulted, uncontested chains with shorter hops beat hot drops that require escapes. When heals are buffed, aggressive third-parties become safer — which powers strategies in our <a href="/blog/cheats-2026/">co-op missions aggression guide</a>.',
 					'Also separate balance patches from cosmetic and shop notes. Skin leaks are fun; they do not change TTK. Keep patch-day focus on weapons, healing, movement, and map tileset area changes.',
 				],
 			},
@@ -159,7 +160,7 @@ const sources = [
 			{
 				h2: 'Loadout pairings, mistakes, and practice',
 				paragraphs: [
-					'Core: Soma Prime + high-burst shotgun + mobility + heals. In co-op missions, this supports the laddering strategies in our <a href="/blog/enlisted-cheats-complete-guide-2026/">aggression guide</a>.',
+					'Core: Soma Prime + high-burst shotgun + mobility + heals. In co-op missions, this supports the laddering strategies in our <a href="/blog/cheats-2026/">aggression guide</a>.',
 					'Common mistakes: full-spraying from 80m+, re-peeking the same pixel, swapping to shotgun at 40m out of habit, never practicing crouch-spray in Creative.',
 					'Try This Today: Prioritize Hammer for 10 games. Count your first four bullets in every mid fight. If you die inside 15m without shotgun out, fix loadout timing — not the AR.',
 					'Players who also use aim-assist tooling can review <a href="/enlisted-aimbot/">Enlisted Aimbot</a> profiles after they lock a sens — mechanics first, tools second.',
@@ -245,7 +246,7 @@ const sources = [
 				h2: 'What translates to campaign missions',
 				paragraphs: [
 					'Translate loot-timer discipline, loadout spine, early rotates, and selective fights. Do not blindly mirror a trio drop in solo queue.',
-					'Winners rotate early enough to choose sides. Zone edge pressure from our <a href="/blog/enlisted-cheats-complete-guide-2026/">co-op missions guide</a> shows up constantly in endgames.',
+					'Winners rotate early enough to choose sides. Zone edge pressure from our <a href="/blog/cheats-2026/">co-op missions guide</a> shows up constantly in endgames.',
 					'Try This Today: Watch 15 minutes of a winner VOD with five timestamps. Steal one mid-game habit only. Run it for a 6-game mission session.',
 				],
 			},
@@ -287,7 +288,7 @@ const sources = [
 			{
 				h2: 'Convert gold guns into wins',
 				paragraphs: [
-					'Pair these routes with <a href="/blog/enlisted-cheats-complete-guide-2026/">co-op missions aggression</a> and <a href="/blog/hammer-ar-s-tier-data-analysis/">Soma Prime tiers</a>. Leave spawn rich so mid-game becomes a skill check.',
+					'Pair these routes with <a href="/blog/cheats-2026/">co-op missions aggression</a> and <a href="/blog/hammer-ar-s-tier-data-analysis/">Soma Prime tiers</a>. Leave spawn rich so mid-game becomes a skill check.',
 					'If you use squad ESP markers in practice, read <a href="/enlisted-esp/">Enlisted ESP</a> for category toggles — then still run the timer so habits stay sharp without overlays.',
 					'Try This Today: Run one uncontested chain for 8 games. Screenshot inventory at 2:30 and compare rarities before adding a contested edge day.',
 				],
@@ -366,7 +367,7 @@ const sources = [
 				paragraphs: [
 					'0–8 min aim tracker. 8–15 min edit course or co-op missions peek map. 15–22 min realistic fight / box fight / zone wars. 22–25 min reset, then campaign missions.',
 					'Categories: pure aim tracker, shotgun scenarios, mid-range AR tracking (Hammer practice), piece control/edits, co-op missions cover peeks, realistic 1v1s, zone wars, reload/swap timing, movement tech, scrim-style multi-fight maps.',
-					'co-op missions mains should replace edit courses with double-peek ladders from our <a href="/blog/enlisted-cheats-complete-guide-2026/">aggression guide</a>.',
+					'co-op missions mains should replace edit courses with double-peek ladders from our <a href="/blog/cheats-2026/">aggression guide</a>.',
 				],
 			},
 			{
@@ -415,7 +416,7 @@ const sources = [
 				h2: 'Undetected Enlisted Cheats and anti-cheat patches',
 				paragraphs: [
 					'Undetected Enlisted Cheats require rebuilds after Gaijin anti-cheat and major Enlisted updates. No vendor can promise permanent undetected status — check <a href="/updates/">Updates</a> before you queue.',
-					`On patch mornings confirm ${EXT.status}, then read our <a href="/enlisted-cheats/">anti-cheat bypass guide</a> and <a href="/blog/undetected-enlisted-cheats-eac/">undetected anti-cheat notes</a>.`,
+					`On patch mornings confirm ${EXT.status}, then read our <a href="/enlisted-cheats/">anti-cheat bypass guide</a> and <a href="/blog/undetected-eac/">undetected anti-cheat notes</a>.`,
 					'Try This Today: Open the hacks pillar, skim Features, compare Pricing ($35 monthly / $150 lifetime), and bookmark Updates for the next Enlisted patch.',
 				],
 			},
@@ -429,7 +430,7 @@ const sources = [
 			{
 				h2: 'Next steps — pricing, setup, and cheats pages',
 				paragraphs: [
-					'Ready to buy? Start at the <a href="/enlisted-cheats/">Enlisted Cheats pillar page</a>, then <a href="/pricing/">Pricing</a> and <a href="/setup/">Setup</a>. Prefer cheats wording? Read <a href="/enlisted-cheats/">Enlisted cheats 2026</a> and <a href="/blog/enlisted-cheats-buyers-guide/">cheats buyers guide</a>.',
+					'Ready to buy? Start at the <a href="/enlisted-cheats/">Enlisted Cheats pillar page</a>, then <a href="/pricing/">Pricing</a> and <a href="/setup/">Setup</a>. Prefer cheats wording? Read <a href="/enlisted-cheats/">Enlisted cheats 2026</a> and <a href="/blog/buyers-guide/">cheats buyers guide</a>.',
 					'Support: include your order ID on the <a href="/support/">Support</a> page after checkout.',
 				],
 			},
@@ -470,7 +471,7 @@ const sources = [
 				h2: 'Feature pages worth opening',
 				paragraphs: [
 					'Open <a href="/enlisted-esp/">ESP</a>, <a href="/enlisted-aimbot/">Aimbot</a>, <a href="/features/">Features</a>, and <a href="/pricing/">Pricing</a> before you buy. Delivery and activation steps live on <a href="/setup/">Setup</a>.',
-					'Related reading: <a href="/blog/enlisted-cheats-complete-guide-2026/">complete 2026 guide</a> and <a href="/blog/undetected-enlisted-cheats-eac/">undetected anti-cheat notes</a>.',
+					'Related reading: <a href="/blog/cheats-2026/">complete 2026 guide</a> and <a href="/blog/undetected-eac/">undetected anti-cheat notes</a>.',
 					'Try This Today: Write your must-have list (ESP categories, Aimbot smoothness, lifetime vs monthly), then compare against Features once.',
 				],
 			},
@@ -642,7 +643,7 @@ const sources = [
 				paragraphs: [
 					'Both brands had public downtime after major anti-cheat updates in 2026 — anyone claiming zero detection events is lying. The difference is communication and rebuild speed.',
 					'CheatVault\'s Discord would go quiet for 48–72 hours after big patches. No ETA, just "working on it." I know two players in my stack who got flagged during a CheatVault lag window between patch and rebuild — could\'ve been coincidence, but it shook my confidence.',
-					'Enlisted Cheats posts on the <a href="/updates/">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href="/blog/undetected-enlisted-cheats-eac/">anti-cheat reality guide</a> for the workflow I use before queueing.',
+					'Enlisted Cheats posts on the <a href="/updates/">Updates page</a> within hours on patch mornings. Last major anti-cheat update I tracked: status note same day, rebuild live roughly 30 hours later. Still annoying, but predictable. See also our <a href="/blog/undetected-eac/">anti-cheat reality guide</a> for the workflow I use before queueing.',
 				],
 			},
 			{
@@ -717,7 +718,7 @@ const sources = [
 				paragraphs: [
 					'VoidCheats cost me $39 for the two-week trial window (weekly sub + a few extra days). Enlisted Cheats monthly is $35; lifetime $150. If you hop tools every month, weekly pricing adds up fast.',
 					'Feature-per-dollar favors Enlisted Cheats for my use: combined ESP + radar + soft aim + rebuild notes in one license. VoidCheats\'s brand is strong on social proof — I am not arguing that — but I pay for uptime and toggles more than banners.',
-					'Compare plans yourself on <a href="/pricing/">Pricing</a> and read the <a href="/blog/enlisted-cheats-vs-cheatvault-comparison/">CheatVault comparison</a> if you are still shopping three-wide.',
+					'Compare plans yourself on <a href="/pricing/">Pricing</a> and read the <a href="/blog/vs-cheatvault/">CheatVault comparison</a> if you are still shopping three-wide.',
 				],
 			},
 			{
@@ -784,7 +785,7 @@ const sources = [
 				paragraphs: [
 					'<strong>Enlisted Cheats pros:</strong> full ESP + radar + soft aim stack, per-weapon profiles, cloud DMA path, public Updates page, controller docs. <strong>Cons:</strong> higher price, menu takes ~20 minutes to learn, radar size could use more presets.',
 					'<strong>GhostWare pros:</strong> lower entry price, clean minimal ESP, quick to launch, smaller feature surface. <strong>Cons:</strong> no radar, limited squad ESP, patch status mostly in Discord, no DMA option, lighter aim tools.',
-					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/enlisted-cheats-complete-guide-2026/">complete Enlisted cheats guide</a> and <a href="/blog/enlisted-cheats-buyers-guide/">cheats buyers guide</a>.',
+					'Neither replaces game sense. Pair either with fundamentals — see our <a href="/blog/cheats-2026/">complete Enlisted cheats guide</a> and <a href="/blog/buyers-guide/">cheats buyers guide</a>.',
 				],
 			},
 			{
@@ -826,7 +827,7 @@ const sources = [
 				h2: 'Good early campaign mission types',
 				paragraphs: [
 					'Defense and survival are popular because spawn flow is predictable once you learn the map. Exterminate and sabotage can be faster for resource runs if your build clears rooms quickly.',
-					'If you are learning spawn timing, battlefield is a lower-pressure place to practice radar reads — see our <a href="/blog/enlisted-battlefield-farming-guide/">battlefield farming guide</a>.',
+					'If you are learning spawn timing, battlefield is a lower-pressure place to practice radar reads — see our <a href="/blog/battlefield/">battlefield farming guide</a>.',
 				],
 			},
 			{
@@ -913,7 +914,7 @@ const sources = [
 				h2: 'Grineer — armor, density, and tanks and artillery',
 				paragraphs: [
 					'Grineer missions feature armored units and heavy enemies that punish slow clears. Corrosive and armor-strip setups are common. Read faction detail on the <a href="https://enlisted.fandom.com/wiki/Grineer" target="_blank" rel="noopener noreferrer">Grineer Wiki page</a>.',
-					'campaign missions infantry defenses are a classic choke-point test — see our <a href="/blog/enlisted-steel-path-beginners-guide/">campaign missions guide</a>.',
+					'campaign missions infantry defenses are a classic choke-point test — see our <a href="/blog/steel-path/">campaign missions guide</a>.',
 				],
 			},
 			{
@@ -974,7 +975,7 @@ const sources = [
 				h2: 'Arbitration, Sanctuary, and long-run modes',
 				paragraphs: [
 					'Arbitration and Sanctuary Onslaught reward players who can sustain long fights. Read <a href="https://enlisted.fandom.com/wiki/Arbitration" target="_blank" rel="noopener noreferrer">Arbitration</a> and <a href="https://enlisted.fandom.com/wiki/Sanctuary_Onslaught" target="_blank" rel="noopener noreferrer">Sanctuary Onslaught</a> on the Wiki before you invest grind time.',
-					'For squad callouts and spawn timing, our <a href="/blog/enlisted-steel-path-beginners-guide/">campaign missions guide</a> overlaps with several long-run strategies.',
+					'For squad callouts and spawn timing, our <a href="/blog/steel-path/">campaign missions guide</a> overlaps with several long-run strategies.',
 				],
 			},
 			{
@@ -1021,7 +1022,7 @@ const sources = [
 				h2: 'Translate notes into loadout decisions',
 				paragraphs: [
 					'Ask: Did my main weapon class change? Did a mod or arcane get touched? Did a farm route’s drop pool move? If all three are no, you can queue sooner.',
-					'Our <a href="/blog/undetected-enlisted-cheats-eac/">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.',
+					'Our <a href="/blog/undetected-eac/">anti-cheat maintenance notes</a> explain how patches can affect external tools separately from in-game balance.',
 				],
 			},
 			{
@@ -1061,7 +1062,7 @@ const sources = [
 				h2: 'campaign map and junction milestones',
 				paragraphs: [
 					'Clear the campaign map methodically. Junctions gate planets and key quest lines. The <a href="https://enlisted.fandom.com/wiki/Star_Chart" target="_blank" rel="noopener noreferrer">campaign map Wiki page</a> shows what each node rewards.',
-					'Do not rush campaign missions on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href="/blog/enlisted-steel-path-beginners-guide/">campaign missions guide</a> is for when you are ready.',
+					'Do not rush campaign missions on day one — finish the chart, build survival tools, and learn faction weaknesses first. Our <a href="/blog/steel-path/">campaign missions guide</a> is for when you are ready.',
 				],
 			},
 			{
@@ -1074,7 +1075,7 @@ const sources = [
 			{
 				h2: 'When you are ready for more',
 				paragraphs: [
-					'Explore battlefield after Mars/Jupiter comfort. Read our <a href="/blog/enlisted-battlefield-farming-guide/">battlefield guide</a> and <a href="/blog/enlisted-mission-types-explained/">mission types explainer</a> when those nodes unlock.',
+					'Explore battlefield after Mars/Jupiter comfort. Read our <a href="/blog/battlefield/">battlefield guide</a> and <a href="/blog/missions/">mission types explainer</a> when those nodes unlock.',
 					'Try This Today: Complete one quest, one new campaign map node, and one mod upgrade session — three small wins beat grinding random missions.',
 				],
 			},
@@ -1100,7 +1101,12 @@ const ENLISTED_BLOG_IDS = new Set([
 	'enlisted-new-player-guide',
 ]);
 
-const blogSources = sources.filter((src) => ENLISTED_BLOG_IDS.has(src.id));
+const blogSources = sources
+	.filter((src) => ENLISTED_BLOG_IDS.has(src.id))
+	.map((src) => ({
+		...src,
+		slug: BLOG_SHORT_SLUG_BY_ID[src.id] ?? src.slug,
+	}));
 
 function translationBlock(src) {
 	const sections = src.sections
